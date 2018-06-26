@@ -6,14 +6,24 @@
 
     <display-name>Test</display-name>
 
+
    <servlet>
        <servlet-name>welcome</servlet-name>
        <servlet-class>com.cryptoeagle.controller.WelcomeController</servlet-class>
    </servlet>
 
+
+    <servlet-mapping>
+        <servlet-name>welcome</servlet-name>
+        <url-pattern>/start</url-pattern>
+    </servlet-mapping>
+
+
     <servlet-mapping>
         <servlet-name>welcome</servlet-name>
         <url-pattern>/*</url-pattern>
     </servlet-mapping>
+
+
 
 </web-app>
