@@ -1,12 +1,54 @@
 package com.cryptoeagle.entity;
 
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+
+
+@Component
 public class User {
 
     private int id;
     private String name;
     private String email;
     private String password;
-    private Boolean admin;
+    private boolean enable;
+    private boolean admin;
+    private List<Blog> blogs;
+    private List<Role> roles;
+
+
+    public List<Blog> getBlogs() {
+        return blogs;
+    }
+
+    public void setBlogs(List<Blog> blogs) {
+        this.blogs = blogs;
+    }
+
+    public boolean isEnable() {
+        return enable;
+    }
+
+    public void setEnable(boolean enable) {
+        this.enable = enable;
+    }
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
 
     public int getId() {
         return id;

@@ -1,15 +1,37 @@
 package com.cryptoeagle.entity;
 
+import java.util.List;
+
 public class Blog {
 
     private Integer id;
     private String name;
     private String url;
+    private List<Item> items;
+    private User user;
+
 
     public Blog(Integer id, String name, String URL) {
         this.id = id;
         this.name = name;
         this.url = URL;
+    }
+
+
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
 
     public Integer getId() {

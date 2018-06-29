@@ -10,6 +10,14 @@ public class Item {
     private Date publishDate;
     private String link;
 
+    public Item(Integer id, String title, String description, Date publishDate, String link) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.publishDate = publishDate;
+        this.link = link;
+    }
+
     public Integer getId() {
         return id;
     }
