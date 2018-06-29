@@ -11,18 +11,26 @@
        <servlet-name>welcome</servlet-name>
        <servlet-class>com.cryptoeagle.controller.WelcomeController</servlet-class>
    </servlet>
+    <servlet>
+        <servlet-name>hello</servlet-name>
+        <servlet-class>com.cryptoeagle.controller.HelloController</servlet-class>
+    </servlet>
 
 
     <servlet-mapping>
         <servlet-name>welcome</servlet-name>
-        <url-pattern>/start</url-pattern>
+        <url-pattern>/welcome</url-pattern>
     </servlet-mapping>
-
 
     <servlet-mapping>
-        <servlet-name>welcome</servlet-name>
-        <url-pattern>/*</url-pattern>
+        <servlet-name>hello</servlet-name>
+        <url-pattern>/hello</url-pattern>
     </servlet-mapping>
+
+    <session-config>
+        <session-timeout>10000</session-timeout>
+    </session-config>
+
 
 
 

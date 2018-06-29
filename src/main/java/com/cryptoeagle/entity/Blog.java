@@ -1,4 +1,4 @@
-package com.cryptoeagle.model;
+package com.cryptoeagle.entity;
 
 public class Blog {
 
@@ -34,5 +34,12 @@ public class Blog {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    @Override
+    public String toString() {
+        return "Blog{" +
+                "name='" + name + '\'' +
+                '}';
     }
 }

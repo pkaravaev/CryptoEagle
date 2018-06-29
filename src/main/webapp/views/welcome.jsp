@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: karav
@@ -11,9 +12,19 @@
     <title>Welcome</title>
 </head>
 <body>
-       <h1>Blog</h1>
-       ${blog.id}
-       ${blog.name}
-       ${blog.url}
+
+<h1>BLOG DETAIL</h1>
+
+<c:if test="${true}">
+
+    <label>id</label>
+    ${blog.id}
+    <label>name</label>
+    ${blog.name}
+    <label>id</label>
+    ${blog.url}
+
+</c:if>
+
 </body>
 </html>
