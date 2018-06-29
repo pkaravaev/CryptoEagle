@@ -12,4 +12,9 @@ public class WelcomeController {
    public String welcome(){
        return  "welcome";
    }
+
+    @RequestMapping("/register")
+    public String register(){
+        return  "register";
+    }
 }
