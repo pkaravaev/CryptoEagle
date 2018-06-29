@@ -4,14 +4,19 @@ import com.cryptoeagle.entity.Item;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import javax.sql.DataSource;
+
 public class test {
 
     public static void main(String[] args) {
 
 
-        ApplicationContext context = new ClassPathXmlApplicationContext("spring/spring-app.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("spring/spring-db.xml");
 
-        Item item = context.getBean(Item.class);
+        String[] names = context.getBeanDefinitionNames();
+
+
+        DataSource item = context.getBean(DataSource.class);
 
 
         System.out.println();

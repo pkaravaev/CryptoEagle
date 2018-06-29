@@ -9,6 +9,7 @@ public class Item {
     private String description;
     private Date publishDate;
     private String link;
+    private Blog blog;
 
     public Item(Integer id, String title, String description, Date publishDate, String link) {
         this.id = id;
@@ -18,6 +19,13 @@ public class Item {
         this.link = link;
     }
 
+    public Blog getBlog() {
+        return blog;
+    }
+
+    public void setBlog(Blog blog) {
+        this.blog = blog;
+    }
     public Integer getId() {
         return id;
     }
