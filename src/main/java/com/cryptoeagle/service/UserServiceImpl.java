@@ -15,26 +15,26 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> findAll() {
-      return   repository.getall();
+        return repository.getall();
     }
 
     @Override
     public void save(User user) {
-
+        repository.delete(user.getId());
     }
 
     @Override
     public void delete(int id) {
-
+        repository.delete(id);
     }
 
     @Override
     public void delete(User user) {
-
+        repository.delete(user.getId());
     }
 
     @Override
     public User findAmin() {
-        return null;
+        return repository.getall().stream().filter( e -> e.getAdmin() == true).findFirst().get();
     }
 }
