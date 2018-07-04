@@ -1,12 +1,14 @@
 <jsp:include page="template/header.jsp"/>
 
+
+
+
 <form class="form-horizontal registrationForm" action="/register" method="post">
 
     <div class="alert alert-info">
         Didn't find your favourite blog? Register and submit a missing blog.
         Otherwise you don't have to register.
     </div>
-
 
 
     <div class="form-group">
@@ -42,5 +44,9 @@
         </div>
     </div>
 </form>
+
+
+
+
 
 <jsp:include page="template/footer.jsp"/>

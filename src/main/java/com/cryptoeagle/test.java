@@ -12,7 +12,7 @@ public class test {
     public static void main(String[] args) {
 
 
-        ApplicationContext context = new ClassPathXmlApplicationContext("spring/spring-db.xml", "spring/spring-app.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("spring/spring-db.xml");
 
         String[] names = context.getBeanDefinitionNames();
 
