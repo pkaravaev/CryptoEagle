@@ -13,7 +13,7 @@ public class test {
     public static void main(String[] args) {
 
 
-        ApplicationContext context = new FileSystemXmlApplicationContext("C:\\projects\\CryptoEagle\\src\\main\\webapp\\WEB-INF\\applicationContext.xml", "C:\\projects\\CryptoEagle\\src\\main\\webapp\\WEB-INF\\dispatcherServlet-servlet.xml","");
+        ApplicationContext context = new FileSystemXmlApplicationContext("C:\\projects\\CryptoEagle\\src\\main\\webapp\\WEB-INF\\spring-app.xml", "C:\\projects\\CryptoEagle\\src\\main\\webapp\\WEB-INF\\spring-mvc.xml","");
 
         String[] names = context.getBeanDefinitionNames();
 

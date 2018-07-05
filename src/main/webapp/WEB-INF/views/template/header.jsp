@@ -15,8 +15,13 @@
 </head>
 <body>
 
+<nav class="navbar navbar-dark bg-dark" >
+    <!-- Navbar content -->
+</nav>
 
-
+<div class="container">
+    <!-- Content here -->
+</div>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">Crypto Eagle</a>
@@ -32,7 +37,7 @@
                 <a class="nav-link" href="#">My blogs</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
+                <a class="nav-link" href="/">A</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link " href="/register">Register</a>

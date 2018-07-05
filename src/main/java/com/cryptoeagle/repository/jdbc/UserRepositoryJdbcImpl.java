@@ -1,6 +1,7 @@
-package com.cryptoeagle.repository;
+package com.cryptoeagle.repository.jdbc;
 
 import com.cryptoeagle.entity.User;
+import com.cryptoeagle.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -8,6 +9,10 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.List;
 
 
@@ -18,13 +23,15 @@ public class UserRepositoryJdbcImpl implements UserRepository {
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
+    DataSource dataSource;
+
+    @Autowired
     private NamedParameterJdbcTemplate namedTemplate;
 
     private RowMapper<User> rowMapper = BeanPropertyRowMapper.newInstance(User.class);
 
     @Override
     public User save(User user) {
-
         return null;
     }
 
@@ -42,6 +49,12 @@ public class UserRepositoryJdbcImpl implements UserRepository {
     @Override
     public List<User> getall() {
         List<User> userList = jdbcTemplate.query("SELECT * FROM users ", rowMapper);
+        return userList;
+    }
+
+    @Override
+    public List<User> getAllWithBlogs() {
+        List<User> userList = jdbcTemplate.query("SELECT * FROM users  INNER JOIN blogs b on users.id_user = b.id_user", rowMapper);
         return userList;
     }
 }

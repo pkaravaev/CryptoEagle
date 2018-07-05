@@ -4,7 +4,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md">
+        <div class="col-sm">
 
         </div>
         <div class="col-md-8">
@@ -37,7 +37,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-md">
+        <div class="col-sm">
 
 
         </div>

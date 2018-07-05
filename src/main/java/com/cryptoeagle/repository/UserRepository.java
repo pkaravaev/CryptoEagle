@@ -14,6 +14,8 @@ public interface UserRepository {
 
     List<User> getall();
 
+    List<User> getAllWithBlogs();
+
 }
 
 

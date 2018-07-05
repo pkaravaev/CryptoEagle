@@ -5,11 +5,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 
-    <!--<context:annotation-config/>-->
-
-    <context:component-scan base-package="com.cryptoeagle.service"/>
-
-    <context:component-scan base-package="com.cryptoeagle.repository"/>
+    <context:component-scan base-package="com.cryptoeagle.repository.jdbc"/>
 
     <context:property-placeholder location="classpath:db/postgres.properties"/>
 
@@ -27,7 +23,4 @@
     <bean class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
         <constructor-arg ref="dataSource"/>
     </bean>
-
-
-
 </beans>
