@@ -1,9 +1,10 @@
 package com.cryptoeagle;
 
-import com.cryptoeagle.entity.Item;
+import com.cryptoeagle.controller.WelcomeController;
 import com.cryptoeagle.repository.UserRepository;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 import javax.sql.DataSource;
 
@@ -12,7 +13,7 @@ public class test {
     public static void main(String[] args) {
 
 
-        ApplicationContext context = new ClassPathXmlApplicationContext("spring/spring-db.xml");
+        ApplicationContext context = new FileSystemXmlApplicationContext("C:\\projects\\CryptoEagle\\src\\main\\webapp\\WEB-INF\\applicationContext.xml", "C:\\projects\\CryptoEagle\\src\\main\\webapp\\WEB-INF\\dispatcherServlet-servlet.xml","");
 
         String[] names = context.getBeanDefinitionNames();
 
@@ -20,6 +21,10 @@ public class test {
         DataSource item = context.getBean(DataSource.class);
 
         UserRepository repository = context.getBean(UserRepository.class);
+
+        WelcomeController controller = context.getBean(WelcomeController.class);
+
+
 
 
 

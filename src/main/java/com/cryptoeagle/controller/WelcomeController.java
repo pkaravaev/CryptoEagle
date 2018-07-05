@@ -16,7 +16,7 @@ import java.util.List;
 public class WelcomeController {
 
     @Autowired
-    UserService service;
+    UserService userService;
 
     @RequestMapping("/")
     public String welcome(){
@@ -27,11 +27,10 @@ public class WelcomeController {
     @RequestMapping("/users")
     public String test(Model model){
 
-        List<User> users = service.findAll();
+        List<User> users = userService.findAll();
         model.addAttribute(users);
         return  "users";
     }
-
 
     @RequestMapping("/register")
     public String register(){

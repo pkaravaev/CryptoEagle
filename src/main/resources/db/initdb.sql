@@ -1,5 +1,4 @@
 
-
 drop table if exists users;
 drop sequence if exists global_seq;
 

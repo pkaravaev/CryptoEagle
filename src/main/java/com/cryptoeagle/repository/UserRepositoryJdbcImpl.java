@@ -37,7 +37,6 @@ public class UserRepositoryJdbcImpl implements UserRepository {
     public User get(int id) {
         List<User> userList = jdbcTemplate.query("SELECT * FROM users WHERE id=?", rowMapper,id);
         return userList.stream().filter( e -> e.getId() == id).findFirst().get();
-
     }
 
     @Override

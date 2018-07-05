@@ -18,7 +18,6 @@ public class Blog {
     }
 
 
-
     public User getUser() {
         return user;
     }
