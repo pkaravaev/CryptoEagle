@@ -2,17 +2,15 @@ package com.cryptoeagle.entity;
 
 import java.util.List;
 
-public class Blog {
+public class Blog extends BaseEntity{
 
-    private Integer id;
     private String name;
     private String url;
     private List<Item> items;
     private User user;
 
 
-    public Blog(Integer id, String name, String URL) {
-        this.id = id;
+    public Blog(String name, String URL) {
         this.name = name;
         this.url = URL;
     }
@@ -33,13 +31,7 @@ public class Blog {
         this.items = items;
     }
 
-    public Integer getId() {
-        return id;
-    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;

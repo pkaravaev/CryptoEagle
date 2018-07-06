@@ -3,7 +3,6 @@ package com.cryptoeagle;
 import com.cryptoeagle.controller.WelcomeController;
 import com.cryptoeagle.repository.UserRepository;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 import javax.sql.DataSource;
@@ -23,6 +22,10 @@ public class test {
         UserRepository repository = context.getBean(UserRepository.class);
 
         WelcomeController controller = context.getBean(WelcomeController.class);
+
+
+
+
 
 
 

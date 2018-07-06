@@ -2,17 +2,15 @@ package com.cryptoeagle.entity;
 
 import java.util.Date;
 
-public class Item {
+public class Item extends BaseEntity {
 
-    private Integer id;
     private String title;
     private String description;
     private Date publishDate;
     private String link;
     private Blog blog;
 
-    public Item(Integer id, String title, String description, Date publishDate, String link) {
-        this.id = id;
+    public Item( String title, String description, Date publishDate, String link) {
         this.title = title;
         this.description = description;
         this.publishDate = publishDate;
@@ -26,13 +24,7 @@ public class Item {
     public void setBlog(Blog blog) {
         this.blog = blog;
     }
-    public Integer getId() {
-        return id;
-    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getTitle() {
         return title;

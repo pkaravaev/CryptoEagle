@@ -6,9 +6,8 @@ import java.util.List;
 
 
 @Component
-public class User {
+public class User extends BaseEntity {
 
-    private int id;
     private String name;
     private String email;
     private String password;
@@ -25,9 +24,7 @@ public class User {
         this.admin = admin;
     }
 
-    public boolean isNew(){
-        return id == 0;
-    }
+
 
     public List<Blog> getBlogs() {
         return blogs;
@@ -59,14 +56,6 @@ public class User {
 
     public void setRoles(List<Role> roles) {
         this.roles = roles;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
