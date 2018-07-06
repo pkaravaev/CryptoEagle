@@ -16,6 +16,15 @@ public class User extends BaseEntity {
     private List<Blog> blogs;
     private List<Role> roles;
 
+    public User(int id_user,String name, String email, String password, boolean enable, boolean admin) {
+        super(id_user);
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.enable = enable;
+        this.admin = admin;
+    }
+
     public User(String name, String email, String password, boolean enable, boolean admin) {
         this.name = name;
         this.email = email;
@@ -25,6 +34,9 @@ public class User extends BaseEntity {
     }
 
 
+    public User() {
+
+    }
 
     public List<Blog> getBlogs() {
         return blogs;

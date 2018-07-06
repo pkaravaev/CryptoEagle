@@ -25,27 +25,36 @@ public class BlogRepositoryJdbcImpl implements BlogRepository {
 
     RowMapper<Blog> rowMapper = BeanPropertyRowMapper.newInstance(Blog.class);
 
+    private static int id = 1000;
+
     @Autowired
     private NamedParameterJdbcTemplate namedTemplate;
 
     @Override
-    public Blog save(Blog blog) {
-        return null;
+    public Blog save(Blog blog, int user) {
+
+        if (blog.isNew()) {
+            jdbcTemplate.update("INSERT INTO blogs (id_blog, name, url, id_user) VALUES (?,?,?,?)", id++, blog.getName(), blog.getUrl(), user);
+
+        } else {
+
+            jdbcTemplate.update("UPDATE blogs SET  id_blog=?, name=?, url=?, id_user=? WHERE id_blog=? ", blog.getId(), blog.getName(), blog.getUrl(), user, blog.getId());
+        }
+        return blog;
     }
 
     @Override
-
-    public void delete(int id) {
-         jdbcTemplate.update("DELETE FROM blogs WHERE id_blog = id");
+    public void delete(int id, int user) {
+        jdbcTemplate.update("DELETE FROM blogs WHERE id_blog = ? AND id_user=?", id, user);
     }
 
     @Override
-    public Blog get(int id) {
-       return jdbcTemplate.queryForObject("SELECT * FROM blogs WHERE  id_blog=id", rowMapper);
+    public Blog get(int id, int user) {
+        return jdbcTemplate.queryForObject("SELECT * FROM blogs WHERE  id_blog=? AND id_user=? ", rowMapper, id, user);
     }
 
     @Override
-    public List<Blog> getall() {
-      return jdbcTemplate.query("SELECT * FROM blogs ", rowMapper);
+    public List<Blog> getall(int user) {
+        return jdbcTemplate.query("SELECT * FROM blogs WHERE id_user = ?", rowMapper, user);
     }
 }

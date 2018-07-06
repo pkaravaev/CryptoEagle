@@ -10,10 +10,13 @@ public class Blog extends BaseEntity{
     private User user;
 
 
-    public Blog(String name, String URL) {
+    public Blog(int id_blog, String name, String URL) {
+        super(id_blog);
         this.name = name;
         this.url = URL;
     }
+
+    public Blog(){}
 
 
     public User getUser() {

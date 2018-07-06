@@ -10,7 +10,8 @@ public class Item extends BaseEntity {
     private String link;
     private Blog blog;
 
-    public Item( String title, String description, Date publishDate, String link) {
+    public Item(int id_item, String title, String description, Date publishDate, String link) {
+        super(id_item);
         this.title = title;
         this.description = description;
         this.publishDate = publishDate;

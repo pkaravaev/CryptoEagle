@@ -1,8 +1,11 @@
-package com.cryptoeagle.repository;
+package com.cryptoeagle.repository.jdbc;
 
+import com.cryptoeagle.TestData;
 import com.cryptoeagle.entity.Blog;
 import com.cryptoeagle.entity.User;
+import com.cryptoeagle.repository.UserRepository;
 import com.cryptoeagle.service.UserService;
+import org.junit.Assume;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.event.TransactionalEventListener;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -17,6 +21,9 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.cryptoeagle.TestData.*;
+import static org.junit.Assert.assertEquals;
 
 
 @ContextConfiguration({"classpath:/spring/spring-db.xml",
@@ -29,12 +36,6 @@ public class UserRepositoryJdbcImplTest {
     @Autowired
     UserRepository repository;
 
-    @Autowired
-    UserService service;
-
-    @Autowired
-    DataSource dataSource;
-
     @Before
     public void setUp() throws Exception {
 
@@ -43,33 +44,34 @@ public class UserRepositoryJdbcImplTest {
 
     @Test
     public void save() {
-
-
-        User user = new User("vasya", "xxxx@gmail.com", "q1w2e34rt4t4", true, false );
-
-        repository.save(user);
-
-
-        User user2 = new User("sgsdgsdgsd", "xxxx@gmail.com", "vcbcbcvbbc", true, false );
-        user2.setId(100);
-
-        repository.save(user2);
+        repository.save(USER_1);
+        List<User> getall = repository.getall();
+        assertEquals(COUNT_USERS + 1,getall.size() );
 
     }
 
     @Test
     public void delete() {
+        repository.delete(USER_ID);
+        List<User> getall = repository.getall();
+        assertEquals(COUNT_USERS - 1,getall.size() );
     }
 
     @Test
     public void get() {
+        User user = repository.get(USER_ID);
+        assertEquals(user.getId(), 203);
     }
 
     @Test
     public void getall() {
-
         List<User> getall = repository.getall();
+        assertEquals(COUNT_USERS,getall.size() );
+    }
 
-        System.out.println();
+    @Test
+    public void getallWithBlogs() {
+        List<User> getall = repository.getAllWithBlogs();
+        assertEquals(COUNT_USERS,getall.size() );
     }
 }

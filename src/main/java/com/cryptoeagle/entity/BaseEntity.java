@@ -15,4 +15,11 @@ public abstract class BaseEntity {
     public boolean isNew(){
         return id == 0;
     }
+
+    public BaseEntity(int id) {
+        this.id = id;
+    }
+    public BaseEntity() {
+
+    }
 }

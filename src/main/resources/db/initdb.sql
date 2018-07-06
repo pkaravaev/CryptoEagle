@@ -24,7 +24,7 @@ create table blogs (
   id_blog integer primary key,
   name    varchar(20) not null,
   url     varchar(20) not null,
-  id_user int REFERENCES users (id_user)
+  id_user int REFERENCES users (id_user) ON DELETE CASCADE
 );
 
 
@@ -35,7 +35,7 @@ create table items (
   publishdate TIMESTAMP not null ,
   link varchar(50) not null ,
 
-  id_blog int REFERENCES blogs (id_blog)
+  id_blog int REFERENCES blogs (id_blog) ON DELETE CASCADE
 );
 
 

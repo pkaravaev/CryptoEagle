@@ -49,13 +49,14 @@ public class UserRepositoryJdbcImpl implements UserRepository {
 
     @Override
     public void delete(int id) {
-        jdbcTemplate.update("DELETE FROM users WHERE id=?", id);
+        jdbcTemplate.update("DELETE FROM users WHERE id_user=?", id);
     }
 
     @Override
     public User get(int id) {
-        List<User> userList = jdbcTemplate.query("SELECT * FROM users WHERE id=?", rowMapper, id);
-        return userList.stream().filter(e -> e.getId() == id).findFirst().get();
+        User user =  jdbcTemplate.queryForObject("SELECT * FROM users WHERE id_user=?", rowMapper, id);
+        user.setId(id);
+        return user;
     }
 
     @Override

@@ -7,11 +7,11 @@ import java.util.List;
 
 public interface BlogRepository {
 
-    Blog save(Blog user);
+    Blog save(Blog blog, int user );
 
-    void delete(int id);
+    void delete(int id, int user);
 
-    Blog get(int id);
+    Blog get(int id, int user);
 
-    List<Blog> getall();
+    List<Blog> getall( int user);
 }
