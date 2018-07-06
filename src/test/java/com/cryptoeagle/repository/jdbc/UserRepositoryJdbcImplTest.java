@@ -36,6 +36,9 @@ public class UserRepositoryJdbcImplTest {
     @Autowired
     UserRepository repository;
 
+    @Autowired
+    UserService service;
+
     @Before
     public void setUp() throws Exception {
 
@@ -65,6 +68,10 @@ public class UserRepositoryJdbcImplTest {
 
     @Test
     public void getall() {
+
+        List<User> getall1 = repository.getall();
+
+
         List<User> getall = repository.getall();
         assertEquals(COUNT_USERS,getall.size() );
     }
