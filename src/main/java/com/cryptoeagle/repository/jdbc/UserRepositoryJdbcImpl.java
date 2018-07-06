@@ -28,22 +28,34 @@ public class UserRepositoryJdbcImpl implements UserRepository {
     @Autowired
     private NamedParameterJdbcTemplate namedTemplate;
 
+    private static int id = 100;
+
     private RowMapper<User> rowMapper = BeanPropertyRowMapper.newInstance(User.class);
 
     @Override
     public User save(User user) {
-        return null;
+
+        if (user.isNew()) {
+            jdbcTemplate.update("INSERT INTO users (id_user, name, email, password, enable, admin) values (?,?,?,?,?,?)", id++, user.getName(), user.getEmail()
+                    , user.getPassword(), user.isEnable(), user.isAdmin());
+
+        } else {
+            jdbcTemplate.update("UPDATE users SET id_user = ?, name =?, email = ?, password=?, enable=?,admin = ? WHERE id_user =?", user.getId(), user.getName(), user.getEmail()
+                    , user.getPassword(), user.isEnable(), user.isAdmin(), user.getId());
+        }
+
+        return user;
     }
 
     @Override
     public void delete(int id) {
-        jdbcTemplate.update("DELETE FROM users WHERE id=?",id);
+        jdbcTemplate.update("DELETE FROM users WHERE id=?", id);
     }
 
     @Override
     public User get(int id) {
-        List<User> userList = jdbcTemplate.query("SELECT * FROM users WHERE id=?", rowMapper,id);
-        return userList.stream().filter( e -> e.getId() == id).findFirst().get();
+        List<User> userList = jdbcTemplate.query("SELECT * FROM users WHERE id=?", rowMapper, id);
+        return userList.stream().filter(e -> e.getId() == id).findFirst().get();
     }
 
     @Override

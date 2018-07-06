@@ -17,6 +17,17 @@ public class User {
     private List<Blog> blogs;
     private List<Role> roles;
 
+    public User(String name, String email, String password, boolean enable, boolean admin) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.enable = enable;
+        this.admin = admin;
+    }
+
+    public boolean isNew(){
+        return id == 0;
+    }
 
     public List<Blog> getBlogs() {
         return blogs;
