@@ -144,18 +144,19 @@ public class UserRepositoryJdbcImpl implements UserRepository {
 
     class UserRowMapper implements RowMapper<User> {
 
-
         @Override
         public User mapRow(ResultSet rs, int rowNum) throws SQLException {
             User user = new User();
             int id_user = rs.getInt("id_user");
             String name = rs.getString("name");
+            String email = rs.getString("email");
             String password = rs.getString("password");
             boolean enable = rs.getBoolean("enable");
             boolean admin = rs.getBoolean("admin");
 
             user.setId(id_user);
             user.setName(name);
+            user.setEmail(email);
             user.setPassword(password);
             user.setEnable(enable);
             user.setAdmin(admin);

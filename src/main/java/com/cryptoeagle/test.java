@@ -1,14 +1,10 @@
 package com.cryptoeagle;
 
-import com.cryptoeagle.controller.WelcomeController;
 import com.cryptoeagle.entity.User;
-import com.cryptoeagle.repository.UserRepository;
 import com.cryptoeagle.service.UserService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.context.support.FileSystemXmlApplicationContext;
 
-import javax.sql.DataSource;
 import java.util.List;
 
 public class test {
