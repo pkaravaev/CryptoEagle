@@ -10,6 +10,8 @@ public interface UserService {
 
     void save(User user);
 
+    User get(int id);
+
     void delete(int id);
 
     void delete(User user);

@@ -62,7 +62,7 @@ public class UserRepositoryJdbcImplTest {
 
     @Test
     public void get() {
-        User user = repository.get(USER_ID);
+        User user = repository.get(204);
         assertEquals(user.getId(), 203);
     }
 

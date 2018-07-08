@@ -7,7 +7,9 @@ import java.util.List;
 
 
 @Component
-public class User extends BaseEntity {
+public class User  {
+
+    private int id;
 
     private String name;
     private String email;
@@ -17,8 +19,9 @@ public class User extends BaseEntity {
     private List<Blog> blogs = new ArrayList<>();
     private List<Role> roles = new ArrayList<>();
 
-    public User(int id_user,String name, String email, String password, boolean enable, boolean admin) {
-        super(id_user);
+    public User(int id,String name, String email, String password, boolean enable, boolean admin) {
+//        super(id);
+        this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
@@ -37,6 +40,19 @@ public class User extends BaseEntity {
 
     public User() {
 
+    }
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public boolean isNew(){
+        return id == 0;
     }
 
     public List<Blog> getBlogs() {

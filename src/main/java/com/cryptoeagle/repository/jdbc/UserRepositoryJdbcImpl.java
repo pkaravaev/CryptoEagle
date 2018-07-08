@@ -43,12 +43,10 @@ public class UserRepositoryJdbcImpl implements UserRepository {
         if (user.isNew()) {
             jdbcTemplate.update("INSERT INTO users (id_user, name, email, password, enable, admin) values (?,?,?,?,?,?)", id++, user.getName(), user.getEmail()
                     , user.getPassword(), user.isEnable(), user.isAdmin());
-
         } else {
             jdbcTemplate.update("UPDATE users SET id_user = ?, name =?, email = ?, password=?, enable=?,admin = ? WHERE id_user =?", user.getId(), user.getName(), user.getEmail()
                     , user.getPassword(), user.isEnable(), user.isAdmin(), user.getId());
         }
-
         return user;
     }
 
@@ -59,14 +57,16 @@ public class UserRepositoryJdbcImpl implements UserRepository {
 
     @Override
     public User get(int id) {
-        User user = jdbcTemplate.queryForObject("SELECT * FROM users INNER JOIN blogs b on users.id_user = b.id_user WHERE users.id_user=?", rowMapper, id);
-        user.setId(id);
+        UserRowMapper userRowMapper = new UserRowMapper();
+        User user = jdbcTemplate.queryForObject("SELECT * FROM users WHERE id_user=?", rowMapper, id);
         return user;
     }
 
     @Override
     public List<User> getall() {
-        List<User> userList = jdbcTemplate.query("SELECT * FROM users ", rowMapper);
+
+        UserRowMapper userRowMapper = new UserRowMapper();
+        List<User> userList = jdbcTemplate.query("SELECT * FROM users ", userRowMapper);
         return userList;
     }
 
@@ -140,5 +140,28 @@ public class UserRepositoryJdbcImpl implements UserRepository {
             return users;
         }
 
+    }
+
+    class UserRowMapper implements RowMapper<User> {
+
+
+        @Override
+        public User mapRow(ResultSet rs, int rowNum) throws SQLException {
+            User user = new User();
+            int id_user = rs.getInt("id_user");
+            String name = rs.getString("name");
+            String password = rs.getString("password");
+            boolean enable = rs.getBoolean("enable");
+            boolean admin = rs.getBoolean("admin");
+
+            user.setId(id_user);
+            user.setName(name);
+            user.setPassword(password);
+            user.setEnable(enable);
+            user.setAdmin(admin);
+
+            return user;
+
+        }
     }
 }

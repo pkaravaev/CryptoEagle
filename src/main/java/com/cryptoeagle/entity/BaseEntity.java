@@ -2,7 +2,7 @@ package com.cryptoeagle.entity;
 
 public abstract class BaseEntity {
 
-    private int id;
+    protected int id;
 
     public int getId() {
         return id;

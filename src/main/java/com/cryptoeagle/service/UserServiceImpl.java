@@ -31,6 +31,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User get(int id) {
+        log.info("get user id",id);
+      return   repository.get(id);
+    }
+
+    @Override
     public void delete(int id) {
         log.info("delete user by id");
         repository.delete(id);

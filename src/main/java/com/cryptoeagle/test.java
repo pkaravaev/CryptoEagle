@@ -21,6 +21,10 @@ public class test {
         String[] names = context.getBeanDefinitionNames();
 
 
+        User user = new User();
+
+
+
         UserService service = context.getBean(UserService.class);
 
         List<User> all = service.findAll();

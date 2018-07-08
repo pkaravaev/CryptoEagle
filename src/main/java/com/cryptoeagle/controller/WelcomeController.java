@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,11 +30,23 @@ public class WelcomeController {
 
 
     @RequestMapping("/users")
-    public String test(Model model) {
-
+    public String users(Model model) {
         List<User> users = userService.findAll();
         model.addAttribute(users);
         return "users";
+    }
+
+    @RequestMapping("/users/delete/{id}")
+    public String deleteUsers(@PathVariable int id) {
+         userService.delete(id);
+        return "redirect:/users";
+    }
+
+    @RequestMapping("/users/edit/{id}")
+    public String editUsers(@PathVariable int id , Model model) {
+        User user = userService.get(id);
+        model.addAttribute("user", user);
+        return "register";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
