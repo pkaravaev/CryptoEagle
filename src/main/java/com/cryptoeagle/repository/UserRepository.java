@@ -12,6 +12,8 @@ public interface UserRepository {
 
     User get(int id);
 
+    User getByEmail(String email);
+
     List<User> getall();
 
     List<User> getAllWithBlogs();

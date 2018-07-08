@@ -32,8 +32,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User get(int id) {
-        log.info("get user id",id);
-      return   repository.get(id);
+        log.info("get user id", id);
+        return repository.get(id);
+    }
+
+    @Override
+    public User getByEmail(String email) {
+        log.info("get user id", email);
+        return repository.getByEmail(email);
     }
 
     @Override
@@ -51,6 +57,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findAmin() {
         log.info("find admin user");
-        return repository.getall().stream().filter( e -> e.getAdmin() == true).findFirst().get();
+        return repository.getall().stream().filter(e -> e.getAdmin() == true).findFirst().get();
     }
+
+
 }

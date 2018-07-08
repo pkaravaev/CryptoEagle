@@ -24,6 +24,8 @@ import java.util.List;
 @Repository
 public class UserRepositoryJdbcImpl implements UserRepository {
 
+
+
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
@@ -59,6 +61,13 @@ public class UserRepositoryJdbcImpl implements UserRepository {
     public User get(int id) {
         UserRowMapper userRowMapper = new UserRowMapper();
         User user = jdbcTemplate.queryForObject("SELECT * FROM users WHERE id_user=?", rowMapper, id);
+        return user;
+    }
+
+    @Override
+    public User getByEmail(String email) {
+        UserRowMapper userRowMapper = new UserRowMapper();
+        User user = jdbcTemplate.queryForObject("SELECT * FROM users WHERE email=?", rowMapper, email);
         return user;
     }
 
