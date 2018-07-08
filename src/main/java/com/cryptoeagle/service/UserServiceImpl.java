@@ -2,16 +2,18 @@ package com.cryptoeagle.service;
 
 import com.cryptoeagle.entity.User;
 import com.cryptoeagle.repository.UserRepository;
-import org.apache.log4j.Logger;
+
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 @Service
 public class UserServiceImpl implements UserService {
 
-    private static final Logger log = Logger.getLogger(UserServiceImpl.class);
+    private static final org.slf4j.Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
 
     @Autowired
     private UserRepository repository;
@@ -25,7 +27,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void save(User user) {
         log.info("save user");
-        repository.delete(user.getId());
+        repository.save(user);
     }
 
     @Override

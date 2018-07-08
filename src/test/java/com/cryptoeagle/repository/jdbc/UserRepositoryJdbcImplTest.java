@@ -55,7 +55,7 @@ public class UserRepositoryJdbcImplTest {
 
     @Test
     public void delete() {
-        repository.delete(USER_ID);
+        service.delete(USER_ID);
         List<User> getall = repository.getall();
         assertEquals(COUNT_USERS - 1,getall.size() );
     }
@@ -68,10 +68,6 @@ public class UserRepositoryJdbcImplTest {
 
     @Test
     public void getall() {
-
-        List<User> getall1 = repository.getall();
-
-
         List<User> getall = repository.getall();
         assertEquals(COUNT_USERS,getall.size() );
     }

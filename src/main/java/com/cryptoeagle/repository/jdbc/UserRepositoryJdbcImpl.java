@@ -1,10 +1,13 @@
 package com.cryptoeagle.repository.jdbc;
 
+import com.cryptoeagle.entity.Blog;
 import com.cryptoeagle.entity.User;
 import com.cryptoeagle.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -12,7 +15,9 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -54,7 +59,7 @@ public class UserRepositoryJdbcImpl implements UserRepository {
 
     @Override
     public User get(int id) {
-        User user =  jdbcTemplate.queryForObject("SELECT * FROM users WHERE id_user=?", rowMapper, id);
+        User user = jdbcTemplate.queryForObject("SELECT * FROM users INNER JOIN blogs b on users.id_user = b.id_user WHERE users.id_user=?", rowMapper, id);
         user.setId(id);
         return user;
     }
@@ -67,7 +72,73 @@ public class UserRepositoryJdbcImpl implements UserRepository {
 
     @Override
     public List<User> getAllWithBlogs() {
-        List<User> userList = jdbcTemplate.query("SELECT * FROM users  INNER JOIN blogs b on users.id_user = b.id_user", rowMapper);
+        DeeExtractSet deeExtractSet = new DeeExtractSet();
+        List<User> userList = jdbcTemplate.query("SELECT * FROM users  INNER JOIN blogs b on users.id_user = b.id_user", deeExtractSet);
         return userList;
+    }
+
+    class DeeExtractSet implements ResultSetExtractor<List<User>> {
+
+        @Override
+        public List<User> extractData(ResultSet rs) throws SQLException, DataAccessException {
+
+            List<User> users = new ArrayList<>();
+
+            User user = new User();
+
+            if (user.isNew()) {
+
+                int user_id = rs.getInt(1);
+                String user_name = rs.getString(2);
+                String user_email = rs.getString(3);
+                String user_password = rs.getString(4);
+                boolean user_enable = rs.getBoolean(5);
+                boolean user_admin = rs.getBoolean(6);
+
+                int blog_id = rs.getInt(7);
+                String blog_name = rs.getString(8);
+                String blog_url = rs.getString(9);
+
+                user.setId(user_id);
+                user.setName(user_name);
+                user.setEmail(user_email);
+                user.setPassword(user_password);
+                user.setEnable(user_enable);
+                user.setAdmin(user_admin);
+
+                Blog blog = new Blog();
+                blog.setId(blog_id);
+                blog.setName(blog_name);
+                blog.setUrl(blog_url);
+                blog.setUser(user);
+
+
+                List<Blog> blogs = user.getBlogs();
+                blogs.add(blog);
+                user.setBlogs(blogs);
+
+            } else {
+                int blog_id = rs.getInt(7);
+                String blog_name = rs.getString(8);
+                String blog_url = rs.getString(9);
+                Blog blog = new Blog();
+                blog.setId(blog_id);
+                blog.setName(blog_name);
+                blog.setUrl(blog_url);
+                blog.setUser(user);
+                List<Blog> blogs = user.getBlogs();
+                blogs.add(blog);
+                user.setBlogs(blogs);
+
+            }
+
+            while (rs.next()) {
+
+            }
+
+
+            return users;
+        }
+
     }
 }

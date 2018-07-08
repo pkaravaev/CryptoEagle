@@ -2,6 +2,7 @@ package com.cryptoeagle.entity;
 
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -13,8 +14,8 @@ public class User extends BaseEntity {
     private String password;
     private boolean enable;
     private boolean admin;
-    private List<Blog> blogs;
-    private List<Role> roles;
+    private List<Blog> blogs = new ArrayList<>();
+    private List<Role> roles = new ArrayList<>();
 
     public User(int id_user,String name, String email, String password, boolean enable, boolean admin) {
         super(id_user);

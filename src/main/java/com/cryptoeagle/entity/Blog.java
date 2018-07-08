@@ -1,17 +1,23 @@
 package com.cryptoeagle.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Blog extends BaseEntity{
 
     private String name;
     private String url;
-    private List<Item> items;
+    private List<Item> items = new ArrayList<>();
     private User user;
 
 
     public Blog(int id_blog, String name, String URL) {
         super(id_blog);
+        this.name = name;
+        this.url = URL;
+    }
+
+    public Blog( String name, String URL) {
         this.name = name;
         this.url = URL;
     }
