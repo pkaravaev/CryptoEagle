@@ -25,7 +25,6 @@ import java.util.List;
 public class UserRepositoryJdbcImpl implements UserRepository {
 
 
-
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
@@ -73,7 +72,6 @@ public class UserRepositoryJdbcImpl implements UserRepository {
 
     @Override
     public List<User> getall() {
-
         UserRowMapper userRowMapper = new UserRowMapper();
         List<User> userList = jdbcTemplate.query("SELECT * FROM users ", userRowMapper);
         return userList;
@@ -87,7 +85,6 @@ public class UserRepositoryJdbcImpl implements UserRepository {
     }
 
     class DeeExtractSet implements ResultSetExtractor<List<User>> {
-
         @Override
         public List<User> extractData(ResultSet rs) throws SQLException, DataAccessException {
 
@@ -152,7 +149,6 @@ public class UserRepositoryJdbcImpl implements UserRepository {
     }
 
     class UserRowMapper implements RowMapper<User> {
-
         @Override
         public User mapRow(ResultSet rs, int rowNum) throws SQLException {
             User user = new User();

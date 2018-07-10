@@ -18,6 +18,8 @@ public class Item extends BaseEntity {
         this.link = link;
     }
 
+    public Item(){}
+
     public Blog getBlog() {
         return blog;
     }

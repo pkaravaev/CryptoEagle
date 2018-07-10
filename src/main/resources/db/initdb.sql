@@ -29,7 +29,7 @@ create table blogs (
 
 create table items (
   id_item integer primary key,
-  title    varchar(50) not null,
+  title    varchar(200) not null,
   description varchar(300) not null,
   publishdate TIMESTAMP not null ,
   link varchar(100) not null ,

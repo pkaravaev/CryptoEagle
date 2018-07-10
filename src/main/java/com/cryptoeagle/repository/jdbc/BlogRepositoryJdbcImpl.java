@@ -16,7 +16,6 @@ import java.util.List;
 @Repository
 public class BlogRepositoryJdbcImpl implements BlogRepository {
 
-
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
@@ -32,12 +31,10 @@ public class BlogRepositoryJdbcImpl implements BlogRepository {
 
     @Override
     public Blog save(Blog blog, int user) {
-
         if (blog.isNew()) {
             jdbcTemplate.update("INSERT INTO blogs (id_blog, name, url, id_user) VALUES (?,?,?,?)", id++, blog.getName(), blog.getUrl(), user);
 
         } else {
-
             jdbcTemplate.update("UPDATE blogs SET  id_blog=?, name=?, url=?, id_user=? WHERE id_blog=? ", blog.getId(), blog.getName(), blog.getUrl(), user, blog.getId());
         }
         return blog;
