@@ -34,7 +34,7 @@
                 <a class="nav-link" href="/">News <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">My blogs</a>
+                <a class="nav-link" href="/blogs">My blogs</a>
             </li>
 
             <li class="nav-item">

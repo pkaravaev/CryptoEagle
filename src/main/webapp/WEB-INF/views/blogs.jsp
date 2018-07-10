@@ -8,34 +8,46 @@
 
         </div>
         <div class="col-md-8">
-            <table class="table">
-                <thead>
 
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Blogs</th>
-                    <th scope="col">Admin</th>
-                    <th scope="col">Enable</th>
-                </tr>
-                </thead>
+            <div class="tab-content">
+                <c:forEach items="${user.blogs}" var="blog">
 
-                <tbody>
-                <c:forEach items="${userList}" var="user">
+                    <div class="tab-pane" id="blog_${blog.id}">
+                        <h1>${blog.name}</h1>
+                        <p>
+                            <a href="<sping:url value="/blog/remove/${blog.id}.html"/> " class="btn btn-danger triggerRemove">remove
+                                blog</a>
+                                ${blog.url}</p>
 
-                    <tr>
-                        <td>${user.id}</td>
-                        <td>${user.name}</td>
-                        <td>${user.email}</td>
-                        <td>${user.blogs.size()}</td>
-                        <td>${user.admin}</td>
-                        <td>${user.enable}</td>
-                    </tr>
+                        <table class="table table-bordered table-hover table-striped">
+                            <thead>
+                            <tr>
+                                <th>date</th>
+                                <th>item</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:forEach items="${blog.items}" var="item">
+                                <tr>
+                                    <td>${item.publishedDate}</td>
+                                    <td>
+                                        <strong>
+                                            <a href="<c:out value="${item.link}" />" target="_blank">
+                                                <c:out value="${item.title}"/>
+                                            </a>
+                                        </strong>
+                                        <br/>
+                                            ${item.description}
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
                 </c:forEach>
+            </div>
 
-                </tbody>
-            </table>
+
         </div>
         <div class="col-sm">
 
