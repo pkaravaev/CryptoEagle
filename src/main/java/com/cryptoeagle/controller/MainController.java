@@ -31,7 +31,7 @@ public class MainController {
     BlogService blogService;
 
     @RequestMapping("/")
-    public String welcome(HttpSession session, Model model) {
+    public String welcome( Model model) {
 //        int user_id = (int)session.getAttribute("user");
         List<Item> items = itemService.findall();
         model.addAttribute("items",items);
@@ -40,7 +40,7 @@ public class MainController {
     }
 
     @RequestMapping("/blogs")
-    public String blogs(HttpSession session, Model model) {
+    public String blogs( Model model) {
 
         List<Blog> blogList = blogService.findall();
         model.addAttribute("blogs", blogList);

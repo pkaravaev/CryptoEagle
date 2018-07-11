@@ -1,17 +1,29 @@
 package com.cryptoeagle.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import java.util.Date;
 
+@Entity
 public class Item extends BaseEntity {
 
     private String title;
     private String description;
     private Date publishDate;
     private String link;
+
+    @ManyToOne()
     private Blog blog;
 
     public Item(int id_item, String title, String description, Date publishDate, String link) {
         super(id_item);
+        this.title = title;
+        this.description = description;
+        this.publishDate = publishDate;
+        this.link = link;
+    }
+
+    public Item( String title, String description, Date publishDate, String link) {
         this.title = title;
         this.description = description;
         this.publishDate = publishDate;

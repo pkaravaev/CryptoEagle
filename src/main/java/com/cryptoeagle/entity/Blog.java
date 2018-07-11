@@ -1,13 +1,20 @@
 package com.cryptoeagle.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 
+
+@Entity
 public class Blog extends BaseEntity{
 
     private String name;
     private String url;
+    @OneToMany(mappedBy = "blog")
     private List<Item> items = new ArrayList<>();
+    @ManyToOne
     private User user;
 
 
@@ -36,8 +43,8 @@ public class Blog extends BaseEntity{
         return items;
     }
 
-    public void setItems(List<Item> items) {
-        this.items = items;
+    public void setItems(Item item) {
+      items.add(item);
     }
 
 

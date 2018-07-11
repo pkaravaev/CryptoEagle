@@ -1,17 +1,12 @@
 package com.cryptoeagle.entity;
 
-public class Role {
 
-    private Integer id;
+import javax.persistence.Entity;
+
+@Entity
+public class Role extends BaseEntity {
+
     private String name;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;

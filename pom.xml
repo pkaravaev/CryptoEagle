@@ -58,7 +58,7 @@
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>1.2.3</version>
-            <scope>test</scope>
+            <scope>provided</scope>
         </dependency>
 
 
@@ -123,6 +123,13 @@
             <artifactId>spring-data-jpa</artifactId>
             <version>2.0.8.RELEASE</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.3.0</version>
+        </dependency>
+
 
 
 

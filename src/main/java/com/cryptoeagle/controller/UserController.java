@@ -24,9 +24,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String logining(@RequestParam String email, @RequestParam String password, HttpSession session) {
+    public String logining(@RequestParam String email, @RequestParam String password) {
         User user = userService.getByEmail(email);
-        session.setAttribute("user",user);
         return "redirect:/";
     }
 
