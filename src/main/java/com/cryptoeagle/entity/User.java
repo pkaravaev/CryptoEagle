@@ -2,13 +2,16 @@ package com.cryptoeagle.entity;
 
 import org.springframework.stereotype.Component;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.ArrayList;
 import java.util.List;
 
 
-@Component
+@Entity
 public class User  {
 
+    @Id
     private int id;
 
     private String name;
@@ -16,6 +19,7 @@ public class User  {
     private String password;
     private boolean enable;
     private boolean admin;
+
     private List<Blog> blogs = new ArrayList<>();
     private List<Role> roles = new ArrayList<>();
 
