@@ -4,12 +4,14 @@ import com.cryptoeagle.entity.AppUser;
 import com.cryptoeagle.entity.Blog;
 import com.cryptoeagle.repository.BlogRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
+@Transactional(readOnly = true)
 public class BlogRepositoryJpaImpl implements BlogRepository {
 
     @PersistenceContext
@@ -23,6 +25,7 @@ public class BlogRepositoryJpaImpl implements BlogRepository {
     }
 
     @Override
+    @Transactional
     public Blog save(Blog blog, int user_id) {
 
         if (blog.isNew()) {

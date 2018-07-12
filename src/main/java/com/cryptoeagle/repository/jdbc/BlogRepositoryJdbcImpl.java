@@ -51,7 +51,8 @@ public class BlogRepositoryJdbcImpl implements BlogRepository {
     }
 
     @Override
-    public List<Blog> getall(int user) {
+    public List<Blog> getallByUser(int user) {
         return jdbcTemplate.query("SELECT * FROM blogs WHERE id_user = ?", rowMapper, user);
     }
+
 }

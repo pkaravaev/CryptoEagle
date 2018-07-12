@@ -21,7 +21,6 @@ public class AbstractUserServiceTest extends AbstractServiceTest {
     @Test
     public void save() {
         service.save(appUser1);
-
     }
 
     @Test

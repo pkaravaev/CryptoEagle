@@ -31,7 +31,6 @@ public class UserRepositoryJpaImpl implements UserRepository {
     @Override
     @Transactional
     public void delete(int id) {
-
         em.createNamedQuery(AppUser.DELETE)
                 .setParameter("id", id)
                 .executeUpdate();

@@ -20,7 +20,7 @@ import static org.junit.Assert.assertEquals;
 
 
 @ActiveProfiles(profiles = "Jpa")
-public class UserRepositoryJpaImplTest  extends AbstractUserServiceTest {
+public class UserServiceJpaTest extends AbstractUserServiceTest {
 
 
 }

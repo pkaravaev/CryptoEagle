@@ -2,6 +2,7 @@ package com.cryptoeagle.repository.jdbc;
 
 import com.cryptoeagle.entity.Blog;
 import com.cryptoeagle.repository.BlogRepository;
+import com.cryptoeagle.service.BlogService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ import static org.junit.Assert.assertEquals;
 public class BlogRepositoryJdbcImplTest {
 
     @Autowired
-    BlogRepository repository;
+    BlogService service;
 
     @Test
     public void save() {
@@ -36,12 +37,12 @@ public class BlogRepositoryJdbcImplTest {
     @Test
     public void get() {
 
-        Blog blog = repository.get(10004, 202);
+
     }
 
     @Test
     public void getall() {
-        List<Blog> getall = repository.getall(USER_ID);
+
 
     }
 }

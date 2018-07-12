@@ -12,5 +12,5 @@ public class UserTestData {
     public static int USER_BLOGS_COUNT = 2;
 
 
-    public static AppUser appUser1 = new AppUser("Jack", "test12gmail.com", "q1aw2s", true, false);
+    public static AppUser appUser1 = new AppUser(USER_ID,"Vasya", "vasya@mail.ru", "qwerty", true, false);
 }

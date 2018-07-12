@@ -35,8 +35,8 @@ public class MainController {
     @RequestMapping("/blogs")
     public String blogs( Model model) {
 
-        List<Blog> blogList = blogService.findall();
-        model.addAttribute("blogs", blogList);
+//        List<Blog> blogList = blogService.findall();
+//        model.addAttribute("blogs", blogList);
         return "blogs";
     }
 
