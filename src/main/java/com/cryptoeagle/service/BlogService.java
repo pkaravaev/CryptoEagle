@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface BlogService {
 
-     void save(Blog blog, String username);
+     void save(Blog blog, int user_id);
 
-     void update(Blog blog,String username);
+     void update(Blog blog,int user_id);
 
-     List<Blog> findall();
+     List<Blog> findall(int user_id);
 }
