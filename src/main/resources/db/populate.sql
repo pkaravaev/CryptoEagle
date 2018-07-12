@@ -16,7 +16,9 @@ values
   (100, 'pavel blog1', 'gfdg', 1000),
   (100, 'pavel blog2', 'kjlk', 1001),
   (101, 'Vasya blog1', 'dsfsgd', 1002),
-  (102, 'Alena blog1', 'cvx', 1003);
+  (101, 'Vasya blog2', 'dsfsgd', 1003),
+  (101, 'Vasya blog3', 'dsfsgd', 1004),
+  (102, 'Alena blog1', 'cvx', 1005);
 
 
 insert

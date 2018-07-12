@@ -32,7 +32,7 @@ public class UserRepositoryJdbcImpl implements UserRepository {
     @Autowired
     private NamedParameterJdbcTemplate namedTemplate;
 
-    private static int id = 100;
+    private static int id = 200;
 
     private RowMapper<AppUser> rowMapper = BeanPropertyRowMapper.newInstance(AppUser.class);
 
@@ -40,10 +40,10 @@ public class UserRepositoryJdbcImpl implements UserRepository {
     public AppUser save(AppUser appUser) {
 
         if (appUser.isNew()) {
-            jdbcTemplate.update("INSERT INTO users (id_user, name, email, password, enable, admin) values (?,?,?,?,?,?)", id++, appUser.getName(), appUser.getEmail()
+            jdbcTemplate.update("INSERT INTO appuser (id, name, email, password, enable, admin) values (?,?,?,?,?,?)", id++, appUser.getName(), appUser.getEmail()
                     , appUser.getPassword(), appUser.isEnable(), appUser.isAdmin());
         } else {
-            jdbcTemplate.update("UPDATE users SET id_user = ?, name =?, email = ?, password=?, enable=?,admin = ? WHERE id_user =?", appUser.getId(), appUser.getName(), appUser.getEmail()
+            jdbcTemplate.update("UPDATE appuser SET id = ?, name =?, email = ?, password=?, enable=?,admin = ? WHERE id =?", appUser.getId(), appUser.getName(), appUser.getEmail()
                     , appUser.getPassword(), appUser.isEnable(), appUser.isAdmin(), appUser.getId());
         }
         return appUser;
@@ -51,34 +51,34 @@ public class UserRepositoryJdbcImpl implements UserRepository {
 
     @Override
     public void delete(int id) {
-        jdbcTemplate.update("DELETE FROM users WHERE id_user=?", id);
+        jdbcTemplate.update("DELETE FROM appuser WHERE id=?", id);
     }
 
     @Override
     public AppUser get(int id) {
         UserRowMapper userRowMapper = new UserRowMapper();
-        AppUser appUser = jdbcTemplate.queryForObject("SELECT * FROM users WHERE id_user=?", rowMapper, id);
+        AppUser appUser = jdbcTemplate.queryForObject("SELECT * FROM appuser WHERE id=?", rowMapper, id);
         return appUser;
     }
 
     @Override
     public AppUser getByEmail(String email) {
         UserRowMapper userRowMapper = new UserRowMapper();
-        AppUser appUser = jdbcTemplate.queryForObject("SELECT * FROM users WHERE email=?", rowMapper, email);
+        AppUser appUser = jdbcTemplate.queryForObject("SELECT * FROM appuser WHERE email=?", rowMapper, email);
         return appUser;
     }
 
     @Override
     public List<AppUser> getall() {
         UserRowMapper userRowMapper = new UserRowMapper();
-        List<AppUser> appUserList = jdbcTemplate.query("SELECT * FROM users ", userRowMapper);
+        List<AppUser> appUserList = jdbcTemplate.query("SELECT * FROM appuser ", userRowMapper);
         return appUserList;
     }
 
     @Override
     public List<AppUser> getAllWithBlogs() {
         DeeExtractSet deeExtractSet = new DeeExtractSet();
-        List<AppUser> appUserList = jdbcTemplate.query("SELECT * FROM users  INNER JOIN blogs b on users.id_user = b.id_user", deeExtractSet);
+        List<AppUser> appUserList = jdbcTemplate.query("SELECT * FROM appuser  INNER JOIN blog b on appuser.id = b.id", deeExtractSet);
         return appUserList;
     }
 
