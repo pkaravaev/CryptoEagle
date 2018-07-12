@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
 
-import static com.cryptoeagle.TestData.*;
+import static com.cryptoeagle.UserTestData.*;
 import static org.junit.Assert.assertEquals;
 
 

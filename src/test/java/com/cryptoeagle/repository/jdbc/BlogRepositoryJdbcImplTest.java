@@ -11,9 +11,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
 
-import static com.cryptoeagle.TestData.COUNT_USERS;
-import static com.cryptoeagle.TestData.USER_BLOGS;
-import static com.cryptoeagle.TestData.USER_ID;
+
+import static com.cryptoeagle.UserTestData.USER_ID;
 import static org.junit.Assert.assertEquals;
 
 
@@ -43,6 +42,6 @@ public class BlogRepositoryJdbcImplTest {
     @Test
     public void getall() {
         List<Blog> getall = repository.getall(USER_ID);
-        assertEquals(USER_BLOGS, getall.size());
+
     }
 }

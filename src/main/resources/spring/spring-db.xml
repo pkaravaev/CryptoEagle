@@ -4,9 +4,7 @@
        xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-
-    <context:component-scan base-package="com.cryptoeagle.repository.jpa"/>
-
+    <tx:annotation-driven/>
     <context:property-placeholder location="classpath:db/postgres.properties"/>
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -16,40 +14,45 @@
         <property name="password" value="${database.password}"/>
     </bean>
 
-    <bean class="org.springframework.jdbc.core.JdbcTemplate">
-        <property name="dataSource" ref="dataSource"/>
-    </bean>
 
-    <bean class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
-        <constructor-arg ref="dataSource"/>
-    </bean>
+    <beans profile="Jdbc">
+        <bean class="org.springframework.jdbc.core.JdbcTemplate">
+            <property name="dataSource" ref="dataSource"/>
+        </bean>
 
+        <bean class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+            <constructor-arg ref="dataSource"/>
+        </bean>
 
+        <context:component-scan base-package="com.cryptoeagle.repository.jdbc"/>
 
-    <bean id="provider" class="org.hibernate.jpa.HibernatePersistenceProvider"/>
-
-
-
-   <bean  id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-       <property name="dataSource" ref="dataSource"/>
-       <property name="packagesToScan" value="com.cryptoeagle.entity"/>
-       <property name="persistenceProvider" ref="provider"/>
-
-       <property name="jpaPropertyMap">
-                     <map>
-                         <entry key="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL9Dialect" />
-                         <entry key="hibernate.hbm2ddl.auto" value="update"/>
-                         <entry key="hibernate.format_sql" value="true" />
-                         <entry key="hibernate.show_sql" value="true"/>
-                     </map>
-       </property>
-   </bean>
-
-    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-        <property name="entityManagerFactory" ref="entityManagerFactory"/>
-    </bean>
-
-    <tx:annotation-driven/>
+    </beans>
 
 
+    <beans profile="Jpa">
+
+        <bean id="provider" class="org.hibernate.jpa.HibernatePersistenceProvider"/>
+
+        <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+            <property name="dataSource" ref="dataSource"/>
+            <property name="packagesToScan" value="com.cryptoeagle.entity"/>
+            <property name="persistenceProvider" ref="provider"/>
+
+            <property name="jpaPropertyMap">
+                <map>
+                    <entry key="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL9Dialect"/>
+                    <entry key="hibernate.hbm2ddl.auto" value="update"/>
+                    <entry key="hibernate.format_sql" value="true"/>
+                    <entry key="hibernate.show_sql" value="true"/>
+                </map>
+            </property>
+        </bean>
+
+        <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+            <property name="entityManagerFactory" ref="entityManagerFactory"/>
+        </bean>
+
+        <context:component-scan base-package="com.cryptoeagle.repository.jpa"/>
+
+    </beans>
 </beans>

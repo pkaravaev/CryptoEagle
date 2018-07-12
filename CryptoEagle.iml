@@ -15,7 +15,7 @@
           <dependency>web application context</dependency>
           <file>file://$MODULE_DIR$/src/main/resources/spring/spring-mvc.xml</file>
         </fileset>
-        <fileset id="fileset" name="Spring Application Context" removed="false">
+        <fileset id="fileset" name="Spring Application Context" removed="false" profiles="Jpa">
           <file>file://$MODULE_DIR$/src/main/resources/spring/spring-app.xml</file>
           <file>file://$MODULE_DIR$/src/main/resources/spring/spring-db.xml</file>
           <file>file://$MODULE_DIR$/src/main/resources/spring/spring-mvc.xml</file>
