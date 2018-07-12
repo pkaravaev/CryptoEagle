@@ -1,6 +1,6 @@
 package com.cryptoeagle.service;
 
-import com.cryptoeagle.entity.User;
+import com.cryptoeagle.entity.AppUser;
 import com.cryptoeagle.repository.UserRepository;
 
 import org.slf4j.LoggerFactory;
@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -19,25 +18,25 @@ public class UserServiceImpl implements UserService {
     private UserRepository repository;
 
     @Override
-    public List<User> findAll() {
+    public List<AppUser> findAll() {
         log.info("get all users");
         return repository.getall();
     }
 
     @Override
-    public void save(User user) {
-        log.info("save user");
-        repository.save(user);
+    public void save(AppUser appUser) {
+        log.info("save appUser");
+        repository.save(appUser);
     }
 
     @Override
-    public User get(int id) {
+    public AppUser get(int id) {
         log.info("get user id", id);
         return repository.get(id);
     }
 
     @Override
-    public User getByEmail(String email) {
+    public AppUser getByEmail(String email) {
         log.info("get user id", email);
         return repository.getByEmail(email);
     }
@@ -49,13 +48,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void delete(User user) {
-        log.info("delete user");
-        repository.delete(user.getId());
+    public void delete(AppUser appUser) {
+        log.info("delete appUser");
+        repository.delete(appUser.getId());
     }
 
     @Override
-    public User findAmin() {
+    public AppUser findAmin() {
         log.info("find admin user");
         return repository.getall().stream().filter(e -> e.getAdmin() == true).findFirst().get();
     }

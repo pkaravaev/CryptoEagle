@@ -24,17 +24,17 @@
                 </thead>
 
                 <tbody>
-                <c:forEach items="${userList}" var="user">
+                <c:forEach items="${appUserList}" var="appUser">
 
                     <tr>
-                        <td>${user.id}</td>
-                        <td>${user.name}</td>
-                        <td>${user.email}</td>
-                        <td>${user.blogs.size()}</td>
-                        <td>${user.admin}</td>
-                        <td>${user.enable}</td>
-                        <td><a class="btn btn-primary btn-warning" href="/users/edit/${user.id}" role="button">edit</a></td>
-                        <td><a class="btn btn-primary btn-danger" href="/users/delete/${user.id}" role="button">delete</a></td>
+                        <td>${appUser.id}</td>
+                        <td>${appUser.name}</td>
+                        <td>${appUser.email}</td>
+                        <td>${appUser.blogs.size()}</td>
+                        <td>${appUser.admin}</td>
+                        <td>${appUser.enable}</td>
+                        <td><a class="btn btn-primary btn-warning" href="/appUsers/edit/${appUser.id}" role="button">edit</a></td>
+                        <td><a class="btn btn-primary btn-danger" href="/appUsers/delete/${appUser.id}" role="button">delete</a></td>
                     </tr>
                 </c:forEach>
 

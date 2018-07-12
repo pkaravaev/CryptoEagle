@@ -10,7 +10,7 @@
         <div class="col-md-8">
 
             <div class="tab-content">
-                <c:forEach items="${user.blogs}" var="blog">
+                <c:forEach items="${appUser.blogs}" var="blog">
 
                     <div class="tab-pane" id="blog_${blog.id}">
                         <h1>${blog.name}</h1>

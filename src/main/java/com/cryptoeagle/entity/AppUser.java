@@ -2,16 +2,28 @@ package com.cryptoeagle.entity;
 
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 @Entity
-public class User extends BaseEntity{
+
+@NamedQueries( {
+
+        @NamedQuery( name = AppUser.DELETE, query = "DELETE FROM AppUser u WHERE u.id=:id"),
+        @NamedQuery(name = AppUser.GET_ALL, query = "SELECT user FROM AppUser user"),
+        @NamedQuery(name = AppUser.GET_BY_EMAIL, query = "SELECT user FROM AppUser  user WHERE user.email=:email")
+
+})
+public class AppUser extends BaseEntity  {
+
+    public static final String DELETE = "AppUser.delete";
+    public static final String GET_ALL = "AppUser.getall";
+    public static final String GET_BY_EMAIL = "AppUser.getByEmail";
+
 
     private String name;
     private String email;
@@ -19,12 +31,13 @@ public class User extends BaseEntity{
     private boolean enable;
     private boolean admin;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "appUser",fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Blog> blogs = new ArrayList<>();
+
 //    @OneToMany(mappedBy = "user")
 //    private List<Role> roles = new ArrayList<>();
 
-    public User(int id, String name, String email, String password, boolean enable, boolean admin) {
+    public AppUser(int id, String name, String email, String password, boolean enable, boolean admin) {
         super(id);
         this.name = name;
         this.email = email;
@@ -33,7 +46,7 @@ public class User extends BaseEntity{
         this.admin = admin;
     }
 
-    public User(String name, String email, String password, boolean enable, boolean admin) {
+    public AppUser(String name, String email, String password, boolean enable, boolean admin) {
         this.name = name;
         this.email = email;
         this.password = password;
@@ -42,7 +55,7 @@ public class User extends BaseEntity{
     }
 
 
-    public User() {
+    public AppUser() {
 
     }
 
@@ -64,9 +77,8 @@ public class User extends BaseEntity{
     }
 
 
-
     public void setBlogs(Blog blog) {
-       blogs.add(blog);
+        blogs.add(blog);
     }
 
     public void setBlogs(List<Blog> blogs) {
@@ -130,4 +142,6 @@ public class User extends BaseEntity{
     public void setAdmin(Boolean admin) {
         this.admin = admin;
     }
+
+
 }

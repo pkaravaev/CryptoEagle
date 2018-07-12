@@ -3,20 +3,13 @@ package com.cryptoeagle.controller;
 
 import com.cryptoeagle.entity.Blog;
 import com.cryptoeagle.entity.Item;
-import com.cryptoeagle.entity.User;
-import com.cryptoeagle.repository.ItemRepository;
-import com.cryptoeagle.repository.UserRepository;
 import com.cryptoeagle.service.BlogService;
 import com.cryptoeagle.service.ItemService;
-import com.cryptoeagle.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.ServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 

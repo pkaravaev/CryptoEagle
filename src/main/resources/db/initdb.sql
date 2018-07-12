@@ -1,6 +1,7 @@
-drop table if exists users CASCADE;
-drop table if exists blogs CASCADE;
-drop table if exists items CASCADE;
+drop table if exists AppUser CASCADE;
+drop table if exists Blog CASCADE;
+drop table if exists Item CASCADE;
+drop table if exists Role CASCADE;
 drop sequence if exists global_seq;
 
 
@@ -8,33 +9,38 @@ drop sequence if exists global_seq;
 CREATE SEQUENCE global_seq
   START 100000;
 
-create table users (
-
-  id_user  int primary key,
-  name     varchar(30) not null,
-  email    varchar(150) not null,
-  password varchar(20) not null,
-  enable   boolean     not null,
-  admin    boolean     not null
-
+create table AppUser (
+  id int4 not null,
+  admin boolean not null,
+  email varchar(255),
+  enable boolean not null,
+  name varchar(255),
+  password varchar(255),
+  primary key (id)
 );
 
-create table blogs (
-  id_blog integer primary key,
-  name    varchar(20) not null,
-  url     varchar(150) not null,
-  id_user int REFERENCES users (id_user) ON DELETE CASCADE
+create table Blog (
+  id int4 not null,
+  name varchar(255),
+  url varchar(255),
+  appUser_id int4,
+  primary key (id)
 );
 
-
-create table items (
-  id_item integer primary key,
-  title    varchar(200) not null,
-  description varchar(300) not null,
-  publishdate TIMESTAMP not null ,
-  link varchar(100) not null ,
-
-  id_blog int REFERENCES blogs (id_blog) ON DELETE CASCADE
+create table Item (
+  id int4 not null,
+  description varchar(255),
+  link varchar(255),
+  title varchar(255),
+  blog_id int4,
+  primary key (id)
 );
+
+create table Role (
+  id int4 not null,
+  name varchar(255),
+  primary key (id)
+);
+
 
 

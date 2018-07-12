@@ -1,14 +1,13 @@
 package com.cryptoeagle.controller;
 
 
-import com.cryptoeagle.entity.User;
+import com.cryptoeagle.entity.AppUser;
 import com.cryptoeagle.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -25,15 +24,15 @@ public class UserController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String logining(@RequestParam String email, @RequestParam String password) {
-        User user = userService.getByEmail(email);
+        AppUser appUser = userService.getByEmail(email);
         return "redirect:/";
     }
 
     @RequestMapping("/users")
     public String users(Model model) {
-        List<User> users = userService.findAll();
-        model.addAttribute(users);
-        return "users";
+        List<AppUser> appUsers = userService.findAll();
+        model.addAttribute(appUsers);
+        return "appUsers";
     }
 
     @RequestMapping("/users/delete/{id}")
@@ -44,8 +43,8 @@ public class UserController {
 
     @RequestMapping("/users/edit/{id}")
     public String editUsers(@PathVariable int id, Model model) {
-        User user = userService.get(id);
-        model.addAttribute("user", user);
+        AppUser appUser = userService.get(id);
+        model.addAttribute("user", appUser);
         return "register";
     }
 
@@ -60,8 +59,8 @@ public class UserController {
                              @RequestParam String password,
                              @RequestParam String password_again) {
 
-        User user = new User(name, email, password, true, false);
-        userService.save(user);
+        AppUser appUser = new AppUser(name, email, password, true, false);
+        userService.save(appUser);
         return "register";
     }
 }

@@ -1,11 +1,8 @@
 package com.cryptoeagle.repository.jdbc;
 
-import com.cryptoeagle.TestData;
-import com.cryptoeagle.entity.Blog;
-import com.cryptoeagle.entity.User;
+import com.cryptoeagle.entity.AppUser;
 import com.cryptoeagle.repository.UserRepository;
 import com.cryptoeagle.service.UserService;
-import org.junit.Assume;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,13 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.transaction.event.TransactionalEventListener;
 
-import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 
 import static com.cryptoeagle.TestData.*;
@@ -47,8 +38,8 @@ public class UserRepositoryJdbcImplTest {
 
     @Test
     public void save() {
-        repository.save(USER_1);
-        List<User> getall = repository.getall();
+        repository.save(appUser1);
+        List<AppUser> getall = repository.getall();
         assertEquals(COUNT_USERS + 1,getall.size() );
 
     }
@@ -56,25 +47,25 @@ public class UserRepositoryJdbcImplTest {
     @Test
     public void delete() {
         service.delete(USER_ID);
-        List<User> getall = repository.getall();
+        List<AppUser> getall = repository.getall();
         assertEquals(COUNT_USERS - 1,getall.size() );
     }
 
     @Test
     public void get() {
-        User user = repository.get(204);
-        assertEquals(user.getId(), 203);
+        AppUser appUser = repository.get(204);
+        assertEquals(appUser.getId(), 203);
     }
 
     @Test
     public void getall() {
-        List<User> getall = repository.getall();
+        List<AppUser> getall = repository.getall();
         assertEquals(COUNT_USERS,getall.size() );
     }
 
     @Test
     public void getallWithBlogs() {
-        List<User> getall = repository.getAllWithBlogs();
+        List<AppUser> getall = repository.getAllWithBlogs();
         assertEquals(COUNT_USERS,getall.size() );
     }
 }

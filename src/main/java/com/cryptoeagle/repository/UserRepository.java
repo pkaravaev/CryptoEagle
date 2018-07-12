@@ -1,22 +1,22 @@
 package com.cryptoeagle.repository;
 
-import com.cryptoeagle.entity.User;
+import com.cryptoeagle.entity.AppUser;
 
 import java.util.List;
 
 public interface UserRepository {
 
-    User save(User user);
+    AppUser save(AppUser appUser);
 
     void delete(int id);
 
-    User get(int id);
+    AppUser get(int id);
 
-    User getByEmail(String email);
+    AppUser getByEmail(String email);
 
-    List<User> getall();
+    List<AppUser> getall();
 
-    List<User> getAllWithBlogs();
+    List<AppUser> getAllWithBlogs();
 
 }
 

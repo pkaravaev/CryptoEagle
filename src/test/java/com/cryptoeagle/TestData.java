@@ -1,7 +1,7 @@
 package com.cryptoeagle;
 
 import com.cryptoeagle.entity.Blog;
-import com.cryptoeagle.entity.User;
+import com.cryptoeagle.entity.AppUser;
 
 public class TestData {
 
@@ -14,5 +14,5 @@ public class TestData {
 
 
     public static Blog BLOG_1 = new Blog("icoBlog1","icoblog2@.com");
-    public static User USER_1 = new User("Jack","test12gmail.com","q1aw2s",true,false);
+    public static AppUser appUser1 = new AppUser("Jack","test12gmail.com","q1aw2s",true,false);
 }
