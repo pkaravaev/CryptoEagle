@@ -1,30 +1,54 @@
 package com.cryptoeagle.repository.jpa;
 
+import com.cryptoeagle.entity.AppUser;
 import com.cryptoeagle.entity.Blog;
 import com.cryptoeagle.repository.BlogRepository;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
 public class BlogRepositoryJpaImpl implements BlogRepository {
+
+    @PersistenceContext
+    EntityManager em;
+
     @Override
-    public Blog save(Blog blog, int user) {
-        return null;
+    public List<Blog> getallByUser(int user_Id) {
+        return em.createNamedQuery(Blog.GET_ALL_BY_USER, Blog.class)
+                .setParameter("user_id", user_Id)
+                .getResultList();
     }
 
     @Override
-    public void delete(int id, int user) {
+    public Blog save(Blog blog, int user_id) {
 
+        if (blog.isNew()) {
+            AppUser user = em.find(AppUser.class, user_id);
+            blog.setAppUser(user);
+            em.persist(blog);
+            return blog;
+        } else {
+            return em.merge(blog);
+        }
     }
 
     @Override
-    public Blog get(int id, int user) {
-        return null;
+    public void delete(int blog_id, int user_id) {
+        em.createNamedQuery(Blog.DELETE, Blog.class)
+                .setParameter("blog_id", blog_id)
+                .setParameter("user_id", user_id)
+                .executeUpdate();
     }
 
     @Override
-    public List<Blog> getall(int user) {
-        return null;
+    public Blog get(int blog_id, int user_id) {
+        return  em.createNamedQuery(Blog.GET, Blog.class)
+                .setParameter("blog_id", blog_id)
+                .setParameter("user_id", user_id)
+                .getSingleResult();
     }
+
 }
