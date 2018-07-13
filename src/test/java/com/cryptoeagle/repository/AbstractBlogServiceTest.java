@@ -1,11 +1,10 @@
 package com.cryptoeagle.repository;
 
-import com.cryptoeagle.BlogTestData;
 import com.cryptoeagle.UserTestData;
 import com.cryptoeagle.entity.AppUser;
 import com.cryptoeagle.entity.Blog;
-import com.cryptoeagle.service.BlogService;
-import com.cryptoeagle.service.UserService;
+import com.cryptoeagle.service.abst.BlogService;
+import com.cryptoeagle.service.abst.UserService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

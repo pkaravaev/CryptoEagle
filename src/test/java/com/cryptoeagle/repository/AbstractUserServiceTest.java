@@ -1,13 +1,11 @@
 package com.cryptoeagle.repository;
 
 import com.cryptoeagle.entity.AppUser;
-import com.cryptoeagle.service.UserService;
+import com.cryptoeagle.service.abst.UserService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static com.cryptoeagle.UserTestData.*;
 import static org.junit.Assert.assertEquals;

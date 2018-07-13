@@ -2,7 +2,7 @@ package com.cryptoeagle.controller;
 
 
 import com.cryptoeagle.entity.AppUser;
-import com.cryptoeagle.service.UserService;
+import com.cryptoeagle.service.abst.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

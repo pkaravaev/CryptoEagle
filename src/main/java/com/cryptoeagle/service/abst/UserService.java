@@ -1,4 +1,4 @@
-package com.cryptoeagle.service;
+package com.cryptoeagle.service.abst;
 
 import com.cryptoeagle.entity.AppUser;
 

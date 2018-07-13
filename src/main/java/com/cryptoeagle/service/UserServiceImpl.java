@@ -3,6 +3,7 @@ package com.cryptoeagle.service;
 import com.cryptoeagle.entity.AppUser;
 import com.cryptoeagle.repository.UserRepository;
 
+import com.cryptoeagle.service.abst.UserService;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,7 @@
 package com.cryptoeagle.repository;
 
 import com.cryptoeagle.entity.Item;
-import com.cryptoeagle.service.ItemService;
+import com.cryptoeagle.service.abst.ItemService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
