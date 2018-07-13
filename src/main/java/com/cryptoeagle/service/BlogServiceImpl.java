@@ -1,6 +1,7 @@
 package com.cryptoeagle.service;
 
 import com.cryptoeagle.entity.Blog;
+import com.cryptoeagle.entity.Item;
 import com.cryptoeagle.repository.BlogRepository;
 import com.cryptoeagle.service.abst.BlogService;
 import org.slf4j.LoggerFactory;
@@ -34,5 +35,10 @@ public class BlogServiceImpl implements BlogService {
     public List<Blog> findall(int user_id) {
         log.info("get all blogs by user");
       return repository.getallByUser(user_id);
+    }
+
+    @Override
+    public List<Item> itemsFromBlogs(int user_id) {
+        return null;
     }
 }

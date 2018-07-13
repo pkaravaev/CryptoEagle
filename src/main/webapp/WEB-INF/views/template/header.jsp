@@ -15,7 +15,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-light navbar-expand-lg bg-dark " >
+<nav class="navbar navbar-expand-lg bg-dark h-15  "  >
     <!-- Navbar content -->
 </nav>
 

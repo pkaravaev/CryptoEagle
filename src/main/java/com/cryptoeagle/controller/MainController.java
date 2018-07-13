@@ -1,9 +1,12 @@
 package com.cryptoeagle.controller;
 
 
+import com.cryptoeagle.entity.AppUser;
+import com.cryptoeagle.entity.Blog;
 import com.cryptoeagle.entity.Item;
 import com.cryptoeagle.service.abst.BlogService;
 import com.cryptoeagle.service.abst.ItemService;
+import com.cryptoeagle.service.abst.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,23 +25,31 @@ public class MainController {
     @Autowired
     BlogService blogService;
 
+    @Autowired
+    UserService userService;
+
     @RequestMapping("/")
-    public String welcome( Model model) {
+    public String welcome(Model model) {
         List<Item> items = itemService.findall();
-        model.addAttribute("items",items);
+        model.addAttribute("items", items);
         return "welcome";
     }
 
     @RequestMapping("/blogs")
-    public String blogs( Model model) {
+    public String blogs(Model model) {
 
+        List<Blog> blogs = blogService.findall(100);
+        List<Item> items = itemService.findall();
+
+        model.addAttribute("blogs", blogs);
+        model.addAttribute("items",items);
         return "blogs";
     }
 
     @RequestMapping("/test")
-    public String test( Model model) {
+    public String test(Model model) {
         List<Item> items = itemService.findall();
-        model.addAttribute("items",items);
+        model.addAttribute("items", items);
         return "test";
     }
 
