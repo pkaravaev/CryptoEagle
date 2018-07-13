@@ -25,18 +25,14 @@ public class MainController {
 
     @RequestMapping("/")
     public String welcome( Model model) {
-//        int user_id = (int)session.getAttribute("user");
         List<Item> items = itemService.findall();
-        model.addAttribute("items",items);
-        System.out.println();
+        model.addAttribute("itemslist",items);
         return "welcome";
     }
 
     @RequestMapping("/blogs")
     public String blogs( Model model) {
 
-//        List<Blog> blogList = blogService.findall();
-//        model.addAttribute("blogs", blogList);
         return "blogs";
     }
 

@@ -33,8 +33,8 @@
                         <td>${appUser.blogs.size()}</td>
                         <td>${appUser.admin}</td>
                         <td>${appUser.enable}</td>
-                        <td><a class="btn btn-primary btn-warning" href="/appUsers/edit/${appUser.id}" role="button">edit</a></td>
-                        <td><a class="btn btn-primary btn-danger" href="/appUsers/delete/${appUser.id}" role="button">delete</a></td>
+                        <td><a class="btn btn-primary btn-warning" href="/users/edit/${appUser.id}" role="button">edit</a></td>
+                        <td><a class="btn btn-primary btn-danger" href="/users/delete/${appUser.id}" role="button">delete</a></td>
                     </tr>
                 </c:forEach>
 

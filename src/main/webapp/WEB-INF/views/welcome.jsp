@@ -8,7 +8,7 @@
 
         </div>
 
-        <c:forEach items="${items}" var="item">
+        <c:forEach items="${itemslist}" var="item">
 
         <%--<div class="col-md-8">--%>
 

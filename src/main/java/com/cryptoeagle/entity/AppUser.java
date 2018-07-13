@@ -12,12 +12,12 @@ import java.util.Objects;
 @Entity
 
 @NamedQueries( {
-
         @NamedQuery( name = AppUser.DELETE, query = "DELETE FROM AppUser u WHERE u.id=:id"),
         @NamedQuery(name = AppUser.GET_ALL, query = "SELECT user FROM AppUser user"),
         @NamedQuery(name = AppUser.GET_BY_EMAIL, query = "SELECT user FROM AppUser  user WHERE user.email=:email")
 
 })
+
 public class AppUser extends BaseEntity  {
 
     public static final String DELETE = "AppUser.delete";
@@ -56,7 +56,6 @@ public class AppUser extends BaseEntity  {
 
 
     public AppUser() {
-
     }
 
 
@@ -110,7 +109,6 @@ public class AppUser extends BaseEntity  {
         this.admin = admin;
     }
 
-
     public String getName() {
         return name;
     }
@@ -142,6 +140,5 @@ public class AppUser extends BaseEntity  {
     public void setAdmin(Boolean admin) {
         this.admin = admin;
     }
-
 
 }

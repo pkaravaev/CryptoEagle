@@ -32,7 +32,7 @@ public class UserController {
     public String users(Model model) {
         List<AppUser> appUsers = userService.findAll();
         model.addAttribute(appUsers);
-        return "appUsers";
+        return "users";
     }
 
     @RequestMapping("/users/delete/{id}")

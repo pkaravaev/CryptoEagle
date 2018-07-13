@@ -6,7 +6,12 @@ import java.util.Date;
 import java.util.Objects;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = Item.GET_ALL, query = "SELECT item FROM Item  item")
+})
 public class Item extends BaseEntity {
+
+    public final static String GET_ALL = "Item.GetAll";
 
     private String title;
     private String description;

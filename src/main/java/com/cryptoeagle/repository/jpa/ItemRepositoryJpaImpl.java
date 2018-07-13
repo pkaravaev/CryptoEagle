@@ -37,6 +37,7 @@ public class ItemRepositoryJpaImpl implements ItemRepository {
 
     @Override
     public List<Item> getall() {
-        return null;
+     return   em.createNamedQuery(Item.GET_ALL,Item.class)
+               .getResultList();
     }
 }

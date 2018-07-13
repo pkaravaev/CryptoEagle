@@ -47,7 +47,7 @@
                 <a class="nav-link " href="/register">Register</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="/appUsers">Users</a>
+                <a class="nav-link " href="/users">Users</a>
             </li>
         </ul>
     </div>
