@@ -18,7 +18,7 @@ import java.util.List;
 public class CryptoServiceImpl implements CryptoService {
 
 
-    public List<CryptoCoin> getCoins() throws IOException {
+    public List<CryptoCoin> getCoins() {
 
         ObjectMapper objectMapper = new ObjectMapper();
 
@@ -37,20 +37,29 @@ public class CryptoServiceImpl implements CryptoService {
                 .get(String.class);
 
 
-            Coin coin1 = objectMapper.readValue(bitcoin, Coin.class);
-            Coin coin2 = objectMapper.readValue(eth, Coin.class);
-            Coin coin3 = objectMapper.readValue(neo, Coin.class);
+        Coin coin1 = null;
+        Coin coin2 = null;
+        Coin coin3 = null;
 
-            List<CryptoCoin> coinList = new ArrayList<>();
+        try {
+            coin1 = objectMapper.readValue(bitcoin, Coin.class);
+             coin2 = objectMapper.readValue(eth, Coin.class);
+             coin3 = objectMapper.readValue(neo, Coin.class);
 
-            coinList.add(convert(coin1));
-            coinList.add(convert(coin2));
-            coinList.add(convert(coin3));
-            return coinList;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        List<CryptoCoin> coinList = new ArrayList<>();
+
+        coinList.add(convert(coin1));
+        coinList.add(convert(coin2));
+        coinList.add(convert(coin3));
+        return coinList;
 
     }
 
-    private  CryptoCoin convert(Coin coin){
+    private CryptoCoin convert(Coin coin) {
         return new CryptoCoin(coin.getName(), coin.getSymbol(), coin.getPrice());
     }
 }

@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface CryptoService {
 
-    List<CryptoCoin> getCoins() throws IOException;
+    List<CryptoCoin> getCoins() ;
 }

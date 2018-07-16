@@ -15,6 +15,29 @@
 </head>
 <body>
 
+<script>
+    $("").click(function(){
+        $.ajax({url: "/ajax/coins", success: function(result){
+                $("#div1").html(result);
+            }});
+    });
+
+    $.getJSON("/ajax/coins", function (data) {
+        var items=[];
+        $.each(data, function (key, val) {
+
+            items.push("<tr>");
+            items.push("<td id =''" + key + "''>" + val.name + "</td>");
+            items.push("<td id =''" + key + "''>" + val.symbol + "</td>");
+            items.push("<td id =''" + key + "''>" + val.price + "</td>");
+            items.push("</tr>");
+        });
+
+        $("<tbody/>",{"class": items.join("").appendTo("table")});
+    })
+
+</script>
+
 <nav class="navbar navbar-expand-lg bg-dark h-15  "  >
     <div class="align-self-center">
         <table>
