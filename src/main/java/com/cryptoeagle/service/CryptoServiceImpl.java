@@ -16,6 +16,10 @@ public class CryptoServiceImpl implements CryptoService {
 
         client.target("https://api.coinmarketcap.com/v2/ticker/1/");
 
+        String dddd = client.target("https://api.coinmarketcap.com/v2/ticker/1/")
+                .request()
+                .get(String.class);
+
 
 
 
