@@ -40,7 +40,7 @@ public class BlogRepositoryJpaImpl implements BlogRepository {
 
     @Override
     public void delete(int blog_id, int user_id) {
-        em.createNamedQuery(Blog.DELETE, Blog.class)
+        em.createNamedQuery(Blog.DELETE)
                 .setParameter("blog_id", blog_id)
                 .setParameter("user_id", user_id)
                 .executeUpdate();

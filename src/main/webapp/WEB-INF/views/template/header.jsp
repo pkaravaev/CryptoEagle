@@ -16,7 +16,15 @@
 <body>
 
 <nav class="navbar navbar-expand-lg bg-dark h-15  "  >
-    <!-- Navbar content -->
+    <div class="align-self-center">
+        <table>
+            <tr>
+                <td class="text-light">ETH price : 780$<br></td>
+                <td class="text-light">BTC price : 9700$<br></td>
+                <td class="text-light">XRP price : 3242$<br></td>
+            </tr>
+        </table>
+    </div>
 </nav>
 
 <div class="container">

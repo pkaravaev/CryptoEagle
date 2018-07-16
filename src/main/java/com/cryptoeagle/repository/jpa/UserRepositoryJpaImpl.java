@@ -39,7 +39,9 @@ public class UserRepositoryJpaImpl implements UserRepository {
 
     @Override
     public AppUser get(int id) {
-        return em.find(AppUser.class, id);
+        return (AppUser)em.createNamedQuery(AppUser.GET_BY_ID)
+                .setParameter("id",id)
+                .getSingleResult();
     }
 
     @Override

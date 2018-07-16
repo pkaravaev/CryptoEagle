@@ -28,7 +28,7 @@ public class AbstractUserServiceTest extends AbstractServiceTest {
 
     @Test
     public void get() {
-        AppUser appUser = service.get(102);
+        AppUser appUser = service.get(100);
     }
 
     @Test

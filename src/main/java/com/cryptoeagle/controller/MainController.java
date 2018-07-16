@@ -28,6 +28,12 @@ public class MainController {
     @Autowired
     UserService userService;
 
+    @ModelAttribute("blog")
+    public Blog contructBlog() {
+        return new Blog();
+    }
+
+
     @RequestMapping("/")
     public String welcome(Model model) {
         List<Item> items = itemService.findall();
@@ -41,8 +47,8 @@ public class MainController {
         List<Blog> blogs = blogService.findall(100);
         List<Item> items = itemService.findall();
 
-        model.addAttribute("blogs", blogs);
-        model.addAttribute("items",items);
+        AppUser user = userService.get(100);
+        model.addAttribute("user", user);
         return "blogs";
     }
 

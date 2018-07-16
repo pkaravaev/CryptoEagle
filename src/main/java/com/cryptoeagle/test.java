@@ -8,55 +8,24 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.Response;
 
 public class test {
 
     public static void main(String[] args) {
 
 
-        ApplicationContext context = new ClassPathXmlApplicationContext("/spring/spring-app.xml", "/spring/spring-db.xml");
+        Client client = ClientBuilder.newClient();
 
-        EntityManagerFactory entityManagerFactory = context.getBean(EntityManagerFactory.class);
+        WebTarget target = client.target("http://commerce.com/customers");
 
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-
-
-        AppUser appUser = new AppUser();
-        appUser.setName("Pavel");
-        appUser.setEmail("fdfdf.com");
-        appUser.setAdmin(true);
-        appUser.setPassword("Dfsdfsd");
+        Response response = target.request()
 
 
-        Blog blog = new Blog();
-        blog.setUrl("dfsfsd.com");
-        blog.setName("blog1");
-
-        Item item = new Item();
-        item.setDescription("blabalblalbal");
-        item.setTitle("title alalala");
-        item.setLink("link");
-        item.setBlog(blog);
-
-        blog.setItems(item);
-        blog.setAppUser(appUser);
-        appUser.setBlogs(blog);
 
 
-        entityManager.getTransaction().begin();
-
-        entityManager.persist(item);
-
-        entityManager.persist(blog);
-        entityManager.persist(appUser);
-
-
-       AppUser  userFromDb = entityManager.find(AppUser.class, 100002);
-
-
-        entityManager.getTransaction().commit();
-
-
-        System.out.println();
     }
 }

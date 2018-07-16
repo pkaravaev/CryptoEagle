@@ -19,7 +19,7 @@ import static com.cryptoeagle.UserTestData.*;
 import static org.junit.Assert.assertEquals;
 
 
-@ActiveProfiles(profiles = "Jpa")
+@ActiveProfiles(profiles = {"Jpa","PostgreSQL" })
 public class UserServiceJpaTest extends AbstractUserServiceTest {
 
 

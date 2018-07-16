@@ -41,4 +41,10 @@ public class BlogServiceImpl implements BlogService {
     public List<Item> itemsFromBlogs(int user_id) {
         return null;
     }
+
+    @Override
+    public void delete(int blog_id, int user_id) {
+        log.info("delete blog");
+        repository.delete(blog_id,user_id);
+    }
 }

@@ -1,54 +1,110 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sping" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 
 <jsp:include page="template/header.jsp"/>
 
 
-<!-- Nav tabs -->
-<ul class="nav nav-tabs">
-    <c:forEach items="${blogs}" var="blog">
-        <li><a href="#blog_${blog.id}" data-toggle="tab">${blog.name}</a></li>
-    </c:forEach>
-</ul>
+<div class="container">
+    <div class="row">
 
-<!-- Tab panes -->
-<div class="tab-content">
-    <c:forEach items="${blogs}" var="blog">
+        <div class="col align-self-start">
 
-        <div class="tab-pane" id="blog_${blog.id}">
-            <h1>${blog.name}</h1>
-            <p>
-                <a href="<sping:url value="/blog/remove/${blog.id}.html"/> " class="btn btn-danger triggerRemove">remove
-                    blog</a>
-                    ${blog.url}</p>
-
-            <table class="table table-bordered table-hover table-striped">
-                <thead>
-                <tr>
-                    <th>date</th>
-                    <th>item</th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach items="${blog.items}" var="item">
-                    <tr>
-                        <%--<td>${item.publishedDate}</td>--%>
-                        <td>
-                            <strong>
-                                <a href="<c:out value="${item.link}" />" target="_blank">
-                                    <c:out value="${item.title}"/>
-                                </a>
-                            </strong>
-                            <br/>
-                                ${item.description}
-                        </td>
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
         </div>
-    </c:forEach>
+
+        <div class="col-11 align-self-center ">
+
+            <script type="text/javascript">
+
+                $(document).ready(function () {
+                    $('.nav-tabs a:first').tab('show'); // Select first tab
+                    $('.triggerRemove').click(function (e) {
+                        e.preventDefault();
+                        $("#modalRemove .removeBtn").attr("href", $(this).attr("href"));
+                        $("#modalRemove").modal();
+                    });
+                });
+
+            </script>
+
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs">
+                <c:forEach items="${user.blogs}" var="blog">
+                    <li class="nav-item">
+                        <a class="nav" href="#blog_${blog.id}" data-toggle="tab">${blog.name}</a>
+                    </li>
+                </c:forEach>
+            </ul>
+
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <c:forEach items="${user.blogs}" var="blog">
+                    <div class="tab-pane" id="blog_${blog.id}">
+                        <h1>${blog.name}</h1>
+                        <p>
+                            <a href="<sping:url value="/blog/remove/${blog.id}"/> "
+                               class="btn btn-danger triggerRemove">remove blog</a>
+                                ${blog.url}</p>
+                        <table class="table table-bordered table-hover table-striped">
+                            <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Link</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:forEach items="${blog.items}" var="item">
+                                <tr>
+                                    <td>${item.title}</td>
+                                    <td>${item.link}</td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+                </c:forEach>
+            </div>
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="modalRemove" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Remove blog</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Really remove?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <a href="" class="btn btn-danger removeBtn">Remove</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <script>
+            $(function () {
+                $('#myTab li:last-child a').tab('show')
+            })
+        </script>
+
+
+        <div class="col align-self-end">
+
+        </div>
+
+
+    </div>
 </div>
 
 
