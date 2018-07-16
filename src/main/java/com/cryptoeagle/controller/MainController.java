@@ -68,9 +68,7 @@ public class MainController {
     @RequestMapping(value = "/ajax/coins", produces = MediaType.APPLICATION_JSON)
     @ResponseBody
     public List<CryptoCoin> getPriceCoins(Model model) {
-
         List<CryptoCoin> coins = cryptoService.getCoins();
-
         return coins;
     }
 
