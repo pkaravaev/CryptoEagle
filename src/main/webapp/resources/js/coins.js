@@ -1,15 +1,27 @@
 $(document).ready(function () {
 
-    $("button").click(function () {
+        $.ajax({
+            url: '/ajax/coins',
+            dataType: 'json',
+            type: 'get',
+            cache: false,
+            success: function (data) {
+                var summary = " ";
+                data.forEach(function (element,index) {
+                    var name = element.name;
+                    var symbol = element.symbol;
+                    var price = element.price;
 
 
-        var coins = $.getJSON("/ajax/coins");
+
+                   summary += " " + symbol + " : " + price + "$         ";
 
 
-        coins.forEach(function (element) {
-            $('#table tr:last').after('<tr> element </tr><tr> element</tr>');
+                })
+
+                $("#h1").text(summary);
+            }
+
         });
-
-
-    });
+        
 });

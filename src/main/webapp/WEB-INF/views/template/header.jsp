@@ -14,24 +14,36 @@
             integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
             crossorigin="anonymous"></script>
 
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+            crossorigin="anonymous"></script>
+
+    <script src="/resources/js/coins.js"></script>
+
 
     <title>Welcome</title>
 </head>
 <body>
 
 
-<nav class="navbar navbar-expand-lg bg-dark h-15  ">
-    <div class="align-self-center">
-        <table id="fxff">
-            <tr>
-                <td id="td1" class="">ETH price : 780$<br></td>
-                <td class="">BTC price : 9700$<br></td>
-                <td class="">XRP price : 3242$<br></td>
-            </tr>
-        </table>
-    </div>
+<%--<nav class="navbar  ">--%>
+    <%----%>
 
-</nav>
+<%--</nav>--%>
+
+
+
+<h5 id="h1" class="text-center"></h5>
+
+
+<%--<nav class="navbar navbar-expand-lg bg-dark h-15   ">--%>
+
+    <%--<p class="text-center">Center aligned text on all viewport sizes.</p>--%>
+
+
+<%--</nav>--%>
+
 
 
 

@@ -65,11 +65,14 @@ public class MainController {
         return "test";
     }
 
-    @RequestMapping(value = "/ajax/coins", produces = MediaType.APPLICATION_JSON)
+    @RequestMapping(value = "/ajax/coins", produces = "application/json")
     @ResponseBody
-    public List<CryptoCoin> getPriceCoins(Model model) {
+    public List<CryptoCoin> getPriceCoins() {
+
         List<CryptoCoin> coins = cryptoService.getCoins();
+
         return coins;
+
     }
 
 
