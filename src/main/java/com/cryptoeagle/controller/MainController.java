@@ -65,8 +65,17 @@ public class MainController {
 
     @RequestMapping("/test")
     public String test(Model model) {
-        AppUser user = userService.findAll().stream().findFirst().get();
-        model.addAttribute("user", user);
+        List<Item> items = itemService.findall();
+
+        List<Ico> upIco = icoService.getUpcomingIco();
+        List<Ico> finIco = icoService.getFinishedIco();
+        List<Ico> actIco = icoService.getActiveIco();
+
+        model.addAttribute("items", items);
+
+        model.addAttribute("upIco", upIco);
+        model.addAttribute("finIco", finIco);
+        model.addAttribute("actIco", actIco);
         return "test";
     }
 

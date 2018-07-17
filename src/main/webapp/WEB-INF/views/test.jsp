@@ -1,84 +1,144 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="sping" uri="http://java.sun.com/jsp/jstl/core" %>
-<head>
-    <script
-            src="https://code.jquery.com/jquery-3.3.1.js"
-            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-            crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css"
-          integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-            crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js"
-            integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
-            crossorigin="anonymous"></script>
-</head>
-<body>
+
+<jsp:include page="template/header.jsp"/>
+
+<%--<div class="container">--%>
+<%--<div class="row">--%>
+
+<%--<div class="col align-self-start">--%>
+
+<%--</div>--%>
+
+<%--<div class="col-11 align-self-center ">--%>
+
+<%--<c:forEach items="${items}" var="item">--%>
+
+<%--<div class="card h-30 border  border-white" >--%>
+<%--<div class="card-body">--%>
+<%--<img src="/resources/pic/dollars.jpg" width="110" height="80" class="rounded float-left" alt="blablalal" hspace="5" >--%>
+<%--<h5 class="card-title">${item.title}</h5>--%>
+<%--<h5  class="blockquote-footer">2018.10.01 Ivan Ivanov</h5>--%>
+<%--<p class="card-text">${item.description}</p>--%>
+<%--</div>--%>
+<%--</div>--%>
+<%--</c:forEach>--%>
+<%--</div>--%>
+
+
+<%--<div class="col align-self-end">--%>
+
+<%--</div>--%>
+<%--</div>--%>
+<%--</div>--%>
 
 
 <div class="container">
-    <h2>${user.name} account.</h2>
-
-
+    <h2>Toggleable Tabs</h2>
     <br>
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
-
-        <c:forEach items="${user.blogs}" var="blog">
-            <li class="nav-item">
-                <a class="nav-link " data-toggle="tab" href="#${blog.name}">${blog.name}</a>
-            </li>
-        </c:forEach>
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#home">News</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#menu1">Ico</a>
+        </li>
     </ul>
 
     <!-- Tab panes -->
     <div class="tab-content">
+        <div id="home" class="container tab-pane active"><br>
 
-        <c:forEach items="${user.blogs}" var="blog">
+            <div class="col-11 align-self-center ">
 
-            <div id="${blog.name}" class="container tab-pane active"><br>
-                <h3>HOME</h3>
-                <p>${blog.id}</p>
-                <table class="table table-bordered table-hover table-striped">
-                    <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Link</th>
-                        <th>Update</th>
-                        <th>Delete</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <c:forEach items="${blog.items}" var="item">
-                        <tr>
-                            <td>${item.title}</td>
-                            <td>${item.link}</td>
-                            <td><a class="btn btn-primary btn-warning " href="/item/edit/${item.id}"
-                                   role="button">edit</a></td>
-                            <td><a class="btn btn-primary btn-error" href="/item/delete/${item.id}" role="button">delete</a>
-                            </td>
-                        </tr>
-                    </c:forEach>
-                    </tbody>
-                </table>
+                <c:forEach items="${items}" var="item">
 
+                    <div class="card h-30 border  border-white">
+                        <div class="card-body">
+                            <img src="/resources/pic/dollars.jpg" width="110" height="80" class="rounded float-left"
+                                 alt="blablalal" hspace="5">
+                            <h5 class="card-title">${item.title}</h5>
+                            <h5 class="blockquote-footer">2018.10.01 Ivan Ivanov</h5>
+                            <p class="card-text">${item.description}</p>
+                        </div>
+                    </div>
+                </c:forEach>
             </div>
 
-        </c:forEach>
+        </div>
+        <div id="menu1" class="container tab-pane fade"><br>
 
-    </div>
-</div>
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#active">Active</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#upcoming">Upcoming</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#ended">Ended</a>
+                </li>
+            </ul>
 
 
-<script>
+            <!-- Tab panes -->
+            <div class="tab-content">
+
+                <div id="active" class="container tab-pane active"><br>
+                    <div class="col-11 align-self-center ">
+                        <c:forEach items="${actIco}" var="ico">
+
+                            <div class="card h-30 border  border-white">
+                                <div class="card-body">
+                                    <img src="${ico.image}" width="200" height="50" class="rounded float-left" alt="blablalal"
+                                         hspace="5">
+                                    <h5 class="card-title">${ico.name}</h5>
+                                    <h5 class="blockquote-footer">${ico.start_time}</h5>
+                                    <p class="card-text">${ico.description}</p>
+                                </div>
+                            </div>
+                        </c:forEach>
+                    </div>
+                </div>
+
+                <div id="upcoming" class="container tab-pane active"><br>
+                    <div class="col-11 align-self-center ">
+                        <c:forEach items="${upIco}" var="ico">
+
+                            <div class="card h-30 border  border-white">
+                                <div class="card-body">
+                                    <img src="${ico.image}" width="200" height="50" class="rounded float-left" alt="blablalal"
+                                         hspace="5">
+                                    <h5 class="card-title">${ico.name}</h5>
+                                    <h5 class="blockquote-footer">${ico.start_time}</h5>
+                                    <p class="card-text">${ico.description}</p>
+                                </div>
+                            </div>
+                        </c:forEach>
+                    </div>
+                </div>
+
+                <div id="ended" class="container tab-pane active"><br>
+                    <div class="col-11 align-self-center ">
+                        <c:forEach items="${finIco}" var="ico">
+
+                            <div class="card h-30 border  border-white">
+                                <div class="card-body">
+                                    <img src="${ico.image}" width="200" height="50" class="rounded float-left" alt="blablalal"
+                                         hspace="5">
+                                    <h5 class="card-title">${ico.name}</h5>
+                                    <h5 class="blockquote-footer">${ico.start_time}</h5>
+                                    <p class="card-text">${ico.description}</p>
+                                </div>
+                            </div>
+                        </c:forEach>
+                    </div>
+                </div>
+
+            </div>
+        </div>
 
 
-</script>
-
-
-</body>
-
+        <jsp:include page="template/footer.jsp"/>
