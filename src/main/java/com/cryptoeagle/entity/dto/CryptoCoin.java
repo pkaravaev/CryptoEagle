@@ -1,6 +1,9 @@
 package com.cryptoeagle.entity.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class CryptoCoin {
+
 
     private String name;
     private String symbol;

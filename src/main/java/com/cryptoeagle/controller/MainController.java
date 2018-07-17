@@ -3,12 +3,10 @@ package com.cryptoeagle.controller;
 
 import com.cryptoeagle.entity.AppUser;
 import com.cryptoeagle.entity.Blog;
+import com.cryptoeagle.entity.Ico;
 import com.cryptoeagle.entity.Item;
 import com.cryptoeagle.entity.dto.CryptoCoin;
-import com.cryptoeagle.service.abst.BlogService;
-import com.cryptoeagle.service.abst.CryptoService;
-import com.cryptoeagle.service.abst.ItemService;
-import com.cryptoeagle.service.abst.UserService;
+import com.cryptoeagle.service.abst.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,6 +29,9 @@ public class MainController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    IcoService icoService;
+
     @ModelAttribute("blog")
     public Blog contructBlog() {
         return new Blog();
@@ -40,7 +41,10 @@ public class MainController {
     @RequestMapping("/")
     public String welcome(Model model) {
         List<Item> items = itemService.findall();
+        List<Ico> ico = icoService.getUpcomingIco();
+
         model.addAttribute("items", items);
+        model.addAttribute("ico", ico);
         return "welcome";
     }
 
@@ -58,7 +62,7 @@ public class MainController {
     @RequestMapping("/test")
     public String test(Model model) {
         AppUser user = userService.findAll().stream().findFirst().get();
-        model.addAttribute("user",user);
+        model.addAttribute("user", user);
         return "test";
     }
 

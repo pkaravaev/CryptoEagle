@@ -67,8 +67,17 @@
 
         </div>
         <div id="menu1" class="container tab-pane fade"><br>
-            <h3>Menu 1</h3>
-            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <c:forEach items="${ico}" var="ico">
+
+                <div class="card h-30 border  border-white" >
+                    <div class="card-body">
+                        <img src="${ico.image}" width="250" height="80" class="rounded float-left" alt="blablalal" hspace="5" >
+                        <h5 class="card-title">${ico.name}</h5>
+                        <h5  class="blockquote-footer">${ico.start_time}</h5>
+                        <p class="card-text">${ico.description}</p>
+                    </div>
+                </div>
+            </c:forEach>
         </div>
 
     </div>
