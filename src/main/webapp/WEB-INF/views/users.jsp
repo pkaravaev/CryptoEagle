@@ -24,7 +24,7 @@
                 </thead>
 
                 <tbody>
-                <c:forEach items="${appUserList}" var="appUser">
+                <c:forEach items="${users}" var="appUser">
 
                     <tr>
                         <td>${appUser.id}</td>

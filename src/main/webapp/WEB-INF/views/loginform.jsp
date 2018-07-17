@@ -7,6 +7,7 @@
         <div class="col-md">
 
         </div>
+
         <div class="col-md-8">
             <form action="/login" method="post">
                 <div class="form-group">
@@ -25,6 +26,8 @@
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
+
+
         <div class="col-md">
 
 

@@ -31,9 +31,6 @@ public class MainController {
     @Autowired
     UserService userService;
 
-    @Autowired
-    CryptoService cryptoService;
-
     @ModelAttribute("blog")
     public Blog contructBlog() {
         return new Blog();
@@ -60,20 +57,9 @@ public class MainController {
 
     @RequestMapping("/test")
     public String test(Model model) {
-        List<Item> items = itemService.findall();
-        model.addAttribute("items", items);
+        AppUser user = userService.findAll().stream().findFirst().get();
+        model.addAttribute("user",user);
         return "test";
     }
-
-    @RequestMapping(value = "/ajax/coins", produces = "application/json")
-    @ResponseBody
-    public List<CryptoCoin> getPriceCoins() {
-
-        List<CryptoCoin> coins = cryptoService.getCoins();
-
-        return coins;
-
-    }
-
 
 }

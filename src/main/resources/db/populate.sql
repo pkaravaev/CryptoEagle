@@ -13,12 +13,12 @@ into
   Blog
   (appUser_id, name, url, id)
 values
-  (100, 'pavel blog1', 'blog1.com', 1000),
-  (100, 'pavel blog2', 'blog2.com', 1001),
-  (101, 'Vasya blog1', 'blog1.com', 1002),
-  (101, 'Vasya blog2', 'blog2.com', 1003),
-  (101, 'Vasya blog3', 'blog3.com', 1004),
-  (102, 'Alena blog1', 'blog1.com', 1005);
+  (100, 'pavelblog1', 'blog1.com', 1000),
+  (100, 'pavelblog2', 'blog2.com', 1001),
+  (101, 'Vasyablog1', 'blog1.com', 1002),
+  (101, 'Vasyablog2', 'blog2.com', 1003),
+  (101, 'Vasyablog3', 'blog3.com', 1004),
+  (102, 'Alenablog1', 'blog1.com', 1005);
 
 
 insert

@@ -40,6 +40,8 @@
 
             <!-- Tab panes -->
             <div class="tab-content">
+                <h2>Navigation Tabs</h2>
+                <p>Turn the nav menu into navigation tabs with the .nav nav-tabs class. Add the active class to the active/current link. If you want the tabs to be togglable, see the last example on the tutorial page.</p>
                 <c:forEach items="${user.blogs}" var="blog">
                     <div class="tab-pane" id="blog_${blog.id}">
                         <h1>${blog.name}</h1>
@@ -52,6 +54,8 @@
                             <tr>
                                 <th>Title</th>
                                 <th>Link</th>
+                                <th>Update</th>
+                                <th>Delete</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -59,6 +63,8 @@
                                 <tr>
                                     <td>${item.title}</td>
                                     <td>${item.link}</td>
+                                    <td><a class="btn btn-primary btn-warning" href="/item/edit/${item.id}" role="button">edit</a></td>
+                                    <td><a class="btn btn-primary btn-warning" href="/item/delete/${item.id}" role="button">delete</a></td>
                                 </tr>
                             </c:forEach>
                             </tbody>
@@ -66,6 +72,7 @@
                     </div>
                 </c:forEach>
             </div>
+
 
 
             <!-- Modal -->

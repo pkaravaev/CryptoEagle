@@ -31,7 +31,7 @@ public class UserController {
     @RequestMapping("/users")
     public String users(Model model) {
         List<AppUser> appUsers = userService.findAll();
-        model.addAttribute(appUsers);
+        model.addAttribute("users",appUsers);
         return "users";
     }
 

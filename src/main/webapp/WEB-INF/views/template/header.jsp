@@ -34,7 +34,7 @@
 
 
 
-<h5 id="h1" class="text-center"></h5>
+<h5 id="h1" class=" text-center "></h5>
 
 
 <%--<nav class="navbar navbar-expand-lg bg-dark h-15   ">--%>
@@ -47,7 +47,7 @@
 
 
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light ">
     <a class="navbar-brand" href="#">Crypto Eagle</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,10 +58,13 @@
             <li class="nav-item active">
                 <a class="nav-link" href="/">News <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/blogs">My blogs</a>
-            </li>
 
+            <li class="nav-item">
+                <a class="nav-link" href="/about">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/blogs">My account</a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link " href="/login">Login</a>
             </li>
