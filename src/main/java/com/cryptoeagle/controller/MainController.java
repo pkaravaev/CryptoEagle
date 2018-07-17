@@ -3,16 +3,14 @@ package com.cryptoeagle.controller;
 
 import com.cryptoeagle.entity.AppUser;
 import com.cryptoeagle.entity.Blog;
-import com.cryptoeagle.entity.Ico;
+import com.cryptoeagle.entity.coins.Ico;
 import com.cryptoeagle.entity.Item;
-import com.cryptoeagle.entity.dto.CryptoCoin;
 import com.cryptoeagle.service.abst.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 
@@ -41,10 +39,16 @@ public class MainController {
     @RequestMapping("/")
     public String welcome(Model model) {
         List<Item> items = itemService.findall();
-        List<Ico> ico = icoService.getUpcomingIco();
+
+        List<Ico> upIco = icoService.getUpcomingIco();
+        List<Ico> finIco = icoService.getFinishedIco();
+        List<Ico> actIco = icoService.getActiveIco();
 
         model.addAttribute("items", items);
-        model.addAttribute("ico", ico);
+
+        model.addAttribute("upIco", upIco);
+        model.addAttribute("finIco", finIco);
+        model.addAttribute("actIco", actIco);
         return "welcome";
     }
 

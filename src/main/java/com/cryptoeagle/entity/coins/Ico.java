@@ -1,4 +1,4 @@
-package com.cryptoeagle.entity;
+package com.cryptoeagle.entity.coins;
 
 public class Ico {
     private String name;
