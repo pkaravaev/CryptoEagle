@@ -2,30 +2,35 @@ package com.cryptoeagle.entity.test;
 
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.*;
 
-//@Entity
-public class BlogJpa {
 
-//    @Id
-//    @GeneratedValue
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
+public class BlogTest {
+
+    @XmlElement
     private int id;
+    @XmlElement
     private String name;
+    @XmlElement
     private String url;
 
-    public BlogJpa(String blogname, String url) {
+    public BlogTest(String blogname, String url) {
         this.name = blogname;
         this.url = url;
     }
 
-    public BlogJpa() {
+    public BlogTest() {
     }
 
-//    @ManyToOne()
+    @XmlElement
     public UserJpa userJpa;
 
     public String getUrl() {
         return url;
     }
+
 
     public void setUrl(String url) {
         this.url = url;
@@ -35,6 +40,7 @@ public class BlogJpa {
         return name;
     }
 
+
     public void setName(String blogname) {
         this.name = blogname;
     }
@@ -42,6 +48,7 @@ public class BlogJpa {
     public int getId() {
         return id;
     }
+
 
     public void setId(int id_blogjpa) {
         this.id = id_blogjpa;

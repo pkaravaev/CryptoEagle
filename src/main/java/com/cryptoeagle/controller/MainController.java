@@ -3,7 +3,7 @@ package com.cryptoeagle.controller;
 
 import com.cryptoeagle.entity.AppUser;
 import com.cryptoeagle.entity.Blog;
-import com.cryptoeagle.entity.coins.Ico;
+import com.cryptoeagle.entity.Ico;
 import com.cryptoeagle.entity.Item;
 import com.cryptoeagle.service.abst.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Controller
@@ -30,6 +31,9 @@ public class MainController {
     @Autowired
     IcoService icoService;
 
+    @Autowired
+    RssService rssService;
+
     @ModelAttribute("blog")
     public Blog contructBlog() {
         return new Blog();
@@ -40,9 +44,9 @@ public class MainController {
     public String welcome(Model model) {
         List<Item> items = itemService.findall();
 
-        List<Ico> upIco = icoService.getUpcomingIco();
-        List<Ico> finIco = icoService.getFinishedIco();
-        List<Ico> actIco = icoService.getActiveIco();
+        List<Ico> upIco = icoService.getUpcomingIco().stream().limit(20).collect(Collectors.toList());
+        List<Ico> finIco = icoService.getFinishedIco().stream().limit(20).collect(Collectors.toList());
+        List<Ico> actIco = icoService.getActiveIco().stream().limit(20).collect(Collectors.toList());
 
         model.addAttribute("items", items);
 
@@ -65,17 +69,22 @@ public class MainController {
 
     @RequestMapping("/test")
     public String test(Model model) {
-        List<Item> items = itemService.findall();
+//        List<Item> items = itemService.findall();
+//
+//        List<Ico> upIco = icoService.getUpcomingIco();
+//        List<Ico> finIco = icoService.getFinishedIco();
+//        List<Ico> actIco = icoService.getActiveIco();
+//
+//        model.addAttribute("items", items);
+//
+//        model.addAttribute("upIco", upIco);
+//        model.addAttribute("finIco", finIco);
+//        model.addAttribute("actIco", actIco);
 
-        List<Ico> upIco = icoService.getUpcomingIco();
-        List<Ico> finIco = icoService.getFinishedIco();
-        List<Ico> actIco = icoService.getActiveIco();
+        List<Item> items = rssService.getItems("https://news.tut.by/rss/index.rss");
 
-        model.addAttribute("items", items);
+        model.addAttribute("items",items);
 
-        model.addAttribute("upIco", upIco);
-        model.addAttribute("finIco", finIco);
-        model.addAttribute("actIco", actIco);
         return "test";
     }
 

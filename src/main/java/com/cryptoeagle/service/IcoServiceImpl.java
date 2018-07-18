@@ -1,6 +1,6 @@
 package com.cryptoeagle.service;
 
-import com.cryptoeagle.entity.coins.Ico;
+import com.cryptoeagle.entity.Ico;
 import com.cryptoeagle.service.abst.IcoService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -32,8 +32,6 @@ public class IcoServiceImpl implements IcoService {
             JsonNode node = objectMapper.readTree(icos);
             JsonNode node1 = node.findParent(status).get(status);
 
-
-
             Iterator<JsonNode> iterator = node1.iterator();
 
             while (iterator.hasNext()) {
@@ -43,9 +41,7 @@ public class IcoServiceImpl implements IcoService {
             }
         } catch (Exception e) {
         }
-
         return icoList;
-
     }
 
     @Override

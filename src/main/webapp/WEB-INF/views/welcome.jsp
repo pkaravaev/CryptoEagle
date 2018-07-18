@@ -33,15 +33,14 @@
 
 
 <div class="container">
-<h2>Toggleable Tabs</h2>
 <br>
 <!-- Nav tabs -->
 <ul class="nav nav-tabs" role="tablist">
     <li class="nav-item">
-        <a class="nav-link active" data-toggle="tab" href="#home">News</a>
+        <a class="nav-link active" data-toggle="tab" href="#home"> <p class="font-weight-normal">Crypto News</p></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#menu1">Ico</a>
+        <a class="nav-link" data-toggle="tab" href="#menu1"><p class="font-weight-normal">Upcoming Icos</p></a>
     </li>
 </ul>
 
@@ -68,74 +67,54 @@
 </div>
 <div id="menu1" class="container tab-pane fade"><br>
 
-    <!-- Nav tabs -->
-    <ul class="nav nav-tabs" role="tablist">
-        <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#active">Active</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#upcoming">Upcoming</a>
-        </li>
+    <table>
 
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#ended">Ended</a>
-        </li>
-    </ul>
-
-
-    <!-- Tab panes -->
-    <div class="tab-content">
-
-        <div id="active" class="container tab-pane active"><br>
-            <div class="col-11 align-self-center ">
+        <tr>
+            <td>
                 <c:forEach items="${actIco}" var="ico">
 
                     <div class="card h-30 border  border-white">
                         <div class="card-body">
-                            <img src="${ico.image}" width="200" height="50" class="rounded float-left" alt="blablalal"
+                            <img src="${ico.image}" width="200" height="50" class="rounded float-left" alt="Error"
                                  hspace="5">
-                            <h5 class="card-title">${ico.name}</h5>
+                            <%--<h5 class="card-title">${ico.name}</h5>--%>
                             <h5 class="blockquote-footer">${ico.start_time}</h5>
                             <p class="card-text">${ico.description}</p>
                         </div>
                     </div>
                 </c:forEach>
-            </div>
-        </div>
+            </td>
 
-        <div id="upcoming" class="container tab-pane active"><br>
-            <div class="col-11 align-self-center ">
+            <td>
                 <c:forEach items="${upIco}" var="ico">
-
                     <div class="card h-30 border  border-white">
                         <div class="card-body">
-                            <img src="${ico.image}" width="200" height="50" class="rounded float-left" alt="blablalal"
+                            <img src="${ico.image}" width="200" height="50" class="rounded float-left" alt="Error"
                                  hspace="5">
-                            <h5 class="card-title">${ico.name}</h5>
+                            <%--<h5 class="card-title">${ico.name}</h5>--%>
                             <h5 class="blockquote-footer">${ico.start_time}</h5>
                             <p class="card-text">${ico.description}</p>
                         </div>
                     </div>
                 </c:forEach>
-            </div>
-        </div>
 
-        <div id="ended" class="container tab-pane active"><br>
-            <div class="col-11 align-self-center ">
+            </td>
+            <td>
                 <c:forEach items="${finIco}" var="ico">
 
                     <div class="card h-30 border  border-white">
                         <div class="card-body">
-                            <img src="${ico.image}" width="200" height="50" class="rounded float-left" alt="blablalal"
+                            <img src="${ico.image}" width="200" height="50" class="rounded float-left" alt="Error"
                                  hspace="5">
-                            <h5 class="card-title">${ico.name}</h5>
+                            <%--<h5 class="card-title">${ico.name}</h5>--%>
                             <h5 class="blockquote-footer">${ico.start_time}</h5>
                             <p class="card-text">${ico.description}</p>
                         </div>
                     </div>
                 </c:forEach>
-            </div>
-        </div>
+            </td>
+        </tr>
+    </table>
 
     </div>
 </div>

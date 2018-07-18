@@ -1,47 +1,53 @@
 package com.cryptoeagle;
 
-import com.cryptoeagle.entity.coins.Ico;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.cryptoeagle.RSS.ObjectFactory;
+import com.cryptoeagle.RSS.TRss;
+import com.cryptoeagle.RSS.TRssChannel;
+import com.cryptoeagle.RSS.TRssItem;
+import com.cryptoeagle.entity.Item;
+import com.cryptoeagle.entity.test.BlogTest;
+import com.cryptoeagle.entity.test.UserJpa;
+import com.cryptoeagle.exception.RssException;
+import com.rometools.rome.feed.synd.SyndContent;
+import com.rometools.rome.feed.synd.SyndEnclosure;
+import com.rometools.rome.feed.synd.SyndEntry;
+import com.rometools.rome.feed.synd.SyndFeed;
+import com.rometools.rome.io.SyndFeedInput;
+import com.rometools.rome.io.XmlReader;
 
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.core.MediaType;
-import java.io.IOException;
+import javax.xml.bind.*;
+import javax.xml.transform.stream.StreamSource;
+import java.io.File;
+import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class test {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
 
 
-        String up = "https://api.icowatchlist.com/public/v1/upcoming";
-        String fin = "https://api.icowatchlist.com/public/v1/finished";
-        String act = "https://api.icowatchlist.com/public/v1/live";
+        SyndFeedInput input = new SyndFeedInput();
+        SyndFeed feed = input.build(new XmlReader(new URL("https://blog.ethereum.org/feed")));
 
-        ObjectMapper objectMapper = new ObjectMapper();
+        List<SyndEntry> list = feed.getEntries();
 
-        Client client = ClientBuilder.newClient();
-        String icos = client.target(fin)
-                .request(MediaType.APPLICATION_JSON)
-                .get(String.class);
+        for (SyndEntry entry : list){
 
-        JsonNode node =  objectMapper.readTree(icos);
-//        JsonNode node1 = node.findParent("live").get("live");
-        JsonNode node1 = node.findParent("active").get("finished");
+            SyndContent description = entry.getDescription();
 
-        Iterator<JsonNode> iterator = node1.iterator();
-        List<Ico> icoList = new ArrayList<>();
+            Date date = entry.getPublishedDate();
+            String value = description.getValue();
+            String link = entry.getLink();
+            String title = entry.getTitle();
 
-       while (iterator.hasNext()){
-           JsonNode next = iterator.next();
-           Ico ico = objectMapper.treeToValue(next, Ico.class);
-           icoList.add(ico);
-       }
+            System.out.println();
+        }
 
-        System.out.println();
 
     }
 }
