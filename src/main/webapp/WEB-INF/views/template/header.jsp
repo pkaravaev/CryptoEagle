@@ -55,28 +55,39 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/beginners">BEGINNERS GUIDE</a>
+            </li>
+
             <li class="nav-item active">
-                <a class="nav-link" href="/">News <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/">NEWS <span class="sr-only">(current)</span></a>
+            </li>
+
+
+            <li class="nav-item">
+                <a class="nav-link" href="/blogs">MY ACCOUNT</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="/login">LOGIN</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="/logout">LOGOUT</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="/register">REGISTER</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="/users">USERS</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="/about">About</a>
+                <a class="nav-link " href="/users">THE ICO LIST</a>
             </li>
+
             <li class="nav-item">
-                <a class="nav-link" href="/blogs">My account</a>
+                <a class="nav-link " href="/users">LANGUAGE</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link " href="/login">Login</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link " href="/logout">Logout</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link " href="/register">Register</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link " href="/users">Users</a>
-            </li>
+
         </ul>
     </div>
 </nav>

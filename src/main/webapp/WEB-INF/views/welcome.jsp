@@ -37,16 +37,20 @@
 <!-- Nav tabs -->
 <ul class="nav nav-tabs" role="tablist">
     <li class="nav-item">
-        <a class="nav-link active" data-toggle="tab" href="#home"> <p class="font-weight-normal">Crypto News</p></a>
+        <a class="nav-link active" data-toggle="tab" href="#news"> <p class="font-weight-normal">Crypto News</p></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#menu1"><p class="font-weight-normal">Upcoming Icos</p></a>
+        <a class="nav-link" data-toggle="tab" href="#rss"><p class="font-weight-normal">Rss Crypto News</p></a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#ico"><p class="font-weight-normal">Upcoming Icos</p></a>
     </li>
 </ul>
 
 <!-- Tab panes -->
 <div class="tab-content">
-<div id="home" class="container tab-pane active"><br>
+<div id="news" class="container tab-pane active"><br>
 
     <div class="col-11 align-self-center ">
 
@@ -65,7 +69,7 @@
     </div>
 
 </div>
-<div id="menu1" class="container tab-pane fade"><br>
+<div id="ico" class="container tab-pane fade"><br>
 
     <table>
 

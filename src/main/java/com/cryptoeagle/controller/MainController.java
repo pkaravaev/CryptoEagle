@@ -56,6 +56,21 @@ public class MainController {
         return "welcome";
     }
 
+
+    @RequestMapping("/{name}")
+    public String welcome2(@PathVariable String name) {
+
+
+        System.out.println();
+        return "welcome";
+    }
+
+    @RequestMapping("/beginners")
+    public String begginers() {
+
+        return "begginers";
+    }
+
     @RequestMapping("/blogs")
     public String blogs(Model model) {
 
