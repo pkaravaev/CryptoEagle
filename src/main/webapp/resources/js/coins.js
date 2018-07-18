@@ -18,7 +18,7 @@ function getCoins() {
                 var name = element.name;
                 var symbol = element.symbol;
                 var price = element.price;
-                summary += " " + symbol + " : " + price + "$         ";
+                summary += " " + symbol + "  " + price + "$  ";
             })
             $("#h1").text(summary);
         }

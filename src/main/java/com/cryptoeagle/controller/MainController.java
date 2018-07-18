@@ -48,11 +48,14 @@ public class MainController {
         List<Ico> finIco = icoService.getFinishedIco().stream().limit(20).collect(Collectors.toList());
         List<Ico> actIco = icoService.getActiveIco().stream().limit(20).collect(Collectors.toList());
 
+        List<Ico> icoList = icoService.getFinishedIco().stream().limit(50).collect(Collectors.toList());
+
         model.addAttribute("items", items);
 
         model.addAttribute("upIco", upIco);
         model.addAttribute("finIco", finIco);
         model.addAttribute("actIco", actIco);
+        model.addAttribute("icoList", icoList);
         return "welcome";
     }
 
@@ -68,7 +71,7 @@ public class MainController {
     @RequestMapping("/beginners")
     public String begginers() {
 
-        return "begginers";
+        return "beginners";
     }
 
     @RequestMapping("/blogs")

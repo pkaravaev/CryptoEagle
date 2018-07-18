@@ -34,7 +34,7 @@
 
 
 
-<h6 id="h1" class=" text-center "></h6>
+<h6 id="h1" class=" text-center bg-secondary text-white "></h6>
 
 
 <%--<nav class="navbar navbar-expand-lg bg-dark h-15   ">--%>
@@ -55,6 +55,8 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
+
+            <img src="/resources/pic/eagle.png"width="80" height="50" alt="unavalible" class="img-thumbnail-light">
             <li class="nav-item">
                 <a class="nav-link" href="/beginners">BEGINNERS GUIDE</a>
             </li>

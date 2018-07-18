@@ -21,32 +21,19 @@ import java.io.File;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 public class test {
 
     public static void main(String[] args) throws Exception {
 
 
-        SyndFeedInput input = new SyndFeedInput();
-        SyndFeed feed = input.build(new XmlReader(new URL("https://blog.ethereum.org/feed")));
+     Item item = new Item();
 
-        List<SyndEntry> list = feed.getEntries();
+        int pic = item.getRandomPic(5);
 
-        for (SyndEntry entry : list){
 
-            SyndContent description = entry.getDescription();
-
-            Date date = entry.getPublishedDate();
-            String value = description.getValue();
-            String link = entry.getLink();
-            String title = entry.getTitle();
-
-            System.out.println();
-        }
+        System.out.println();
 
 
     }
