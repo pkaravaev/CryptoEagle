@@ -83,7 +83,11 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link " href="/users">THE ICO LIST</a>
+                <a class="nav-link " href="/users">ICO LIST</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link " href="/users">ICO STATS</a>
             </li>
 
             <li class="nav-item">

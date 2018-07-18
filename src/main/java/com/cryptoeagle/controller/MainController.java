@@ -62,11 +62,15 @@ public class MainController {
 
     @RequestMapping("/{name}")
     public String welcome2(@PathVariable String name) {
-
-
         System.out.println();
         return "welcome";
     }
+
+    @RequestMapping("/error")
+    public String error() {
+        return "error-page";
+    }
+
 
     @RequestMapping("/beginners")
     public String begginers() {

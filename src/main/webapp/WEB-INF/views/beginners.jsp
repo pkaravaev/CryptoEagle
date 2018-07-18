@@ -13,7 +13,7 @@
         </div>
         <div class="col-md-8">
 
-            <div class="accordion" id="accordionExample">
+            <div class="accordion border-white" id="accordionExample">
                 <div class="card">
                     <div class="card-header" id="headingOne">
                         <h5 class="mb-0">

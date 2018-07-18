@@ -23,7 +23,7 @@ public class CryptoServiceImpl implements CryptoService {
         ObjectMapper objectMapper = new ObjectMapper();
 
         Client client = ClientBuilder.newClient();
-
+          //todo add some coins
         String bitcoin = client.target("https://api.coinmarketcap.com/v2/ticker/1/")
                 .request(MediaType.TEXT_PLAIN)
                 .get(String.class);
