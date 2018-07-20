@@ -3,15 +3,15 @@
 <jsp:include page="template/header.jsp"/>
 
 
-<div class="container">
+<div class="container ">
     <div class="row">
         <div class="col-md ">
 
         </div>
-        <div class="col-md-8">
-            <table id="myTable" class="table table-striped table-bordered" style="width:100%">
+        <div class="col-md-10">
+            <table id="myTable" class="table " >
                 <br/>
-                <thead>
+                <thead >
                 <tr>
                     <th></th>
                     <th>PROJECT</th>
@@ -26,7 +26,7 @@
                 <tbody>
 
                 <c:forEach items="${icos}" var="ico">
-                    <tr>
+                    <tr >
                         <td><img src="${ico.image} "></td>
                         <td>${ico.name}</td>
                         <td>${ico.coin_symbol}</td>
@@ -40,6 +40,7 @@
 
                 </tbody>
             </table>
+            <br/>
         </div>
         <div class="col-md ">
 

@@ -26,11 +26,6 @@
 
     <script src="/resources/js/coins.js"></script>
 
-
-
-
-
-
     <title>Welcome</title>
 </head>
 <body>
@@ -44,29 +39,11 @@
 
 
 
-
-<%--<nav class="navbar  ">--%>
-    <%----%>
-
-<%--</nav>--%>
-
-
-
 <h6 id="h1" class=" text-center bg-secondary text-white "></h6>
 
 
-<%--<nav class="navbar navbar-expand-lg bg-dark h-15   ">--%>
-
-    <%--<p class="text-center">Center aligned text on all viewport sizes.</p>--%>
-
-
-<%--</nav>--%>
-
-
-
-
 <nav class="navbar navbar-expand-lg navbar-light bg-light ">
-    <a class="navbar-brand" href="#">Crypto Eagle</a>
+    <a class="navbar-brand" href="/">Crypto Eagle</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -100,7 +77,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link " href="/icolist">ICO LIST</a>
+                <a class="nav-link " href="/ico-list">ICO LIST</a>
             </li>
 
             <li class="nav-item">
