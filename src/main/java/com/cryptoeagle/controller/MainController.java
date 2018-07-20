@@ -91,21 +91,9 @@ public class MainController {
 
     @RequestMapping("/test")
     public String test(Model model) {
-//        List<Item> items = itemService.findall();
-//
-//        List<Ico> upIco = icoService.getUpcomingIco();
-//        List<Ico> finIco = icoService.getFinishedIco();
-//        List<Ico> actIco = icoService.getActiveIco();
-//
-//        model.addAttribute("items", items);
-//
-//        model.addAttribute("upIco", upIco);
-//        model.addAttribute("finIco", finIco);
-//        model.addAttribute("actIco", actIco);
 
-        List<Item> items = rssService.getItems("https://news.tut.by/rss/index.rss");
-
-        model.addAttribute("items",items);
+        List<Ico> icos = icoService.getFinishedIco();
+        model.addAttribute("icos",icos);
 
         return "test";
     }
