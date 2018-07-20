@@ -12,7 +12,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-@ActiveProfiles(profiles = { "Jpa","PostgreSQL" })
+@ActiveProfiles(profiles = {"Jpa", "PostgreSQL"})
 public class CryptoServiceImplTest extends AbstractServiceTest {
 
 
@@ -21,7 +21,12 @@ public class CryptoServiceImplTest extends AbstractServiceTest {
 
     @Test
     public void getCoins() throws IOException {
+        String[] strings = {"1", "1027", "1765", "52", "1376"};
+        List<CryptoCoin> coins = cryptoService.getCoins(strings);
+        assertEquals(coins.size(), 5);
+    }
 
-        List<CryptoCoin> coins = cryptoService.getCoins();
+    @Test
+    public void getCoins1() {
     }
 }

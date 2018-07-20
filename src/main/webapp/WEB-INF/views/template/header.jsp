@@ -65,11 +65,10 @@
                 <a class="nav-link" href="/">NEWS <span class="sr-only">(current)</span></a>
             </li>
 
-
             <li class="nav-item">
                 <a class="nav-link" href="/blogs">MY ACCOUNT</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item ">
                 <a class="nav-link " href="/login">LOGIN</a>
             </li>
             <li class="nav-item">
@@ -83,11 +82,11 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link " href="/users">ICO LIST</a>
+                <a class="nav-link " href="/icolist">ICO LIST</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link " href="/users">ICO STATS</a>
+                <a class="nav-link " href="/icostats">ICO STATS</a>
             </li>
 
             <li class="nav-item">

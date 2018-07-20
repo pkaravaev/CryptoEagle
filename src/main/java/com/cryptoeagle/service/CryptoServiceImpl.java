@@ -18,48 +18,34 @@ import java.util.List;
 public class CryptoServiceImpl implements CryptoService {
 
 
-    public List<CryptoCoin> getCoins() {
+    public List<CryptoCoin> getCoins(String... ids) {
+        List<CryptoCoin> coinList = new ArrayList<>();
+        for (int i = 0; i < ids.length; i++) {
+            Coin coin = getCoin(ids[i]);
+            coinList.add(convert(coin));
+        }
+        return coinList;
+    }
+
+    private CryptoCoin convert(Coin coin) {
+        return new CryptoCoin(coin.getName(), coin.getSymbol(), coin.getPrice());
+    }
+
+    private Coin getCoin(String id_coin) {
 
         ObjectMapper objectMapper = new ObjectMapper();
-
         Client client = ClientBuilder.newClient();
-          //todo add some coins
-        String bitcoin = client.target("https://api.coinmarketcap.com/v2/ticker/1/")
+        String bitcoin = client.target("https://api.coinmarketcap.com/v2/ticker/" + id_coin + "/")
                 .request(MediaType.TEXT_PLAIN)
                 .get(String.class);
-
-        String eth = client.target("https://api.coinmarketcap.com/v2/ticker/1027/")
-                .request(MediaType.TEXT_PLAIN)
-                .get(String.class);
-
-        String neo = client.target("https://api.coinmarketcap.com/v2/ticker/1376/")
-                .request(MediaType.TEXT_PLAIN)
-                .get(String.class);
-
-
-        Coin coin1 = null;
-        Coin coin2 = null;
-        Coin coin3 = null;
-
+        Coin coin = null;
         try {
-            coin1 = objectMapper.readValue(bitcoin, Coin.class);
-             coin2 = objectMapper.readValue(eth, Coin.class);
-             coin3 = objectMapper.readValue(neo, Coin.class);
+            coin = objectMapper.readValue(bitcoin, Coin.class);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        List<CryptoCoin> coinList = new ArrayList<>();
-
-        coinList.add(convert(coin1));
-        coinList.add(convert(coin2));
-        coinList.add(convert(coin3));
-        return coinList;
-
-    }
-
-    private CryptoCoin convert(Coin coin) {
-        return new CryptoCoin(coin.getName(), coin.getSymbol(), coin.getPrice());
+        return coin;
     }
 }

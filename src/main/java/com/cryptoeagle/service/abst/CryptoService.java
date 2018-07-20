@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface CryptoService {
 
-    List<CryptoCoin> getCoins() ;
+    List<CryptoCoin> getCoins(String[] ids) ;
 }

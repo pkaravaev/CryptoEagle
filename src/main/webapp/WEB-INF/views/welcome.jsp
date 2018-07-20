@@ -33,6 +33,7 @@
 
 
 <div class="container">
+
     <br>
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
@@ -53,7 +54,6 @@
         <div id="news" class="container tab-pane active"><br>
             <div class="col-11 align-self-center ">
                 <c:forEach items="${items}" var="item">
-
                     <div class="card h-30 border  border-white">
                         <div class="card-body">
                             <img src="/resources/pic/cryptopic/${item.getRandomPic(20)}.jpg" width="110" height="80" class="rounded float-left"

@@ -20,7 +20,8 @@ public class AjaxController {
     @RequestMapping(value = "/ajax/coins", produces = "application/json")
     @ResponseBody
     public List<CryptoCoin> getPriceCoins() {
-        List<CryptoCoin> coins = cryptoService.getCoins();
+        String[]  strings = {"1","1027","1765","52","1376"};
+        List<CryptoCoin> coins = cryptoService.getCoins(strings);
         return coins;
     }
 }
