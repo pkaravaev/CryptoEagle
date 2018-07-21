@@ -42,20 +42,10 @@ public class MainController {
 
     @RequestMapping("/")
     public String welcome(Model model) {
-        List<Item> items = itemService.findall();
 
-        List<Ico> upIco = icoService.getUpcomingIco().stream().limit(20).collect(Collectors.toList());
-        List<Ico> finIco = icoService.getFinishedIco().stream().limit(20).collect(Collectors.toList());
-        List<Ico> actIco = icoService.getActiveIco().stream().limit(20).collect(Collectors.toList());
+        List<Item> items = rssService.getItems("https://www.coindesk.com/feed/");
+        model.addAttribute("items",items);
 
-        List<Ico> icoList = icoService.getFinishedIco().stream().limit(50).collect(Collectors.toList());
-
-        model.addAttribute("items", items);
-
-        model.addAttribute("upIco", upIco);
-        model.addAttribute("finIco", finIco);
-        model.addAttribute("actIco", actIco);
-        model.addAttribute("icoList", icoList);
         return "welcome";
     }
 

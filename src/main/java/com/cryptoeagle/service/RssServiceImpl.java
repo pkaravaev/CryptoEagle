@@ -1,68 +1,51 @@
 package com.cryptoeagle.service;
 
-import com.cryptoeagle.RSS.ObjectFactory;
-import com.cryptoeagle.RSS.TRss;
-import com.cryptoeagle.RSS.TRssChannel;
-import com.cryptoeagle.RSS.TRssItem;
+
 import com.cryptoeagle.entity.Item;
-import com.cryptoeagle.exception.RssException;
 import com.cryptoeagle.service.abst.RssService;
+import com.rometools.rome.feed.synd.SyndContent;
+import com.rometools.rome.feed.synd.SyndEntry;
+import com.rometools.rome.feed.synd.SyndFeed;
+import com.rometools.rome.io.SyndFeedInput;
+import com.rometools.rome.io.XmlReader;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.annotation.ServletSecurity;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBElement;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
-import javax.xml.transform.Source;
-import javax.xml.transform.stream.StreamSource;
-import java.io.File;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 
 @Service
 public class RssServiceImpl implements RssService {
 
-    public List<Item> getItems(File file)  {
-        return getItems(new StreamSource(file));
-    }
-
     public List<Item> getItems(String url)  {
-        return getItems(new StreamSource(url));
-    }
-
-    public List<Item> getItems(Source source)  {
-        ArrayList<Item> list = new ArrayList<Item>();
+        SyndFeedInput input = new SyndFeedInput();
+        SyndFeed feed = null;
         try {
-            JAXBContext jaxbContext = JAXBContext.newInstance(ObjectFactory.class);
-            Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-            JAXBElement<TRss> jaxbElement = unmarshaller.unmarshal(source, TRss.class);
-            TRss rss = jaxbElement.getValue();
-
-            List<TRssChannel> channels = rss.getChannel();
-            for (TRssChannel channel : channels) {
-                List<TRssItem> items = channel.getItem();
-                for (TRssItem rssItem : items) {
-                    Item item = new Item();
-                    item.setTitle(rssItem.getTitle());
-                    item.setDescription(rssItem.getDescription());
-                    item.setLink(rssItem.getLink());
-                    Date pubDate = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss Z", Locale.ENGLISH).parse(rssItem.getPubDate());
-                    item.setPublishDate(pubDate);
-                    list.add(item);
-                }
-            }
-        } catch (JAXBException e) {
-
-        } catch (ParseException e) {
-
+            feed = input.build(new XmlReader(new URL(url)));
+        } catch (Exception e) {
         }
-        return list;
+
+        List<SyndEntry> list = feed.getEntries();
+        List<Item> itemList = new ArrayList<>();
+        for (SyndEntry entry : list) {
+            SyndContent desc = entry.getDescription();
+
+            Date date = entry.getPublishedDate();
+            String description = desc.getValue();
+            String link = entry.getLink();
+            String title = entry.getTitle();
+
+            Item item = new Item();
+            item.setTitle(title);
+            item.setLink(link);
+            item.setDescription(description);
+            item.setPublishDate(date);
+
+            itemList.add(item);
+        }
+        return itemList;
     }
 
 }

@@ -1,9 +1,10 @@
+
+
 $(document).ready(function () {
 
     getCoins();
 
 });
-
 
 
 function getCoins() {
@@ -20,8 +21,15 @@ function getCoins() {
                 var price = element.price;
                 summary += " " + symbol + "  " + price + "$  ";
             })
+
+            var dataJSON = JSON.stringify([1, 'false', false]);
             $("#h1").text(summary);
         }
 
     });
 }
+
+
+
+
+

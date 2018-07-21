@@ -12,7 +12,7 @@
 
         </div>
         <div class="col-md-8">
-
+           <h2>Cryptoworld For Beginners</h2>
             <div class="accordion border-white" id="accordionExample">
                 <div class="card">
                     <div class="card-header" id="headingOne">

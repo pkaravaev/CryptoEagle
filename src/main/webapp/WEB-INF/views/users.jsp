@@ -10,7 +10,6 @@
         <div class="col-md-8">
             <table class="table">
                 <thead>
-
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
@@ -22,10 +21,8 @@
                     <th scope="col">Delete</th>
                 </tr>
                 </thead>
-
                 <tbody>
                 <c:forEach items="${users}" var="appUser">
-
                     <tr>
                         <td>${appUser.id}</td>
                         <td>${appUser.name}</td>
@@ -37,7 +34,6 @@
                         <td><a class="btn btn-primary btn-danger" href="/users/delete/${appUser.id}" role="button">delete</a></td>
                     </tr>
                 </c:forEach>
-
                 </tbody>
             </table>
         </div>

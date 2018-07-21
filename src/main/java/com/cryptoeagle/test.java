@@ -1,42 +1,45 @@
 package com.cryptoeagle;
 
-import com.cryptoeagle.RSS.ObjectFactory;
-import com.cryptoeagle.RSS.TRss;
-import com.cryptoeagle.RSS.TRssChannel;
-import com.cryptoeagle.RSS.TRssItem;
-import com.cryptoeagle.entity.Item;
-import com.cryptoeagle.entity.test.BlogTest;
-import com.cryptoeagle.entity.test.UserJpa;
-import com.cryptoeagle.exception.RssException;
-import com.rometools.rome.feed.synd.SyndContent;
-import com.rometools.rome.feed.synd.SyndEnclosure;
-import com.rometools.rome.feed.synd.SyndEntry;
-import com.rometools.rome.feed.synd.SyndFeed;
-import com.rometools.rome.io.SyndFeedInput;
-import com.rometools.rome.io.XmlReader;
 
-import javax.xml.bind.*;
-import javax.xml.transform.stream.StreamSource;
-import java.io.File;
+import com.cryptoeagle.entity.Coin;
+import com.cryptoeagle.entity.CoinC;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.util.JSONPObject;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
+
+import javax.crypto.Mac;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.core.MediaType;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.StringWriter;
+import java.lang.reflect.Type;
+import java.net.HttpURLConnection;
 import java.net.URL;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Base64;
+import java.util.Iterator;
+import java.util.List;
 
 public class test {
 
     public static void main(String[] args) throws Exception {
 
 
-     Item item = new Item();
-
-        int pic = item.getRandomPic(5);
 
 
         System.out.println();
-
-
     }
+
 }
 
 

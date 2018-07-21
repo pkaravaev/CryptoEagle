@@ -26,6 +26,11 @@
 
     <script src="/resources/js/coins.js"></script>
 
+    <script type="text/javascript" src="path-to/bower_components/crypto-js/crypto-js.js"></script>
+    <script type="text/javascript">
+
+    </script>
+
     <title>Welcome</title>
 </head>
 <body>
@@ -40,7 +45,6 @@
 
 
 <h6 id="h1" class=" text-center bg-secondary text-white "></h6>
-
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light ">
     <a class="navbar-brand" href="/">Crypto Eagle</a>
@@ -77,6 +81,10 @@
             </li>
 
             <li class="nav-item">
+                <a class="nav-link " href="/coin-list">COINS LIST</a>
+            </li>
+
+            <li class="nav-item">
                 <a class="nav-link " href="/ico-list">ICO LIST</a>
             </li>
 
@@ -84,9 +92,6 @@
                 <a class="nav-link " href="/ico-stats">ICO STATS</a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link " href="/users">LANGUAGE</a>
-            </li>
 
         </ul>
     </div>

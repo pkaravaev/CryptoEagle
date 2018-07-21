@@ -26,16 +26,13 @@
                 </thead>
                 <tbody>
 
-                <c:forEach items="${icos}" var="ico">
+                <c:forEach items="${coins}" var="coin">
                     <tr >
-                        <td><img src="${ico.image} "></td>
-                        <td>${ico.name}</td>
-                        <td>${ico.coin_symbol}</td>
-                        <td>${ico.coin_symbol}</td>
-                        <td>${ico.price_usd}</td>
-                        <td>${ico.start_time}</td>
-                        <td>${ico.end_time}</td>
-                        <td>${ico.all_time_roi}</td>
+                        <td><img src="${coin.image} "></td>
+                        <td>${coin.name}</td>
+                        <td>${coin.symbol}</td>
+                        <td>${coin.fullname}</td>
+
                     </tr>
                 </c:forEach>
 
