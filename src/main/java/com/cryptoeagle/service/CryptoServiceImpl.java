@@ -7,6 +7,7 @@ import com.cryptoeagle.service.abst.CryptoService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.glassfish.jersey.client.ClientConfig;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.ws.rs.client.Client;
@@ -20,6 +21,8 @@ import java.util.List;
 @Service
 public class CryptoServiceImpl implements CryptoService {
 
+
+    private static final org.slf4j.Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
 
     public List<CryptoCoin> getCoins(String... ids) {
         List<CryptoCoin> coinList = new ArrayList<>();
@@ -55,15 +58,12 @@ public class CryptoServiceImpl implements CryptoService {
     @Override
     public List<CoinC> getAllCoinsFromCC() {
 
-
         List<CoinC> coins = new ArrayList<>();
-
         ObjectMapper objectMapper = new ObjectMapper();
         Client client = ClientBuilder.newClient();
         String data = client.target("https://www.cryptocompare.com/api/data/coinlist/")
                 .request(MediaType.TEXT_PLAIN)
                 .get(String.class);
-
 
         JsonNode node = null;
         try {
@@ -74,14 +74,11 @@ public class CryptoServiceImpl implements CryptoService {
         }
 
         JsonNode data1 = node.get("Data");
-
         Iterator<JsonNode> iterator = data1.iterator();
 
-
-        for (int i = 0 ; i < 1000; i++) {
+        while (iterator.hasNext()){
 
             try {
-
                 JsonNode next = iterator.next();
                 String id = next.get("Id").toString();
                 String url = next.get("Url").toString();
@@ -93,23 +90,25 @@ public class CryptoServiceImpl implements CryptoService {
                 String totalCoinSupply = next.get("TotalCoinSupply").toString();
 
                 CoinC c = new CoinC();
-                c.setId(id);
-                c.setUrl(url);
-                c.setImageUrl(imageUrl);
-                c.setName(name);
-                c.setSymbol(symbol);
-                c.setCoinName(coinName);
-                c.setFullName(fullName);
-                c.setTotalCoinSupply(totalCoinSupply);
+                c.setId(id.substring(1, id.length() - 1));
+                c.setUrl(url.substring(1, url.length() - 1));
+                c.setImageurl("https://www.cryptocompare.com" +imageUrl.substring(1, imageUrl.length() - 1));
+                c.setName(name.substring(1, name.length() - 1));
+                c.setSymbol(symbol.substring(1, symbol.length() - 1));
+                c.setCoinname(coinName.substring(1, coinName.length() - 1));
+                c.setFullname(fullName.substring(1, fullName.length() - 1));
+                c.setTotalCoinSupply(totalCoinSupply.substring(1, totalCoinSupply.length() - 1));
 
                 coins.add(c);
             }
             catch (Exception e){
-                System.out.println(i);
+
             }
-
-
         }
+
+         log.info("getallcoins count :" + coins.size());
+
+
         return coins;
     }
 }

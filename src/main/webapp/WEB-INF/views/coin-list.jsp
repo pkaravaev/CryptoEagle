@@ -17,10 +17,6 @@
                     <th>NAME</th>
                     <th>SYMBOL</th>
                     <th>ICO PRICE</th>
-                    <th>MARKET PRICE</th>
-                    <th>START TIME</th>
-                    <th>END TIME</th>
-                    <th>ROI</th>
 
                 </tr>
                 </thead>
@@ -28,7 +24,7 @@
 
                 <c:forEach items="${coins}" var="coin">
                     <tr >
-                        <td><img src="${coin.image} "></td>
+                        <td><img src="${coin.imageurl}" width="50" height="50"></td>
                         <td>${coin.name}</td>
                         <td>${coin.symbol}</td>
                         <td>${coin.fullname}</td>

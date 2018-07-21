@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Controller
@@ -46,7 +47,7 @@ public class CryptoController {
 
     @RequestMapping("/coin-list")
     public String coinList(Model model) {
-        Stream<CoinC> coins = cryptoService.getAllCoinsFromCC().stream().limit(100);
+        List<CoinC> coins = cryptoService.getAllCoinsFromCC().stream().limit(100).collect(Collectors.toList());
         model.addAttribute("coins", coins);
         return "coin-list";
     }
