@@ -2,6 +2,7 @@ package com.cryptoeagle.service;
 
 import com.cryptoeagle.entity.Coin;
 import com.cryptoeagle.entity.CoinC;
+import com.cryptoeagle.entity.PictureCoin;
 import com.cryptoeagle.entity.dto.CryptoCoin;
 import com.cryptoeagle.service.abst.CryptoService;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -55,10 +56,77 @@ public class CryptoServiceImpl implements CryptoService {
         return coin;
     }
 
+
     @Override
-    public List<CoinC> getAllCoinsFromCC() {
+    public List<CoinC> getAllCoins() {
+
+        List<PictureCoin> coinspic = this.getPicCoins();
+
 
         List<CoinC> coins = new ArrayList<>();
+        ObjectMapper objectMapper = new ObjectMapper();
+        Client client = ClientBuilder.newClient();
+        String data = client.target("https://api.coinmarketcap.com/v2/ticker/")
+                .request(MediaType.TEXT_PLAIN)
+                .get(String.class);
+
+        JsonNode node = null;
+        try {
+            node = objectMapper.readTree(data);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        JsonNode data1 = node.get("data");
+        Iterator<JsonNode> iterator = data1.iterator();
+        while (iterator.hasNext()) {
+            try {
+                JsonNode next = iterator.next();
+                CoinC c = new CoinC();
+
+                String id = next.get("id").toString();
+                String name = next.get("name").toString();
+                String symbol = next.get("symbol").toString();
+                String rank = next.get("rank").toString();
+                String circulating_supply = next.get("circulating_supply").toString();
+                String price = next.get("quotes").get("USD").get("price").toString();
+                String volume_24h = next.get("quotes").get("USD").get("volume_24h").toString();
+                String market_cap = next.get("quotes").get("USD").get("market_cap").toString();
+                String percent_change_1h = next.get("quotes").get("USD").get("percent_change_1h").toString();
+                String percent_change_24h = next.get("quotes").get("USD").get("percent_change_24h").toString();
+                String percent_change_7d = next.get("quotes").get("USD").get("percent_change_7d").toString();
+
+                c.setId(Integer.valueOf(id));
+                c.setName(name.substring(1,name.length()-1));
+                c.setSymbol(symbol.substring(1,symbol.length()-1));
+                c.setRank(Integer.valueOf(rank));
+                c.setCirculating_supply(Double.valueOf(circulating_supply));
+                c.setPrice(Double.valueOf(price));
+                c.setPercent_change_24h(Double.valueOf(volume_24h));
+                c.setMarket_cap(Double.valueOf(market_cap));
+                c.setMarket_cap(Double.valueOf(market_cap));
+                c.setPercent_change_1h(Double.valueOf(percent_change_1h));
+                c.setPercent_change_24h(Double.valueOf(percent_change_24h));
+                c.setPercent_change_7d(Double.valueOf(percent_change_7d));
+
+                String link = coinspic.stream().filter(e -> e.getSymbol().equals(c.getSymbol())).findFirst().get().getLink();
+
+                c.setImage(link);
+                coins.add(c);
+
+
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        return coins;
+    }
+
+    @Override
+    public List<PictureCoin> getPicCoins() {
+
+        List<PictureCoin> coins = new ArrayList<>();
         ObjectMapper objectMapper = new ObjectMapper();
         Client client = ClientBuilder.newClient();
         String data = client.target("https://www.cryptocompare.com/api/data/coinlist/")
@@ -80,35 +148,24 @@ public class CryptoServiceImpl implements CryptoService {
 
             try {
                 JsonNode next = iterator.next();
-                String id = next.get("Id").toString();
-                String url = next.get("Url").toString();
                 String imageUrl = next.get("ImageUrl").toString();
-                String name = next.get("Name").toString();
                 String symbol = next.get("Symbol").toString();
-                String coinName = next.get("CoinName").toString();
-                String fullName = next.get("FullName").toString();
-                String totalCoinSupply = next.get("TotalCoinSupply").toString();
-
-                CoinC c = new CoinC();
-                c.setId(id.substring(1, id.length() - 1));
-                c.setUrl(url.substring(1, url.length() - 1));
-                c.setImageurl("https://www.cryptocompare.com" +imageUrl.substring(1, imageUrl.length() - 1));
-                c.setName(name.substring(1, name.length() - 1));
+                PictureCoin c = new PictureCoin();
+                c.setLink("https://www.cryptocompare.com" + imageUrl.substring(1, imageUrl.length() - 1));
                 c.setSymbol(symbol.substring(1, symbol.length() - 1));
-                c.setCoinname(coinName.substring(1, coinName.length() - 1));
-                c.setFullname(fullName.substring(1, fullName.length() - 1));
-                c.setTotalCoinSupply(totalCoinSupply.substring(1, totalCoinSupply.length() - 1));
-
                 coins.add(c);
-            }
-            catch (Exception e){
+
+            }catch (Exception e){
 
             }
         }
 
-         log.info("getallcoins count :" + coins.size());
+        log.info("getPitctures count :" + coins.size());
 
 
         return coins;
     }
+
+
+
 }

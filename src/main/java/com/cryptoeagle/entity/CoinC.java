@@ -2,47 +2,26 @@ package com.cryptoeagle.entity;
 
 public class CoinC {
 
-    private String id;
-    private String url;
-    private String imageurl;
+    private int id;
     private String name;
+    private String image;
     private String symbol;
-    private String coinname;
-    private String fullname;
-    private String Algorithm;
-    private String ProofType;
-    private String FullyPremined;
-    private String TotalCoinSupply;
-    private String BuiltOn;
-    private String SmartContractAddress;
-    private String PreMinedValue;
-    private String TotalCoinsFreeFloat;
-    private String SortOrder;
+    private int rank;
+    private double circulating_supply;
+    private double price;
+    private double volume_24h;
+    private double market_cap;
+    private double percent_change_1h;
+    private double percent_change_7d;
+    private double percent_change_24h;
 
-    private boolean Sponsored;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public String getImageurl() {
-        return imageurl;
-    }
-
-    public void setImageurl(String imageurl) {
-        this.imageurl = imageurl;
     }
 
     public String getName() {
@@ -53,6 +32,14 @@ public class CoinC {
         this.name = name;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     public String getSymbol() {
         return symbol;
     }
@@ -61,99 +48,67 @@ public class CoinC {
         this.symbol = symbol;
     }
 
-    public String getCoinname() {
-        return coinname;
+    public int getRank() {
+        return rank;
     }
 
-    public void setCoinname(String coinname) {
-        this.coinname = coinname;
+    public void setRank(int rank) {
+        this.rank = rank;
     }
 
-    public String getFullname() {
-        return fullname;
+    public double getCirculating_supply() {
+        return circulating_supply;
     }
 
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
+    public void setCirculating_supply(double circulating_supply) {
+        this.circulating_supply = circulating_supply;
     }
 
-    public String getAlgorithm() {
-        return Algorithm;
+    public double getPrice() {
+        return price;
     }
 
-    public void setAlgorithm(String algorithm) {
-        Algorithm = algorithm;
+    public void setPrice(double price) {
+        this.price = price;
     }
 
-    public String getProofType() {
-        return ProofType;
+    public double getVolume_24h() {
+        return volume_24h;
     }
 
-    public void setProofType(String proofType) {
-        ProofType = proofType;
+    public void setVolume_24h(double volume_24h) {
+        this.volume_24h = volume_24h;
     }
 
-    public String getFullyPremined() {
-        return FullyPremined;
+    public double getMarket_cap() {
+        return market_cap;
     }
 
-    public void setFullyPremined(String fullyPremined) {
-        FullyPremined = fullyPremined;
+    public void setMarket_cap(double market_cap) {
+        this.market_cap = market_cap;
     }
 
-    public String getTotalCoinSupply() {
-        return TotalCoinSupply;
+    public double getPercent_change_1h() {
+        return percent_change_1h;
     }
 
-    public void setTotalCoinSupply(String totalCoinSupply) {
-        TotalCoinSupply = totalCoinSupply;
+    public void setPercent_change_1h(double percent_change_1h) {
+        this.percent_change_1h = percent_change_1h;
     }
 
-    public String getBuiltOn() {
-        return BuiltOn;
+    public double getPercent_change_7d() {
+        return percent_change_7d;
     }
 
-    public void setBuiltOn(String builtOn) {
-        BuiltOn = builtOn;
+    public void setPercent_change_7d(double percent_change_7d) {
+        this.percent_change_7d = percent_change_7d;
     }
 
-    public String getSmartContractAddress() {
-        return SmartContractAddress;
+    public double getPercent_change_24h() {
+        return percent_change_24h;
     }
 
-    public void setSmartContractAddress(String smartContractAddress) {
-        SmartContractAddress = smartContractAddress;
-    }
-
-    public String getPreMinedValue() {
-        return PreMinedValue;
-    }
-
-    public void setPreMinedValue(String preMinedValue) {
-        PreMinedValue = preMinedValue;
-    }
-
-    public String getTotalCoinsFreeFloat() {
-        return TotalCoinsFreeFloat;
-    }
-
-    public void setTotalCoinsFreeFloat(String totalCoinsFreeFloat) {
-        TotalCoinsFreeFloat = totalCoinsFreeFloat;
-    }
-
-    public String getSortOrder() {
-        return SortOrder;
-    }
-
-    public void setSortOrder(String sortOrder) {
-        SortOrder = sortOrder;
-    }
-
-    public boolean isSponsored() {
-        return Sponsored;
-    }
-
-    public void setSponsored(boolean sponsored) {
-        Sponsored = sponsored;
+    public void setPercent_change_24h(double percent_change_24h) {
+        this.percent_change_24h = percent_change_24h;
     }
 }

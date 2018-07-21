@@ -47,7 +47,7 @@ public class CryptoController {
 
     @RequestMapping("/coin-list")
     public String coinList(Model model) {
-        List<CoinC> coins = cryptoService.getAllCoinsFromCC().stream().limit(100).collect(Collectors.toList());
+        List<CoinC> coins = cryptoService.getAllCoins();
         model.addAttribute("coins", coins);
         return "coin-list";
     }

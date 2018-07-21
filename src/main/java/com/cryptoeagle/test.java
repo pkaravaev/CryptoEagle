@@ -3,6 +3,7 @@ package com.cryptoeagle;
 
 import com.cryptoeagle.entity.Coin;
 import com.cryptoeagle.entity.CoinC;
+import com.cryptoeagle.entity.PictureCoin;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
