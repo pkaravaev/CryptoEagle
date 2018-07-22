@@ -44,7 +44,9 @@ public class MainController {
 
         List<Item> items = rssService.getItems("https://www.coindesk.com/feed/");
         List<Coin> topcoins = coinService.getTopGainCoins();
+        List<Coin> losercoins = coinService.getTopLoserCoins();
 
+        model.addAttribute("losercoins",losercoins);
         model.addAttribute("topcoins",topcoins);
         model.addAttribute("items",items);
 

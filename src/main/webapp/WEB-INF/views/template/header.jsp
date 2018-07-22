@@ -24,6 +24,7 @@
 
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.js"></script>
     <script src="/resources/js/coins.js"></script>
+    <script src="/resources/js/card.js"></script>
 
     <title>Welcome</title>
 </head>
@@ -33,6 +34,7 @@
 
     $(document).ready(function () {
         $('#myTable').DataTable();
+        $("")
     });
 </script>
 
@@ -40,7 +42,8 @@
 
 <h6 id="h1" class=" text-center bg-secondary text-white "></h6>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light ">
+<nav class="navbar navbar-expand-lg navbar-light bg-light " style="height: 100px" >
+
     <a class="navbar-brand" href="/">Crypto Eagle</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,7 +52,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
 
-            <img src="/resources/pic/eagle.png"width="80" height="50" alt="unavalible" class="img-thumbnail-light">
+            <img src="/resources/pic/eagle.png"width="90" height="60" alt="unavalible" class="img-thumbnail-light">
             <li class="nav-item">
                 <a class="nav-link" href="/beginners">BEGINNERS GUIDE</a>
             </li>
