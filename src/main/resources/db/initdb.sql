@@ -42,5 +42,23 @@ create table Role (
   primary key (id)
 );
 
+create table Coin (
+  id int4 not null,
+  name varchar(255),
+  image varchar(255),
+  symbol varchar(10),
+  rank integer,
+  circulating_supply decimal,
+  price decimal,
+  volume_24h decimal,
+  market_cap decimal,
+  percent_change_1h decimal,
+  percent_change_7d decimal,
+  percent_change_24h decimal,
+
+  primary key (id)
+);
+
+
 
 

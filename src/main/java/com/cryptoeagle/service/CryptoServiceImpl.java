@@ -13,6 +13,7 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.MediaType;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -22,7 +23,6 @@ import java.util.stream.Collectors;
 
 @Service
 public class CryptoServiceImpl implements CryptoService {
-
 
     private static final org.slf4j.Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
 
@@ -135,10 +135,10 @@ public class CryptoServiceImpl implements CryptoService {
                 c.setRank(Integer.valueOf(rank));
                 c.setPrice(Double.parseDouble(price));
 
-                c.setCirculating_supply(circul);
+                c.setCirculating_supply(BigDecimal.valueOf(circul));
                 c.setPercent_change_24h(change24);
-                c.setMarket_cap(market);
-                c.setVolume_24h(volume);
+                c.setMarket_cap(BigDecimal.valueOf(market));
+                c.setVolume_24h(BigDecimal.valueOf(volume));
                 c.setPercent_change_1h(change1);
                 c.setPercent_change_24h(change24);
                 c.setPercent_change_7d(change7);

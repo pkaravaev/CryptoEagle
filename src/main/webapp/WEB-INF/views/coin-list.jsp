@@ -31,9 +31,9 @@
                         <td><img src="${coin.image}" width="50" height="50"></td>
                         <td>${coin.name}</td>
                         <td>${coin.price}$</td>
-                        <td>${coin.market_cap}</td>
-                        <td>${coin.volume_24h}</td>
-                        <td>${coin.circulating_supply}</td>
+                        <td>${coin.market_cap}$</td>
+                        <td>${coin.volume_24h}$</td>
+                        <td>${coin.circulating_supply}${coin.symbol}</td>
                         <c:choose>
                             <c:when test="${coin.percent_change_24h > 0}">
                                 <td style="color: lawngreen">  ${coin.percent_change_24h}%</td>

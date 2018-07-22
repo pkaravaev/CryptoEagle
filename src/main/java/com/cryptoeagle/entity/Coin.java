@@ -1,5 +1,7 @@
 package com.cryptoeagle.entity;
 
+import java.math.BigDecimal;
+
 public class Coin {
 
     private int id;
@@ -7,10 +9,10 @@ public class Coin {
     private String image;
     private String symbol;
     private int rank;
-    private double circulating_supply;
+    private BigDecimal circulating_supply;
     private double price;
-    private double volume_24h;
-    private double market_cap;
+    private BigDecimal volume_24h;
+    private BigDecimal market_cap;
     private double percent_change_1h;
     private double percent_change_7d;
     private double percent_change_24h;
@@ -56,11 +58,11 @@ public class Coin {
         this.rank = rank;
     }
 
-    public double getCirculating_supply() {
+    public BigDecimal getCirculating_supply() {
         return circulating_supply;
     }
 
-    public void setCirculating_supply(double circulating_supply) {
+    public void setCirculating_supply(BigDecimal circulating_supply) {
         this.circulating_supply = circulating_supply;
     }
 
@@ -72,19 +74,19 @@ public class Coin {
         this.price = price;
     }
 
-    public double getVolume_24h() {
+    public BigDecimal getVolume_24h() {
         return volume_24h;
     }
 
-    public void setVolume_24h(double volume_24h) {
+    public void setVolume_24h(BigDecimal volume_24h) {
         this.volume_24h = volume_24h;
     }
 
-    public double getMarket_cap() {
+    public BigDecimal getMarket_cap() {
         return market_cap;
     }
 
-    public void setMarket_cap(double market_cap) {
+    public void setMarket_cap(BigDecimal market_cap) {
         this.market_cap = market_cap;
     }
 

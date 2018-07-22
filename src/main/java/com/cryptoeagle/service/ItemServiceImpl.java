@@ -20,6 +20,7 @@ import java.util.List;
 
 @Service
 public class ItemServiceImpl implements ItemService {
+
     private static final org.slf4j.Logger log = LoggerFactory.getLogger(ItemServiceImpl.class);
 
     @Autowired
