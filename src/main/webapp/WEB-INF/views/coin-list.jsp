@@ -21,7 +21,6 @@
                     <th>VOLUME(24h)</th>
                     <th>CIRCULATING SUPPLY</th>
                     <th>CHANGE(24h)</th>
-
                 </tr>
                 </thead>
                 <tbody>

@@ -16,17 +16,7 @@
                 <c:choose>
 
                     <c:when test="${i.count < 7}">
-                        <tr>
-                            <td>
-                                <div class="card" style="width: 18rem;">
-                                    <img src="/resources/pic/cryptopic/${item.getRandomPic(20)}.jpg" width="110"
-                                         height="80"/>
-                                    <div class="card-body">
-                                        <a href="${item.link}"><h5 class="card-title">${item.title}</h5></a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
+
                     </c:when>
 
                     <c:when test="${i.count > 10}">
@@ -60,6 +50,34 @@
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">NAME</th>
+                            <th scope="col">SYMBOL</th>
+                            <th scope="col">PRICE</th>
+                            <th scope="col">%7D</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <c:forEach items="${topcoins}" var="coin">
+                            <tr>
+                                <td>${coin.name}</td>
+                                <td>${coin.symbol}</td>
+                                <td>${coin.price}$</td>
+                                <td> <c:choose>
+                                    <c:when test="${coin.percent_change_7d > 0}">
+                                <td style="color: lawngreen">  ${coin.percent_change_7d}%</td>
+                                </c:when>
+                                <c:when test="${coin.percent_change_7d < 0}">
+                                    <td style="color: red">  ${coin.percent_change_7d}%</td>
+                                </c:when>
+                                </c:choose></td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
 
                 </div>
                 <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
@@ -73,4 +91,3 @@
     </div>
 </div>
 <jsp:include page="template/footer.jsp"/>
-

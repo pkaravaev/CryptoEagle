@@ -1,10 +1,7 @@
 package com.cryptoeagle.controller;
 
 
-import com.cryptoeagle.entity.AppUser;
-import com.cryptoeagle.entity.Blog;
-import com.cryptoeagle.entity.Ico;
-import com.cryptoeagle.entity.Item;
+import com.cryptoeagle.entity.*;
 import com.cryptoeagle.service.abst.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,6 +31,9 @@ public class MainController {
     @Autowired
     RssService rssService;
 
+    @Autowired
+    CryptoService cryptoService;
+
     @ModelAttribute("blog")
     public Blog contructBlog() {
         return new Blog();
@@ -44,6 +44,9 @@ public class MainController {
     public String welcome(Model model) {
 
         List<Item> items = rssService.getItems("https://www.coindesk.com/feed/");
+        List<Coin> topcoins = cryptoService.getTopGainCoins();
+
+        model.addAttribute("topcoins",topcoins);
         model.addAttribute("items",items);
 
         return "welcome";

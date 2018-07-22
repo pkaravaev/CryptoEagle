@@ -1,13 +1,11 @@
 package com.cryptoeagle.service;
 
 import com.cryptoeagle.entity.Coin;
-import com.cryptoeagle.entity.CoinC;
 import com.cryptoeagle.entity.PictureCoin;
 import com.cryptoeagle.entity.dto.CryptoCoin;
 import com.cryptoeagle.service.abst.CryptoService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.glassfish.jersey.client.ClientConfig;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +18,7 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CryptoServiceImpl implements CryptoService {
@@ -58,14 +57,28 @@ public class CryptoServiceImpl implements CryptoService {
         return coin;
     }
 
+    public List<Coin> getTopGainCoins() {
+        return getAllCoins().stream()
+                .sorted((o1, o2) -> Double.compare(o2.getPercent_change_24h(),o1.getPercent_change_24h()))
+                .limit(10)
+                .collect(Collectors.toList());
+    }
 
     @Override
-    public List<CoinC> getAllCoins() {
+    public List<Coin> getTopLoserCoins() {
+        return getAllCoins().stream()
+                .sorted((o1, o2) -> Double.compare(o1.getPercent_change_24h(),o2.getPercent_change_24h()))
+                .limit(10)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Coin> getAllCoins() {
 
         List<PictureCoin> coinspic = this.getPicCoins();
 
 
-        List<CoinC> coins = new ArrayList<>();
+        List<Coin> coins = new ArrayList<>();
         ObjectMapper objectMapper = new ObjectMapper();
         Client client = ClientBuilder.newClient();
         String data = client.target("https://api.coinmarketcap.com/v2/ticker/")
@@ -84,7 +97,7 @@ public class CryptoServiceImpl implements CryptoService {
         while (iterator.hasNext()) {
             try {
                 JsonNode next = iterator.next();
-                CoinC c = new CoinC();
+                Coin c = new Coin();
                 NumberFormat numberFormat = NumberFormat.getInstance();
                 numberFormat.setMaximumIntegerDigits(Integer.MAX_VALUE);
 
@@ -111,10 +124,9 @@ public class CryptoServiceImpl implements CryptoService {
                 double change7 = Double.parseDouble(percent_change_7d);
 
 
-                String s =  numberFormat.format(circul);
+                String s = numberFormat.format(circul);
 
                 String s1 = s.replaceAll("\\u00A0", "");
-
 
 
                 c.setId(Integer.valueOf(id));

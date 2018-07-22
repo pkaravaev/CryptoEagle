@@ -1,7 +1,7 @@
 package com.cryptoeagle.controller;
 
 
-import com.cryptoeagle.entity.CoinC;
+import com.cryptoeagle.entity.Coin;
 import com.cryptoeagle.entity.Ico;
 import com.cryptoeagle.service.abst.CryptoService;
 import com.cryptoeagle.service.abst.IcoService;
@@ -11,8 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Controller
 public class CryptoController {
@@ -47,7 +45,7 @@ public class CryptoController {
 
     @RequestMapping("/coin-list")
     public String coinList(Model model) {
-        List<CoinC> coins = cryptoService.getAllCoins();
+        List<Coin> coins = cryptoService.getAllCoins();
         model.addAttribute("coins", coins);
         return "coin-list";
     }
