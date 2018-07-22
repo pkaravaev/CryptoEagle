@@ -21,6 +21,12 @@ public class CryptoServiceImplTest  extends AbstractServiceTest {
     public void getCoins() {
 
         List<CoinC> coins = cryptoService.getAllCoins();
+
+        CoinC c = coins.stream().findFirst().get();
+
+        System.out.println(c.getPercent_change_24h());
+
+        System.out.println();
     }
 
     @Test
