@@ -17,7 +17,7 @@ import static org.junit.Assert.assertEquals;
         "classpath:/spring/spring-app.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
 @Sql(scripts = {"classpath:db/initdb.sql", "classpath:/db/populate.sql"})
-@ActiveProfiles(  {"PostgresSQL","Jdbc"  })
+@ActiveProfiles(  {"PostgreSQL","Jdbc"  })
 public class BlogRepositoryJdbcImplTest {
 
     @Autowired

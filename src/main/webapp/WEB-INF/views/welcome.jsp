@@ -9,16 +9,10 @@
         <%--One of three columns--%>
         <%--</div>--%>
         <div class="col-md-10">
-
-
             <c:forEach items="${items}" var="item" varStatus="i">
-
                 <c:choose>
-
                     <c:when test="${i.count < 7}">
-
                     </c:when>
-
                     <c:when test="${i.count > 10}">
                         <div class="card h-30 border border-white">
                             <div class="card-body">
@@ -34,26 +28,23 @@
                     </c:when>
                 </c:choose>
             </c:forEach>
-
-
         </div>
-        <div class="col-sm">
+        <div class="col-md">
 
             <nav>
                 <div class="nav nav-tabs border-white" id="nav-tab" role="tablist">
                     <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
-                       aria-controls="nav-home" aria-selected="true">Home</a>
+                       aria-controls="nav-home" aria-selected="true">TOP GAIN</a>
                     <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
-                       aria-controls="nav-profile" aria-selected="false">Profile</a>
+                       aria-controls="nav-profile" aria-selected="false">TOP LOOSER</a>
                 </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 
-                    <table class="table">
+                    <table class="table table-sm table-borderless" width="100">
                         <thead>
-                        <tr>
-                            <th scope="col">NAME</th>
+                        <tr class="row">
                             <th scope="col">SYMBOL</th>
                             <th scope="col">PRICE</th>
                             <th scope="col">%7D</th>
@@ -62,8 +53,7 @@
                         <tbody>
 
                         <c:forEach items="${topcoins}" var="coin">
-                            <tr>
-                                <td>${coin.name}</td>
+                            <tr class="row">
                                 <td>${coin.symbol}</td>
                                 <td>${coin.price}$</td>
                                 <td> <c:choose>

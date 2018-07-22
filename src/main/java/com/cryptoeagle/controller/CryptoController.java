@@ -3,7 +3,7 @@ package com.cryptoeagle.controller;
 
 import com.cryptoeagle.entity.Coin;
 import com.cryptoeagle.entity.Ico;
-import com.cryptoeagle.service.abst.CryptoService;
+import com.cryptoeagle.service.abst.CoinService;
 import com.cryptoeagle.service.abst.IcoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,7 +19,7 @@ public class CryptoController {
     IcoService icoService;
 
     @Autowired
-    CryptoService cryptoService;
+    CoinService coinService;
 
     @RequestMapping("/ico-stats")
     public String icoStats(Model model) {
@@ -45,7 +45,7 @@ public class CryptoController {
 
     @RequestMapping("/coin-list")
     public String coinList(Model model) {
-        List<Coin> coins = cryptoService.getAllCoins();
+        List<Coin> coins = coinService.getAllCoins();
         model.addAttribute("coins", coins);
         return "coin-list";
     }

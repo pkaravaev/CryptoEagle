@@ -6,9 +6,15 @@ import com.cryptoeagle.entity.dto.CryptoCoin;
 
 import java.util.List;
 
-public interface CryptoService {
+public interface CoinService {
 
-    List<CryptoCoin> getCoins(String[] ids) ;
+    List<Coin> getCoins(String[] ids);
+
+    void updateCoins();
+
+    List<Coin> getAllCoins();
+
+    List<Coin> getAllCoinsFromProvider();
 
     List<Coin> getTopGainCoins();
 
@@ -16,6 +22,5 @@ public interface CryptoService {
 
     List<PictureCoin> getPicCoins();
 
-    List<Coin> getAllCoins();
 
 }

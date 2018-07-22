@@ -1,8 +1,8 @@
 package com.cryptoeagle.service;
 
 import com.cryptoeagle.entity.Coin;
-import com.cryptoeagle.repository.AbstractServiceTest;
-import com.cryptoeagle.service.abst.CryptoService;
+import com.cryptoeagle.repository.AbstractTest;
+import com.cryptoeagle.service.abst.CoinService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
@@ -11,14 +11,14 @@ import java.util.List;
 
 
 @ActiveProfiles(profiles = {"Jpa","PostgreSQL" })
-public class CryptoServiceImplTest  extends AbstractServiceTest {
+public class CryptoImplTest extends AbstractTest {
 
     @Autowired
-    CryptoService cryptoService;
+    CoinService coinService;
     @Test
     public void getCoins() {
 
-        List<Coin> gainCoins = cryptoService.getTopGainCoins();
+        List<Coin> gainCoins = coinService.getTopGainCoins();
     }
 
     @Test

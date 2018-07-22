@@ -11,7 +11,7 @@ import static com.cryptoeagle.UserTestData.*;
 import static org.junit.Assert.assertEquals;
 
 
-public class AbstractUserServiceTest extends AbstractServiceTest {
+public class AbstractUserTest extends AbstractTest {
 
     @Autowired
     UserService service;

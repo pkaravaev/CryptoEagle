@@ -3,10 +3,13 @@ package com.cryptoeagle.service;
 import com.cryptoeagle.entity.Coin;
 import com.cryptoeagle.entity.PictureCoin;
 import com.cryptoeagle.entity.dto.CryptoCoin;
-import com.cryptoeagle.service.abst.CryptoService;
+import com.cryptoeagle.repository.CoinRepository;
+import com.cryptoeagle.service.abst.CoinService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import javax.ws.rs.client.Client;
@@ -22,15 +25,18 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class CryptoServiceImpl implements CryptoService {
+public class CoinServiceImpl implements CoinService {
+
+    @Autowired
+    CoinRepository repository;
 
     private static final org.slf4j.Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
 
-    public List<CryptoCoin> getCoins(String... ids) {
-        List<CryptoCoin> coinList = new ArrayList<>();
-        for (int i = 0; i < ids.length; i++) {
-            Coin coin = getCoin(ids[i]);
-            coinList.add(convert(coin));
+    public List<Coin> getCoins(String... symbols) {
+        List<Coin> coinList = new ArrayList<>();
+        for (int i = 0; i < symbols.length; i++) {
+            Coin coin = getCoin(symbols[i]);
+            coinList.add(coin);
         }
         return coinList;
     }
@@ -39,42 +45,78 @@ public class CryptoServiceImpl implements CryptoService {
         return new CryptoCoin(coin.getName(), coin.getSymbol(), coin.getPrice());
     }
 
-    private Coin getCoin(String id_coin) {
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        Client client = ClientBuilder.newClient();
-        String bitcoin = client.target("https://api.coinmarketcap.com/v2/ticker/" + id_coin + "/")
-                .request(MediaType.TEXT_PLAIN)
-                .get(String.class);
-        Coin coin = null;
-        try {
-            coin = objectMapper.readValue(bitcoin, Coin.class);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return coin;
+    private Coin getCoin(String symbol) {
+       return repository.getBySymbol(symbol);
     }
 
     public List<Coin> getTopGainCoins() {
-        return getAllCoins().stream()
-                .sorted((o1, o2) -> Double.compare(o2.getPercent_change_24h(),o1.getPercent_change_24h()))
-                .limit(10)
-                .collect(Collectors.toList());
+       return repository.getTopGainCoins();
     }
 
     @Override
     public List<Coin> getTopLoserCoins() {
-        return getAllCoins().stream()
-                .sorted((o1, o2) -> Double.compare(o1.getPercent_change_24h(),o2.getPercent_change_24h()))
-                .limit(10)
-                .collect(Collectors.toList());
+        return repository.getTopLoserCoins();
     }
 
     @Override
     public List<Coin> getAllCoins() {
 
+        return repository.getAllCoins();
+    }
+
+    @Override
+    public List<PictureCoin> getPicCoins() {
+
+        List<PictureCoin> coins = new ArrayList<>();
+        ObjectMapper objectMapper = new ObjectMapper();
+        Client client = ClientBuilder.newClient();
+        String data = client.target("https://www.cryptocompare.com/api/data/coinlist/")
+                .request(MediaType.TEXT_PLAIN)
+                .get(String.class);
+
+        JsonNode node = null;
+        try {
+            node = objectMapper.readTree(data);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        JsonNode data1 = node.get("Data");
+        Iterator<JsonNode> iterator = data1.iterator();
+
+        while (iterator.hasNext()) {
+
+            try {
+                JsonNode next = iterator.next();
+                String imageUrl = next.get("ImageUrl").toString();
+                String symbol = next.get("Symbol").toString();
+                PictureCoin c = new PictureCoin();
+                c.setLink("https://www.cryptocompare.com" + imageUrl.substring(1, imageUrl.length() - 1));
+                c.setSymbol(symbol.substring(1, symbol.length() - 1));
+                coins.add(c);
+
+            } catch (Exception e) {
+
+            }
+        }
+
+        log.info("getPitctures count :" + coins.size());
+
+
+        return coins;
+    }
+
+    @Override
+    @Scheduled(fixedDelay = 5000)
+    public void updateCoins() {
+        log.info("update coins");
+        List<Coin> allCoinsFromProvider = getAllCoinsFromProvider();
+        repository.saveCoins(allCoinsFromProvider);
+    }
+
+    @Override
+    public List<Coin> getAllCoinsFromProvider() {
         List<PictureCoin> coinspic = this.getPicCoins();
 
 
@@ -156,49 +198,4 @@ public class CryptoServiceImpl implements CryptoService {
 
         return coins;
     }
-
-    @Override
-    public List<PictureCoin> getPicCoins() {
-
-        List<PictureCoin> coins = new ArrayList<>();
-        ObjectMapper objectMapper = new ObjectMapper();
-        Client client = ClientBuilder.newClient();
-        String data = client.target("https://www.cryptocompare.com/api/data/coinlist/")
-                .request(MediaType.TEXT_PLAIN)
-                .get(String.class);
-
-        JsonNode node = null;
-        try {
-            node = objectMapper.readTree(data);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        JsonNode data1 = node.get("Data");
-        Iterator<JsonNode> iterator = data1.iterator();
-
-        while (iterator.hasNext()) {
-
-            try {
-                JsonNode next = iterator.next();
-                String imageUrl = next.get("ImageUrl").toString();
-                String symbol = next.get("Symbol").toString();
-                PictureCoin c = new PictureCoin();
-                c.setLink("https://www.cryptocompare.com" + imageUrl.substring(1, imageUrl.length() - 1));
-                c.setSymbol(symbol.substring(1, symbol.length() - 1));
-                coins.add(c);
-
-            } catch (Exception e) {
-
-            }
-        }
-
-        log.info("getPitctures count :" + coins.size());
-
-
-        return coins;
-    }
-
-
 }

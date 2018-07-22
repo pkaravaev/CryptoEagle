@@ -1,9 +1,30 @@
 package com.cryptoeagle.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import java.math.BigDecimal;
+
+
+@Entity
+@NamedQueries({
+        @NamedQuery( name = Coin.GET_BY_ID, query = "SELECT c FROM Coin c WHERE c.id=:id"),
+        @NamedQuery( name = Coin.GET_ALL, query = "SELECT c FROM Coin c"),
+        @NamedQuery( name = Coin.GET_BY_SYMBOL, query = "SELECT c FROM Coin c WHERE c.symbol=:symbol"),
+        @NamedQuery( name = Coin.GET_TOP, query = "SELECT c FROM Coin c order by c.percent_change_7d desc "),
+        @NamedQuery( name = Coin.GET_LOSER, query = "SELECT c FROM Coin c order by c.percent_change_7d asc ")
+})
 
 public class Coin {
 
+    public static final String GET_BY_ID ="Coin.getById";
+    public static final String GET_ALL ="Coin.getAll";
+    public static final String GET_BY_SYMBOL ="Coin.getBySymbol";
+    public static final String GET_TOP ="Coin.getTop";
+    public static final String GET_LOSER ="Coin.getLoser";
+
+    @Id
     private int id;
     private String name;
     private String image;

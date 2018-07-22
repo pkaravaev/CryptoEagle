@@ -14,7 +14,7 @@ import static com.cryptoeagle.BlogTestData.*;
 import static com.cryptoeagle.UserTestData.*;
 import static org.junit.Assert.assertEquals;
 
-public class AbstractBlogServiceTest extends AbstractServiceTest {
+public class AbstractBlogTest extends AbstractTest {
 
     @Autowired
     BlogService blogService ;

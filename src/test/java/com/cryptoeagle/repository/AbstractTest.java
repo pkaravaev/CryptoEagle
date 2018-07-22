@@ -10,7 +10,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration({"classpath:/spring/spring-db.xml",
         "classpath:/spring/spring-app.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
-@Sql(scripts = {"classpath:/db/initdb.sql", "classpath:/db/populate.sql"})
-@ActiveProfiles
-public class AbstractServiceTest {
+//@Sql(scripts = {"classpath:/db/initdb.sql", "classpath:/db/populate.sql"})
+public class AbstractTest {
 }

@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-public class AbstractItemServiceImpl extends AbstractServiceTest {
+public class AbstractItemImpl extends AbstractTest {
 
     @Autowired
     ItemService service;

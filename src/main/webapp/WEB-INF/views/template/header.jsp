@@ -23,13 +23,7 @@
             crossorigin="anonymous"></script>
 
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.js"></script>
-
     <script src="/resources/js/coins.js"></script>
-
-    <script type="text/javascript" src="path-to/bower_components/crypto-js/crypto-js.js"></script>
-    <script type="text/javascript">
-
-    </script>
 
     <title>Welcome</title>
 </head>

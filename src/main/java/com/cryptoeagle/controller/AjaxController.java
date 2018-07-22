@@ -1,7 +1,8 @@
 package com.cryptoeagle.controller;
 
+import com.cryptoeagle.entity.Coin;
 import com.cryptoeagle.entity.dto.CryptoCoin;
-import com.cryptoeagle.service.abst.CryptoService;
+import com.cryptoeagle.service.abst.CoinService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,15 +14,14 @@ import java.util.List;
 @Controller
 public class AjaxController {
 
-
     @Autowired
-    CryptoService cryptoService;
+    CoinService coinService;
 
     @RequestMapping(value = "/ajax/coins", produces = "application/json")
     @ResponseBody
-    public List<CryptoCoin> getPriceCoins() {
-        String[]  strings = {"1","1027","1765","52","1376"};
-        List<CryptoCoin> coins = cryptoService.getCoins(strings);
+    public List<Coin> getPriceCoins() {
+        String[]  symbols = {"BTC","ETH","NEO","EOS","XRP"};
+        List<Coin> coins = coinService.getCoins(symbols);
         return coins;
     }
 }

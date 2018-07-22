@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 @Controller
@@ -32,7 +31,7 @@ public class MainController {
     RssService rssService;
 
     @Autowired
-    CryptoService cryptoService;
+    CoinService coinService;
 
     @ModelAttribute("blog")
     public Blog contructBlog() {
@@ -44,7 +43,7 @@ public class MainController {
     public String welcome(Model model) {
 
         List<Item> items = rssService.getItems("https://www.coindesk.com/feed/");
-        List<Coin> topcoins = cryptoService.getTopGainCoins();
+        List<Coin> topcoins = coinService.getTopGainCoins();
 
         model.addAttribute("topcoins",topcoins);
         model.addAttribute("items",items);

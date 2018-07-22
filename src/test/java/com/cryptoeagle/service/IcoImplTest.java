@@ -1,7 +1,7 @@
 package com.cryptoeagle.service;
 
 import com.cryptoeagle.entity.Ico;
-import com.cryptoeagle.repository.AbstractServiceTest;
+import com.cryptoeagle.repository.AbstractTest;
 import com.cryptoeagle.service.abst.IcoService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +9,8 @@ import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 @ActiveProfiles(profiles = {"Jpa","PostgreSQL" })
-public class IcoServiceImplTest extends AbstractServiceTest {
+public class IcoImplTest extends AbstractTest {
 
 
     @Autowired

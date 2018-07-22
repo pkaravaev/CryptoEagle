@@ -1,8 +1,8 @@
 package com.cryptoeagle.repository.jpa;
 
-import com.cryptoeagle.repository.AbstractBlogServiceTest;
+import com.cryptoeagle.repository.AbstractBlogTest;
 import org.springframework.test.context.ActiveProfiles;
 
 @ActiveProfiles(profiles = "Jpa")
-public class BlogServiceJpaTest extends AbstractBlogServiceTest {
+public class BlogJpaTest extends AbstractBlogTest {
 }
