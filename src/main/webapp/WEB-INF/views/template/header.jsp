@@ -53,8 +53,7 @@
 <h6 id="h1" class=" text-center bg-secondary text-white ">BTC 0000.00 ETH 000.000$ NEO 00.0000$ EOS 0.00000$ XRP 0.000000$</h6>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light " style="height: 100px" >
-
-    <a class="navbar-brand" href="/">CCRYPTO EAGLE</a>
+    <a class="navbar-brand" href="/">CRYPTO EAGLE</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

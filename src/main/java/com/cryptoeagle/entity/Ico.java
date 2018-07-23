@@ -1,6 +1,10 @@
 package com.cryptoeagle.entity;
 
+
+import javax.persistence.Entity;
+
 public class Ico {
+
     private String name;
     private String image;
     private String description;
@@ -14,7 +18,6 @@ public class Ico {
     private String all_time_roi;
 
     public Ico(){};
-
 
     // Getter Methods
 
