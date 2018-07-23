@@ -1,9 +1,12 @@
 package com.cryptoeagle.service;
 
+import com.cryptoeagle.entity.ENU.IcoStatus;
 import com.cryptoeagle.entity.Ico;
+import com.cryptoeagle.repository.IcoRepository;
 import com.cryptoeagle.service.abst.IcoService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.ws.rs.client.Client;
@@ -16,6 +19,9 @@ import java.util.List;
 
 @Service
 public class IcoServiceImpl implements IcoService {
+
+    @Autowired
+    IcoRepository repository;
 
     private List<Ico> getListIco(String rest, String status) {
 
@@ -43,23 +49,70 @@ public class IcoServiceImpl implements IcoService {
         return icoList;
     }
 
-    @Override
+
     public List<Ico> getAll() {
-        return getListIco("https://api.icowatchlist.com/public/v1/","all");
+       return repository.getAllico();
     }
 
     @Override
-    public List<Ico> getUpcomingIco() {
+    public List<Ico> getUpcomingFromProvider() {
         return getListIco("https://api.icowatchlist.com/public/v1/upcoming","upcoming");
     }
 
     @Override
-    public List<Ico> getFinishedIco() {
+    public List<Ico> getFinishedFromProvider() {
         return getListIco("https://api.icowatchlist.com/public/v1/finished","finished");
     }
 
     @Override
-    public List<Ico> getActiveIco() {
+    public List<Ico> getActiveIcoFromProvider() {
         return getListIco("https://api.icowatchlist.com/public/v1/live","live");
+    }
+
+    @Override
+    public void updateIcos() {
+        List<Ico> allFromProvider = getAllFromProvider();
+        saveIcos(allFromProvider);
+    }
+
+    @Override
+    public List<Ico> getAllFromProvider() {
+
+        List<Ico> icoList = new ArrayList<>();
+
+        List<Ico> upcomingFromProvider = getUpcomingFromProvider();
+        upcomingFromProvider.stream().forEach(e -> e.setStatus(IcoStatus.UPCOMING));
+
+        List<Ico> activeIcoFromProvider = getActiveIcoFromProvider();
+        activeIcoFromProvider.stream().forEach(e -> e.setStatus(IcoStatus.ACTIVE));
+
+        List<Ico> finishedFromProvider = getFinishedFromProvider();
+        finishedFromProvider.stream().forEach(e -> e.setStatus(IcoStatus.FINISHED));
+
+        icoList.addAll(upcomingFromProvider);
+        icoList.addAll(activeIcoFromProvider);
+        icoList.addAll(finishedFromProvider);
+
+        return icoList;
+    }
+
+    @Override
+    public void saveIcos(List<Ico> icos) {
+              repository.saveIcos(icos);
+    }
+
+    @Override
+    public List<Ico> getUpcoming() {
+        return null;
+    }
+
+    @Override
+    public List<Ico> getFinished() {
+        return null;
+    }
+
+    @Override
+    public List<Ico> getActiveIco() {
+        return null;
     }
 }

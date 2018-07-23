@@ -1,6 +1,7 @@
 package com.cryptoeagle;
 
 
+import com.cryptoeagle.entity.ENU.IcoStatus;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
@@ -20,7 +21,6 @@ public class test {
         ctx.load("spring/spring-db.xml","spring/spring-app.xml");
 
         ctx.refresh();
-
 
         System.out.println();
     }

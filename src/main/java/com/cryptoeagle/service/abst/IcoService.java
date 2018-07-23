@@ -6,12 +6,19 @@ import java.util.List;
 
 public interface IcoService {
 
-    List<Ico> getUpcomingIco();
+    List<Ico> getUpcomingFromProvider();
+    List<Ico> getUpcoming();
 
-    List<Ico> getFinishedIco();
+    List<Ico> getFinishedFromProvider();
+    List<Ico> getFinished();
 
+    List<Ico> getActiveIcoFromProvider();
     List<Ico> getActiveIco();
 
-    List<Ico> getAll();
+    List<Ico> getAllFromProvider();
+
+    void updateIcos();
+
+    void saveIcos(List<Ico> icos);
 
 }

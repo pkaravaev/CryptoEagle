@@ -8,7 +8,13 @@ public interface IcoRepository {
 
     List<Ico> getAllico();
 
-    List<Ico> getAllIcoFromProvider();
+    void saveIcos(List<Ico> icos);
+
+    List<Ico> getActiveIco();
+
+    List<Ico> getUpcomingIco();
+
+    List<Ico> getFinishedIco();
 
 
 }

@@ -1,11 +1,26 @@
 package com.cryptoeagle.entity;
 
 
-import javax.persistence.Entity;
+import com.cryptoeagle.entity.ENU.IcoStatus;
 
+import javax.persistence.*;
+
+@NamedQueries({
+        @NamedQuery(name = Ico.GET_ALL,query = "SELECT ico FROM  Ico  ico"),
+        @NamedQuery(name = Ico.GET_BY_STATUS,query = "SELECT ico FROM  Ico  ico WHERE  ico.status=: status")
+})
+@Entity
 public class Ico {
 
+    public static final String GET_ALL ="Ico.getALL";
+    public static final String GET_BY_STATUS ="Ico.getByStatus";
+
+
+    @Id
+    @GeneratedValue
+    private int id;
     private String name;
+    private IcoStatus status;
     private String image;
     private String description;
     private String website_link;
@@ -16,6 +31,22 @@ public class Ico {
     private String coin_symbol;
     private String price_usd;
     private String all_time_roi;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public IcoStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(IcoStatus status) {
+        this.status = status;
+    }
 
     public Ico(){};
 

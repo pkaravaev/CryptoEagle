@@ -21,7 +21,6 @@ public class IcoImplTest extends AbstractTest {
 
         long start = System.currentTimeMillis();
 
-        List<Ico> activeIco = icoService.getActiveIco();
 
         long stop = System.currentTimeMillis();
 
