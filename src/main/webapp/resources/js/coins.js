@@ -1,5 +1,3 @@
-
-
 $(document).ready(function () {
 
     getCoins();
@@ -15,10 +13,13 @@ function getCoins() {
         cache: true,
         success: function (data) {
             var summary = " ";
-            data.forEach(function (element,index) {
+            data.forEach(function (element, index) {
                 var name = element.name;
                 var symbol = element.symbol;
                 var price = element.price;
+                var change = element.percent_change_24h;
+
+
                 summary += " " + symbol + "  " + price + "$  ";
             })
 
@@ -28,7 +29,6 @@ function getCoins() {
 
     });
 }
-
 
 
 

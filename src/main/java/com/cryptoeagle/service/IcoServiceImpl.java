@@ -17,7 +17,6 @@ import java.util.List;
 @Service
 public class IcoServiceImpl implements IcoService {
 
-
     private List<Ico> getListIco(String rest, String status) {
 
         ObjectMapper objectMapper = new ObjectMapper();

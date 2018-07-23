@@ -7,7 +7,9 @@
 
     <tx:annotation-driven/>
 
-    <context:property-placeholder location="classpath:db/postgres.properties"/>
+    <!--<context:property-placeholder location="classpath:db/postgres.properties"/>-->
+
+    <context:property-placeholder location="classpath:db/heroku.properties"/>
 
     <!--<jdbc:initialize-database  >-->
         <!--<jdbc:script location="db/initdb.sql"/>-->
@@ -30,9 +32,20 @@
 
         <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
             <property name="driverClassName" value="org.postgresql.Driver"/>
-            <property name="url" value="${database.url}"/>
-            <property name="username" value="${database.username}"/>
-            <property name="password" value="${database.password}"/>
+            <property name="url" value="jdbc:postgresql://ec2-54-204-23-228.compute-1.amazonaws.com:5432/d2evdi547bj3s6?ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory"/>
+            <property name="username" value="pdsdiskpahxeml"/>
+            <property name="password" value="88e11e56bf82dd2f6b908fc444636f9ddeeef4ae9bccdc04806c73445cc45248"/>
+        </bean>
+    </beans>
+
+
+    <beans profile="PostgreSQL">
+
+        <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+            <property name="driverClassName" value="org.postgresql.Driver"/>
+            <property name="url" value="jdbc:postgresql://ec2-54-204-23-228.compute-1.amazonaws.com:5432/d2evdi547bj3s6?ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory"/>
+            <property name="username" value="pdsdiskpahxeml"/>
+            <property name="password" value="88e11e56bf82dd2f6b908fc444636f9ddeeef4ae9bccdc04806c73445cc45248"/>
         </bean>
     </beans>
 

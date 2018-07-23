@@ -4,6 +4,7 @@
 
 <script>
 
+
     $(document).ready(function () {
 
         $(".table").click(function () {
@@ -11,17 +12,35 @@
             $(location).attr("href", url);
         })
 
-        $(".card").click(function ()
+        $(".card").click(function () {
 
-        var h = $(this).children();
-        var url = h.children()[1].href;
-        $(location).attr("href", url);
+            var h = $(this).children();
+            var url = h.children()[1].href;
+            $(location).attr("href", url);
+        })
+
+        $(".nav-item").mouseleave(function () {
+            $(this).css("font-size",17);
+        })
+
+        $(".nav-item").mouseenter(function () {
+            $(this).css("font-size",25);
+        })
+
+        $(".card").mouseenter(function () {
+
+           $(this).addClass("shadow p-3 mb-5 bg-white rounded");
+        })
+
+        $(".card").mouseleave(function () {
+
+            $(this).removeClass("shadow p-3 mb-5 bg-white rounded");
+        })
+
     })
 
-
-    )
-
 </script>
+
 <div class="container">
     <div class="row">
         <%--<div class="col-sm">--%>
@@ -33,18 +52,18 @@
                     <c:when test="${i.count < 7}">
                     </c:when>
                     <c:when test="${i.count > 10}">
-                        <div class="card border-white" title="xxx">
+                        <div class="card border-white">
                             <div class="card-body">
-                                <img src="/resources/pic/cryptopic/${item.getRandomPic(20)}.jpg" width="110" height="80"
+                                <img src="/resources/pic/cryptopic/${item.getRandomPic(20)}.jpg" width="170" height="130"
                                      class="rounded float-left"
                                      alt="Cannnot load picture!" hspace="5">
                                 <a class="link" href="${item.link}"><h5 class="card-title">${item.title}</h5></a>
-                                <h5 class="blockquote-footer">${item.publishDate}</h5>
-                                <p class="card-text">${item.description}</p>
+                                <p class="card-text rounded float-center">${item.description}</p>
+                                <p class="card-text rounded float-center">${item.publishDate}</p>
+                                    <%--<h5 class="blockquote-footer">${item.publishDate}</h5>--%>
 
                             </div>
                         </div>
-
                     </c:when>
                 </c:choose>
             </c:forEach>
@@ -52,7 +71,7 @@
         <div class="col-1">
 
             <p class="font-weight-bold" style="width: 250px">TOP 10 GAINS</p>
-            <table class="table  table-sm" id="mytable">
+            <table class="table  table-sm" >
                 <thead>
                 <tr>
                     <th scope="col">SYMBOL</th>
@@ -81,7 +100,7 @@
             </table>
 
             <p class="font-weight-bold" style="width: 250px">TOP 10 LOOSERS</p>
-            <table class="table  table-sm">
+            <table  class="table  table-sm ">
                 <thead>
                 <tr>
                     <th scope="col">SYMBOL</th>
