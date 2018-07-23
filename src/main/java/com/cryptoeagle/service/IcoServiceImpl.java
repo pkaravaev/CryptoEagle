@@ -103,16 +103,16 @@ public class IcoServiceImpl implements IcoService {
 
     @Override
     public List<Ico> getUpcoming() {
-        return null;
+        return repository.getUpcomingIco();
     }
 
     @Override
     public List<Ico> getFinished() {
-        return null;
+        return repository.getFinishedIco();
     }
 
     @Override
     public List<Ico> getActiveIco() {
-        return null;
+        return repository.getActiveIco();
     }
 }

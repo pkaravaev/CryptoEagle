@@ -23,16 +23,20 @@ public class CryptoController {
 
     @RequestMapping("/ico-stats")
     public String icoStats(Model model) {
-
-
-
+        List<Ico> icos = icoService.getAll();
+        model.addAttribute("icos",icos);
         return "ico-stats";
     }
 
     @RequestMapping("/ico-list")
     public String icoList(Model model) {
 
-
+        List<Ico> aico = icoService.getActiveIco();
+        List<Ico> eico = icoService.getFinished();
+        List<Ico> uico = icoService.getUpcoming();
+        model.addAttribute("aico",aico);
+        model.addAttribute("eico",eico);
+        model.addAttribute("uico",uico);
 
         return "ico-list";
     }

@@ -27,7 +27,8 @@ public class IcoRepositoryImpl implements IcoRepository {
 
     @Override
     public List<Ico> getAllico() {
-        return null;
+        return em.createNamedQuery(Ico.GET_ALL,Ico.class)
+                .getResultList();
     }
 
     @Override

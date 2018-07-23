@@ -38,9 +38,18 @@ public class MainController {
         return new Blog();
     }
 
+    @RequestMapping("/update")
+    public String update(Model model) {
+
+        icoService.updateIcos();;
+
+        return "redirect:/";
+    }
+
 
     @RequestMapping("/")
     public String welcome(Model model) {
+
 
         List<Item> items = rssService.getItems("https://www.coindesk.com/feed/");
         List<Coin> topcoins = coinService.getTopGainCoins();
