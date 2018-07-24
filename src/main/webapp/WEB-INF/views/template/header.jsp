@@ -28,40 +28,65 @@
 
     <title>Welcome</title>
 </head>
-<body>
+<body class="body bg-light">
 
 <script>
 
     $(document).ready(function () {
 
-        $('#myTable').DataTable();
+        $('.table').DataTable();
 
-        $(".nav-item").mouseleave(function () {
-            $(this).css("font-size",17);
-        })
-
-        $(".nav-item").click(function () {
-            $(this).css("font-size",25);
-        })
+        // $(".nav-item").mouseleave(function () {
+        //     $(this).css("font-size", 17);
+        // })
+        //
+        // $(".nav-item").click(function () {
+        //     $(this).css("font-size", 22);
+        // })
 
     });
 
 </script>
 
 
+<style>
 
-<h6 id="h1" class=" text-center bg-secondary text-white ">BTC 0000.00 ETH 000.000$ NEO 00.0000$ EOS 0.00000$ XRP 0.000000$</h6>
+    .body {
+        background-color: #3333ff;
+    }
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light " style="height: 100px" >
-    <a class="navbar-brand" href="/">CRYPTO EAGLE</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+</style>
+
+
+<%--<h6 id="x" class=" text-center bg-secondary text-white ">BTC 0000.00 ETH 000.000$ NEO 00.0000$ EOS 0.00000$ XRP 0.000000$</h6>--%>
+
+<%--<nav class="navbar navbar-expand-lg navbar-light " style="background-color: #f4f4ed"  id="myNav">--%>
+
+<%--<div style="margin-left: 250px">--%>
+    <%--<a class="navbar-brand" href="/">CRYPTO EAGLE</a>--%>
+    <%--<img  src="/resources/pic/eagle.png" width="120" height="90" alt="unavalible" class="img-thumbnail-light">--%>
+<%--</div>--%>
+    <%--<div class="justify-content-center">--%>
+        <%--<table class="justify-content-center">--%>
+            <%--<tr>--%>
+                <%--&lt;%&ndash;<td>BTC</td>&ndash;%&gt;--%>
+            <%--</tr>--%>
+        <%--</table>--%>
+
+
+    <%--</div>--%>
+
+<%--</nav>--%>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light ">
+    <div style="margin-left: 150px">
+        <a class="navbar-brand" href="/">CRYPTO EAGLE</a>
+        <img  src="/resources/pic/eagle.png" width="120" height="90" alt="unavalible" class="img-thumbnail-light">
+    </div>
+
     <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav ">
 
-            <img src="/resources/pic/eagle.png"width="120" height="90" alt="unavalible" class="img-thumbnail-light">
             <li class="nav-item">
                 <a class="nav-link" href="/beginners">BEGINNERS GUIDE</a>
             </li>
@@ -102,3 +127,4 @@
         </ul>
     </div>
 </nav>
+<hr>

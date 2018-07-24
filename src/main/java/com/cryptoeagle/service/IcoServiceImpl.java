@@ -60,14 +60,6 @@ public class IcoServiceImpl implements IcoService {
     }
 
     @Override
-    @Scheduled(fixedDelay = 60000)
-    public void updateIcos() {
-        repository.deleteAll();
-        List<Ico> allFromProvider = clientService.getIcos();
-        saveIcos(allFromProvider);
-    }
-
-    @Override
     public void saveIcos(List<Ico> icos) {
               repository.saveIcos(icos);
     }
@@ -86,4 +78,13 @@ public class IcoServiceImpl implements IcoService {
     public List<Ico> getActiveIco() {
         return repository.getActiveIco();
     }
+
+    @Override
+    @Scheduled(fixedDelay = 600000)
+    public void updateIcos() {
+        repository.deleteAll();
+        List<Ico> allFromProvider = clientService.getIcos();
+        saveIcos(allFromProvider);
+    }
+
 }

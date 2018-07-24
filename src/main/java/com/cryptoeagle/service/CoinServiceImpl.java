@@ -72,7 +72,7 @@ public class CoinServiceImpl implements CoinService {
     }
 
     @Override
-    @Scheduled(fixedDelay = 60000)
+    @Scheduled(fixedDelay = 600000)
     public void updateCoins() {
         System.out.println("update coins : time" + LocalDateTime.now().toString());
         log.info("update coins",LocalDateTime.now());
