@@ -5,6 +5,7 @@ import com.cryptoeagle.entity.PictureCoin;
 import com.cryptoeagle.entity.dto.CryptoCoin;
 import com.cryptoeagle.repository.CoinRepository;
 import com.cryptoeagle.service.abst.CoinService;
+import com.cryptoeagle.service.abst.RestClientService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.LoggerFactory;
@@ -31,6 +32,9 @@ public class CoinServiceImpl implements CoinService {
 
     @Autowired
     CoinRepository repository;
+
+    @Autowired
+    RestClientService restClientService;
 
     public List<Coin> getCoins(String... symbols) {
         log.info("get  coins : ",symbols);
@@ -65,137 +69,11 @@ public class CoinServiceImpl implements CoinService {
     }
 
     @Override
-    public List<PictureCoin> getPicCoins() {
-
-        List<PictureCoin> coins = new ArrayList<>();
-        ObjectMapper objectMapper = new ObjectMapper();
-        Client client = ClientBuilder.newClient();
-        String data = client.target("https://www.cryptocompare.com/api/data/coinlist/")
-                .request(MediaType.TEXT_PLAIN)
-                .get(String.class);
-
-        JsonNode node = null;
-        try {
-            node = objectMapper.readTree(data);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        JsonNode data1 = node.get("Data");
-        Iterator<JsonNode> iterator = data1.iterator();
-
-        while (iterator.hasNext()) {
-
-            try {
-                JsonNode next = iterator.next();
-                String imageUrl = next.get("ImageUrl").toString();
-                String symbol = next.get("Symbol").toString();
-                PictureCoin c = new PictureCoin();
-                c.setLink("https://www.cryptocompare.com" + imageUrl.substring(1, imageUrl.length() - 1));
-                c.setSymbol(symbol.substring(1, symbol.length() - 1));
-                coins.add(c);
-
-            } catch (Exception e) {
-
-            }
-        }
-
-        log.info("getPitctures count :" + coins.size());
-
-
-        return coins;
-    }
-
-    @Override
     @Scheduled(fixedDelay = 5000)
     public void updateCoins() {
         log.info("update coins",LocalDateTime.now());
-        List<Coin> allCoinsFromProvider = getAllCoinsFromProvider();
+        List<Coin> allCoinsFromProvider = restClientService.getCoins();
         repository.saveCoins(allCoinsFromProvider);
     }
 
-    @Override
-    public List<Coin> getAllCoinsFromProvider() {
-        List<PictureCoin> coinspic = this.getPicCoins();
-
-
-        List<Coin> coins = new ArrayList<>();
-        ObjectMapper objectMapper = new ObjectMapper();
-        Client client = ClientBuilder.newClient();
-        String data = client.target("https://api.coinmarketcap.com/v2/ticker/")
-                .request(MediaType.TEXT_PLAIN)
-                .get(String.class);
-
-        JsonNode node = null;
-        try {
-            node = objectMapper.readTree(data);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        JsonNode data1 = node.get("data");
-        Iterator<JsonNode> iterator = data1.iterator();
-        while (iterator.hasNext()) {
-            try {
-                JsonNode next = iterator.next();
-                Coin c = new Coin();
-                NumberFormat numberFormat = NumberFormat.getInstance();
-                numberFormat.setMaximumIntegerDigits(Integer.MAX_VALUE);
-
-                DecimalFormat df = new DecimalFormat("#");
-                df.setMaximumFractionDigits(0);
-
-                String id = next.get("id").toString();
-                String name = next.get("name").toString();
-                String symbol = next.get("symbol").toString();
-                String rank = next.get("rank").toString();
-                String circulating_supply = next.get("circulating_supply").toString();
-                String price = next.get("quotes").get("USD").get("price").toString();
-                String volume_24h = next.get("quotes").get("USD").get("volume_24h").toString();
-                String market_cap = next.get("quotes").get("USD").get("market_cap").toString();
-                String percent_change_1h = next.get("quotes").get("USD").get("percent_change_1h").toString();
-                String percent_change_24h = next.get("quotes").get("USD").get("percent_change_24h").toString();
-                String percent_change_7d = next.get("quotes").get("USD").get("percent_change_7d").toString();
-
-                double volume = Double.parseDouble(volume_24h);
-                double circul = Double.parseDouble(circulating_supply);
-                double market = Double.parseDouble(market_cap);
-                double change1 = Double.parseDouble(percent_change_1h);
-                double change24 = Double.parseDouble(percent_change_24h);
-                double change7 = Double.parseDouble(percent_change_7d);
-
-
-                String s = numberFormat.format(circul);
-
-                String s1 = s.replaceAll("\\u00A0", "");
-
-
-                c.setId(Integer.valueOf(id));
-                c.setName(name.substring(1, name.length() - 1));
-                c.setSymbol(symbol.substring(1, symbol.length() - 1));
-                c.setRank(Integer.valueOf(rank));
-                c.setPrice(Double.parseDouble(price));
-
-                c.setCirculating_supply(BigDecimal.valueOf(circul));
-                c.setPercent_change_24h(change24);
-                c.setMarket_cap(BigDecimal.valueOf(market));
-                c.setVolume_24h(BigDecimal.valueOf(volume));
-                c.setPercent_change_1h(change1);
-                c.setPercent_change_24h(change24);
-                c.setPercent_change_7d(change7);
-
-                String link = coinspic.stream().filter(e -> e.getSymbol().equals(c.getSymbol())).findFirst().get().getLink();
-
-                c.setImage(link);
-                coins.add(c);
-
-
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-        }
-
-        return coins;
-    }
 }

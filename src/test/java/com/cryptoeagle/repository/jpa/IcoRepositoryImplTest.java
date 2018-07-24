@@ -29,7 +29,6 @@ public class IcoRepositoryImplTest extends AbstractTest {
     @Test
     public void getAllIcoFromProvider() {
 
-        List<Ico> allFromProvider = icoService.getAllFromProvider();
         icoService.updateIcos();
     }
 }

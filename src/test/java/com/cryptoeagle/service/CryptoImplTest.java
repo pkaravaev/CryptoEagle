@@ -15,10 +15,11 @@ public class CryptoImplTest extends AbstractTest {
 
     @Autowired
     CoinService coinService;
+
     @Test
     public void getCoins() {
 
-        List<Coin> gainCoins = coinService.getTopGainCoins();
+        coinService.updateCoins();
     }
 
     @Test

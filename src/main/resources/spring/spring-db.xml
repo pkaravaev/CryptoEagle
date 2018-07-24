@@ -28,26 +28,26 @@
     <!--</beans>-->
 
 
-    <!--<beans profile="PostgreSQL">-->
-
-        <!--<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
-            <!--<property name="driverClassName" value="org.postgresql.Driver"/>-->
-            <!--<property name="url" value="${database.url}"/>-->
-            <!--<property name="username" value="${database.username}"/>-->
-            <!--<property name="password" value="${database.password}"/>-->
-        <!--</bean>-->
-    <!--</beans>-->
-
-
     <beans profile="PostgreSQL">
 
         <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
             <property name="driverClassName" value="org.postgresql.Driver"/>
-            <property name="url" value="jdbc:postgresql://ec2-54-235-196-250.compute-1.amazonaws.com:5432/dasbg3fc5d4058?ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory"/>
-            <property name="username" value="thrmlcfqlgufkq"/>
-            <property name="password" value="cda365a9cd60f18c68442d1dbd0070f17b2eb991a8b984af0849d9c374cf69fe"/>
+            <property name="url" value="${database.url}"/>
+            <property name="username" value="${database.username}"/>
+            <property name="password" value="${database.password}"/>
         </bean>
     </beans>
+
+
+    <!--<beans profile="PostgreSQL">-->
+
+        <!--<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
+            <!--<property name="driverClassName" value="org.postgresql.Driver"/>-->
+            <!--<property name="url" value="jdbc:postgresql://ec2-54-235-196-250.compute-1.amazonaws.com:5432/dasbg3fc5d4058?ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory"/>-->
+            <!--<property name="username" value="thrmlcfqlgufkq"/>-->
+            <!--<property name="password" value="cda365a9cd60f18c68442d1dbd0070f17b2eb991a8b984af0849d9c374cf69fe"/>-->
+        <!--</bean>-->
+    <!--</beans>-->
 
 
     <beans profile="Jdbc">

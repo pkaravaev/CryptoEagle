@@ -34,8 +34,6 @@ public class CoinRepositoryTest extends AbstractTest {
     @Test
     public void saveCoins() {
 
-        List<Coin> coins = coinService.getAllCoinsFromProvider();
-        coinRepository.saveCoins(coins);
     }
 
     @Test

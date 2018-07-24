@@ -4,6 +4,7 @@ import com.cryptoeagle.entity.ENU.IcoStatus;
 import com.cryptoeagle.entity.Ico;
 import com.cryptoeagle.repository.IcoRepository;
 import com.cryptoeagle.service.abst.IcoService;
+import com.cryptoeagle.service.abst.RestClientService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,9 @@ public class IcoServiceImpl implements IcoService {
 
     @Autowired
     IcoRepository repository;
+
+    @Autowired
+    RestClientService clientService;
 
     private List<Ico> getListIco(String rest, String status) {
 
@@ -49,51 +53,14 @@ public class IcoServiceImpl implements IcoService {
         return icoList;
     }
 
-
     public List<Ico> getAll() {
        return repository.getAllico();
     }
 
     @Override
-    public List<Ico> getUpcomingFromProvider() {
-        return getListIco("https://api.icowatchlist.com/public/v1/upcoming","upcoming");
-    }
-
-    @Override
-    public List<Ico> getFinishedFromProvider() {
-        return getListIco("https://api.icowatchlist.com/public/v1/finished","finished");
-    }
-
-    @Override
-    public List<Ico> getActiveIcoFromProvider() {
-        return getListIco("https://api.icowatchlist.com/public/v1/live","live");
-    }
-
-    @Override
     public void updateIcos() {
-        List<Ico> allFromProvider = getAllFromProvider();
+        List<Ico> allFromProvider = clientService.getIcos();
         saveIcos(allFromProvider);
-    }
-
-    @Override
-    public List<Ico> getAllFromProvider() {
-
-        List<Ico> icoList = new ArrayList<>();
-
-        List<Ico> upcomingFromProvider = getUpcomingFromProvider();
-        upcomingFromProvider.stream().forEach(e -> e.setStatus(IcoStatus.UPCOMING));
-
-        List<Ico> activeIcoFromProvider = getActiveIcoFromProvider();
-        activeIcoFromProvider.stream().forEach(e -> e.setStatus(IcoStatus.ACTIVE));
-
-        List<Ico> finishedFromProvider = getFinishedFromProvider();
-        finishedFromProvider.stream().forEach(e -> e.setStatus(IcoStatus.FINISHED));
-
-        icoList.addAll(upcomingFromProvider);
-        icoList.addAll(activeIcoFromProvider);
-        icoList.addAll(finishedFromProvider);
-
-        return icoList;
     }
 
     @Override

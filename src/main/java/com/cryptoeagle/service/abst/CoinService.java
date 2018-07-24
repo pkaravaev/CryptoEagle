@@ -14,15 +14,8 @@ public interface CoinService {
 
     List<Coin> getAllCoins();
 
-    List<Coin> getAllCoinsFromProvider();
-
     List<Coin> getTopGainCoins();
 
     List<Coin> getTopLoserCoins();
-
-    List<PictureCoin> getPicCoins();
-
-
-
 
 }
