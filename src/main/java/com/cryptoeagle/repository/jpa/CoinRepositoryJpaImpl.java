@@ -61,6 +61,12 @@ public class CoinRepositoryJpaImpl implements CoinRepository {
                 .limit(10)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    @Transactional
+    public void deleteAll() {
+        entityManager.createQuery("DELETE FROM Coin ").executeUpdate();
+    }
 }
 
 

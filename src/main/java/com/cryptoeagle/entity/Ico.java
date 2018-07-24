@@ -1,19 +1,21 @@
 package com.cryptoeagle.entity;
 
 
-import com.cryptoeagle.entity.ENU.IcoStatus;
+import com.cryptoeagle.entity.enumeration.IcoStatus;
 
 import javax.persistence.*;
 
 @NamedQueries({
-        @NamedQuery(name = Ico.GET_ALL,query = "SELECT ico FROM  Ico  ico"),
-        @NamedQuery(name = Ico.GET_BY_STATUS,query = "SELECT ico FROM  Ico  ico WHERE  ico.status=: status")
+        @NamedQuery(name = Ico.GET_ALL, query = "SELECT ico FROM  Ico  ico"),
+        @NamedQuery(name = Ico.GET_BY_STATUS, query = "SELECT ico FROM  Ico  ico WHERE  ico.status=: status"),
+        @NamedQuery(name = Ico.UPDATE, query = "UPDATE Ico  ico Set ico.price_usd=:price, ico.all_time_roi=:roi"),
 })
 @Entity
 public class Ico {
 
-    public static final String GET_ALL ="Ico.getALL";
-    public static final String GET_BY_STATUS ="Ico.getByStatus";
+    public static final String GET_ALL = "Ico.getALL";
+    public static final String GET_BY_STATUS = "Ico.getByStatus";
+    public static final String UPDATE = "Ico.update";
 
 
     @Id
@@ -48,7 +50,10 @@ public class Ico {
         this.status = status;
     }
 
-    public Ico(){};
+    public Ico() {
+    }
+
+    ;
 
     // Getter Methods
 

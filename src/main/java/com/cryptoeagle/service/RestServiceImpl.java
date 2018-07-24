@@ -1,13 +1,12 @@
 package com.cryptoeagle.service;
 
 import com.cryptoeagle.entity.Coin;
-import com.cryptoeagle.entity.ENU.IcoStatus;
+import com.cryptoeagle.entity.enumeration.IcoStatus;
 import com.cryptoeagle.entity.Ico;
 import com.cryptoeagle.entity.PictureCoin;
 import com.cryptoeagle.service.abst.RestClientService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import javax.ws.rs.client.Client;

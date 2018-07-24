@@ -13,7 +13,10 @@ import java.math.BigDecimal;
         @NamedQuery( name = Coin.GET_ALL, query = "SELECT c FROM Coin c"),
         @NamedQuery( name = Coin.GET_BY_SYMBOL, query = "SELECT c FROM Coin c WHERE c.symbol=:symbol"),
         @NamedQuery( name = Coin.GET_TOP, query = "SELECT c FROM Coin c order by c.percent_change_7d desc "),
-        @NamedQuery( name = Coin.GET_LOSER, query = "SELECT c FROM Coin c order by c.percent_change_7d asc ")
+        @NamedQuery( name = Coin.GET_LOSER, query = "SELECT c FROM Coin c order by c.percent_change_7d asc "),
+        @NamedQuery( name = Coin.UPDATE, query = "UPDATE Coin c Set c.rank=:rank, c.circulating_supply=:circulating_supply," +
+                "c.price=:price, c.volume_24h=:volume_24h, c.market_cap=:market_cap, c.percent_change_1h=:percent_change_1h," +
+                "c.percent_change_24h=:percent_change_24h,c.percent_change_7d=:percent_change_7d")
 })
 
 public class Coin {
@@ -23,6 +26,7 @@ public class Coin {
     public static final String GET_BY_SYMBOL ="Coin.getBySymbol";
     public static final String GET_TOP ="Coin.getTop";
     public static final String GET_LOSER ="Coin.getLoser";
+    public static final String UPDATE ="Coin.update";
 
     @Id
     private int id;

@@ -12,6 +12,8 @@ public interface CoinRepository {
 
     void saveCoins(List<Coin> list);
 
+    void deleteAll();
+
     List<Coin> getAllCoins();
 
     List<Coin> getTopGainCoins();

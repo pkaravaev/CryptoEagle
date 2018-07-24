@@ -1,4 +1,4 @@
-package com.cryptoeagle.entity.ENU;
+package com.cryptoeagle.entity.enumeration;
 
 public enum IcoStatus {
     ACTIVE,

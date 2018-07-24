@@ -12,7 +12,6 @@ import java.util.List;
 
 
 @Controller
-@SessionAttributes("user")
 public class MainController {
 
     @Autowired
@@ -49,8 +48,6 @@ public class MainController {
 
     @RequestMapping("/")
     public String welcome(Model model) {
-
-
         List<Item> items = rssService.getItems("https://www.coindesk.com/feed/");
         List<Coin> topcoins = coinService.getTopGainCoins();
         List<Coin> losercoins = coinService.getTopLoserCoins();

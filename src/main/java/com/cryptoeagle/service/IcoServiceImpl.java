@@ -1,6 +1,5 @@
 package com.cryptoeagle.service;
 
-import com.cryptoeagle.entity.ENU.IcoStatus;
 import com.cryptoeagle.entity.Ico;
 import com.cryptoeagle.repository.IcoRepository;
 import com.cryptoeagle.service.abst.IcoService;
@@ -8,6 +7,8 @@ import com.cryptoeagle.service.abst.RestClientService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import javax.ws.rs.client.Client;
@@ -19,6 +20,7 @@ import java.util.List;
 
 
 @Service
+@EnableScheduling
 public class IcoServiceImpl implements IcoService {
 
     @Autowired
@@ -58,7 +60,9 @@ public class IcoServiceImpl implements IcoService {
     }
 
     @Override
+    @Scheduled(fixedDelay = 60000)
     public void updateIcos() {
+        repository.deleteAll();
         List<Ico> allFromProvider = clientService.getIcos();
         saveIcos(allFromProvider);
     }

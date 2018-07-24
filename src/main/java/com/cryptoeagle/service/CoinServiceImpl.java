@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +28,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@EnableScheduling
 public class CoinServiceImpl implements CoinService {
+
     private static final org.slf4j.Logger log = LoggerFactory.getLogger(CoinServiceImpl.class);
 
     @Autowired
@@ -69,9 +72,11 @@ public class CoinServiceImpl implements CoinService {
     }
 
     @Override
-    @Scheduled(fixedDelay = 5000)
+    @Scheduled(fixedDelay = 60000)
     public void updateCoins() {
+        System.out.println("update coins : time" + LocalDateTime.now().toString());
         log.info("update coins",LocalDateTime.now());
+        repository.deleteAll();
         List<Coin> allCoinsFromProvider = restClientService.getCoins();
         repository.saveCoins(allCoinsFromProvider);
     }

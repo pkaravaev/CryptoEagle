@@ -1,20 +1,13 @@
 package com.cryptoeagle.repository.jpa;
 
-import com.cryptoeagle.entity.ENU.IcoStatus;
+import com.cryptoeagle.entity.enumeration.IcoStatus;
 import com.cryptoeagle.entity.Ico;
 import com.cryptoeagle.repository.IcoRepository;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.core.MediaType;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 
@@ -37,7 +30,6 @@ public class IcoRepositoryImpl implements IcoRepository {
         for (Ico ico : icos) {
             em.persist(ico);
         }
-
     }
 
     @Override
@@ -60,6 +52,11 @@ public class IcoRepositoryImpl implements IcoRepository {
         return em.createNamedQuery(Ico.GET_BY_STATUS,Ico.class)
                 .setParameter("status",IcoStatus.FINISHED)
                 .getResultList();
+    }
+
+    @Override
+    public void deleteAll() {
+        em.createQuery("DELETE FROM Ico ").executeUpdate();
     }
 }
 

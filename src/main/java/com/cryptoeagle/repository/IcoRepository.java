@@ -16,5 +16,7 @@ public interface IcoRepository {
 
     List<Ico> getFinishedIco();
 
+    void deleteAll();
+
 
 }

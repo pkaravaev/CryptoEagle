@@ -2,6 +2,7 @@ package com.cryptoeagle;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.util.JsonParserSequence;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 
@@ -20,13 +21,12 @@ public class Utils {
 
     public static String HMAC384sign(String key, String data) {
         try {
-
             SecretKeySpec keySpec = new SecretKeySpec(key.getBytes(), "HmacSHA384");
             Mac mac = Mac.getInstance("HmacSHA384");
             mac.init(keySpec);
+            byte[] bytes = data.getBytes();
             byte[] rawHmac = mac.doFinal(data.getBytes());
-            String result = Base64.getEncoder().encodeToString(rawHmac);
-            return result;
+            return    Base64.getEncoder().encodeToString(rawHmac);
 
         } catch (NoSuchAlgorithmException e) {
             return "";
