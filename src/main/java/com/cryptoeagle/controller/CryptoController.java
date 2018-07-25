@@ -34,6 +34,7 @@ public class CryptoController {
         List<Ico> aico = icoService.getActiveIco();
         List<Ico> eico = icoService.getFinished();
         List<Ico> uico = icoService.getUpcoming();
+
         model.addAttribute("aico",aico);
         model.addAttribute("eico",eico);
         model.addAttribute("uico",uico);

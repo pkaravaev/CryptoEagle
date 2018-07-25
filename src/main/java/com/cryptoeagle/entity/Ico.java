@@ -4,6 +4,7 @@ package com.cryptoeagle.entity;
 import com.cryptoeagle.entity.enumeration.IcoStatus;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @NamedQueries({
         @NamedQuery(name = Ico.GET_ALL, query = "SELECT ico FROM  Ico  ico"),
@@ -28,12 +29,12 @@ public class Ico {
     private String description;
     private String website_link;
     private String icowatchlist_url;
-    private String start_time;
-    private String end_time;
+    private LocalDateTime start_time;
+    private LocalDateTime end_time;
     private String timezone;
     private String coin_symbol;
-    private String price_usd;
-    private String all_time_roi;
+    private double price_usd;
+    private double all_time_roi;
 
     public int getId() {
         return id;
@@ -54,7 +55,6 @@ public class Ico {
     public Ico() {
     }
 
-    ;
 
     // Getter Methods
 
@@ -78,12 +78,20 @@ public class Ico {
         return icowatchlist_url;
     }
 
-    public String getStart_time() {
+    public LocalDateTime getStart_time() {
         return start_time;
     }
 
-    public String getEnd_time() {
+    public void setStart_time(LocalDateTime start_time) {
+        this.start_time = start_time;
+    }
+
+    public LocalDateTime getEnd_time() {
         return end_time;
+    }
+
+    public void setEnd_time(LocalDateTime end_time) {
+        this.end_time = end_time;
     }
 
     public String getTimezone() {
@@ -94,15 +102,7 @@ public class Ico {
         return coin_symbol;
     }
 
-    public String getPrice_usd() {
-        return price_usd;
-    }
 
-    public String getAll_time_roi() {
-        return all_time_roi;
-    }
-
-    // Setter Methods
 
     public void setName(String name) {
         this.name = name;
@@ -124,13 +124,6 @@ public class Ico {
         this.icowatchlist_url = icowatchlist_url;
     }
 
-    public void setStart_time(String start_time) {
-        this.start_time = start_time;
-    }
-
-    public void setEnd_time(String end_time) {
-        this.end_time = end_time;
-    }
 
     public void setTimezone(String timezone) {
         this.timezone = timezone;
@@ -140,11 +133,19 @@ public class Ico {
         this.coin_symbol = coin_symbol;
     }
 
-    public void setPrice_usd(String price_usd) {
+    public double getPrice_usd() {
+        return price_usd;
+    }
+
+    public void setPrice_usd(double price_usd) {
         this.price_usd = price_usd;
     }
 
-    public void setAll_time_roi(String all_time_roi) {
+    public double getAll_time_roi() {
+        return all_time_roi;
+    }
+
+    public void setAll_time_roi(double all_time_roi) {
         this.all_time_roi = all_time_roi;
     }
 }

@@ -29,32 +29,6 @@ public class IcoServiceImpl implements IcoService {
     @Autowired
     RestClientService clientService;
 
-    private List<Ico> getListIco(String rest, String status) {
-
-        ObjectMapper objectMapper = new ObjectMapper();
-
-        Client client = ClientBuilder.newClient();
-        String icos = client.target(rest)
-                .request(MediaType.APPLICATION_JSON)
-                .get(String.class);
-        List<Ico> icoList = new ArrayList<>();
-        try {
-
-            JsonNode node = objectMapper.readTree(icos);
-            JsonNode node1 = node.findParent(status).get(status);
-
-            Iterator<JsonNode> iterator = node1.iterator();
-
-            while (iterator.hasNext()) {
-                JsonNode next = iterator.next();
-                Ico ico = objectMapper.treeToValue(next, Ico.class);
-                icoList.add(ico);
-            }
-        } catch (Exception e) {
-        }
-        return icoList;
-    }
-
     public List<Ico> getAll() {
        return repository.getAllico();
     }

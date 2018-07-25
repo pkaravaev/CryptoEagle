@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -60,8 +61,17 @@ public class RestServiceImpl implements RestClientService {
             Iterator<JsonNode> iterator = node1.iterator();
 
             while (iterator.hasNext()) {
+
                 JsonNode next = iterator.next();
-                Ico ico = objectMapper.treeToValue(next, Ico.class);
+                Ico ico = new Ico();
+
+                ico.setName(" ");
+                ico.setDescription(" ");
+                ico.setWebsite_link(" ");
+
+                ico.setStart_time(LocalDateTime.parse("     "));
+                ico.setEnd_time(LocalDateTime.parse(" "));
+
                 icoList.add(ico);
             }
         } catch (Exception e) {
@@ -80,9 +90,6 @@ public class RestServiceImpl implements RestClientService {
     public List<Ico> getActiveIcoFromProvider() {
         return getListIco("https://api.icowatchlist.com/public/v1/live","live");
     }
-
-
-
 
     @Override
     public List<Coin> getCoins() {
@@ -209,6 +216,5 @@ public class RestServiceImpl implements RestClientService {
 
         return coins;
     }
-
 
 }
