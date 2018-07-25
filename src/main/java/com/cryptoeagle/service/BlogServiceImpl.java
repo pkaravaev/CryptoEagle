@@ -9,12 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 
 @Service
 public class BlogServiceImpl implements BlogService {
 
-    private static final org.slf4j.Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
+    private static final Logger log = Logger.getLogger(BlogServiceImpl.class.getName());
 
     @Autowired
     BlogRepository repository;

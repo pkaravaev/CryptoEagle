@@ -2,7 +2,9 @@ $(document).ready(function () {
 
     getCoins();
 
-});
+
+})
+
 
 
 function getCoins() {
@@ -29,6 +31,21 @@ function getCoins() {
 
     });
 }
+
+function getPrice() {
+    $.ajax({
+
+        type:"POST",
+        url: "/ajax/price",
+        success :function (data) {
+            $(".h1").text(data.price);
+        }
+
+    });
+}
+
+
+
 
 
 

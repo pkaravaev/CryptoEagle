@@ -11,6 +11,7 @@ import javax.persistence.*;
         @NamedQuery(name = Ico.UPDATE, query = "UPDATE Ico  ico Set ico.price_usd=:price, ico.all_time_roi=:roi"),
 })
 @Entity
+@Cacheable
 public class Ico {
 
     public static final String GET_ALL = "Ico.getALL";

@@ -25,11 +25,14 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @Service
 @EnableScheduling
 public class CoinServiceImpl implements CoinService {
+
+//    private static final Logger log = Logger.getLogger(CoinServiceImpl.class.getName());
 
     private static final org.slf4j.Logger log = LoggerFactory.getLogger(CoinServiceImpl.class);
 
@@ -40,7 +43,7 @@ public class CoinServiceImpl implements CoinService {
     RestClientService restClientService;
 
     public List<Coin> getCoins(String... symbols) {
-        log.info("get  coins : ",symbols);
+        log.info("get  coins : " + symbols);
         List<Coin> coinList = new ArrayList<>();
         for (int i = 0; i < symbols.length; i++) {
             Coin coin = getCoin(symbols[i]);
@@ -50,7 +53,7 @@ public class CoinServiceImpl implements CoinService {
     }
 
     private Coin getCoin(String symbol) {
-        log.info("get  coin :",symbol);
+        log.info("get  coin  : " + symbol);
         return repository.getBySymbol(symbol);
     }
 
@@ -74,8 +77,7 @@ public class CoinServiceImpl implements CoinService {
     @Override
     @Scheduled(fixedDelay = 600000)
     public void updateCoins() {
-        System.out.println("update coins : time" + LocalDateTime.now().toString());
-        log.info("update coins",LocalDateTime.now());
+        log.info("update coins"+ LocalDateTime.now().toString());
         repository.deleteAll();
         List<Coin> allCoinsFromProvider = restClientService.getCoins();
         repository.saveCoins(allCoinsFromProvider);

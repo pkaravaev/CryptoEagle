@@ -7,9 +7,20 @@
     $(document).ready(function () {
 
         $(".table").click(function () {
+
             var url = "coin-list";
             $(location).attr("href", url);
         })
+
+
+        // $('#table1,#table2').dataTable( {
+        //     "searching": false,
+        //     "paging":false,
+        //     "info": false,
+        //     "autoWidth": true
+        //
+        // } );
+
 
         $(".card").click(function () {
             var h = $(this).children();
@@ -17,13 +28,6 @@
             $(location).attr("href", url);
         })
 
-        $(".nav-item").mouseleave(function () {
-            $(this).removeClass("font-weight-bold");
-        })
-
-        $(".nav-item").mouseenter(function () {
-            $(this).addClass("font-weight-bold");
-        })
 
         $(".card").mouseenter(function () {
            $(this).addClass("shadow-sm p-3 mb-5 bg-white rounded");
@@ -34,6 +38,7 @@
         })
 
     })
+
 
 </script>
 
@@ -70,23 +75,17 @@
                 </c:choose>
             </c:forEach>
         </div>
-        <div class="col-1 bg-white">
-
+        <div class="col-1 bg-white" style="width: 30px">
             <p class="font-weight-bold bg-white " style="width: 250px">TOP 10 GAINS</p>
-
-            <table  class="table">
-                <br/>
+            <table  class="table" id="table2">
                 <thead class="bg-light">
                 <tr>
                     <th>SYMBOL</th>
                     <th>PRICE</th>
                     <th>7D%</th>
-
                 </tr>
                 </thead>
                 <tbody>
-
-                <p class="font-weight-bold bg-white" style="width: 250px">TOP 10 LOOSERS</p>
                 <c:forEach items="${topcoins}" var="coin">
                     <tr>
                         <td>${coin.symbol}</td>
@@ -104,7 +103,7 @@
                 </tbody>
             </table>
 
-            <table class="table">
+            <table class="table" id="table1">
                 <br/>
                 <thead class="bg-light">
                 <tr>

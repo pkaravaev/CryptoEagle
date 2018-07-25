@@ -19,7 +19,7 @@ public class Blog extends BaseEntity {
 
     private String name;
     private String url;
-    @OneToMany(mappedBy = "blog", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true,targetEntity = Item.class)
+    @OneToMany(mappedBy = "blog", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true, targetEntity = Item.class)
     private List<Item> items = new ArrayList<>();
     @ManyToOne(cascade = CascadeType.ALL)
     private AppUser appUser;

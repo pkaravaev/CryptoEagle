@@ -43,7 +43,7 @@ public class IcoRepositoryImpl implements IcoRepository {
     @Override
     public List<Ico> getUpcomingIco() {
         return em.createNamedQuery(Ico.GET_BY_STATUS,Ico.class)
-                .setParameter("status",IcoStatus.ACTIVE)
+                .setParameter("status",IcoStatus.UPCOMING)
                 .getResultList();
     }
 
@@ -55,6 +55,7 @@ public class IcoRepositoryImpl implements IcoRepository {
     }
 
     @Override
+    @Transactional
     public void deleteAll() {
         em.createQuery("DELETE FROM Ico ").executeUpdate();
     }

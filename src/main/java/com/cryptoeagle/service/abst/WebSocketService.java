@@ -1,6 +1,8 @@
 package com.cryptoeagle.service.abst;
 
+import com.cryptoeagle.entity.dto.Quote;
+
 public interface WebSocketService  {
 
-    double getQuotes(String symbol);
+    Quote getLasTraderPrice(String symbol);
 }

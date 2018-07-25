@@ -35,48 +35,29 @@
     $(document).ready(function () {
 
         $('.table').DataTable();
-
-        // $(".nav-item").mouseleave(function () {
-        //     $(this).css("font-size", 17);
-        // })
         //
-        // $(".nav-item").click(function () {
-        //     $(this).css("font-size", 22);
-        // })
+        // $('#table1,#table2').dataTable( {
+        //     "searching": false,
+        //     "paging":false,
+        //     "info": false,
+        //     "autoWidth": true
+        //
+        // } );
+
+
+
+        $(".nav-item").mouseleave(function () {
+            $(this).removeClass("font-weight-bold");
+        })
+
+        $(".nav-item").mouseenter(function () {
+            $(this).addClass("font-weight-bold");
+        })
 
     });
 
 </script>
 
-
-<style>
-
-    .body {
-        background-color: #3333ff;
-    }
-
-</style>
-
-
-<%--<h6 id="x" class=" text-center bg-secondary text-white ">BTC 0000.00 ETH 000.000$ NEO 00.0000$ EOS 0.00000$ XRP 0.000000$</h6>--%>
-
-<%--<nav class="navbar navbar-expand-lg navbar-light " style="background-color: #f4f4ed"  id="myNav">--%>
-
-<%--<div style="margin-left: 250px">--%>
-    <%--<a class="navbar-brand" href="/">CRYPTO EAGLE</a>--%>
-    <%--<img  src="/resources/pic/eagle.png" width="120" height="90" alt="unavalible" class="img-thumbnail-light">--%>
-<%--</div>--%>
-    <%--<div class="justify-content-center">--%>
-        <%--<table class="justify-content-center">--%>
-            <%--<tr>--%>
-                <%--&lt;%&ndash;<td>BTC</td>&ndash;%&gt;--%>
-            <%--</tr>--%>
-        <%--</table>--%>
-
-
-    <%--</div>--%>
-
-<%--</nav>--%>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light ">
     <div style="margin-left: 150px">
@@ -94,7 +75,17 @@
             <li class="nav-item active">
                 <a class="nav-link" href="/">NEWS <span class="sr-only">(current)</span></a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link " href="/coin-list">COINS LIST</a>
+            </li>
 
+            <li class="nav-item">
+                <a class="nav-link " href="/ico-list">ICO LIST</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link " href="/ico-stats">ICO STATS</a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="/blogs">MY ACCOUNT</a>
             </li>
@@ -110,19 +101,6 @@
             <li class="nav-item">
                 <a class="nav-link " href="/users">USERS</a>
             </li>
-
-            <li class="nav-item">
-                <a class="nav-link " href="/coin-list">COINS LIST</a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link " href="/ico-list">ICO LIST</a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link " href="/ico-stats">ICO STATS</a>
-            </li>
-
 
         </ul>
     </div>
