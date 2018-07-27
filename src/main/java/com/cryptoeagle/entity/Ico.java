@@ -19,7 +19,6 @@ public class Ico {
     public static final String GET_BY_STATUS = "Ico.getByStatus";
     public static final String UPDATE = "Ico.update";
 
-
     @Id
     @GeneratedValue
     private int id;
@@ -29,12 +28,58 @@ public class Ico {
     private String description;
     private String website_link;
     private String icowatchlist_url;
-    private LocalDateTime start_time;
-    private LocalDateTime end_time;
+
+    private LocalDateTime preIcoStart;
+    private LocalDateTime preIcoEnd;
+    private LocalDateTime icoStart;
+    private LocalDateTime icoEnd;
+
     private String timezone;
     private String coin_symbol;
     private double price_usd;
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
+    }
+
+    private double rating;
     private double all_time_roi;
+
+    public LocalDateTime getPreIcoStart() {
+        return preIcoStart;
+    }
+
+    public void setPreIcoStart(LocalDateTime preIcoStart) {
+        this.preIcoStart = preIcoStart;
+    }
+
+    public LocalDateTime getPreIcoEnd() {
+        return preIcoEnd;
+    }
+
+    public void setPreIcoEnd(LocalDateTime preIcoEnd) {
+        this.preIcoEnd = preIcoEnd;
+    }
+
+    public LocalDateTime getIcoStart() {
+        return icoStart;
+    }
+
+    public void setIcoStart(LocalDateTime icoStart) {
+        this.icoStart = icoStart;
+    }
+
+    public LocalDateTime getIcoEnd() {
+        return icoEnd;
+    }
+
+    public void setIcoEnd(LocalDateTime icoEnd) {
+        this.icoEnd = icoEnd;
+    }
 
     public int getId() {
         return id;
@@ -54,9 +99,6 @@ public class Ico {
 
     public Ico() {
     }
-
-
-    // Getter Methods
 
     public String getName() {
         return name;
@@ -78,22 +120,6 @@ public class Ico {
         return icowatchlist_url;
     }
 
-    public LocalDateTime getStart_time() {
-        return start_time;
-    }
-
-    public void setStart_time(LocalDateTime start_time) {
-        this.start_time = start_time;
-    }
-
-    public LocalDateTime getEnd_time() {
-        return end_time;
-    }
-
-    public void setEnd_time(LocalDateTime end_time) {
-        this.end_time = end_time;
-    }
-
     public String getTimezone() {
         return timezone;
     }
@@ -101,8 +127,6 @@ public class Ico {
     public String getCoin_symbol() {
         return coin_symbol;
     }
-
-
 
     public void setName(String name) {
         this.name = name;
@@ -123,7 +147,6 @@ public class Ico {
     public void setIcowatchlist_url(String icowatchlist_url) {
         this.icowatchlist_url = icowatchlist_url;
     }
-
 
     public void setTimezone(String timezone) {
         this.timezone = timezone;

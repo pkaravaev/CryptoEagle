@@ -19,23 +19,6 @@ import java.util.Base64;
 
 public class Utils {
 
-    public static String HMAC384sign(String key, String data) {
-        try {
-            SecretKeySpec keySpec = new SecretKeySpec(key.getBytes(), "HmacSHA384");
-            Mac mac = Mac.getInstance("HmacSHA384");
-            mac.init(keySpec);
-            byte[] bytes = data.getBytes();
-            byte[] rawHmac = mac.doFinal(data.getBytes());
-            return    Base64.getEncoder().encodeToString(rawHmac);
-
-        } catch (NoSuchAlgorithmException e) {
-            return "";
-        } catch (InvalidKeyException e) {
-            return "";
-        }
-
-    }
-
     public static String readInputStreamToString(HttpURLConnection connection) {
         String result = null;
         StringBuffer sb = new StringBuffer();

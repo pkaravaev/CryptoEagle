@@ -1,5 +1,6 @@
 package com.cryptoeagle.service;
 
+import com.cryptoeagle.Utils;
 import com.cryptoeagle.entity.Coin;
 import com.cryptoeagle.entity.enumeration.IcoStatus;
 import com.cryptoeagle.entity.Ico;
@@ -7,22 +8,38 @@ import com.cryptoeagle.entity.PictureCoin;
 import com.cryptoeagle.service.abst.RestClientService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.util.EntityUtils;
 import org.springframework.stereotype.Service;
 
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.MediaType;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Iterator;
 import java.util.List;
 
 @Service
 public class RestServiceImpl implements RestClientService {
+
+    private static final String PRIVATE_KEY = "dca6b42f-115d-4892-8827-08bb79275cef";
+    private static final String PUBLIC_KEY = "829d6865-c198-4bcf-9675-5ead3802bb9f";
+    private static final String REST_GET_ALL = "https://icobench.com/api/v1/icos/all";
 
     @Override
     public List<Ico> getIcos() {
@@ -69,8 +86,6 @@ public class RestServiceImpl implements RestClientService {
                 ico.setDescription(" ");
                 ico.setWebsite_link(" ");
 
-                ico.setStart_time(LocalDateTime.parse("     "));
-                ico.setEnd_time(LocalDateTime.parse(" "));
 
                 icoList.add(ico);
             }
@@ -80,16 +95,136 @@ public class RestServiceImpl implements RestClientService {
     }
 
     public List<Ico> getUpcomingFromProvider() {
-        return getListIco("https://api.icowatchlist.com/public/v1/upcoming","upcoming");
+        return getListIco("https://api.icowatchlist.com/public/v1/upcoming", "upcoming");
     }
 
     public List<Ico> getFinishedFromProvider() {
-        return getListIco("https://api.icowatchlist.com/public/v1/finished","finished");
+        return getListIco("https://api.icowatchlist.com/public/v1/finished", "finished");
     }
 
     public List<Ico> getActiveIcoFromProvider() {
-        return getListIco("https://api.icowatchlist.com/public/v1/live","live");
+        return getListIco("https://api.icowatchlist.com/public/v1/live", "live");
     }
+
+
+    public List<Ico> getAllIcosFromIcobench() {
+        int pagesCount = 1;
+        List<Ico> icoList = new ArrayList<>();
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            for (int i = 0; i < 10; i++) {
+                String param = "{\"page\":" + i + "}";
+                JsonNode node = objectMapper.readTree(buildHttpRequest(param, REST_GET_ALL));
+                if (pagesCount == 1) {
+                    pagesCount = Integer.parseInt(node.get("pages").toString());
+                }
+                Iterator<JsonNode> iterator = node.get("results").iterator();
+                while (iterator.hasNext()) {
+                    JsonNode next = iterator.next();
+                    icoList.add(convertJsonToIco(next));
+                }
+            }
+        } catch (Exception e) {
+        }
+        return icoList;
+    }
+
+
+    private String buildHttpRequest(String param, String url) {
+
+        String hmac384sign = HMAC384sign(PRIVATE_KEY, param);
+        HttpClient httpClient = HttpClientBuilder.create().build();
+        HttpPost request = new HttpPost(url);
+        String s = "";
+        try {
+            StringEntity paramEN = new StringEntity(param);
+            System.out.println(EntityUtils.toString(paramEN));
+            request.addHeader("Content-Type", "application/json");
+            request.addHeader("Accept", "application/json");
+            request.addHeader("X-ICObench-Key", PUBLIC_KEY);
+            request.addHeader("X-ICObench-Sig", hmac384sign);
+            request.setEntity(paramEN);
+            HttpResponse response = httpClient.execute(request);
+            s = EntityUtils.toString(response.getEntity());
+        } catch (Exception e) {
+        }
+        return s;
+    }
+
+    private Ico convertJsonToIco(JsonNode jsonNode) {
+        String id = jsonNode.get("id").toString();
+        String name = jsonNode.get("name").toString();
+        String url = jsonNode.get("url").toString();
+        String logo = jsonNode.get("logo").toString();
+        String desc = jsonNode.get("desc").toString();
+        String rating = jsonNode.get("rating").toString();
+        String raised = jsonNode.get("raised").toString();
+
+        JsonNode node2 = jsonNode.get("dates");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm:ss");
+
+        String oldPreIcoStart = node2.get("preIcoStart").toString();
+        String oldpreIcoEnd = node2.get("preIcoEnd").toString();
+        String oldIcoStart = node2.get("icoStart").toString();
+        String oldIcoEnd = node2.get("icoEnd").toString();
+
+        LocalDateTime preIcoStart = null;
+        try {
+            preIcoStart = LocalDateTime.parse(oldPreIcoStart.substring(1, oldPreIcoStart.length() - 1), formatter);
+        } catch (Exception e) {
+        }
+        LocalDateTime preIcoEnd = null;
+        try {
+            preIcoEnd = LocalDateTime.parse(oldpreIcoEnd.substring(1, oldPreIcoStart.length() - 1), formatter);
+        } catch (Exception e) {
+        }
+        LocalDateTime icoStart = null;
+        try {
+            icoStart = LocalDateTime.parse(oldIcoStart.substring(1, oldPreIcoStart.length() - 1), formatter);
+        } catch (Exception e) {
+        }
+        LocalDateTime icoEnd = null;
+        try {
+            icoEnd = LocalDateTime.parse(oldIcoEnd.substring(1, oldPreIcoStart.length() - 1), formatter);
+        } catch (Exception e) {
+        }
+
+        Ico ico = new Ico();
+        ico.setId(Integer.parseInt(id));
+        ico.setName(name);
+        ico.setWebsite_link(url);
+        ico.setImage(logo);
+        ico.setDescription(desc);
+        ico.setRating(Double.parseDouble(rating));
+
+        ico.setPreIcoStart(preIcoStart);
+        ico.setPreIcoEnd(preIcoEnd);
+        ico.setIcoStart(icoStart);
+        ico.setIcoEnd(icoEnd);
+
+        return ico;
+    }
+
+    private String HMAC384sign(String private_key, String data) {
+        try {
+            SecretKeySpec keySpec = new SecretKeySpec(private_key.getBytes(), "HmacSHA384");
+            Mac mac = Mac.getInstance("HmacSHA384");
+            mac.init(keySpec);
+            byte[] bytes = data.getBytes();
+            byte[] rawHmac = mac.doFinal(data.getBytes());
+            return Base64.getEncoder().encodeToString(rawHmac);
+
+        } catch (NoSuchAlgorithmException e) {
+            return "";
+        } catch (InvalidKeyException e) {
+            return "";
+        }
+
+    }
+
+
+
+
 
     @Override
     public List<Coin> getCoins() {
@@ -209,7 +344,6 @@ public class RestServiceImpl implements RestClientService {
 
             }
         }
-
 
 
         return coins;
