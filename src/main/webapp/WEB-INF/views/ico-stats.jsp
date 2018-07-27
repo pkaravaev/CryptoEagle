@@ -9,7 +9,7 @@
 
         </div>
         <div class="col-md-12">
-            <table id="myTable" class="table" >
+            <table id="data-table" class="table" >
                 <br/>
                 <thead class="bg-light" >
                 <tr>

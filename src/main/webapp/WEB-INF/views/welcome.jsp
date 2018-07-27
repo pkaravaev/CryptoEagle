@@ -6,7 +6,7 @@
 
     $(document).ready(function () {
 
-        $(".table").click(function () {
+        $(".tbody").click(function () {
 
             var url = "coin-list";
             $(location).attr("href", url);
@@ -75,6 +75,9 @@
                 </c:choose>
             </c:forEach>
         </div>
+
+
+
         <div class="col-1 bg-white" style="width: 30px">
             <p class="font-weight-bold bg-white " style="width: 250px">TOP 10 GAINS</p>
             <table  class="table" id="table2">

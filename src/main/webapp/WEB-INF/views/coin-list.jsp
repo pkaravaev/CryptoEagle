@@ -6,10 +6,10 @@
 <div class="container ">
     <div class="row">
         <div class="col-sm ">
-
         </div>
+
         <div class="col-md-12">
-            <table id="myTable" class="table">
+            <table id="data-table" class="table">
                 <br/>
                 <thead class="bg-light">
                 <tr>
@@ -48,9 +48,8 @@
             </table>
             <br/>
         </div>
+
         <div class="col-sm ">
-
-
         </div>
     </div>
 </div>

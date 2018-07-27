@@ -7,8 +7,9 @@
         <div class="col-md ">
 
         </div>
+
         <div class="col-md-8">
-            <table class="table">
+            <table class="table" id="data-table">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -37,6 +38,7 @@
                 </tbody>
             </table>
         </div>
+
         <div class="col-md ">
 
 

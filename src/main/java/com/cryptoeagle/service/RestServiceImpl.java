@@ -93,9 +93,7 @@ public class RestServiceImpl implements RestClientService {
 
     @Override
     public List<Coin> getCoins() {
-
         List<PictureCoin> coinspic = this.getPicCoins();
-
 
         List<Coin> coins = new ArrayList<>();
         ObjectMapper objectMapper = new ObjectMapper();
@@ -216,5 +214,4 @@ public class RestServiceImpl implements RestClientService {
 
         return coins;
     }
-
 }

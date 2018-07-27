@@ -34,7 +34,7 @@
 
     $(document).ready(function () {
 
-        $('.table').DataTable();
+        $('#data-table').DataTable();
         //
         // $('#table1,#table2').dataTable( {
         //     "searching": false,

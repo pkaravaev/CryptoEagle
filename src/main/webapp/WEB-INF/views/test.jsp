@@ -23,16 +23,6 @@
             $(location).attr("href", url);
         })
 
-
-        // $('#table1,#table2').dataTable( {
-        //     "searching": false,
-        //     "paging":false,
-        //     "info": false,
-        //     "autoWidth": true
-        //
-        // } );
-
-
         $(".card").click(function () {
             var h = $(this).children();
             var url = h.children()[1].href;
@@ -50,41 +40,91 @@
 
     })
 
-
 </script>
 
 
+<style>
 
-<div class="row mb-2">
-   <div class="col-md-6">
-      <div class="card flex-md-row mb-4 shadow-sm h-md-250">
-         <div class="card-body d-flex flex-column align-items-start">
-            <strong class="d-inline-block mb-2 text-primary">World</strong>
-            <h3 class="mb-0">
-               <a class="text-dark" href="#">Featured post</a>
-            </h3>
-            <div class="mb-1 text-muted">Nov 12</div>
-            <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-            <a href="#">Continue reading</a>
-         </div>
-         <img class="card-img-left flex-auto d-none d-lg-block" src="https://icowatchlist.com/logos/trustedcars-flex.png" alt="Card  cap">
-      </div>
-   </div>
-   <div class="col-md-6">
-      <div class="card flex-md-row mb-4 shadow-sm h-md-250">
-         <div class="card-body d-flex flex-column align-items-start">
-            <strong class="d-inline-block mb-2 text-success">Design</strong>
-            <h3 class="mb-0">
-               <a class="text-dark" href="#">Post title</a>
-            </h3>
-            <div class="mb-1 text-muted">Nov 11</div>
-            <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-            <a href="#">Continue reading</a>
-         </div>
-         <img class="card-img-right flex-auto d-none d-lg-block" data-src="https://icowatchlist.com/logos/kasko2go.png" alt="Card  cap">
-      </div>
-   </div>
-</div>
+   @import url(http://fonts.googleapis.com/css?family=Open+Sans);
+   body {
+      font-family: "Open Sans", sans-serif;
+   }
+   table {
+      border: 1px solid #ccc;
+      border-collapse: collapse;
+      margin:0;
+      padding:0;
+      width: 100%;
+   }
+   table tr {
+      border: 1px solid #ddd;
+      padding: 5px;
+   }
+   table th, table td {
+      padding: 10px;
+      text-align: center;
+   }
+   table th {
+      font-size: 14px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+   }
+   @media screen and (max-width: 600px) {
+      table {
+         border: 0;
+      }
+      table thead {
+         display: none;
+      }
+      table tr {
+         border-bottom: 2px solid #ddd;
+         display: block;
+         margin-bottom: 10px;
+      }
+      table td {
+         border-bottom: 1px dotted #ccc;
+         display: block;
+         font-size: 13px;
+         text-align: right;
+      }
+      table td:last-child {
+         border-bottom: 0;
+      }
+      table td:before {
+         content: attr(data-label);
+         float: left;
+         font-weight: bold;
+         text-transform: uppercase;
+      }
+   }
+
+</style>
+
+<table>
+   <thead>
+   <tr>
+      <th>Payment</th>
+      <th>Issue Date</th>
+      <th>Amount</th>
+      <th>Period</th>
+   </tr>
+   </thead>
+   <tbody>
+   <tr>
+      <td data-label="Payment">Payment #1</td>
+      <td data-label="Issue Date">02/01/2015</td>
+      <td data-label="Amount">$2,311</td>
+      <td data-label="Period">01/01/2015 - 01/31/2015</td>
+   </tr>
+   <tr>
+      <td data-label="Payment">Payment #2</td>
+      <td data-label="Issue Date">03/01/2015</td>
+      <td data-label="Amount">$3,211</td>
+      <td data-label="Period">02/01/2015 - 02/28/2015</td>
+   </tr>
+   </tbody>
+</table>
+
 
 
 </body>
