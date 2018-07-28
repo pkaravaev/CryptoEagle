@@ -20,7 +20,6 @@ import java.util.List;
 
 
 @Service
-@EnableScheduling
 public class IcoServiceImpl implements IcoService {
 
     @Autowired
@@ -54,11 +53,14 @@ public class IcoServiceImpl implements IcoService {
     }
 
     @Override
-    @Scheduled(fixedDelay = 600000)
     public void updateIcos() {
         repository.deleteAll();
-        List<Ico> allFromProvider = clientService.getIcos();
+        List<Ico> allFromProvider = clientService.getAllIcosFromIcobench();
         saveIcos(allFromProvider);
     }
 
+    @Override
+    public void deletAll() {
+        repository.deleteAll();
+    }
 }

@@ -1,6 +1,5 @@
 package com.cryptoeagle.repository.jpa;
 
-import com.cryptoeagle.entity.enumeration.IcoStatus;
 import com.cryptoeagle.entity.Ico;
 import com.cryptoeagle.repository.IcoRepository;
 import org.springframework.stereotype.Repository;
@@ -13,7 +12,6 @@ import java.util.List;
 
 @Repository
 public class IcoRepositoryImpl implements IcoRepository {
-
 
     @PersistenceContext
     EntityManager em;
@@ -28,30 +26,33 @@ public class IcoRepositoryImpl implements IcoRepository {
     @Transactional
     public void saveIcos(List<Ico> icos) {
         for (Ico ico : icos) {
-            em.persist(ico);
+            em.merge(ico);
         }
     }
 
     @Override
     public List<Ico> getActiveIco() {
-
-        return em.createNamedQuery(Ico.GET_BY_STATUS,Ico.class)
-                .setParameter("status",IcoStatus.ACTIVE)
-                .getResultList();
+//        return em.createNamedQuery(Ico.GET_BY_STATUS,Ico.class)
+//                .setParameter("status",IcoStatus.ACTIVE)
+//                .getResultList();
+        return null;
     }
 
     @Override
     public List<Ico> getUpcomingIco() {
-        return em.createNamedQuery(Ico.GET_BY_STATUS,Ico.class)
-                .setParameter("status",IcoStatus.UPCOMING)
-                .getResultList();
+//        return em.createNamedQuery(Ico.GET_BY_STATUS,Ico.class)
+//                .setParameter("status",IcoStatus.UPCOMING)
+//                .getResultList();
+        return null;
     }
 
     @Override
     public List<Ico> getFinishedIco() {
-        return em.createNamedQuery(Ico.GET_BY_STATUS,Ico.class)
-                .setParameter("status",IcoStatus.FINISHED)
-                .getResultList();
+//        return em.createNamedQuery(Ico.GET_BY_STATUS,Ico.class)
+//                .setParameter("status",IcoStatus.FINISHED)
+//                .getResultList();
+
+        return null;
     }
 
     @Override

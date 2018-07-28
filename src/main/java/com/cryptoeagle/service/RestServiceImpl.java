@@ -1,8 +1,6 @@
 package com.cryptoeagle.service;
 
-import com.cryptoeagle.Utils;
 import com.cryptoeagle.entity.Coin;
-import com.cryptoeagle.entity.enumeration.IcoStatus;
 import com.cryptoeagle.entity.Ico;
 import com.cryptoeagle.entity.PictureCoin;
 import com.cryptoeagle.service.abst.RestClientService;
@@ -46,27 +44,27 @@ public class RestServiceImpl implements RestClientService {
 
         List<Ico> icoList = new ArrayList<>();
 
-        List<Ico> upcomingFromProvider = getUpcomingFromProvider();
-        upcomingFromProvider.stream().forEach(e -> e.setStatus(IcoStatus.UPCOMING));
+//        List<Ico> upcomingFromProvider = getUpcomingFromProvider();
+//        upcomingFromProvider.stream().forEach(e -> e.setStatus(IcoStatus.UPCOMING));
+//
+//        List<Ico> activeIcoFromProvider = getActiveIcoFromProvider();
+//        activeIcoFromProvider.stream().forEach(e -> e.setStatus(IcoStatus.ACTIVE));
+//
+//        List<Ico> finishedFromProvider = getFinishedFromProvider();
+//        finishedFromProvider.stream().forEach(e -> e.setStatus(IcoStatus.FINISHED));
 
-        List<Ico> activeIcoFromProvider = getActiveIcoFromProvider();
-        activeIcoFromProvider.stream().forEach(e -> e.setStatus(IcoStatus.ACTIVE));
-
-        List<Ico> finishedFromProvider = getFinishedFromProvider();
-        finishedFromProvider.stream().forEach(e -> e.setStatus(IcoStatus.FINISHED));
-
-        icoList.addAll(upcomingFromProvider);
-        icoList.addAll(activeIcoFromProvider);
-        icoList.addAll(finishedFromProvider);
+//        icoList.addAll(upcomingFromProvider);
+//        icoList.addAll(activeIcoFromProvider);
+//        icoList.addAll(finishedFromProvider);
         return icoList;
     }
 
-    private List<Ico> getListIco(String rest, String status) {
+    private List<Ico> getListIco(String url, String status) {
 
         ObjectMapper objectMapper = new ObjectMapper();
 
         Client client = ClientBuilder.newClient();
-        String icos = client.target(rest)
+        String icos = client.target(url)
                 .request(MediaType.APPLICATION_JSON)
                 .get(String.class);
         List<Ico> icoList = new ArrayList<>();
@@ -111,24 +109,50 @@ public class RestServiceImpl implements RestClientService {
         int pagesCount = 1;
         List<Ico> icoList = new ArrayList<>();
         try {
+
             ObjectMapper objectMapper = new ObjectMapper();
-            for (int i = 0; i < 10; i++) {
+            System.out.println("!");
+            for (int i = 0; i < 300; i++) {
                 String param = "{\"page\":" + i + "}";
+                Thread.sleep(3000);
+                String s = buildHttpRequest(param, REST_GET_ALL);
+                Thread.sleep(2000);
                 JsonNode node = objectMapper.readTree(buildHttpRequest(param, REST_GET_ALL));
-                if (pagesCount == 1) {
-                    pagesCount = Integer.parseInt(node.get("pages").toString());
-                }
                 Iterator<JsonNode> iterator = node.get("results").iterator();
+
                 while (iterator.hasNext()) {
                     JsonNode next = iterator.next();
                     icoList.add(convertJsonToIco(next));
                 }
             }
+
+
         } catch (Exception e) {
+            System.out.println("Ошибка" + e.getMessage());
         }
         return icoList;
     }
 
+    public List<Ico> getIcoByPage(int page) {
+        List<Ico> icoList = new ArrayList<>();
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            System.out.println("!");
+            String param = "{\"page\":" + page + "}";
+            String s = buildHttpRequest(param, REST_GET_ALL);
+            JsonNode node = objectMapper.readTree(buildHttpRequest(param, REST_GET_ALL));
+            Iterator<JsonNode> iterator = node.get("results").iterator();
+            while (iterator.hasNext()) {
+                JsonNode next = iterator.next();
+                Ico ico = convertJsonToIco(next);
+                ico.setPage(page);
+                icoList.add(ico);
+            }
+        } catch (Exception e) {
+            System.out.println("Ошибка" + e.getMessage());
+        }
+        return icoList;
+    }
 
     private String buildHttpRequest(String param, String url) {
 
@@ -138,7 +162,6 @@ public class RestServiceImpl implements RestClientService {
         String s = "";
         try {
             StringEntity paramEN = new StringEntity(param);
-            System.out.println(EntityUtils.toString(paramEN));
             request.addHeader("Content-Type", "application/json");
             request.addHeader("Accept", "application/json");
             request.addHeader("X-ICObench-Key", PUBLIC_KEY);
@@ -147,16 +170,19 @@ public class RestServiceImpl implements RestClientService {
             HttpResponse response = httpClient.execute(request);
             s = EntityUtils.toString(response.getEntity());
         } catch (Exception e) {
+            System.out.println("Ошибка" + e.getMessage());
         }
         return s;
     }
 
     private Ico convertJsonToIco(JsonNode jsonNode) {
+
         String id = jsonNode.get("id").toString();
-        String name = jsonNode.get("name").toString();
-        String url = jsonNode.get("url").toString();
-        String logo = jsonNode.get("logo").toString();
-        String desc = jsonNode.get("desc").toString();
+        String name = deleteCommas(jsonNode.get("name").toString());
+        String url = deleteCommas(jsonNode.get("url").toString());
+        String logo = deleteCommas(jsonNode.get("logo").toString());
+
+        String desc = deleteCommas(jsonNode.get("desc").toString());
         String rating = jsonNode.get("rating").toString();
         String raised = jsonNode.get("raised").toString();
 
@@ -172,28 +198,33 @@ public class RestServiceImpl implements RestClientService {
         try {
             preIcoStart = LocalDateTime.parse(oldPreIcoStart.substring(1, oldPreIcoStart.length() - 1), formatter);
         } catch (Exception e) {
+
+            System.out.println("Ошибка" + e.getMessage());
         }
         LocalDateTime preIcoEnd = null;
         try {
             preIcoEnd = LocalDateTime.parse(oldpreIcoEnd.substring(1, oldPreIcoStart.length() - 1), formatter);
         } catch (Exception e) {
+            System.out.println("Ошибка" + e.getMessage());
         }
         LocalDateTime icoStart = null;
         try {
             icoStart = LocalDateTime.parse(oldIcoStart.substring(1, oldPreIcoStart.length() - 1), formatter);
         } catch (Exception e) {
+            System.out.println("Ошибка" + e.getMessage());
         }
         LocalDateTime icoEnd = null;
         try {
             icoEnd = LocalDateTime.parse(oldIcoEnd.substring(1, oldPreIcoStart.length() - 1), formatter);
         } catch (Exception e) {
+            System.out.println("Ошибка" + e.getMessage());
         }
 
         Ico ico = new Ico();
         ico.setId(Integer.parseInt(id));
         ico.setName(name);
         ico.setWebsite_link(url);
-        ico.setImage(logo);
+        ico.setLogolink(logo);
         ico.setDescription(desc);
         ico.setRating(Double.parseDouble(rating));
 
@@ -205,6 +236,10 @@ public class RestServiceImpl implements RestClientService {
         return ico;
     }
 
+    private String deleteCommas(String old){
+        return old.substring(1, old.length() -1);
+    }
+
     private String HMAC384sign(String private_key, String data) {
         try {
             SecretKeySpec keySpec = new SecretKeySpec(private_key.getBytes(), "HmacSHA384");
@@ -213,21 +248,18 @@ public class RestServiceImpl implements RestClientService {
             byte[] bytes = data.getBytes();
             byte[] rawHmac = mac.doFinal(data.getBytes());
             return Base64.getEncoder().encodeToString(rawHmac);
-
         } catch (NoSuchAlgorithmException e) {
+            System.out.println("Ошибка" + e.getMessage());
             return "";
         } catch (InvalidKeyException e) {
+            System.out.println("Ошибка" + e.getMessage());
             return "";
         }
-
     }
-
-
-
-
 
     @Override
     public List<Coin> getCoins() {
+
         List<PictureCoin> coinspic = this.getPicCoins();
 
         List<Coin> coins = new ArrayList<>();
@@ -246,16 +278,16 @@ public class RestServiceImpl implements RestClientService {
         }
         JsonNode data1 = node.get("data");
         Iterator<JsonNode> iterator = data1.iterator();
+
         while (iterator.hasNext()) {
+
             try {
                 JsonNode next = iterator.next();
                 Coin c = new Coin();
                 NumberFormat numberFormat = NumberFormat.getInstance();
                 numberFormat.setMaximumIntegerDigits(Integer.MAX_VALUE);
-
                 DecimalFormat df = new DecimalFormat("#");
                 df.setMaximumFractionDigits(0);
-
                 String id = next.get("id").toString();
                 String name = next.get("name").toString();
                 String symbol = next.get("symbol").toString();
@@ -279,7 +311,6 @@ public class RestServiceImpl implements RestClientService {
                 String s = numberFormat.format(circul);
 
                 String s1 = s.replaceAll("\\u00A0", "");
-
 
                 c.setId(Integer.valueOf(id));
                 c.setName(name.substring(1, name.length() - 1));

@@ -28,7 +28,6 @@ public class IcoRepositoryImplTest extends AbstractTest {
         List<Ico> all = icoService.getAll();
 
 
-
         List<Ico> all2 = icoService.getAll();
 
     }

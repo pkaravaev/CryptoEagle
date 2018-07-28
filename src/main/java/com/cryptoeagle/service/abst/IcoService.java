@@ -18,4 +18,6 @@ public interface IcoService {
 
     List<Ico> getAll();
 
+    void deletAll();
+
 }

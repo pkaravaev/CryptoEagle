@@ -1,5 +1,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <jsp:include page="template/header.jsp"/>
 
 
@@ -13,14 +15,13 @@
                 <br/>
                 <thead class="bg-light" >
                 <tr>
+                    <th></th>
                     <th>PROJECT</th>
-                    <th>NAME</th>
-                    <th>SYMBOL</th>
-                    <th>ICO PRICE</th>
-                    <th>MARKET PRICE</th>
+                    <th>DESCRIPTION</th>
                     <th>START TIME</th>
                     <th>END TIME</th>
-                    <th>ROI</th>
+                    <th>RATING</th>
+
 
                 </tr>
                 </thead>
@@ -28,14 +29,16 @@
 
                 <c:forEach items="${icos}" var="ico">
                     <tr >
-                        <td><img src="${ico.image} "></td>
+                        <td><img src="${ico.logolink} "></td>
                         <td>${ico.name}</td>
-                        <td>${ico.coin_symbol}</td>
-                        <td>${ico.coin_symbol}</td>
-                        <td>${ico.price_usd}</td>
-                        <td>${ico.start_time}</td>
-                        <td>${ico.end_time}</td>
-                        <td>${ico.all_time_roi}</td>
+                        <td>${ico.description}</td>
+                        <fmt:parseDate value="${icoEnd}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both" />
+                        <fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${parsedDateTime}" />
+                        <td>${parsedDateTime}</td>
+                        <td>${ico.icoEnd}</td>
+                        <td>${ico.rating}</td>
+
+
                     </tr>
                 </c:forEach>
 

@@ -32,8 +32,6 @@ import java.util.stream.Collectors;
 @EnableScheduling
 public class CoinServiceImpl implements CoinService {
 
-//    private static final Logger log = Logger.getLogger(CoinServiceImpl.class.getName());
-
     private static final org.slf4j.Logger log = LoggerFactory.getLogger(CoinServiceImpl.class);
 
     @Autowired

@@ -23,7 +23,7 @@ public class UserJpa  {
 
 //    public List<BlogTest> getBlogJpas() {
 //        return blogJpas;
-//    }
+//    }13
 //
 //    public void setBlogJpas(BlogTest blogJpas) {
 //        this.blogJpas.add(blogJpas);

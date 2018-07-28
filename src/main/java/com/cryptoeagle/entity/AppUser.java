@@ -16,7 +16,6 @@ import java.util.Objects;
         @NamedQuery(name = AppUser.GET_ALL, query = "SELECT user FROM AppUser user"),
         @NamedQuery(name = AppUser.GET_BY_EMAIL, query = "SELECT user FROM AppUser  user WHERE user.email=:email"),
         @NamedQuery(name = AppUser.GET_BY_ID, query = "SELECT user FROM AppUser user WHERE user.id=:id")
-
 })
 
 public class AppUser extends BaseEntity {

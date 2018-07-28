@@ -34,7 +34,6 @@ public class UserRepositoryJpaImpl implements UserRepository {
         em.createNamedQuery(AppUser.DELETE)
                 .setParameter("id", id)
                 .executeUpdate();
-
     }
 
     @Override
