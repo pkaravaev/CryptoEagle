@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -40,10 +41,11 @@ public class IcoRepositoryImpl implements IcoRepository {
 
     @Override
     public List<Ico> getUpcomingIco() {
-//        return em.createNamedQuery(Ico.GET_BY_STATUS,Ico.class)
-//                .setParameter("status",IcoStatus.UPCOMING)
-//                .getResultList();
-        return null;
+
+        LocalDateTime localDateTime = LocalDateTime.now().plusMonths(1);
+        return em.createNamedQuery(Ico.GET_UPCOMING,Ico.class)
+                .setParameter("id",100)
+                .getResultList();
     }
 
     @Override

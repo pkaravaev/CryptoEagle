@@ -31,8 +31,6 @@ public class CryptoController {
     @RequestMapping("/ico-list")
     public String icoList(Model model) {
 
-
-
         return "ico-list";
     }
 

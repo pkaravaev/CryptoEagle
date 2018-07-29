@@ -65,14 +65,11 @@
 
 
     <beans profile="Jpa">
-
         <bean id="provider" class="org.hibernate.jpa.HibernatePersistenceProvider"/>
-
         <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
             <property name="dataSource" ref="dataSource"/>
             <property name="packagesToScan" value="com.cryptoeagle.entity"/>
             <property name="persistenceProvider" ref="provider"/>
-
             <property name="jpaPropertyMap">
                 <map>
                     <entry key="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL9Dialect"/>

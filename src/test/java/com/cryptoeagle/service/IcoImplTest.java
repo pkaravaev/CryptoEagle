@@ -19,14 +19,7 @@ public class IcoImplTest extends AbstractTest {
     public void getAll() {
 
 
-        long start = System.currentTimeMillis();
-
-
-        long stop = System.currentTimeMillis();
-
-        long  res = stop - start;
-
-        System.out.println(res);
+        List<Ico> upcoming = icoService.getUpcoming();
     }
 
     @Test

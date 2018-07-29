@@ -13,117 +13,44 @@
 
 <body>
 
-<script>
+<div class="container">
 
-    $(document).ready(function () {
+   <div class="row">
+      <div class="col-sm-3">
 
-        $(".table").click(function () {
+         <div class="rating-block">
 
-            var url = "coin-list";
-            $(location).attr("href", url);
-        })
+            <h4>rating</h4>
 
-        $(".card").click(function () {
-            var h = $(this).children();
-            var url = h.children()[1].href;
-            $(location).attr("href", url);
-        })
+            <h2 class="bold padding-bottom-7">4.3 <small>/ 5</small></h2>
 
+            <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
+               <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+            </button>
 
-        $(".card").mouseenter(function () {
-            $(this).addClass("shadow-sm p-3 mb-5 bg-white rounded");
-        })
+            <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
+               <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+            </button>
 
-        $(".card").mouseleave(function () {
-            $(this).removeClass("shadow-sm p-3 mb-5 bg-white rounded");
-        })
+            <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
+               <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+            </button>
 
-    })
+            <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
+               <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+            </button>
 
-</script>
+            <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
+               <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+            </button>
 
+         </div>
 
-<style>
+      </div>
 
-   @import url(http://fonts.googleapis.com/css?family=Open+Sans);
-   body {
-      font-family: "Open Sans", sans-serif;
-   }
-   table {
-      border: 1px solid #ccc;
-      border-collapse: collapse;
-      margin:0;
-      padding:0;
-      width: 100%;
-   }
-   table tr {
-      border: 1px solid #ddd;
-      padding: 5px;
-   }
-   table th, table td {
-      padding: 10px;
-      text-align: center;
-   }
-   table th {
-      font-size: 14px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-   }
-   @media screen and (max-width: 600px) {
-      table {
-         border: 0;
-      }
-      table thead {
-         display: none;
-      }
-      table tr {
-         border-bottom: 2px solid #ddd;
-         display: block;
-         margin-bottom: 10px;
-      }
-      table td {
-         border-bottom: 1px dotted #ccc;
-         display: block;
-         font-size: 13px;
-         text-align: right;
-      }
-      table td:last-child {
-         border-bottom: 0;
-      }
-      table td:before {
-         content: attr(data-label);
-         float: left;
-         font-weight: bold;
-         text-transform: uppercase;
-      }
-   }
+   </div>
 
-</style>
-
-<table>
-   <thead>
-   <tr>
-      <th>Payment</th>
-      <th>Issue Date</th>
-      <th>Amount</th>
-      <th>Period</th>
-   </tr>
-   </thead>
-   <tbody>
-   <tr>
-      <td data-label="Payment">Payment #1</td>
-      <td data-label="Issue Date">02/01/2015</td>
-      <td data-label="Amount">$2,311</td>
-      <td data-label="Period">01/01/2015 - 01/31/2015</td>
-   </tr>
-   <tr>
-      <td data-label="Payment">Payment #2</td>
-      <td data-label="Issue Date">03/01/2015</td>
-      <td data-label="Amount">$3,211</td>
-      <td data-label="Period">02/01/2015 - 02/28/2015</td>
-   </tr>
-   </tbody>
-</table>
+</div> <!-- /container -->
 
 
 

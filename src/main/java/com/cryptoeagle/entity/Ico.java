@@ -5,9 +5,8 @@ import java.time.LocalDateTime;
 import java.util.Map;
 
 @NamedQueries({
-        @NamedQuery(name = Ico.GET_ALL, query = "SELECT ico FROM  Ico  ico"),
-        @NamedQuery(name = Ico.DELETE_ALL, query = "DELETE FROM Ico ")
-
+        @NamedQuery(name = Ico.GET_ALL, query = "  SELECT ico FROM  Ico  ico")
+//        @NamedQuery(name = Ico.GET_UPCOMING, query = "SELECT Ico  FROM  Ico ico WHERE  ico.id <:id")
 })
 
 @Cacheable
@@ -18,7 +17,7 @@ public class Ico {
     public static final String GET_ALL = "Ico.getALL";
     public static final String GET_BY_STATUS = "Ico.getByStatus";
     public static final String UPDATE = "Ico.update";
-    public static final String DELETE_ALL = "Ico.deleteAll";
+    public static final String GET_UPCOMING = "Ico.getUpcoming";
 
 
     @Id

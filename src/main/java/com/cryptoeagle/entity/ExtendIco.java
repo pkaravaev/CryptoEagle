@@ -9,7 +9,6 @@ import java.util.Map;
 @Entity
 @Embeddable
 public class ExtendIco extends Ico {
-
     @Id
     private int id;
     @ElementCollection

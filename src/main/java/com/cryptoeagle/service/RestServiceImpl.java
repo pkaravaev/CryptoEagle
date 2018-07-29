@@ -104,7 +104,6 @@ public class RestServiceImpl implements RestClientService {
         return getListIco("https://api.icowatchlist.com/public/v1/live", "live");
     }
 
-
     public List<Ico> getAllIcosFromIcobench() {
         int pagesCount = 1;
         List<Ico> icoList = new ArrayList<>();
