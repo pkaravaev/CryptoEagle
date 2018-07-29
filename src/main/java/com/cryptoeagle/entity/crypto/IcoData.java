@@ -1,7 +1,7 @@
 package com.cryptoeagle.entity.crypto;
 
 import com.cryptoeagle.entity.BaseEntity;
-import com.cryptoeagle.entity.crypto.Ico;
+import com.cryptoeagle.entity.Ico;
 
 import javax.persistence.*;
 import java.util.HashMap;
@@ -11,8 +11,8 @@ import java.util.Map;
 @Entity
 public class IcoData  extends BaseEntity {
 
-    @OneToOne(mappedBy = "data",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    private Ico ico;
+//    @OneToOne(mappedBy = "data",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+//    private Ico ico;
 
     @ElementCollection
     private Map<String, String> links = new HashMap<>();

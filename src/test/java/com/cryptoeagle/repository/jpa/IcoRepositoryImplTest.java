@@ -1,6 +1,6 @@
 package com.cryptoeagle.repository.jpa;
 
-import com.cryptoeagle.entity.crypto.Ico;
+import com.cryptoeagle.entity.Ico;
 import com.cryptoeagle.repository.AbstractTest;
 import com.cryptoeagle.repository.IcoRepository;
 import com.cryptoeagle.service.abst.IcoService;

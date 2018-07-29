@@ -1,7 +1,7 @@
 package com.cryptoeagle.service;
 
 import com.cryptoeagle.entity.*;
-import com.cryptoeagle.entity.crypto.Ico;
+import com.cryptoeagle.entity.Ico;
 import com.cryptoeagle.entity.crypto.IcoData;
 import com.cryptoeagle.service.abst.RestClientService;
 import com.fasterxml.jackson.databind.JsonNode;

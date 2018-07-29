@@ -1,17 +1,18 @@
 package com.cryptoeagle.repository.jpa;
 
-import com.cryptoeagle.entity.crypto.Ico;
+import com.cryptoeagle.entity.Ico;
 import com.cryptoeagle.repository.IcoRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.time.LocalDateTime;
 import java.util.List;
 
 
 @Repository
-public class IcoRepositoryImpl implements IcoRepository {
+public class IcoRepositoryJpaImpl implements IcoRepository {
 
     @PersistenceContext
     EntityManager em;
@@ -32,30 +33,28 @@ public class IcoRepositoryImpl implements IcoRepository {
 
     @Override
     public List<Ico> getActiveIco() {
-//        return em.createNamedQuery(Ico.GET_BY_STATUS,Ico.class)
-//                .setParameter("status",IcoStatus.ACTIVE)
-//                .getResultList();
-        return null;
+        LocalDateTime localDateTime = LocalDateTime.now();
+        return em.createNamedQuery(Ico.GET_ACTIVE,Ico.class)
+                .setParameter("date",localDateTime)
+                .getResultList();
+
     }
 
     @Override
     public List<Ico> getUpcomingIco() {
-
-//        LocalDateTime localDateTime = LocalDateTime.now().plusMonths(1);
-//        return em.createNamedQuery(Ico.GET_ALL,Ico.class)
-//                .setParameter("id",100)
-//                .getResultList();
-
-        return null;
+        LocalDateTime localDateTime = LocalDateTime.now();
+        return em.createNamedQuery(Ico.GET_UPCOMING,Ico.class)
+                .setParameter("date",localDateTime)
+                .getResultList();
     }
 
     @Override
     public List<Ico> getFinishedIco() {
-//        return em.createNamedQuery(Ico.GET_BY_STATUS,Ico.class)
-//                .setParameter("status",IcoStatus.FINISHED)
-//                .getResultList();
+        LocalDateTime localDateTime = LocalDateTime.now();
+        return em.createNamedQuery(Ico.GET_ENDED,Ico.class)
+                .setParameter("date",localDateTime)
+                .getResultList();
 
-        return null;
     }
 
     @Override
@@ -67,11 +66,11 @@ public class IcoRepositoryImpl implements IcoRepository {
     @Override
     @Transactional
     public Ico getIcoByID(int id) {
-      return   em.createNamedQuery(Ico.GET_BY_ID,Ico.class)
-                .setParameter("id",id)
+        Ico ico = em.createNamedQuery(Ico.GET_BY_ID, Ico.class)
+                .setParameter("id", id)
                 .getSingleResult();
-//
-//      return null;
+
+      return ico;
     }
 }
 

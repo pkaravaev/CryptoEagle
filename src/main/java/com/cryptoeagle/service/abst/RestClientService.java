@@ -1,7 +1,7 @@
 package com.cryptoeagle.service.abst;
 
 import com.cryptoeagle.entity.Coin;
-import com.cryptoeagle.entity.crypto.Ico;
+import com.cryptoeagle.entity.Ico;
 import com.cryptoeagle.entity.crypto.IcoData;
 
 import java.util.List;

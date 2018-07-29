@@ -2,7 +2,7 @@ package com.cryptoeagle.controller;
 
 
 import com.cryptoeagle.entity.Coin;
-import com.cryptoeagle.entity.crypto.Ico;
+import com.cryptoeagle.entity.Ico;
 import com.cryptoeagle.service.abst.CoinService;
 import com.cryptoeagle.service.abst.IcoService;
 import org.springframework.beans.factory.annotation.Autowired;

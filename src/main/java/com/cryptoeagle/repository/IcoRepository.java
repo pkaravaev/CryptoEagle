@@ -1,6 +1,6 @@
 package com.cryptoeagle.repository;
 
-import com.cryptoeagle.entity.crypto.Ico;
+import com.cryptoeagle.entity.Ico;
 
 import java.util.List;
 

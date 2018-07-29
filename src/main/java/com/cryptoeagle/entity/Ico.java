@@ -1,5 +1,6 @@
-package com.cryptoeagle.entity.crypto;
+package com.cryptoeagle.entity;
 
+import com.cryptoeagle.entity.crypto.IcoData;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,8 +9,12 @@ import java.time.LocalDateTime;
 
 @NamedQueries({
         @NamedQuery(name = Ico.GET_ALL, query = " SELECT ico FROM  Ico  ico"),
-        @NamedQuery(name = Ico.GET_BY_ID, query = "SELECT ico  FROM  Ico ico WHERE  ico.id =:id")
+        @NamedQuery(name = Ico.GET_BY_ID, query = "SELECT ico  FROM  Ico ico WHERE  ico.id =:id"),
+        @NamedQuery(name = Ico.GET_UPCOMING, query = "SELECT ico  FROM  Ico ico WHERE  ico.icoStart > :date"),
+        @NamedQuery(name = Ico.GET_ENDED, query = "SELECT ico  FROM  Ico ico WHERE  ico.icoEnd < :date"),
+        @NamedQuery(name = Ico.GET_ACTIVE, query = "SELECT ico  FROM  Ico ico WHERE  ico.icoEnd > :date"),
 })
+
 @Cacheable
 @Entity
 @Getter
@@ -21,6 +26,9 @@ public class Ico {
 
     public static final String GET_ALL = "Ico.getALL";
     public static final String GET_BY_ID = "Ico.getById";
+    public static final String GET_UPCOMING = "Ico.getUpcoming";
+    public static final String GET_ENDED = "Ico.getEnded";
+    public static final String GET_ACTIVE = "Ico.getActive";
 
     private String name;
     private String logolink;
@@ -35,7 +43,7 @@ public class Ico {
     private LocalDateTime icoStart;
     private LocalDateTime icoEnd;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private IcoData data;
 }
 
