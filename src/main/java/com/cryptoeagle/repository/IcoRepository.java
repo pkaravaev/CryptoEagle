@@ -1,6 +1,6 @@
 package com.cryptoeagle.repository;
 
-import com.cryptoeagle.entity.Ico;
+import com.cryptoeagle.entity.crypto.Ico;
 
 import java.util.List;
 
@@ -11,6 +11,8 @@ public interface IcoRepository {
     void saveIcos(List<Ico> icos);
 
     List<Ico> getActiveIco();
+
+    Ico getIcoByID(int id);
 
     List<Ico> getUpcomingIco();
 

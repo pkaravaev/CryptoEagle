@@ -1,21 +1,12 @@
 package com.cryptoeagle.service;
 
-import com.cryptoeagle.entity.Ico;
+import com.cryptoeagle.entity.crypto.Ico;
 import com.cryptoeagle.repository.IcoRepository;
 import com.cryptoeagle.service.abst.IcoService;
 import com.cryptoeagle.service.abst.RestClientService;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.core.MediaType;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 
@@ -50,6 +41,11 @@ public class IcoServiceImpl implements IcoService {
     @Override
     public List<Ico> getActiveIco() {
         return repository.getActiveIco();
+    }
+
+    @Override
+    public Ico getIcoById(int id) {
+        return repository.getIcoByID(id);
     }
 
     @Override

@@ -1,4 +1,7 @@
-package com.cryptoeagle.entity;
+package com.cryptoeagle.entity.crypto;
+
+import com.cryptoeagle.entity.BaseEntity;
+import com.cryptoeagle.entity.crypto.Ico;
 
 import javax.persistence.*;
 import java.util.HashMap;
@@ -6,10 +9,10 @@ import java.util.Map;
 
 
 @Entity
-public class IcoData  extends BaseEntity{
+public class IcoData  extends BaseEntity {
 
-//    @OneToOne
-//    private Ico ico;
+    @OneToOne(mappedBy = "data",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    private Ico ico;
 
     @ElementCollection
     private Map<String, String> links = new HashMap<>();
@@ -21,6 +24,7 @@ public class IcoData  extends BaseEntity{
     private Map<String, String> team= new HashMap<>();
     @ElementCollection
     private Map<String, String> exchanges= new HashMap<>();
+
 
     public void setLink(String link, String value) {
         links.put(link, value);

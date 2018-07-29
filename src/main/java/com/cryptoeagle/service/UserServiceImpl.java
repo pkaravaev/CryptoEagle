@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public AppUser findAmin() {
         log.info("find admin user");
-        return repository.getall().stream().filter(e -> e.getAdmin() == true).findFirst().get();
+        return repository.getall().stream().filter(e -> e.isAdmin() == true).findFirst().get();
     }
 
 

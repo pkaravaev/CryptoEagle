@@ -1,13 +1,12 @@
 package com.cryptoeagle.repository.jpa;
 
-import com.cryptoeagle.entity.Ico;
+import com.cryptoeagle.entity.crypto.Ico;
 import com.cryptoeagle.repository.IcoRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -42,10 +41,12 @@ public class IcoRepositoryImpl implements IcoRepository {
     @Override
     public List<Ico> getUpcomingIco() {
 
-        LocalDateTime localDateTime = LocalDateTime.now().plusMonths(1);
-        return em.createNamedQuery(Ico.GET_UPCOMING,Ico.class)
-                .setParameter("id",100)
-                .getResultList();
+//        LocalDateTime localDateTime = LocalDateTime.now().plusMonths(1);
+//        return em.createNamedQuery(Ico.GET_ALL,Ico.class)
+//                .setParameter("id",100)
+//                .getResultList();
+
+        return null;
     }
 
     @Override
@@ -61,6 +62,16 @@ public class IcoRepositoryImpl implements IcoRepository {
     @Transactional
     public void deleteAll() {
         em.createQuery("DELETE FROM Ico ").executeUpdate();
+    }
+
+    @Override
+    @Transactional
+    public Ico getIcoByID(int id) {
+      return   em.createNamedQuery(Ico.GET_BY_ID,Ico.class)
+                .setParameter("id",id)
+                .getSingleResult();
+//
+//      return null;
     }
 }
 

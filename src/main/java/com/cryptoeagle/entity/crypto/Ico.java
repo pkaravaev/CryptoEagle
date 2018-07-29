@@ -1,26 +1,26 @@
-package com.cryptoeagle.entity;
+package com.cryptoeagle.entity.crypto;
 
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Map;
 
 @NamedQueries({
-        @NamedQuery(name = Ico.GET_ALL, query = "  SELECT ico FROM  Ico  ico")
-//        @NamedQuery(name = Ico.GET_UPCOMING, query = "SELECT Ico  FROM  Ico ico WHERE  ico.id <:id")
+        @NamedQuery(name = Ico.GET_ALL, query = " SELECT ico FROM  Ico  ico"),
+        @NamedQuery(name = Ico.GET_BY_ID, query = "SELECT ico  FROM  Ico ico WHERE  ico.id =:id")
 })
 @Cacheable
 @Entity
 @Getter
 @Setter
-public class Ico  extends BaseEntity{
+public class Ico {
+
+    @Id
+    private int id;
 
     public static final String GET_ALL = "Ico.getALL";
-    public static final String GET_BY_STATUS = "Ico.getByStatus";
-    public static final String UPDATE = "Ico.update";
-    public static final String GET_UPCOMING = "Ico.getUpcoming";
+    public static final String GET_BY_ID = "Ico.getById";
 
     private String name;
     private String logolink;
@@ -35,8 +35,8 @@ public class Ico  extends BaseEntity{
     private LocalDateTime icoStart;
     private LocalDateTime icoEnd;
 
-//    @OneToOne(fetch = FetchType.LAZY)
-//    private IcoData data;
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private IcoData data;
 }
 
 

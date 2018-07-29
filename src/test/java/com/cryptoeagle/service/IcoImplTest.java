@@ -1,6 +1,6 @@
 package com.cryptoeagle.service;
 
-import com.cryptoeagle.entity.Ico;
+import com.cryptoeagle.entity.crypto.Ico;
 import com.cryptoeagle.repository.AbstractTest;
 import com.cryptoeagle.service.abst.IcoService;
 import org.junit.Test;

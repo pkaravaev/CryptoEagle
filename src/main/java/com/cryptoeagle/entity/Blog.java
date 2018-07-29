@@ -1,5 +1,9 @@
 package com.cryptoeagle.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +15,9 @@ import java.util.List;
         @NamedQuery(name = Blog.DELETE, query = "DELETE FROM Blog blog WHERE blog.id =:blog_id AND blog.appUser.id =: user_id"),
         @NamedQuery(name = Blog.GET, query = "SELECT blog FROM Blog blog WHERE blog.id =:blog_id AND blog.appUser.id = :user_id")
 })
+@Getter
+@Setter
+@ToString
 public class Blog extends BaseEntity {
 
     public static final String GET_ALL_BY_USER = "Blog.getByUser";
@@ -38,46 +45,4 @@ public class Blog extends BaseEntity {
 
     public Blog() {
     }
-
-
-    public AppUser getAppUser() {
-        return appUser;
-    }
-
-    public void setAppUser(AppUser appUser) {
-        this.appUser = appUser;
-    }
-
-    public List<Item> getItems() {
-        return items;
-    }
-
-    public void setItems(Item item) {
-        items.add(item);
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    @Override
-    public String toString() {
-        return "Blog{" +
-                "name='" + name + '\'' +
-                '}';
-    }
-
-
 }

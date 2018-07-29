@@ -1,8 +1,7 @@
 package com.cryptoeagle.service;
 
-import com.cryptoeagle.entity.Coin;
-import com.cryptoeagle.entity.Ico;
-import com.cryptoeagle.entity.IcoData;
+import com.cryptoeagle.entity.crypto.Ico;
+import com.cryptoeagle.entity.crypto.IcoData;
 import com.cryptoeagle.repository.AbstractTest;
 import com.cryptoeagle.service.abst.IcoService;
 import com.cryptoeagle.service.abst.RestClientService;
@@ -11,12 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import static org.junit.Assert.*;
 
 
 @ActiveProfiles(profiles = {"Jpa", "PostgreSQL"})
@@ -39,6 +34,11 @@ public class RestServiceImplTest extends AbstractTest {
 
         for (int i = 0; i < 5; i++) {
             List<Ico> allIcoByPage = clientService.getIcoByPage(i);
+            for(Ico ico : allIcoByPage){
+
+                IcoData dataForIco = clientService.getDataForIco(ico.getId());
+                ico.setData(dataForIco);
+            }
             System.out.println("get ico page " +i);
             icoService.saveIcos(allIcoByPage);
         }
@@ -59,7 +59,7 @@ public class RestServiceImplTest extends AbstractTest {
     @Test
     public void getCoins() {
 
-        IcoData dataForIco = clientService.getDataForIco(73);
+        Ico ico = icoService.getIcoById(3086);
     }
 
     @Test

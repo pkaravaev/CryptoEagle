@@ -1,6 +1,7 @@
-package com.cryptoeagle.entity;
+package com.cryptoeagle.entity.crypto;
 
 
+import com.cryptoeagle.entity.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 

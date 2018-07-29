@@ -1,5 +1,8 @@
 package com.cryptoeagle.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -9,6 +12,8 @@ import java.util.Objects;
 @NamedQueries({
         @NamedQuery(name = Item.GET_ALL, query = "SELECT item FROM Item  item")
 })
+@Getter
+@Setter
 public class Item extends BaseEntity implements EntityWithPic {
 
     public final static String GET_ALL = "Item.GetAll";
@@ -37,46 +42,6 @@ public class Item extends BaseEntity implements EntityWithPic {
     }
 
     public Item(){}
-
-    public Blog getBlog() {
-        return blog;
-    }
-
-    public void setBlog(Blog blog) {
-        this.blog = blog;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Date getPublishDate() {
-        return publishDate;
-    }
-
-    public void setPublishDate(Date publishDate) {
-        this.publishDate = publishDate;
-    }
-
-    public String getLink() {
-        return link;
-    }
-
-    public void setLink(String link) {
-        this.link = link;
-    }
 
 
 }

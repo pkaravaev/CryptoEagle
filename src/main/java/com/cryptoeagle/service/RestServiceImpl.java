@@ -1,6 +1,8 @@
 package com.cryptoeagle.service;
 
 import com.cryptoeagle.entity.*;
+import com.cryptoeagle.entity.crypto.Ico;
+import com.cryptoeagle.entity.crypto.IcoData;
 import com.cryptoeagle.service.abst.RestClientService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -80,18 +82,6 @@ public class RestServiceImpl implements RestClientService {
         return icoList;
     }
 
-    public List<Ico> getUpcomingFromProvider() {
-        return getListIco("https://api.icowatchlist.com/public/v1/upcoming", "upcoming");
-    }
-
-    public List<Ico> getFinishedFromProvider() {
-        return getListIco("https://api.icowatchlist.com/public/v1/finished", "finished");
-    }
-
-    public List<Ico> getActiveIcoFromProvider() {
-        return getListIco("https://api.icowatchlist.com/public/v1/live", "live");
-    }
-
     public List<Ico> getAllIcosFromIcobench() {
         int pagesCount = 1;
         List<Ico> icoList = new ArrayList<>();
@@ -119,7 +109,6 @@ public class RestServiceImpl implements RestClientService {
         }
         return icoList;
     }
-
 
     @Override
     public IcoData getDataForIco(int id) {
@@ -250,6 +239,11 @@ public class RestServiceImpl implements RestClientService {
         try {
 
             JsonNode links = jsonNode.get("links");
+
+            Iterator<JsonNode> iterator1 = links.iterator();
+
+            JsonNode next = iterator1.next();
+
 
             icoData.setLink("twitter", links.get("twitter").toString());
             icoData.setLink("slack", links.get("slack").toString());
