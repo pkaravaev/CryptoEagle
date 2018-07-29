@@ -1,8 +1,6 @@
 package com.cryptoeagle.service;
 
-import com.cryptoeagle.entity.Coin;
-import com.cryptoeagle.entity.Ico;
-import com.cryptoeagle.entity.PictureCoin;
+import com.cryptoeagle.entity.*;
 import com.cryptoeagle.service.abst.RestClientService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -38,26 +36,16 @@ public class RestServiceImpl implements RestClientService {
     private static final String PRIVATE_KEY = "dca6b42f-115d-4892-8827-08bb79275cef";
     private static final String PUBLIC_KEY = "829d6865-c198-4bcf-9675-5ead3802bb9f";
     private static final String REST_GET_ALL = "https://icobench.com/api/v1/icos/all";
+    private static final String REST_GET_DATA = "https://icobench.com/api/v1/ico/";
 
     @Override
     public List<Ico> getIcos() {
 
         List<Ico> icoList = new ArrayList<>();
 
-//        List<Ico> upcomingFromProvider = getUpcomingFromProvider();
-//        upcomingFromProvider.stream().forEach(e -> e.setStatus(IcoStatus.UPCOMING));
-//
-//        List<Ico> activeIcoFromProvider = getActiveIcoFromProvider();
-//        activeIcoFromProvider.stream().forEach(e -> e.setStatus(IcoStatus.ACTIVE));
-//
-//        List<Ico> finishedFromProvider = getFinishedFromProvider();
-//        finishedFromProvider.stream().forEach(e -> e.setStatus(IcoStatus.FINISHED));
-
-//        icoList.addAll(upcomingFromProvider);
-//        icoList.addAll(activeIcoFromProvider);
-//        icoList.addAll(finishedFromProvider);
         return icoList;
     }
+
 
     private List<Ico> getListIco(String url, String status) {
 
@@ -132,6 +120,27 @@ public class RestServiceImpl implements RestClientService {
         return icoList;
     }
 
+
+    @Override
+    public IcoData getDataForIco(int id) {
+
+        IcoData icoData = new IcoData();
+
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            String sign = HMAC384sign(PRIVATE_KEY, "");
+            String url = REST_GET_DATA + id;
+            String s = buildHttpRequest("", url);
+            JsonNode node = objectMapper.readTree(s);
+            return convertJsonToIcoData(node);
+        } catch (Exception e) {
+
+        }
+
+
+        return icoData;
+    }
+
     public List<Ico> getIcoByPage(int page) {
         List<Ico> icoList = new ArrayList<>();
         try {
@@ -139,7 +148,7 @@ public class RestServiceImpl implements RestClientService {
             System.out.println("!");
             String param = "{\"page\":" + page + "}";
             String s = buildHttpRequest(param, REST_GET_ALL);
-            JsonNode node = objectMapper.readTree(buildHttpRequest(param, REST_GET_ALL));
+            JsonNode node = objectMapper.readTree(s);
             Iterator<JsonNode> iterator = node.get("results").iterator();
             while (iterator.hasNext()) {
                 JsonNode next = iterator.next();
@@ -235,8 +244,71 @@ public class RestServiceImpl implements RestClientService {
         return ico;
     }
 
-    private String deleteCommas(String old){
-        return old.substring(1, old.length() -1);
+    private IcoData convertJsonToIcoData(JsonNode jsonNode) {
+        IcoData icoData = new IcoData();
+
+        try {
+
+            JsonNode links = jsonNode.get("links");
+
+            icoData.setLink("twitter", links.get("twitter").toString());
+            icoData.setLink("slack", links.get("slack").toString());
+            icoData.setLink("telegram", links.get("telegram").toString());
+            icoData.setLink("facebook", links.get("facebook").toString());
+            icoData.setLink("medium", links.get("medium").toString());
+            icoData.setLink("github", links.get("github").toString());
+            icoData.setLink("whitepaper", links.get("whitepaper").toString());
+
+            JsonNode finance = jsonNode.get("finance");
+
+            icoData.setFinance("token", finance.get("token").toString());
+            icoData.setFinance("price", finance.get("price").toString());
+            icoData.setFinance("bonus", finance.get("bonus").toString());
+            icoData.setFinance("tokens", finance.get("tokens").toString());
+            icoData.setFinance("tokentype", finance.get("tokentype").toString());
+            icoData.setFinance("hardcap", finance.get("hardcap").toString());
+            icoData.setFinance("softcap", finance.get("softcap").toString());
+            icoData.setFinance("platform", finance.get("platform").toString());
+            icoData.setFinance("raised", finance.get("raised").toString());
+            icoData.setFinance("accepting", finance.get("accepting").toString());
+
+            JsonNode team = jsonNode.get("team");
+
+//            Iterator<JsonNode> iterator = jsonNode.get("exchanges").iterator();
+//
+//            while (iterator.hasNext()){
+//                JsonNode exchanges = iterator.next();
+//                icoData.setExchanges("logo", exchanges.get("logo").toString());
+//                icoData.setExchanges("price", exchanges.get("price").toString());
+
+
+//                icoData.setExchanges("id", exchanges.get("id").toString());
+//                icoData.setExchanges("name", exchanges.get("name").toString());
+//                icoData.setExchanges("currency", exchanges.get("currency").toString());
+//                icoData.setExchanges("roi", exchanges.get("roi").toString());
+//            }
+
+            Iterator<JsonNode> iterator = jsonNode.get("categories").iterator();
+
+            while (iterator.hasNext()){
+                JsonNode categories = iterator.next();
+                icoData.setCategories("id", categories.get("id").toString());
+                icoData.setCategories("name", categories.get("name").toString());
+            }
+
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return icoData;
+        }
+
+
+
+        return icoData;
+    }
+
+    private String deleteCommas(String old) {
+        return old.substring(1, old.length() - 1);
     }
 
     private String HMAC384sign(String private_key, String data) {
@@ -255,6 +327,7 @@ public class RestServiceImpl implements RestClientService {
             return "";
         }
     }
+
 
     @Override
     public List<Coin> getCoins() {

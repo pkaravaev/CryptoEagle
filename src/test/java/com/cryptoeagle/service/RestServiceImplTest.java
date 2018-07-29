@@ -2,6 +2,7 @@ package com.cryptoeagle.service;
 
 import com.cryptoeagle.entity.Coin;
 import com.cryptoeagle.entity.Ico;
+import com.cryptoeagle.entity.IcoData;
 import com.cryptoeagle.repository.AbstractTest;
 import com.cryptoeagle.service.abst.IcoService;
 import com.cryptoeagle.service.abst.RestClientService;
@@ -9,6 +10,9 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,6 +25,9 @@ public class RestServiceImplTest extends AbstractTest {
 
     @Autowired
     RestClientService clientService;
+
+    @PersistenceContext
+    EntityManager entityManager;
 
     @Autowired
     IcoService icoService;
@@ -52,7 +59,7 @@ public class RestServiceImplTest extends AbstractTest {
     @Test
     public void getCoins() {
 
-        List<Coin> coins = clientService.getCoins();
+        IcoData dataForIco = clientService.getDataForIco(73);
     }
 
     @Test

@@ -35,30 +35,8 @@
                     <td>${icoStart}</td>
                     <td>${icoEnd}</td>
 
-                    <td width="120">
-                        <h6 class="bold padding-bottom-7" align=>${ico.rating}
-                            <small>/ 5</small>
-                        </h6>
-                        <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
-                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                        </button>
+                    <td>
 
-                        <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
-                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                        </button>
-
-                        <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
-                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                        </button>
-
-                        <button type="button" class="btn btn-default btn-grey btn-sm btn-warning"
-                                aria-label="Left Align">
-                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                        </button>
-
-                        <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
-                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                        </button>
                     </td>
 
 

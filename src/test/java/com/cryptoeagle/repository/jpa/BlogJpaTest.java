@@ -5,4 +5,5 @@ import org.springframework.test.context.ActiveProfiles;
 
 @ActiveProfiles(profiles = "Jpa")
 public class BlogJpaTest extends AbstractBlogTest {
+
 }

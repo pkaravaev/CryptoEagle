@@ -17,7 +17,7 @@ import java.math.BigDecimal;
                 "c.percent_change_24h=:percent_change_24h,c.percent_change_7d=:percent_change_7d")
 })
 
-public class Coin {
+public class Coin extends BaseEntity {
 
     public static final String GET_BY_ID = "Coin.getById";
     public static final String GET_ALL = "Coin.getAll";
@@ -26,8 +26,7 @@ public class Coin {
     public static final String GET_LOSER = "Coin.getLoser";
     public static final String UPDATE = "Coin.update";
 
-    @Id
-    private int id;
+
     private String name;
     private String image;
     private String symbol;
