@@ -2,7 +2,7 @@ package com.cryptoeagle.service;
 
 import com.cryptoeagle.entity.*;
 import com.cryptoeagle.entity.Ico;
-import com.cryptoeagle.entity.crypto.IcoData;
+import com.cryptoeagle.entity.crypto.Idata;
 import com.cryptoeagle.service.abst.RestClientService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -111,9 +111,9 @@ public class RestServiceImpl implements RestClientService {
     }
 
     @Override
-    public IcoData getDataForIco(int id) {
+    public Idata getDataForIco(int id) {
 
-        IcoData icoData = new IcoData();
+        Idata idata = new Idata();
 
         try {
             ObjectMapper objectMapper = new ObjectMapper();
@@ -127,7 +127,7 @@ public class RestServiceImpl implements RestClientService {
         }
 
 
-        return icoData;
+        return idata;
     }
 
     public List<Ico> getIcoByPage(int page) {
@@ -233,8 +233,8 @@ public class RestServiceImpl implements RestClientService {
         return ico;
     }
 
-    private IcoData convertJsonToIcoData(JsonNode jsonNode) {
-        IcoData icoData = new IcoData();
+    private Idata convertJsonToIcoData(JsonNode jsonNode) {
+        Idata idata = new Idata();
 
         try {
 
@@ -245,26 +245,26 @@ public class RestServiceImpl implements RestClientService {
             JsonNode next = iterator1.next();
 
 
-            icoData.setLink("twitter", links.get("twitter").toString());
-            icoData.setLink("slack", links.get("slack").toString());
-            icoData.setLink("telegram", links.get("telegram").toString());
-            icoData.setLink("facebook", links.get("facebook").toString());
-            icoData.setLink("medium", links.get("medium").toString());
-            icoData.setLink("github", links.get("github").toString());
-            icoData.setLink("whitepaper", links.get("whitepaper").toString());
+            idata.setLink("twitter", links.get("twitter").toString());
+            idata.setLink("slack", links.get("slack").toString());
+            idata.setLink("telegram", links.get("telegram").toString());
+            idata.setLink("facebook", links.get("facebook").toString());
+            idata.setLink("medium", links.get("medium").toString());
+            idata.setLink("github", links.get("github").toString());
+            idata.setLink("whitepaper", links.get("whitepaper").toString());
 
             JsonNode finance = jsonNode.get("finance");
 
-            icoData.setFinance("token", finance.get("token").toString());
-            icoData.setFinance("price", finance.get("price").toString());
-            icoData.setFinance("bonus", finance.get("bonus").toString());
-            icoData.setFinance("tokens", finance.get("tokens").toString());
-            icoData.setFinance("tokentype", finance.get("tokentype").toString());
-            icoData.setFinance("hardcap", finance.get("hardcap").toString());
-            icoData.setFinance("softcap", finance.get("softcap").toString());
-            icoData.setFinance("platform", finance.get("platform").toString());
-            icoData.setFinance("raised", finance.get("raised").toString());
-            icoData.setFinance("accepting", finance.get("accepting").toString());
+            idata.setFinance("token", finance.get("token").toString());
+            idata.setFinance("price", finance.get("price").toString());
+            idata.setFinance("bonus", finance.get("bonus").toString());
+            idata.setFinance("tokens", finance.get("tokens").toString());
+            idata.setFinance("tokentype", finance.get("tokentype").toString());
+            idata.setFinance("hardcap", finance.get("hardcap").toString());
+            idata.setFinance("softcap", finance.get("softcap").toString());
+            idata.setFinance("platform", finance.get("platform").toString());
+            idata.setFinance("raised", finance.get("raised").toString());
+            idata.setFinance("accepting", finance.get("accepting").toString());
 
             JsonNode team = jsonNode.get("team");
 
@@ -272,33 +272,33 @@ public class RestServiceImpl implements RestClientService {
 //
 //            while (iterator.hasNext()){
 //                JsonNode exchanges = iterator.next();
-//                icoData.setExchanges("logo", exchanges.get("logo").toString());
-//                icoData.setExchanges("price", exchanges.get("price").toString());
+//                idata.setExchanges("logo", exchanges.get("logo").toString());
+//                idata.setExchanges("price", exchanges.get("price").toString());
 
 
-//                icoData.setExchanges("id", exchanges.get("id").toString());
-//                icoData.setExchanges("name", exchanges.get("name").toString());
-//                icoData.setExchanges("currency", exchanges.get("currency").toString());
-//                icoData.setExchanges("roi", exchanges.get("roi").toString());
+//                idata.setExchanges("id", exchanges.get("id").toString());
+//                idata.setExchanges("name", exchanges.get("name").toString());
+//                idata.setExchanges("currency", exchanges.get("currency").toString());
+//                idata.setExchanges("roi", exchanges.get("roi").toString());
 //            }
 
             Iterator<JsonNode> iterator = jsonNode.get("categories").iterator();
 
             while (iterator.hasNext()){
                 JsonNode categories = iterator.next();
-                icoData.setCategories("id", categories.get("id").toString());
-                icoData.setCategories("name", categories.get("name").toString());
+                idata.setCategories("id", categories.get("id").toString());
+                idata.setCategories("name", categories.get("name").toString());
             }
 
 
         }catch (Exception e){
             System.out.println(e.getMessage());
-            return icoData;
+            return idata;
         }
 
 
 
-        return icoData;
+        return idata;
     }
 
     private String deleteCommas(String old) {

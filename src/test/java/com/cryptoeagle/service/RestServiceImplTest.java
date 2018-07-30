@@ -1,7 +1,7 @@
 package com.cryptoeagle.service;
 
 import com.cryptoeagle.entity.Ico;
-import com.cryptoeagle.entity.crypto.IcoData;
+import com.cryptoeagle.entity.crypto.Idata;
 import com.cryptoeagle.repository.AbstractTest;
 import com.cryptoeagle.service.abst.IcoService;
 import com.cryptoeagle.service.abst.RestClientService;
@@ -31,13 +31,13 @@ public class RestServiceImplTest extends AbstractTest {
 
         icoService.deletAll();
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 2; i++) {
             List<Ico> allIcoByPage = clientService.getIcoByPage(i);
-//            for(Ico ico : allIcoByPage){
-//
-//                IcoData dataForIco = clientService.getDataForIco(ico.getId());
-//                ico.setData(dataForIco);
-//            }
+            for(Ico ico : allIcoByPage){
+
+                Idata dataForIco = clientService.getDataForIco(ico.getId());
+                ico.setData(dataForIco);
+            }
             System.out.println("get ico page " + i);
             icoService.saveIcos(allIcoByPage);
         }
@@ -65,9 +65,9 @@ public class RestServiceImplTest extends AbstractTest {
 
     @Test
     public void getCoins() {
-        Ico ico = icoService.getIcoById(3086);
-        IcoData data = ico.getData();
-        String price = data.getFinance("price");
+        Ico ico = icoService.getIcoById(3491);
+        Idata data = ico.getData();
+
     }
 
     @Test

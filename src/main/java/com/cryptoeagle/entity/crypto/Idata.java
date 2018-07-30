@@ -9,10 +9,7 @@ import java.util.Map;
 
 
 @Entity
-public class IcoData  extends BaseEntity {
-
-//    @OneToOne(mappedBy = "data",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-//    private Ico ico;
+public class Idata extends BaseEntity {
 
     @ElementCollection
     private Map<String, String> links = new HashMap<>();

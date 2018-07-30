@@ -12,6 +12,7 @@ import java.util.List;
 
 
 @Repository
+@Transactional
 public class IcoRepositoryJpaImpl implements IcoRepository {
 
     @PersistenceContext
@@ -37,7 +38,6 @@ public class IcoRepositoryJpaImpl implements IcoRepository {
         return em.createNamedQuery(Ico.GET_ACTIVE,Ico.class)
                 .setParameter("date",localDateTime)
                 .getResultList();
-
     }
 
     @Override
@@ -54,7 +54,6 @@ public class IcoRepositoryJpaImpl implements IcoRepository {
         return em.createNamedQuery(Ico.GET_ENDED,Ico.class)
                 .setParameter("date",localDateTime)
                 .getResultList();
-
     }
 
     @Override
@@ -69,7 +68,6 @@ public class IcoRepositoryJpaImpl implements IcoRepository {
         Ico ico = em.createNamedQuery(Ico.GET_BY_ID, Ico.class)
                 .setParameter("id", id)
                 .getSingleResult();
-
       return ico;
     }
 }

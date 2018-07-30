@@ -1,6 +1,6 @@
 package com.cryptoeagle.entity;
 
-import com.cryptoeagle.entity.crypto.IcoData;
+import com.cryptoeagle.entity.crypto.Idata;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,7 +14,6 @@ import java.time.LocalDateTime;
         @NamedQuery(name = Ico.GET_ENDED, query = "SELECT ico  FROM  Ico ico WHERE  ico.icoEnd < :date"),
         @NamedQuery(name = Ico.GET_ACTIVE, query = "SELECT ico  FROM  Ico ico WHERE  ico.icoEnd > :date"),
 })
-
 @Cacheable
 @Entity
 @Getter
@@ -43,8 +42,12 @@ public class Ico {
     private LocalDateTime icoStart;
     private LocalDateTime icoEnd;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private IcoData data;
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Idata data;
+
+    class IcoData{
+
+    }
 }
 
 

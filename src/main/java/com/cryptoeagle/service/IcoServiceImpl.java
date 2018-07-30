@@ -6,6 +6,7 @@ import com.cryptoeagle.service.abst.IcoService;
 import com.cryptoeagle.service.abst.RestClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -44,6 +45,7 @@ public class IcoServiceImpl implements IcoService {
     }
 
     @Override
+    @Transactional
     public Ico getIcoById(int id) {
         return repository.getIcoByID(id);
     }

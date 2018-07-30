@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Controller
@@ -91,8 +92,9 @@ public class MainController {
 
     @RequestMapping("/test")
     public String test(Model model) {
-        List<Item> items = rssService.getItems("https://www.coindesk.com/feed/");
-        model.addAttribute("items",items);
+
+        List<Ico> icos = icoService.getActiveIco().stream().limit(10).collect(Collectors.toList());
+        model.addAttribute("ico",icos.get(3));
         return "test";
     }
 

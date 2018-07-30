@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class CryptoController {
@@ -24,12 +25,20 @@ public class CryptoController {
     @RequestMapping("/ico-stats")
     public String icoStats(Model model) {
         List<Ico> icos = icoService.getAll();
-        model.addAttribute("icos",icos);
+        model.addAttribute("icos", icos);
         return "ico-stats";
     }
 
     @RequestMapping("/ico-list")
     public String icoList(Model model) {
+
+        List<Ico> activeIco = icoService.getActiveIco().stream().limit(20).collect(Collectors.toList());
+        List<Ico> upcoming = icoService.getUpcoming().stream().limit(20).collect(Collectors.toList());
+        List<Ico> finished = icoService.getFinished().stream().limit(20).collect(Collectors.toList());
+
+        model.addAttribute("activeIco", activeIco);
+        model.addAttribute("upcoming", upcoming);
+        model.addAttribute("finished", finished);
 
         return "ico-list";
     }

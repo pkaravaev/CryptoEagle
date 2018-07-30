@@ -90,7 +90,7 @@
                 <a class="nav-link" href="/blogs">MY ACCOUNT</a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link " href="/login">LOGIN</a>
+                <a  class="nav-link " href="/login">LOGIN</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link " href="/logout">LOGOUT</a>
