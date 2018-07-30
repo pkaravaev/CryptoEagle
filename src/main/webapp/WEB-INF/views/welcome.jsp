@@ -29,12 +29,18 @@
         })
 
 
+
         $(".card").mouseenter(function () {
-           $(this).addClass("shadow-sm p-3 mb-5 bg-white rounded");
+
+            $(this).css('cursor','pointer');
+            $(this).removeClass("bg-white");
+            $(this).addClass("bg-light")
+           // $(this).addClass("shadow-sm p-3 mb-5 bg-white rounded");
         })
 
         $(".card").mouseleave(function () {
-            $(this).removeClass("shadow-sm p-3 mb-5 bg-white rounded");
+            $(this).removeClass("bg-light");
+            $(this).addClass("bg-white")
         })
 
     })

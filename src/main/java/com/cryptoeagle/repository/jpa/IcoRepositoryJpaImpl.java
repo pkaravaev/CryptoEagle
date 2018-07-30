@@ -1,6 +1,7 @@
 package com.cryptoeagle.repository.jpa;
 
 import com.cryptoeagle.entity.Ico;
+import com.cryptoeagle.entity.crypto.Idata;
 import com.cryptoeagle.repository.IcoRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -68,7 +69,10 @@ public class IcoRepositoryJpaImpl implements IcoRepository {
         Ico ico = em.createNamedQuery(Ico.GET_BY_ID, Ico.class)
                 .setParameter("id", id)
                 .getSingleResult();
-      return ico;
+
+        ico.getData();;
+
+        return ico;
     }
 }
 

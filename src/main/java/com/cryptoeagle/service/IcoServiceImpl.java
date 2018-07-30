@@ -45,7 +45,7 @@ public class IcoServiceImpl implements IcoService {
     }
 
     @Override
-    @Transactional
+    @Transactional()
     public Ico getIcoById(int id) {
         return repository.getIcoByID(id);
     }
