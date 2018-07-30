@@ -39,6 +39,10 @@
 
         margin-left: 1.3rem;
     }
+    .info {
+
+        margin-left: 1.3rem;
+    }
 
     .card {
 
@@ -52,7 +56,7 @@
 <div class="container">
 
     <div class="row">
-
+        <%--empty--%>
         <div class="col-md">
 
 
@@ -72,9 +76,9 @@
                     </div>
                     <div class="col-md-10">
 
-                        <h5 class="title">ICON</h5>
+                        <h5 class="title">ICON (blockchain)</h5>
                         <p class="text">
-                            blablalblabblblbllblbalblbllblbalblalbllblbllblbalblalbblalblabllbalblalblalba</p>
+                            Viberate is a crowdsourced live music ecosystem and a blockchain-br\nAccepted currencies\r\nETH\r\n\r\n\r\nMinimum goal\</p>
                     </div>
                     <br/>
 
@@ -135,11 +139,11 @@
             <ul class="nav nav-pills justify-content-center mb-3" id="pills-tab" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
-                       aria-controls="pills-home" aria-selected="true">Home</a>
+                       aria-controls="pills-home" aria-selected="true">Finance</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab"
-                       aria-controls="pills-profile" aria-selected="false">Profile</a>
+                       aria-controls="pills-profile" aria-selected="false">Teams</a>
                 </li>
             </ul>
 
@@ -147,20 +151,20 @@
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                     <div class="row">
 
-                        <div class="col">
-                            <p class="font-weight-bold">Bold text.</p>
-                            <p class="font-weight-bold">Bold text.</p>
-                            <p class="font-weight-bold">Bold text.</p>
-                            <p class="font-weight-bold">Bold text.</p>
-                            <p class="font-weight-bold">Bold text.</p>
-                            <p class="font-weight-bold">Bold text.</p>
+                        <div class="col info">
+                            <p class="font-weight-bold">token : VIB </p>
+                            <p class="font-weight-bold">price : 1$</p>
+                            <p class="font-weight-bold">tokens: 12000000</p>
+                            <p class="font-weight-bold">hard cap : $12 500 000</p>
+                            <p class="font-weight-bold">soft cap  : $1 000 000</p>
+                            <p class="font-weight-bold">raised: $ 12 000 000</p>
 
                         </div>
 
-                        <div class="col">
+                        <div class="col info">
 
-                            <p class="font-weight-bold">Bold text.</p>
-                            <p class="font-weight-bold">Bold text.</p>
+                            <p class="font-weight-bold">platform: Etherium</p>
+                            <p class="font-weight-bold">accepting: ETH</p>
                             <p class="font-weight-bold">Bold text.</p>
                             <p class="font-weight-bold">Bold text.</p>
                             <p class="font-weight-bold">Bold text.</p>
@@ -190,7 +194,7 @@
 
         </div>
 
-
+           <%--empty--%>
         <div class="col-md">
 
         </div>

@@ -49,4 +49,10 @@ public class CryptoController {
         model.addAttribute("coins", coins);
         return "coin-list";
     }
+    @RequestMapping("/ico-page")
+    public String icoPage(Model model) {
+
+        return "ico-page";
+    }
+
 }
