@@ -44,12 +44,20 @@ public class Ico {
     private LocalDateTime icoStart;
     private LocalDateTime icoEnd;
 
+    public String daysAgo(){
+
+        LocalDateTime now = LocalDateTime.now();
+
+
+        return  " ";
+    }
+
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Idata data;
 
     class IcoData{
-
     }
+
 }
 
 

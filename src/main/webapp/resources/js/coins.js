@@ -4,9 +4,6 @@ $(document).ready(function () {
 
 
 })
-
-
-
 function getCoins() {
     $.ajax({
         url: '/ajax/coins',

@@ -93,8 +93,7 @@ public class MainController {
     @RequestMapping("/test")
     public String test(Model model) {
 
-        List<Ico> icos = icoService.getActiveIco().stream().limit(10).collect(Collectors.toList());
-        model.addAttribute("ico",icos.get(3));
+
         return "test";
     }
 

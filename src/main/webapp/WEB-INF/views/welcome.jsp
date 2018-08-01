@@ -12,14 +12,6 @@
             $(location).attr("href", url);
         })
 
-        // $('#table1,#table2').dataTable( {
-        //     "searching": false,
-        //     "paging":false,
-        //     "info": false,
-        //     "autoWidth": true
-        //
-        // } );
-
         $(".card").click(function () {
             var h = $(this).children();
             var url = h.children()[1].href;
@@ -27,7 +19,6 @@
         })
 
         $(".card").mouseenter(function () {
-
             $(this).css('cursor', 'pointer');
             $(this).removeClass("bg-white");
             $(this).addClass("bg-light")

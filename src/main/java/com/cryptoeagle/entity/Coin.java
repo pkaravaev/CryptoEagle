@@ -30,7 +30,6 @@ public class Coin extends BaseEntity {
     public static final String GET_LOSER = "Coin.getLoser";
     public static final String UPDATE = "Coin.update";
 
-
     private String name;
     private String image;
     private String symbol;

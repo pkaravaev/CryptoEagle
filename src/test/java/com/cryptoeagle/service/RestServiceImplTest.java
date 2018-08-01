@@ -31,10 +31,11 @@ public class RestServiceImplTest extends AbstractTest {
 
         icoService.deletAll();
 
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 1; i++) {
             List<Ico> allIcoByPage = clientService.getIcoByPage(i);
             for(Ico ico : allIcoByPage){
                 Idata dataForIco = clientService.getDataForIco(ico.getId());
+
                 ico.setData(dataForIco);
             }
             System.out.println("get ico page " + i);

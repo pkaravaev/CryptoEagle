@@ -237,12 +237,15 @@ public class RestServiceImpl implements RestClientService {
         Idata idata = new Idata();
 
         try {
-
             JsonNode links = jsonNode.get("links");
+
+            idata.setIntro(deleteCommas(jsonNode.get("intro").toString()).substring(0, 1000));
 
             idata.setLink("twitter", deleteCommas(links.get("twitter").toString()));
             idata.setLink("slack", deleteCommas(links.get("slack").toString()));
+            idata.setLink("youtube", deleteCommas(links.get("youtube").toString()));
             idata.setLink("telegram", deleteCommas(links.get("telegram").toString()));
+            idata.setLink("www", deleteCommas(links.get("www").toString()));
             idata.setLink("facebook", deleteCommas(links.get("facebook").toString()));
             idata.setLink("medium", deleteCommas(links.get("medium").toString()));
             idata.setLink("github", deleteCommas(links.get("github").toString()));
@@ -253,17 +256,17 @@ public class RestServiceImpl implements RestClientService {
             idata.setFinance("token", deleteCommas(finance.get("token").toString()));
             idata.setFinance("price", deleteCommas(finance.get("price").toString()));
             idata.setFinance("bonus", deleteCommas(finance.get("bonus").toString()));
-            idata.setFinance("tokens",deleteCommas(finance.get("tokens").toString()));
+            idata.setFinance("tokens", deleteCommas(finance.get("tokens").toString()));
             idata.setFinance("tokentype", deleteCommas(finance.get("tokentype").toString()));
             idata.setFinance("hardcap", deleteCommas(finance.get("hardcap").toString()));
             idata.setFinance("softcap", deleteCommas(finance.get("softcap").toString()));
-            idata.setFinance("platform",deleteCommas(finance.get("platform").toString()));
+            idata.setFinance("platform", deleteCommas(finance.get("platform").toString()));
             idata.setFinance("raised", deleteCommas(finance.get("raised").toString()));
-            idata.setFinance("accepting",deleteCommas(finance.get("accepting").toString()));
+            idata.setFinance("accepting", deleteCommas(finance.get("accepting").toString()));
 
             Iterator<JsonNode> team = jsonNode.get("team").iterator();
 
-            while (team.hasNext()){
+            while (team.hasNext()) {
 
                 JsonNode next = team.next();
                 Team teammember = new Team();
@@ -278,7 +281,7 @@ public class RestServiceImpl implements RestClientService {
 
             Iterator<JsonNode> echange = jsonNode.get("exchanges").iterator();
 
-            while (echange.hasNext()){
+            while (echange.hasNext()) {
                 JsonNode exchanges = echange.next();
 
                 Exchange exchange = new Exchange();
@@ -294,8 +297,8 @@ public class RestServiceImpl implements RestClientService {
 
             while (iterator2.hasNext()) {
                 JsonNode categories = iterator2.next();
-                idata.setCategories("id", categories.get("id").toString());
-                idata.setCategories("name", categories.get("name").toString());
+                idata.setCategories("id", deleteCommas(categories.get("id").toString()));
+                idata.setCategories("name", deleteCommas(categories.get("name").toString()));
             }
 
 
@@ -310,7 +313,7 @@ public class RestServiceImpl implements RestClientService {
 
     private String deleteCommas(String old) {
         if (old.length() > 2)
-        return old.substring(1, old.length() - 1);
+            return old.substring(1, old.length() - 1);
         else
             return old;
     }

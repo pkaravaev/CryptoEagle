@@ -36,7 +36,7 @@ public class CoinRepositoryJpaImpl implements CoinRepository {
     @Transactional
     public void saveCoins(List<Coin> list) {
         for (Coin c : list) {
-            entityManager.persist(c);
+            entityManager.merge(c);
         }
     }
 

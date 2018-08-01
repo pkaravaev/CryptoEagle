@@ -17,17 +17,20 @@ import java.util.Set;
 @Entity
 public class Idata extends BaseEntity {
 
+    @Column(length = 1024)
+    private String intro;
+
     @ElementCollection(fetch = FetchType.EAGER)
     private Map<String, String> links = new HashMap<>();
     @ElementCollection(fetch = FetchType.EAGER)
-    private Map<String, String> finance= new HashMap<>();
+    private Map<String, String> finance = new HashMap<>();
     @ElementCollection(fetch = FetchType.EAGER)
-    private Map<String, String> categories= new HashMap<>();
+    private Map<String, String> categories = new HashMap<>();
 
-    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Team> crew = new HashSet<>();
 
-    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Exchange> exchanges = new HashSet<>();
 
     public void setCrew(Team team) {
@@ -35,7 +38,7 @@ public class Idata extends BaseEntity {
     }
 
     public Set<Team> getCrew() {
-       return crew;
+        return crew;
     }
 
     public void setLink(String link, String value) {
