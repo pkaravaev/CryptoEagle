@@ -8,6 +8,7 @@ import com.cryptoeagle.service.abst.IcoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -49,8 +50,12 @@ public class CryptoController {
         model.addAttribute("coins", coins);
         return "coin-list";
     }
-    @RequestMapping("/ico-page")
-    public String icoPage(Model model) {
+
+    @RequestMapping("/ico-page/{name}")
+    public String icoPage(@PathVariable String name, Model model) {
+
+        Ico ico = icoService.getByName(name);
+        model.addAttribute("ico", ico);
 
         return "ico-page";
     }

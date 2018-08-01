@@ -12,7 +12,6 @@
             $(location).attr("href", url);
         })
 
-
         // $('#table1,#table2').dataTable( {
         //     "searching": false,
         //     "paging":false,
@@ -21,46 +20,28 @@
         //
         // } );
 
-
         $(".card").click(function () {
             var h = $(this).children();
             var url = h.children()[1].href;
             $(location).attr("href", url);
         })
 
-
-
         $(".card").mouseenter(function () {
 
-            $(this).css('cursor','pointer');
+            $(this).css('cursor', 'pointer');
             $(this).removeClass("bg-white");
             $(this).addClass("bg-light")
-           // $(this).addClass("shadow-sm p-3 mb-5 bg-white rounded");
         })
 
         $(".card").mouseleave(function () {
             $(this).removeClass("bg-light");
             $(this).addClass("bg-white")
         })
-
     })
-
 
 </script>
 
-<style>
-    .body {
-
-        color: green;
-    }
-
-    .a {
-
-        margin-left: 5rem;
-    }
-</style>
-
-<div class="container ">
+<div class="container">
     <div class="row bg-white">
         <%--<div class="col-sm">--%>
         <%--One of three columns--%>
@@ -104,7 +85,7 @@
                                      class="rounded float-left"
                                      alt="Cannnot load picture!" hspace="5">
                                 <a class="link" href="${item.link}"><h5 class="card-title">${item.title}</h5></a>
-                                <%--<p class="card-text rounded float-center">${item.publishDate}</p>--%>
+                                    <%--<p class="card-text rounded float-center">${item.publishDate}</p>--%>
                                 <p class="font-weight-light">${item.publishDate}</p>
                                 <p class="card-text rounded float-center">${item.description}</p>
 

@@ -27,7 +27,7 @@
 </style>
 
 
-<div class="container ">
+<div class="container  bg-white">
 
     <div class="row">
 
@@ -73,6 +73,7 @@
                     <div class="card-footer bg-transparent ">
 
                         <p class="text-right">Starts in  ${ico.icoStart}</p>
+
                     </div>
 
                 </div>
@@ -101,13 +102,6 @@
                 </div>
             </c:forEach>
         </div>
-
-
-
-
-
-
-
 
     </div>
 

@@ -9,7 +9,8 @@ import java.time.LocalDateTime;
 
 @NamedQueries({
         @NamedQuery(name = Ico.GET_ALL, query = " SELECT ico FROM  Ico  ico"),
-        @NamedQuery(name = Ico.GET_BY_ID, query = "SELECT ico  FROM  Ico ico   JOIN  Idata idata  WHERE  idata.id = ico.data.id  AND ico.id = :id"),
+        @NamedQuery(name = Ico.GET_BY_ID, query = "SELECT ico  FROM  Ico ico   WHERE  ico.id = :id"),
+        @NamedQuery(name = Ico.GET_BY_NAME, query = "SELECT ico  FROM  Ico ico   WHERE  ico.name = :name"),
         @NamedQuery(name = Ico.GET_UPCOMING, query = "SELECT ico  FROM  Ico ico WHERE  ico.icoStart > :date"),
         @NamedQuery(name = Ico.GET_ENDED, query = "SELECT ico  FROM  Ico ico WHERE  ico.icoEnd < :date"),
         @NamedQuery(name = Ico.GET_ACTIVE, query = "SELECT ico  FROM  Ico ico WHERE  ico.icoEnd > :date"),
@@ -25,6 +26,7 @@ public class Ico {
 
     public static final String GET_ALL = "Ico.getALL";
     public static final String GET_BY_ID = "Ico.getById";
+    public static final String GET_BY_NAME = "Ico.getByName";
     public static final String GET_UPCOMING = "Ico.getUpcoming";
     public static final String GET_ENDED = "Ico.getEnded";
     public static final String GET_ACTIVE = "Ico.getActive";

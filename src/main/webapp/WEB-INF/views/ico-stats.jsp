@@ -3,48 +3,55 @@
 <jsp:include page="template/header.jsp"/>
 
 
-<div class="container ">
+<div class="container bg-white">
     <div class="row">
         <div class="col-sm ">
 
         </div>
-        <table id="data-table" class="table">
-            <br/>
-            <thead class="bg-light">
-            <tr>
-                <th></th>
-                <th>PROJECT</th>
-                <th>DESCRIPTION</th>
-                <th>START TIME</th>
-                <th>END TIME</th>
-                <th>RATING</th>
 
-            </tr>
-            </thead>
-            <tbody>
+        <div class="col-md-12">
 
-            <c:forEach items="${icos}" var="ico">
+
+            <table id="data-table" class="table">
+                <br/>
+                <thead class="bg-light">
                 <tr>
-                    <td><img src="${ico.logolink} "></td>
-                    <td>${ico.name}</td>
-                    <td>${ico.description}</td>
-                    <fmt:parseDate value="${ico.icoStart}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime1" type="both"/>
-                    <fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${parsedDateTime1}" var="icoStart"/>
-                    <fmt:parseDate value="${ico.icoEnd}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime2" type="both"/>
-                    <fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${parsedDateTime2}" var="icoEnd"/>
-                    <td>${icoStart}</td>
-                    <td>${icoEnd}</td>
-
-                    <td>
-
-                    </td>
+                    <th></th>
+                    <th>PROJECT</th>
+                    <th>DESCRIPTION</th>
+                    <th>START TIME</th>
+                    <th>END TIME</th>
+                    <th>RATING</th>
 
                 </tr>
-            </c:forEach>
+                </thead>
+                <tbody>
 
-            </tbody>
-        </table>
-        <br/>
+                <c:forEach items="${icos}" var="ico">
+                    <tr>
+                        <td><img src="${ico.logolink} "></td>
+                        <td>${ico.name}</td>
+                        <td>${ico.description}</td>
+                        <fmt:parseDate value="${ico.icoStart}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime1"
+                                       type="both"/>
+                        <fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${parsedDateTime1}" var="icoStart"/>
+                        <fmt:parseDate value="${ico.icoEnd}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime2"
+                                       type="both"/>
+                        <fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${parsedDateTime2}" var="icoEnd"/>
+                        <td>${icoStart}</td>
+                        <td>${icoEnd}</td>
+
+                        <td>
+
+                        </td>
+
+                    </tr>
+                </c:forEach>
+
+                </tbody>
+            </table>
+            <br/>
+        </div>
     </div>
     <div class="col-sm ">
 

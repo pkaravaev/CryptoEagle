@@ -2,7 +2,9 @@ package com.cryptoeagle.service;
 
 import com.cryptoeagle.entity.*;
 import com.cryptoeagle.entity.Ico;
+import com.cryptoeagle.entity.crypto.Exchange;
 import com.cryptoeagle.entity.crypto.Idata;
+import com.cryptoeagle.entity.crypto.Team;
 import com.cryptoeagle.service.abst.RestClientService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -44,10 +46,8 @@ public class RestServiceImpl implements RestClientService {
     public List<Ico> getIcos() {
 
         List<Ico> icoList = new ArrayList<>();
-
         return icoList;
     }
-
 
     private List<Ico> getListIco(String url, String status) {
 
@@ -240,69 +240,79 @@ public class RestServiceImpl implements RestClientService {
 
             JsonNode links = jsonNode.get("links");
 
-            Iterator<JsonNode> iterator1 = links.iterator();
-
-            JsonNode next = iterator1.next();
-
-
-            idata.setLink("twitter", links.get("twitter").toString());
-            idata.setLink("slack", links.get("slack").toString());
-            idata.setLink("telegram", links.get("telegram").toString());
-            idata.setLink("facebook", links.get("facebook").toString());
-            idata.setLink("medium", links.get("medium").toString());
-            idata.setLink("github", links.get("github").toString());
-            idata.setLink("whitepaper", links.get("whitepaper").toString());
+            idata.setLink("twitter", deleteCommas(links.get("twitter").toString()));
+            idata.setLink("slack", deleteCommas(links.get("slack").toString()));
+            idata.setLink("telegram", deleteCommas(links.get("telegram").toString()));
+            idata.setLink("facebook", deleteCommas(links.get("facebook").toString()));
+            idata.setLink("medium", deleteCommas(links.get("medium").toString()));
+            idata.setLink("github", deleteCommas(links.get("github").toString()));
+            idata.setLink("whitepaper", deleteCommas(links.get("whitepaper").toString()));
 
             JsonNode finance = jsonNode.get("finance");
 
-            idata.setFinance("token", finance.get("token").toString());
-            idata.setFinance("price", finance.get("price").toString());
-            idata.setFinance("bonus", finance.get("bonus").toString());
-            idata.setFinance("tokens", finance.get("tokens").toString());
-            idata.setFinance("tokentype", finance.get("tokentype").toString());
-            idata.setFinance("hardcap", finance.get("hardcap").toString());
-            idata.setFinance("softcap", finance.get("softcap").toString());
-            idata.setFinance("platform", finance.get("platform").toString());
-            idata.setFinance("raised", finance.get("raised").toString());
-            idata.setFinance("accepting", finance.get("accepting").toString());
+            idata.setFinance("token", deleteCommas(finance.get("token").toString()));
+            idata.setFinance("price", deleteCommas(finance.get("price").toString()));
+            idata.setFinance("bonus", deleteCommas(finance.get("bonus").toString()));
+            idata.setFinance("tokens",deleteCommas(finance.get("tokens").toString()));
+            idata.setFinance("tokentype", deleteCommas(finance.get("tokentype").toString()));
+            idata.setFinance("hardcap", deleteCommas(finance.get("hardcap").toString()));
+            idata.setFinance("softcap", deleteCommas(finance.get("softcap").toString()));
+            idata.setFinance("platform",deleteCommas(finance.get("platform").toString()));
+            idata.setFinance("raised", deleteCommas(finance.get("raised").toString()));
+            idata.setFinance("accepting",deleteCommas(finance.get("accepting").toString()));
 
-            JsonNode team = jsonNode.get("team");
+            Iterator<JsonNode> team = jsonNode.get("team").iterator();
 
-//            Iterator<JsonNode> iterator = jsonNode.get("exchanges").iterator();
-//
-//            while (iterator.hasNext()){
-//                JsonNode exchanges = iterator.next();
-//                idata.setExchanges("logo", exchanges.get("logo").toString());
-//                idata.setExchanges("price", exchanges.get("price").toString());
+            while (team.hasNext()){
 
+                JsonNode next = team.next();
+                Team teammember = new Team();
 
-//                idata.setExchanges("id", exchanges.get("id").toString());
-//                idata.setExchanges("name", exchanges.get("name").toString());
-//                idata.setExchanges("currency", exchanges.get("currency").toString());
-//                idata.setExchanges("roi", exchanges.get("roi").toString());
-//            }
+                teammember.setName(deleteCommas(next.get("name").toString()));
+                teammember.setTitle(deleteCommas(next.get("title").toString()));
+                teammember.setUrl(deleteCommas(next.get("url").toString()));
+                teammember.setLinks(deleteCommas(next.get("links").toString()));
+                teammember.setPhoto(deleteCommas(next.get("photo").toString()));
+                idata.setCrew(teammember);
+            }
 
-            Iterator<JsonNode> iterator = jsonNode.get("categories").iterator();
+            Iterator<JsonNode> echange = jsonNode.get("exchanges").iterator();
 
-            while (iterator.hasNext()){
-                JsonNode categories = iterator.next();
+            while (echange.hasNext()){
+                JsonNode exchanges = echange.next();
+
+                Exchange exchange = new Exchange();
+                exchange.setLogo(deleteCommas(exchanges.get("logo").toString()));
+                exchange.setPrice(deleteCommas(exchanges.get("price").toString()));
+                exchange.setName(deleteCommas(exchanges.get("name").toString()));
+                exchange.setCurrency(deleteCommas(exchanges.get("currency").toString()));
+                exchange.setLogo(deleteCommas(exchanges.get("roi").toString()));
+                idata.setEchanges(exchange);
+            }
+
+            Iterator<JsonNode> iterator2 = jsonNode.get("categories").iterator();
+
+            while (iterator2.hasNext()) {
+                JsonNode categories = iterator2.next();
                 idata.setCategories("id", categories.get("id").toString());
                 idata.setCategories("name", categories.get("name").toString());
             }
 
 
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             return idata;
         }
-
 
 
         return idata;
     }
 
     private String deleteCommas(String old) {
+        if (old.length() > 2)
         return old.substring(1, old.length() - 1);
+        else
+            return old;
     }
 
     private String HMAC384sign(String private_key, String data) {
@@ -321,7 +331,6 @@ public class RestServiceImpl implements RestClientService {
             return "";
         }
     }
-
 
     @Override
     public List<Coin> getCoins() {

@@ -3,7 +3,7 @@
 <jsp:include page="template/header.jsp"/>
 
 
-<div class="container ">
+<div class="container bg-white">
     <div class="row">
         <div class="col-sm ">
         </div>

@@ -3,6 +3,7 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
           integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
@@ -39,6 +40,7 @@
 
         margin-left: 1.3rem;
     }
+
     .info {
 
         margin-left: 1.3rem;
@@ -50,8 +52,54 @@
         height: 20rem;
     }
 
+    div.scrollup {
+        position: fixed; /* фиксированная позиция */
+        color: #fff; /* цвет текста */
+        background-color: #286090; /* цвет заднего фона */
+        right: 20px; /* расстояние от правого края */
+        bottom: 0px; /* расстояние от нижнего края */
+        padding: 4px 10px; /* отступы до содержимого блока */
+        font-size: 20px; /* размер шрифта (иконки) */
+        border-top-left-radius: 4px; /* скругление верхнего левого угла */
+        border-top-right-radius: 4px; /* скругление верхнего правого угла */
+        cursor: pointer; /* форма курсора */
+        display: none; /* не отображать элемент */
+        text-align: center; /*выравнивание содержимого элемента по центру */
+    }
+
+    div.scrollup:hover {
+        background-color: #000; /* цвет заднего фона при наведении */
+    }
+
 
 </style>
+
+
+<script>
+    $(function () {
+        // при нажатии на кнопку scrollup
+        $('.scrollup').click(function () {
+            // переместиться в верхнюю часть страницы
+            $("html, body").animate({
+                scrollTop: 0
+            }, 1000);
+        })
+    })
+
+    // при прокрутке окна (window)
+    $(window).scroll(function () {
+        // если пользователь прокрутил страницу более чем на 200px
+        if ($(this).scrollTop() > 200) {
+            // то сделать кнопку scrollup видимой
+            $('.scrollup').fadeIn();
+        }
+        // иначе скрыть кнопку scrollup
+        else {
+            $('.scrollup').fadeOut();
+        }
+    });
+
+</script>
 
 <div class="container">
 
@@ -64,25 +112,24 @@
 
 
         <div class="col-md-10">
-
-
             <br/>
             <hr/>
             <div class="row">
 
-                    <div class="col-md">
-                        <img class="img" src="https://icobench.com/images/icos/icons/phoneum.jpg"
-                             alt="https://icobench.com/images/icos/icons/phoneum.jpg"/>
-                    </div>
-                    <div class="col-md-10">
-
-                        <h5 class="title">ICON (blockchain)</h5>
-                        <p class="text">
-                            Viberate is a crowdsourced live music ecosystem and a blockchain-br\nAccepted currencies\r\nETH\r\n\r\n\r\nMinimum goal\</p>
-                    </div>
-                    <br/>
-
+                <div class="col-md">
+                    <img class="img" src="https://icobench.com/images/icos/icons/phoneum.jpg"
+                         alt="https://icobench.com/images/icos/icons/phoneum.jpg"/>
                 </div>
+                <div class="col-md-10">
+
+                    <h5 class="title">ICON (blockchain)</h5>
+                    <p class="text">
+                        Viberate is a crowdsourced live music ecosystem and a blockchain-br\nAccepted
+                        currencies\r\nETH\r\n\r\n\r\nMinimum goal\</p>
+                </div>
+                <br/>
+
+            </div>
             <br/>
             <hr/>
             <div class="row">
@@ -129,7 +176,6 @@
                         </ul>
                     </div>
 
-
                 </div>
 
             </div>
@@ -156,7 +202,7 @@
                             <p class="font-weight-bold">price : 1$</p>
                             <p class="font-weight-bold">tokens: 12000000</p>
                             <p class="font-weight-bold">hard cap : $12 500 000</p>
-                            <p class="font-weight-bold">soft cap  : $1 000 000</p>
+                            <p class="font-weight-bold">soft cap : $1 000 000</p>
                             <p class="font-weight-bold">raised: $ 12 000 000</p>
 
                         </div>
@@ -194,8 +240,10 @@
 
         </div>
 
-           <%--empty--%>
+        <%--empty--%>
         <div class="col-md">
+
+
 
         </div>
 

@@ -37,7 +37,6 @@
                 </c:forEach>
             </ul>
 
-
             <!-- Tab panes -->
             <div class="tab-content">
                 <h2>Navigation Tabs</h2>

@@ -2,26 +2,41 @@ package com.cryptoeagle.entity.crypto;
 
 import com.cryptoeagle.entity.BaseEntity;
 import com.cryptoeagle.entity.Ico;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 
+@Getter
+@Setter
 @Entity
 public class Idata extends BaseEntity {
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private Map<String, String> links = new HashMap<>();
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private Map<String, String> finance= new HashMap<>();
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private Map<String, String> categories= new HashMap<>();
-    @ElementCollection
-    private Map<String, String> team= new HashMap<>();
-    @ElementCollection
-    private Map<String, String> exchanges= new HashMap<>();
 
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    private Set<Team> crew = new HashSet<>();
+
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    private Set<Exchange> exchanges = new HashSet<>();
+
+    public void setCrew(Team team) {
+        crew.add(team);
+    }
+
+    public Set<Team> getCrew() {
+       return crew;
+    }
 
     public void setLink(String link, String value) {
         links.put(link, value);
@@ -33,14 +48,6 @@ public class Idata extends BaseEntity {
 
     public void setCategories(String link, String value) {
         categories.put(link, value);
-    }
-
-    public void setTeam(String link, String value) {
-        team.put(link, value);
-    }
-
-    public void setExchanges(String link, String value) {
-        exchanges.put(link, value);
     }
 
     public String getLink(String link) {
@@ -55,11 +62,11 @@ public class Idata extends BaseEntity {
         return categories.get(link);
     }
 
-    public String getTeam(String link) {
-        return team.get(link);
+    public void setEchanges(Exchange exchange) {
+        exchanges.add(exchange);
     }
 
-    public String getExchanges(String link) {
-        return exchanges.get(link);
+    public Set<Exchange> getEchanges() {
+        return exchanges;
     }
 }

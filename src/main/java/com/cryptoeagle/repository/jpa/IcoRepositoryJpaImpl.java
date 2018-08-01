@@ -19,9 +19,10 @@ public class IcoRepositoryJpaImpl implements IcoRepository {
     @PersistenceContext
     EntityManager em;
 
+
     @Override
     public List<Ico> getAllico() {
-        return em.createNamedQuery(Ico.GET_ALL,Ico.class)
+        return em.createNamedQuery(Ico.GET_ALL, Ico.class)
                 .getResultList();
     }
 
@@ -36,24 +37,24 @@ public class IcoRepositoryJpaImpl implements IcoRepository {
     @Override
     public List<Ico> getActiveIco() {
         LocalDateTime localDateTime = LocalDateTime.now();
-        return em.createNamedQuery(Ico.GET_ACTIVE,Ico.class)
-                .setParameter("date",localDateTime)
+        return em.createNamedQuery(Ico.GET_ACTIVE, Ico.class)
+                .setParameter("date", localDateTime)
                 .getResultList();
     }
 
     @Override
     public List<Ico> getUpcomingIco() {
         LocalDateTime localDateTime = LocalDateTime.now();
-        return em.createNamedQuery(Ico.GET_UPCOMING,Ico.class)
-                .setParameter("date",localDateTime)
+        return em.createNamedQuery(Ico.GET_UPCOMING, Ico.class)
+                .setParameter("date", localDateTime)
                 .getResultList();
     }
 
     @Override
     public List<Ico> getFinishedIco() {
         LocalDateTime localDateTime = LocalDateTime.now();
-        return em.createNamedQuery(Ico.GET_ENDED,Ico.class)
-                .setParameter("date",localDateTime)
+        return em.createNamedQuery(Ico.GET_ENDED, Ico.class)
+                .setParameter("date", localDateTime)
                 .getResultList();
     }
 
@@ -70,9 +71,16 @@ public class IcoRepositoryJpaImpl implements IcoRepository {
                 .setParameter("id", id)
                 .getSingleResult();
 
-        ico.getData();;
+        ico.getData();
 
         return ico;
+    }
+
+    @Override
+    public Ico getByName(String name) {
+        return em.createNamedQuery(Ico.GET_BY_NAME, Ico.class)
+                .setParameter("name", name)
+                .getSingleResult();
     }
 }
 

@@ -16,6 +16,8 @@ public interface IcoService {
 
     Ico getIcoById(int id);
 
+    Ico getByName(String name);
+
     void updateIcos();
 
     void saveIcos(List<Ico> icos);

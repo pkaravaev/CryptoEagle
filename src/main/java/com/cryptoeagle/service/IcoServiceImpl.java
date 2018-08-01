@@ -51,6 +51,11 @@ public class IcoServiceImpl implements IcoService {
     }
 
     @Override
+    public Ico getByName(String name) {
+        return repository.getByName(name);
+    }
+
+    @Override
     public void updateIcos() {
         repository.deleteAll();
         List<Ico> allFromProvider = clientService.getAllIcosFromIcobench();
