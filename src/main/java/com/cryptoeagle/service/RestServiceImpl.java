@@ -239,7 +239,8 @@ public class RestServiceImpl implements RestClientService {
         try {
             JsonNode links = jsonNode.get("links");
 
-            idata.setIntro(deleteCommas(jsonNode.get("intro").toString()).substring(0, 1000));
+            idata.setIntro(deleteCommas(jsonNode.get("intro").toString()).substring(0, 500).concat("..."));
+
 
             idata.setLink("twitter", deleteCommas(links.get("twitter").toString()));
             idata.setLink("slack", deleteCommas(links.get("slack").toString()));

@@ -92,21 +92,39 @@
                                     </button>
                                 </li>
                                 <li class="list-group-item">
-                                    <button value="${ico.data.getLink("whitepaper")}" type="button"
+                                    <button value="${ico.data.getLink("www")}" type="button"
                                             class="btn btn-secondary btn-sm">White list
                                     </button>
                                 </li>
                                 <li class="list-group-item  ">
 
-                                    <a href="google.com">
-                                        <i class="fab fa-bitcoin fa-lg fa-spin"></i>
+
+                                    <a href="${ico.data.getLink("twitter")}" class="icon-block">
+                                        <i class="fab fa-twitter fa-lg"></i>
+                                    </a>
+                                    <a href="${ico.data.getLink("slack")}" class="icon-block">
+                                        <i class="fab fa-slack fa-lg"></i>
+                                    </a>
+                                    <a href="${ico.data.getLink("facebook")}" class="icon-block">
+                                        <i class="fab fa-facebook fa-lg"></i>
+                                    </a>
+                                    <a href="${ico.data.getLink("youtube")}" class="icon-block">
+                                        <i class="fab fa-youtube fa-lg"></i>
+                                    </a>
+                                    <a href="${ico.data.getLink("telegram")}" class="icon-block">
+                                        <i class="fab fa-telegram fa-lg"></i>
+                                    </a>
+                                    <a href="${ico.data.getLink("github")}" class="icon-block">
+                                        <i class="fab fa-github fa-lg"></i>
+                                    </a>
+                                    <a href="${ico.data.getLink("reddit")}" class="icon-block">
+                                        <i class="fab fa-reddit fa-lg"></i>
+                                    </a>
+                                    <a href="${ico.data.getLink("medium")}" class="icon-block">
+                                        <i class="fab fa-medium fa-lg"></i>
+
                                     </a>
 
-                                    <i class="fab fa-twitter fa-lg"></i>
-                                    <i class="fab fa-github fa-lg"></i>
-                                    <i class="fab fa-reddit fa-lg"></i>
-                                    <i class="fab fa-medium fa-lg"></i>
-                                    <i class="fab fa-bitcoin fa-lg"></i>
 
                                 </li>
 
