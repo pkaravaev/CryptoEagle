@@ -44,7 +44,8 @@
 
 
                         <div class="card  text-white border-white">
-                            <img class="card-img" src="/resources/pic/cryptopic/${item.getRandomPic(20)}.jpg" alt="Card image" width="300" height="250">
+                            <img class="card-img" src="/resources/pic/cryptopic/${item.getRandomPic(20)}.jpg"
+                                 alt="Card image" width="300" height="250">
                             <div class="card-img-overlay">
                                 <h5 class="card-title">"${item.title}"</h5>
                                 <p class="card-text">"${item.description}"</p>
@@ -54,17 +55,21 @@
 
                     </c:when>
 
-                    <c:when test="${i.count < 2}">
+                    <c:when test="${i.count < 5}">
 
 
-                        <div class="card  text-white border-white">
-                            <img class="card-img" src="/resources/pic/cryptopic/${item.getRandomPic(20)}.jpg" alt="Card image" width="150" height="150">
-                            <div class="card-img-overlay">
-                                <h5 class="card-title">"${item.title}"</h5>
-                                <p class="card-text">"${item.description}"</p>
-                                <p class="card-text">Last updated 3 mins ago</p>
+
+
+                            <div class="card" style="width: 15rem;">
+                                <img class="card-img-top" src="/resources/pic/cryptopic/${item.getRandomPic(20)}.jpg"
+                                     alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Card title</h5>
+                                    <p class="card-text">Some quick example text to build on the card title and make up
+                                        the bulk of the card's content.</p>
+                                </div>
                             </div>
-                        </div>
+
 
 
                     </c:when>
@@ -72,7 +77,8 @@
                     <c:when test="${i.count > 10}">
                         <div class="card border-white bg-white">
                             <div class="card-body border-bottom">
-                                <img src="/resources/pic/cryptopic/${item.getRandomPic(20)}.jpg" width="190" height="150"
+                                <img src="/resources/pic/cryptopic/${item.getRandomPic(20)}.jpg" width="190"
+                                     height="150"
                                      class="rounded float-left"
                                      alt="Cannnot load picture!" hspace="5">
                                 <a class="link" href="${item.link}"><h5 class="card-title">${item.title}</h5></a>
@@ -89,10 +95,9 @@
         </div>
 
 
-
         <div class="col-1 bg-white" style="width: 30px">
             <p class="font-weight-bold bg-white " style="width: 250px">TOP 10 GAINS</p>
-            <table  class="table" id="table2">
+            <table class="table" id="table2">
                 <thead class="bg-light">
                 <tr>
                     <th>SYMBOL</th>

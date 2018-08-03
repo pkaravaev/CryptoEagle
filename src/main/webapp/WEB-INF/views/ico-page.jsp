@@ -45,9 +45,6 @@
 
     })
 
-
-
-
 </script>
 
 <jsp:useBean id="icoc" class="com.cryptoeagle.entity.Ico">
