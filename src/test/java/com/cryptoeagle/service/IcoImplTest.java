@@ -17,8 +17,6 @@ public class IcoImplTest extends AbstractTest {
     IcoService icoService;
     @Test
     public void getAll() {
-
-
         List<Ico> upcoming = icoService.getUpcoming();
     }
 

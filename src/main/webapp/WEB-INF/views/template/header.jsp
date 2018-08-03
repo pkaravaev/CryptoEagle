@@ -154,6 +154,7 @@
                         <a class="nav-link " href="/users">USERS</a>
                     </li>
                 </c:when>
+
                 <c:when test="${sessionScope.user ==null}">
                     <li class="nav-item ">
                         <a class="nav-link " href="/login">LOGIN</a>

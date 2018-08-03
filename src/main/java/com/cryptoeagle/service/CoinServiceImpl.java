@@ -29,7 +29,7 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @Service
-@EnableScheduling
+//@EnableScheduling
 public class CoinServiceImpl implements CoinService {
 
     private static final org.slf4j.Logger log = LoggerFactory.getLogger(CoinServiceImpl.class);
@@ -73,7 +73,7 @@ public class CoinServiceImpl implements CoinService {
     }
 
     @Override
-    @Scheduled(fixedDelay = 600000)
+//    @Scheduled(fixedDelay = 600000)
     public void updateCoins() {
         log.info("update coins"+ LocalDateTime.now().toString());
         repository.deleteAll();

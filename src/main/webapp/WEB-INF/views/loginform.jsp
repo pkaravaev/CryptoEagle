@@ -61,7 +61,7 @@
                 <div class="form-check mb-2 mr-sm-2 mb-sm-0">
                     <label class="form-check-label">
                         <input class="form-check-input" name="remember"
-                               type="checkbox" >
+                               type="checkbox">
                         <span style="padding-bottom: .15rem">Remember me</span>
                     </label>
                 </div>
@@ -77,4 +77,5 @@
     </form>
 </div>
 </body>
+
 <jsp:include page="template/footer.jsp"/>
