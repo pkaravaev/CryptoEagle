@@ -38,8 +38,6 @@
         <%--One of three columns--%>
         <%--</div>--%>
         <div class="col-8">
-
-
             <div class="card  text-white border-white">
                 <img class="card-img" src="/resources/pic/cryptopic/${main.getRandomPic(20)}.jpg"
                      alt="Card image" width="300" height="250">
@@ -65,11 +63,10 @@
             </div>
 
             <c:forEach items="${items}" var="item" varStatus="i">
-
                 <div class="card border-white bg-white">
                     <div class="card-body border-bottom">
-                        <img src="/resources/pic/cryptopic/${item.getRandomPic(20)}.jpg" width="190"
-                             height="150"
+                        <img src="/resources/pic/cryptopic/${item.getRandomPic(20)}.jpg" width="240"
+                             height="180"
                              class="rounded float-left"
                              alt="Cannnot load picture!" hspace="5">
                         <a class="link" href="${item.link}"><h5 class="card-title">${item.title}</h5></a>
@@ -81,8 +78,6 @@
 
             </c:forEach>
         </div>
-
-
         <div class="col-1 bg-white" style="width: 30px">
             <p class="font-weight-bold bg-white " style="width: 250px">TOP 10 GAINS</p>
             <table class="table" id="table2">

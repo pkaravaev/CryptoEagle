@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 
 
 @Controller
+@SessionAttributes("user")
 public class MainController {
 
     @Autowired
@@ -94,11 +95,9 @@ public class MainController {
     @RequestMapping("/blogs")
     public String blogs(Model model) {
 
-        List<Blog> blogs = blogService.findall(100);
-        List<Item> items = itemService.findall();
-
-        AppUser user = userService.get(100);
-        model.addAttribute("user", user);
+        AppUser user = (AppUser)model.asMap().get("user");
+        List<Blog> blogs = blogService.findall(user.getId());
+        model.addAttribute("blogs", blogs);
         return "blogs";
     }
 

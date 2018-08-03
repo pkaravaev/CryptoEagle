@@ -1,3 +1,5 @@
+<%@ taglib prefix="C" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="taglib.jsp"/>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -134,22 +136,38 @@
             <li class="nav-item">
                 <a class="nav-link " href="/ico-stats">ICO STATS</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/blogs">MY ACCOUNT</a>
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link " href="/login">LOGIN</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link " href="/logout">LOGOUT</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link " href="/register">REGISTER</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link " href="/users">USERS</a>
-            </li>
 
+            <c:choose>
+                <c:when test="${sessionScope.user !=null}">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/blogs">MY ACCOUNT</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link " href="/logout">LOGOUT</a>
+                    </li>
+
+                </c:when>
+
+                <c:when test="${sessionScope.user.admin ==true}">
+                    <li class="nav-item">
+                        <a class="nav-link " href="/users">USERS</a>
+                    </li>
+                </c:when>
+                <c:when test="${sessionScope.user ==null}">
+                    <li class="nav-item ">
+                        <a class="nav-link " href="/login">LOGIN</a>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a class="nav-link " href="/register">REGISTER</a>
+                    </li>
+
+
+                </c:when>
+
+            </c:choose>
         </ul>
     </div>
 </nav>

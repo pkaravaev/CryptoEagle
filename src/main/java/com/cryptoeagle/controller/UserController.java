@@ -7,10 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
+@SessionAttributes("user")
 public class UserController {
 
     @Autowired
@@ -21,16 +24,28 @@ public class UserController {
         return "loginform";
     }
 
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logout(HttpSession session, SessionStatus status) {
+
+        status.setComplete();
+        session.removeAttribute("user");
+
+        return "redirect:/";
+    }
+
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String logining(@RequestParam String email, @RequestParam String password) {
+    public String logining(@RequestParam String email, @RequestParam String password, Model model) {
         AppUser appUser = userService.getByEmail(email);
+
+        model.addAttribute("user", appUser);
+
         return "redirect:/";
     }
 
     @RequestMapping("/users")
     public String users(Model model) {
         List<AppUser> appUsers = userService.findAll();
-        model.addAttribute("users",appUsers);
+        model.addAttribute("users", appUsers);
         return "users";
     }
 
@@ -60,6 +75,6 @@ public class UserController {
 
         AppUser appUser = new AppUser(name, email, password, true, false);
         userService.save(appUser);
-        return "register";
+        return "redirect:/login";
     }
 }
