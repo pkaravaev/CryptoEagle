@@ -31,7 +31,7 @@ public class RestServiceImplTest extends AbstractTest {
 
         icoService.deletAll();
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 331; i++) {
             List<Ico> allIcoByPage = clientService.getIcoByPage(i);
             for(Ico ico : allIcoByPage){
                 Idata dataForIco = clientService.getDataForIco(ico.getId());
@@ -76,4 +76,6 @@ public class RestServiceImplTest extends AbstractTest {
     @Test
     public void getAllCoinsFromProvider() {
     }
+
+
 }

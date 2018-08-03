@@ -3,6 +3,53 @@
 <jsp:include page="template/header.jsp"/>
 
 
+<style>
+
+    .card {
+        height: 13rem;
+        width: 8rem;
+    }
+
+    /*.card-img-top {*/
+
+        /*height: 8rem;*/
+        /*width: 8rem;*/
+    /*}*/
+
+    .card-columns {
+        column-count: 4;
+    }
+
+</style>
+
+<script>
+
+    $(document).ready(function () {
+        $(".card").mouseenter(function () {
+
+            $(this).css('cursor', 'pointer');
+            $(this).removeClass("bg-white");
+            $(this).addClass("bg-light")
+        })
+
+        $(".card").mouseleave(function () {
+            $(this).removeClass("bg-light");
+            $(this).addClass("bg-white")
+        })
+
+        $(".card").click(function () {
+
+            var name =  $(this).find("a").text();
+            window.location = name;
+        })
+
+    })
+
+
+
+
+</script>
+
 <jsp:useBean id="icoc" class="com.cryptoeagle.entity.Ico">
     <div class="container bg-white">
 
@@ -76,13 +123,11 @@
                                     <fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${parsedDateTime1}"
                                                     var="preIcoEnd"/>
 
-
-                                    <h6>Toke sales : Ended</h6>
-                                    <h6>Toke pre sale : ${preIcoStart}</h6>
-                                    <h6>Toke end pre sale : ${preIcoEnd}</h6>
-                                    <h6>Toke start sale : ${icoStart}</h6>
-                                    <h6>Toke end sale : ${icoEnd}</h6>
-                                    <h6>Raised : Ended</h6>
+                                    <h6 class="text-center">Toke sales : Ended</h6>
+                                    <h6 class="text-center">Toke pre sale : ${preIcoStart}</h6>
+                                    <h6 class="text-center">Toke end pre sale : ${preIcoEnd}</h6>
+                                    <h6 class="text-center">Toke start sale : ${icoStart}</h6>
+                                    <h6 class="text-center">Toke end sale : ${icoEnd}</h6>
 
                                 </li>
 
@@ -175,23 +220,42 @@
 
                     <div class="tab-pane " id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
 
+                        <div class="card-columns">
 
+                            <c:forEach items="${ico.data.getCrew()}" var="team">
+
+                                <div class="card border-white">
+
+                                    <div class="card-body">
+                                        <img class="rounded-circle" src="${team.photo}" alt="Card image cap">
+                                        <p class="card-text">${team.name}</p>
+                                        <h6 class="card-title">${team.title}</h6>
+
+                                        <a href="${team.links}"></a>
+                                    </div>
+                                </div>
+                                <br>
+
+                            </c:forEach>
+                        </div>
                     </div>
                 </div>
-
-                <br/>
-                <br/>
-                <br/>
-
-                <hr/>
-
             </div>
-                <%--empty--%>
-            <div class="col-md">
-
-            </div>
-
         </div>
+
+        <br/>
+        <br/>
+        <br/>
+
+        <hr/>
+
+    </div>
+    <%--empty--%>
+    <div class="col-md">
+
+    </div>
+
+    </div>
 
     </div>
 </jsp:useBean>

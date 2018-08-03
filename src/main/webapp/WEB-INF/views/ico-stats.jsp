@@ -22,7 +22,6 @@
                     <th>START TIME</th>
                     <th>END TIME</th>
                     <th>RATING</th>
-
                 </tr>
                 </thead>
                 <tbody>

@@ -22,5 +22,11 @@ function card() {
        var name =  $(this).find(".card-title").text();
         window.location ='/ico-page/' + name;
     })
+    $(".card").click(function () {
+
+        var name =  $(this).find("a").text();
+        window.location = name;
+    })
+
 
 }
