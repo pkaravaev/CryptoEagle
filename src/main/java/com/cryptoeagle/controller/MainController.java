@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -49,13 +50,24 @@ public class MainController {
 
     @RequestMapping("/")
     public String welcome(Model model) {
+
         List<Item> items = rssService.getItems("https://www.coindesk.com/feed/");
+
+        Item main = items.get(0);
+
+        List<Item> middle = new ArrayList<>();
+        middle.add(items.get(1));
+        middle.add(items.get(2));
+        middle.add(items.get(3));
+
         List<Coin> topcoins = coinService.getTopGainCoins();
         List<Coin> losercoins = coinService.getTopLoserCoins();
 
         model.addAttribute("losercoins",losercoins);
         model.addAttribute("topcoins",topcoins);
         model.addAttribute("items",items);
+        model.addAttribute("main",main);
+        model.addAttribute("middle",middle);
 
         return "welcome";
     }

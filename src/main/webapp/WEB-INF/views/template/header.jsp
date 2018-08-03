@@ -51,7 +51,6 @@
         // } );
 
 
-
         $(".nav-item").mouseleave(function () {
             $(this).removeClass("font-weight-bold");
         })
@@ -67,41 +66,39 @@
 
 <nav style="height: 6rem" class="navbar navbar-expand-lg navbar-light bg-light ">
     <div style="margin-left: 17rem">
-    <a class="navbar-brand" href="/">CRYPTO EAGLE</a>
-    <img  src="/resources/pic/eagle.png" width="120" height="90" alt="unavalible" class="img-thumbnail-light">
+        <a class="navbar-brand" href="/">CRYPTO EAGLE</a>
+        <img src="/resources/pic/eagle.png" width="120" height="90" alt="unavalible" class="img-thumbnail-light">
     </div>
 
     <div style="margin-left: 10rem" class="row">
 
         <div class="col-md">
-           <h6 id="symbolb"> </h6>
+            <h6 id="symbolb"></h6>
             <h6 id="priceb"></h6>
             <h6 id="changeb"></h6>
         </div>
-
         <br>
 
         <div class="col-md">
-                <h6 id="symbole"> </h6>
-                <h6 id="pricee"></h6>
-                <h6 id="changee"></h6>
-
+            <h6 id="symbole"></h6>
+            <h6 id="pricee"></h6>
+            <h6 id="changee"></h6>
         </div>
 
         <div class="col-md">
-            <h6 id="symboln"> </h6>
+            <h6 id="symboln"></h6>
             <h6 id="pricen"></h6>
             <h6 id="changen"></h6>
         </div>
 
         <div class="col-md">
-            <h6 id="symbolxr"> </h6>
+            <h6 id="symbolxr"></h6>
             <h6 id="pricexr"></h6>
             <h6 id="changexr"></h6>
         </div>
 
         <div class="col-md">
-            <h6 id="symboleo"> </h6>
+            <h6 id="symboleo"></h6>
             <h6 id="priceeo"></h6>
             <h6 id="changeeo"></h6>
         </div>
@@ -115,12 +112,6 @@
 <hr/>
 
 <nav style="height: 0.7rem" class="navbar navbar-expand-lg navbar-light bg-light ">
-    <%--<div style="margin-left: 150px">--%>
-        <%--<a class="navbar-brand" href="/">CRYPTO EAGLE</a>--%>
-        <%--<img  src="/resources/pic/eagle.png" width="120" height="90" alt="unavalible" class="img-thumbnail-light">--%>
-    <%--</div>--%>
-
-
 
     <div style="margin-left: 22rem" class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
@@ -147,7 +138,7 @@
                 <a class="nav-link" href="/blogs">MY ACCOUNT</a>
             </li>
             <li class="nav-item ">
-                <a  class="nav-link " href="/login">LOGIN</a>
+                <a class="nav-link " href="/login">LOGIN</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link " href="/logout">LOGOUT</a>
@@ -162,8 +153,6 @@
         </ul>
     </div>
 </nav>
-
-
 
 
 <hr>

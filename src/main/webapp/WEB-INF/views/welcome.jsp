@@ -38,59 +38,47 @@
         <%--One of three columns--%>
         <%--</div>--%>
         <div class="col-8">
+
+
+            <div class="card  text-white border-white">
+                <img class="card-img" src="/resources/pic/cryptopic/${main.getRandomPic(20)}.jpg"
+                     alt="Card image" width="300" height="250">
+                <div class="card-img-overlay">
+                    <h5 class="card-title">"${main.title}"</h5>
+                    <p class="card-text">"${main.description}"</p>
+                </div>
+            </div>
+
+            <div class="card-columns">
+
+                <c:forEach items="${middle}" var="item" varStatus="i">
+                    <div class="card" style="width: 15rem;">
+                        <img class="card-img-top" src="/resources/pic/cryptopic/${item.getRandomPic(20)}.jpg"
+                             alt="Card image cap">
+                        <div class="card-img-overlay">
+                            <h5 class="card-title">${item.title}</h5>
+                            <p class="card-text">${item.description}</p>
+                        </div>
+                    </div>
+                </c:forEach>
+
+            </div>
+
             <c:forEach items="${items}" var="item" varStatus="i">
-                <c:choose>
-                    <c:when test="${i.count < 2}">
 
+                <div class="card border-white bg-white">
+                    <div class="card-body border-bottom">
+                        <img src="/resources/pic/cryptopic/${item.getRandomPic(20)}.jpg" width="190"
+                             height="150"
+                             class="rounded float-left"
+                             alt="Cannnot load picture!" hspace="5">
+                        <a class="link" href="${item.link}"><h5 class="card-title">${item.title}</h5></a>
+                        <p class="font-weight-light">${item.publishDate}</p>
+                        <p class="card-text rounded float-center">${item.description}</p>
 
-                        <div class="card  text-white border-white">
-                            <img class="card-img" src="/resources/pic/cryptopic/${item.getRandomPic(20)}.jpg"
-                                 alt="Card image" width="300" height="250">
-                            <div class="card-img-overlay">
-                                <h5 class="card-title">"${item.title}"</h5>
-                                <p class="card-text">"${item.description}"</p>
-                            </div>
-                        </div>
+                    </div>
+                </div>
 
-
-                    </c:when>
-
-                    <c:when test="${i.count < 5}">
-
-
-
-
-                            <div class="card" style="width: 15rem;">
-                                <img class="card-img-top" src="/resources/pic/cryptopic/${item.getRandomPic(20)}.jpg"
-                                     alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up
-                                        the bulk of the card's content.</p>
-                                </div>
-                            </div>
-
-
-
-                    </c:when>
-
-                    <c:when test="${i.count > 10}">
-                        <div class="card border-white bg-white">
-                            <div class="card-body border-bottom">
-                                <img src="/resources/pic/cryptopic/${item.getRandomPic(20)}.jpg" width="190"
-                                     height="150"
-                                     class="rounded float-left"
-                                     alt="Cannnot load picture!" hspace="5">
-                                <a class="link" href="${item.link}"><h5 class="card-title">${item.title}</h5></a>
-                                    <%--<p class="card-text rounded float-center">${item.publishDate}</p>--%>
-                                <p class="font-weight-light">${item.publishDate}</p>
-                                <p class="card-text rounded float-center">${item.description}</p>
-
-                                    <%--<h5 class="blockquote-footer">${item.publishDate}</h5>--%>
-                            </div>
-                        </div>
-                    </c:when>
-                </c:choose>
             </c:forEach>
         </div>
 
