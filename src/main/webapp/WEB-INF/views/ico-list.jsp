@@ -42,10 +42,14 @@
             $(this).css('cursor', 'pointer');
             $(this).removeClass("bg-white");
             $(this).addClass("bg-light")
+            $(this).addClass("shadow-sm p-3 mb-5 bg-white rounded");
+
+
         })
 
         $(".card").mouseleave(function () {
             $(this).removeClass("bg-light");
+            $(this).removeClass("shadow-sm p-3 mb-5 bg-white rounded");
             $(this).addClass("bg-white")
         })
 
@@ -64,7 +68,7 @@
 
             <c:forEach items="${activeIco}" var="ico">
                 <br/>
-                <div class="card">
+                <div class="card  border-0 ">
                     <div class="row ">
                         <div class="col-auto">
                             <img src="${ico.logolink}" class="img-fluid" alt="">
@@ -76,7 +80,7 @@
                         </div>
                     </div>
 
-                    <div class="card-footer">
+                    <div class=" bg-whiter border-0">
 
                         <p class="text-right">Starts in ${ico.icoStart}</p>
                         <p class="text-right">Ended in ${ico.icoEnd}</p>
@@ -91,7 +95,7 @@
             <h1 class="text-center">UPCOMING</h1>
             <c:forEach items="${upcoming}" var="ico">
                 <br/>
-                <div class="card">
+                <div class="card  border-0 ">
                     <div class="row ">
                         <div class="col">
                             <img src="${ico.logolink}" class="img-fluid" alt="">
@@ -103,7 +107,7 @@
                         </div>
                     </div>
 
-                    <div class="card-footer">
+                    <div class=" bg-whiter border-0">
 
                         <p class="text-right">Starts in ${ico.icoStart}</p>
 
@@ -117,7 +121,7 @@
             <h1 class="text-center">ENDED</h1>
             <c:forEach items="${finished}" var="ico">
                 <br/>
-                <div class="card">
+                <div class="card border-0 ">
                     <div class="row no-gutters">
                         <div class="col-auto">
                             <img src="${ico.logolink}" class="img-fluid" alt="">
@@ -130,7 +134,7 @@
                         </div>
                     </div>
 
-                    <div class="card-footer">
+                    <div class=" bg-whiter border-0">
                         <p class="text-right">Ended in ${ico.icoEnd}</p>
                     </div>
 

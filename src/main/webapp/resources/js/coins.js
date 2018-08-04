@@ -4,6 +4,7 @@ $(document).ready(function () {
 
 
 })
+
 function getCoins() {
     $.ajax({
         url: '/ajax/coins',
@@ -20,36 +21,34 @@ function getCoins() {
 
 
                 summary += " " + symbol + "  " + price + "$  ";
-                if(symbol == 'BTC') {
+                if (symbol == 'BTC') {
                     $("#symbolb").text(symbol);
                     $("#priceb").text(price.toFixed(2) + '$');
 
-                    if (change > 0)
-                    {
-                        $("#changeb").css('color','green');
+                    if (change > 0) {
+                        $("#changeb").css('color', 'green');
                     }
                     else {
-                        $("#changeb").css('color','red');
+                        $("#changeb").css('color', 'red');
 
                     }
                     $("#changeb").text(change + '%');
                 }
 
-                if(symbol == 'ETH') {
+                if (symbol == 'ETH') {
                     $("#symbole").text(symbol);
                     $("#pricee").text(price.toFixed(2) + '$');
-                    if (change > 0)
-                    {
-                        $("#changee").css('color','green');
+                    if (change > 0) {
+                        $("#changee").css('color', 'green');
                     }
                     else {
-                        $("#changee").css('color','red');
+                        $("#changee").css('color', 'red');
 
                     }
                     $("#changee").text(change + '%');
                 }
 
-                if(symbol == 'NEO') {
+                if (symbol == 'NEO') {
                     $("#symboln").text(symbol);
                     $("#pricen").text(price.toFixed(2) + '$');
                     if (change > 0) {
@@ -62,29 +61,27 @@ function getCoins() {
                     $("#changen").text(change + '%');
                 }
 
-                    if(symbol == 'EOS') {
-                        $("#symboleo").text(symbol);
-                        $("#priceeo").text(price.toFixed(2) + '$');
-                        if (change > 0)
-                        {
-                            $("#changeeo").css('color','green');
-                        }
-                        else {
-                            $("#changeeo").css('color','red');
-
-                        }
-                        $("#changeeo").text(change + '%');
-                }
-
-                if(symbol == 'XRP') {
-                    $("#symbolxr").text(symbol);
-                    $("#pricexr").text(price.toFixed(2) + '$');
-                    if (change > 0)
-                    {
-                        $("#changexr").css('color','green');
+                if (symbol == 'EOS') {
+                    $("#symboleo").text(symbol);
+                    $("#priceeo").text(price.toFixed(2) + '$');
+                    if (change > 0) {
+                        $("#changeeo").css('color', 'green');
                     }
                     else {
-                        $("#changexr").css('color','red');
+                        $("#changeeo").css('color', 'red');
+
+                    }
+                    $("#changeeo").text(change + '%');
+                }
+
+                if (symbol == 'XRP') {
+                    $("#symbolxr").text(symbol);
+                    $("#pricexr").text(price.toFixed(2) + '$');
+                    if (change > 0) {
+                        $("#changexr").css('color', 'green');
+                    }
+                    else {
+                        $("#changexr").css('color', 'red');
 
                     }
                     $("#changexr").text(change + '%');
@@ -100,13 +97,12 @@ function getCoins() {
 }
 
 
-
 function getPrice() {
     $.ajax({
 
-        type:"POST",
+        type: "POST",
         url: "/ajax/price",
-        success :function (data) {
+        success: function (data) {
             $(".h1").text(data.price);
         }
 
