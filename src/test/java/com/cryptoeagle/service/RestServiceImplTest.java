@@ -1,81 +1,65 @@
 package com.cryptoeagle.service;
 
+import com.cryptoeagle.entity.Coin;
 import com.cryptoeagle.entity.Ico;
+import com.cryptoeagle.entity.PictureCoin;
 import com.cryptoeagle.entity.crypto.Idata;
-import com.cryptoeagle.repository.AbstractTest;
-import com.cryptoeagle.service.abst.IcoService;
-import com.cryptoeagle.service.abst.RestClientService;
+import com.cryptoeagle.service.abst.RestService;
+import com.cryptoeagle.service.abst.RssService;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.List;
 
+import static org.junit.Assert.*;
 
-@ActiveProfiles(profiles = {"Jpa", "PostgreSQL"})
+
 public class RestServiceImplTest extends AbstractTest {
 
     @Autowired
-    RestClientService clientService;
-
-    @PersistenceContext
-    EntityManager entityManager;
-
-    @Autowired
-    IcoService icoService;
+    RestServiceImpl service;
 
     @Test
     public void getIcos() {
-
-        icoService.deletAll();
-
-        for (int i = 0; i < 331; i++) {
-            List<Ico> allIcoByPage = clientService.getIcoByPage(i);
-            for(Ico ico : allIcoByPage){
-                Idata dataForIco = clientService.getDataForIco(ico.getId());
-
-                ico.setData(dataForIco);
-            }
-            System.out.println("get ico page " + i);
-            icoService.saveIcos(allIcoByPage);
-        }
+        List<Ico> icos = service.getIcos();
+        assertTrue(icos.size() > 50);
     }
 
     @Test
-    public void getUpcomingFromProvider() {
+    public void getAllIcosFromIcobench() {
 
-        List<Ico> upcoming = icoService.getUpcoming();
-        List<Ico> finished = icoService.getFinished();
-        List<Ico> active = icoService.getActiveIco();
+        List<Ico> icos = service.getAllIcosFromIcobench();
+    }
+    //todo provider not work
+    @Test
+    public void getDataForIco() {
 
+        Idata data = service.getDataForIco(36262);
     }
 
     @Test
-    public void getFinishedFromProvider() {
-        List<Ico> finished = icoService.getFinished();
-    }
-
-    @Test
-    public void getActiveIcoFromProvider() {
-        List<Ico> active = icoService.getActiveIco();
+    public void getIcoByPage() {
+        List<Ico> icoByPage1 = service.getIcoByPage(1);
+        List<Ico> icoByPage5 = service.getIcoByPage(5);
+        List<Ico> icoByPage25 = service.getIcoByPage(25);
+        assertTrue(icoByPage1.size() == 12);
+        assertTrue(icoByPage5.size() == 12);
+        assertTrue(icoByPage25.size() == 12);
     }
 
     @Test
     public void getCoins() {
-        Ico ico = icoService.getIcoById(4042);
-        Idata data = ico.getData();
-
+        List<Coin> coins = service.getCoins();
+        assertTrue(coins.size() > 50);
     }
 
     @Test
     public void getPicCoins() {
+        List<PictureCoin> picCoins = service.getPicCoins();
+        assertTrue(picCoins.size() > 100);
     }
-
-    @Test
-    public void getAllCoinsFromProvider() {
-    }
-
-
 }

@@ -3,7 +3,7 @@ package com.cryptoeagle.service;
 import com.cryptoeagle.entity.Ico;
 import com.cryptoeagle.repository.IcoRepository;
 import com.cryptoeagle.service.abst.IcoService;
-import com.cryptoeagle.service.abst.RestClientService;
+import com.cryptoeagle.service.abst.RestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,7 +18,7 @@ public class IcoServiceImpl implements IcoService {
     IcoRepository repository;
 
     @Autowired
-    RestClientService clientService;
+    RestService clientService;
 
     public List<Ico> getAll() {
        return repository.getAllico();

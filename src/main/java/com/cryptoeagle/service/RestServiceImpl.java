@@ -5,7 +5,7 @@ import com.cryptoeagle.entity.Ico;
 import com.cryptoeagle.entity.crypto.Exchange;
 import com.cryptoeagle.entity.crypto.Idata;
 import com.cryptoeagle.entity.crypto.Team;
-import com.cryptoeagle.service.abst.RestClientService;
+import com.cryptoeagle.service.abst.RestService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.HttpResponse;
@@ -35,7 +35,7 @@ import java.util.Iterator;
 import java.util.List;
 
 @Service
-public class RestServiceImpl implements RestClientService {
+public class RestServiceImpl implements RestService {
 
     private static final String PRIVATE_KEY = "dca6b42f-115d-4892-8827-08bb79275cef";
     private static final String PUBLIC_KEY = "829d6865-c198-4bcf-9675-5ead3802bb9f";

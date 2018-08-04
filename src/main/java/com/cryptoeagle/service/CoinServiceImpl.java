@@ -1,32 +1,16 @@
 package com.cryptoeagle.service;
 
 import com.cryptoeagle.entity.Coin;
-import com.cryptoeagle.entity.PictureCoin;
-import com.cryptoeagle.entity.dto.CryptoCoin;
 import com.cryptoeagle.repository.CoinRepository;
 import com.cryptoeagle.service.abst.CoinService;
-import com.cryptoeagle.service.abst.RestClientService;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.cryptoeagle.service.abst.RestService;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.core.MediaType;
-import java.io.IOException;
-import java.math.BigDecimal;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 @Service
 //@EnableScheduling
@@ -38,7 +22,7 @@ public class CoinServiceImpl implements CoinService {
     CoinRepository repository;
 
     @Autowired
-    RestClientService restClientService;
+    RestService restService;
 
     public List<Coin> getCoins(String... symbols) {
         log.info("get  coins : " + symbols);
@@ -77,7 +61,7 @@ public class CoinServiceImpl implements CoinService {
     public void updateCoins() {
         log.info("update coins"+ LocalDateTime.now().toString());
         repository.deleteAll();
-        List<Coin> allCoinsFromProvider = restClientService.getCoins();
+        List<Coin> allCoinsFromProvider = restService.getCoins();
         repository.saveCoins(allCoinsFromProvider);
     }
 

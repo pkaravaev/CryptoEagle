@@ -24,7 +24,7 @@ public class UserRepositoryJpaImpl implements UserRepository {
             em.persist(appUser);
             return appUser;
         } else {
-           return em.merge(appUser);
+            return em.merge(appUser);
         }
     }
 
@@ -38,8 +38,8 @@ public class UserRepositoryJpaImpl implements UserRepository {
 
     @Override
     public AppUser get(int id) {
-        return (AppUser)em.createNamedQuery(AppUser.GET_BY_ID)
-                .setParameter("id",id)
+        return (AppUser) em.createNamedQuery(AppUser.GET_BY_ID)
+                .setParameter("id", id)
                 .getSingleResult();
     }
 

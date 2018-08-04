@@ -18,4 +18,5 @@ public interface CoinService {
 
     List<Coin> getTopLoserCoins();
 
+
 }

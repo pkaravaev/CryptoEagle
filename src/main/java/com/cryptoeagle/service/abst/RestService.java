@@ -6,7 +6,7 @@ import com.cryptoeagle.entity.crypto.Idata;
 
 import java.util.List;
 
-public interface RestClientService {
+public interface RestService {
 
      List<Ico> getIcos();
 
