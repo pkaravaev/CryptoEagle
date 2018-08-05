@@ -20,6 +20,7 @@ public class IcoServiceImpl implements IcoService {
     @Autowired
     RestService clientService;
 
+
     public List<Ico> getAll() {
        return repository.getAllico();
     }

@@ -1,10 +1,17 @@
 package com.cryptoeagle.service;
 
+import com.cryptoeagle.service.abst.UserService;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import static com.cryptoeagle.TestData.USER1;
+import static com.cryptoeagle.TestData.USER2;
 import static org.junit.Assert.*;
 
 public class UserServiceImplTest  extends AbstractTest{
+
+    @Autowired
+    UserService service;
 
     @Test
     public void findAll() {
@@ -12,10 +19,13 @@ public class UserServiceImplTest  extends AbstractTest{
 
     @Test
     public void save() {
+        service.save(USER1);
     }
 
     @Test
     public void get() {
+
+
     }
 
     @Test

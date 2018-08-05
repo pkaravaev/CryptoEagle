@@ -18,7 +18,6 @@ public class MainControllerTest extends AbstractControllerTest {
     @Test
     public void welcome() {
 
-
     }
 
     @Test

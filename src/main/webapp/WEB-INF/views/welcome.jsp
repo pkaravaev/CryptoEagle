@@ -32,18 +32,18 @@
 
 </script>
 
-<div class="container">
+<div class="container bg-light">
     <div class="row bg-white">
         <%--<div class="col-sm">--%>
         <%--One of three columns--%>
         <%--</div>--%>
         <div class="col-8">
             <div class="card  text-white border-white">
-                <img class="card-img" src="/resources/pic/cryptopic/${main.getRandomPic(20)}.jpg"
+                <img class="card-img" src="/resources/pic/cryptopic/101.png"
                      alt="Card image" width="300" height="250">
                 <div class="card-img-overlay">
-                    <h5 class="card-title">"${main.title}"</h5>
-                    <p class="card-text">"${main.description}"</p>
+                    <h5 class="card-title text-dark">"${main.title}"</h5>
+                    <p class="card-text text-dark">"${main.description}"</p>
                 </div>
             </div>
 
@@ -51,7 +51,7 @@
 
                 <c:forEach items="${middle}" var="item" varStatus="i">
                     <div class="card" style="width: 15rem;">
-                        <img class="card-img-top" src="/resources/pic/cryptopic/${item.getRandomPic(20)}.jpg"
+                        <img style="height: 15rem" class="card-img-top" src="/resources/pic/cryptopic/${item.getRandomPic(20)}.jpg"
                              alt="Card image cap">
                         <div class="card-img-overlay">
                             <h5 class="card-title">${item.title}</h5>
@@ -59,7 +59,6 @@
                         </div>
                     </div>
                 </c:forEach>
-
             </div>
 
             <c:forEach items="${items}" var="item" varStatus="i">
@@ -75,7 +74,6 @@
 
                     </div>
                 </div>
-
             </c:forEach>
         </div>
         <div class="col-1 bg-white" style="width: 30px">
