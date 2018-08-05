@@ -32,5 +32,6 @@ public class CoinServiceImplTest extends AbstractTest{
 
         service.updateCoins();
 
+
     }
 }

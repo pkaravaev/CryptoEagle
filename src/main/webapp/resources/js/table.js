@@ -4,6 +4,11 @@ $(document).ready(function () {
     tt();
     card();
 
+    $("#login").click(function () {
+        var href = $(this).attr('href');
+        $(href).modal('show')
+    })
+
 })
 
 function tt() {

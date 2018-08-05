@@ -7,12 +7,13 @@
         <div class="col-md ">
 
         </div>
+
         <div class="col-md-8">
             <h1 class="font-italic"> Ooops Error!!</h1>
             <img src="/resources/pic/eagle.png" height="500" width="700"/>
         </div>
-        <div class="col-md ">
 
+        <div class="col-md ">
 
         </div>
     </div>

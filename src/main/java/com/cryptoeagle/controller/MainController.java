@@ -103,8 +103,8 @@ public class MainController {
 
     @RequestMapping("/test")
     public String test(Model model) {
-
-
+        List<Item> items = rssService.getItems("https://www.coindesk.com/feed/");
+        model.addAttribute("items",items);
         return "test";
     }
 

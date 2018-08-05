@@ -5,12 +5,12 @@
 
 <div class="container bg-white">
     <div class="row">
+
         <div class="col-sm ">
 
         </div>
 
         <div class="col-md-12">
-
 
             <table id="data-table" class="table">
                 <br/>
@@ -46,16 +46,18 @@
 
                     </tr>
                 </c:forEach>
-
                 </tbody>
             </table>
             <br/>
         </div>
+
     </div>
+
     <div class="col-sm ">
 
 
     </div>
+
 </div>
 </div>
 
