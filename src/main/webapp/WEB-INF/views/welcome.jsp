@@ -5,26 +5,34 @@
 <script>
     $(document).ready(function () {
 
-        $(".card").click(function () {
+        $(".card").dblclick(function () {
             var href =  $(this).find(".href").text();
             $(location).attr("href", href);
         })
+
         $(".card").mouseenter(function () {
             $(this).css('cursor', 'pointer');
             $(this).addClass("animated shake")
+
+        })
+
+        $(".card").click(function () {
+            $(this).css('cursor', 'pointer');
+            // $(this).addClass("animated shake")
 
             var title =  $(this).find(".title").text();
             var description =  $(this).find(".description").text();
             var date =  $(this).find(".date").text();
 
 
-            $(this).append("<div class=\"card-img-overlay bg-black animated bounceInUp\">\n" +
+            $(this).append("<div class=\"card-img-overlay  animated bounceInUp\">\n" +
                 "                    <h4 class=\"card-title text-white brown darken-2\">" + title+ " </h4>\n" +
                 "                    <p class=\"card-text text-white brown darken-2\"> " + description+ " </p>\n" +
                 "                    <p class=\"card-text text-white brown darken-2\"> " + date+ " </p>\n" +
                 "                </div>")
 
         })
+
         $(".card").mouseleave(function () {
 
             $(this).find(".card-img-overlay").removeClass("animated bounceInUp")
@@ -49,7 +57,11 @@
 
         <div class="col">
 
-            <div class="card rounded example hoverable ">
+            <h4 class="font-weight-bold">Crypto news</h4>
+
+            <hr  style="size: 4rem" color="#795548"/>
+
+            <div id="bigCard" class="card hoverable rounded example job ">
                 <img style="height: 15rem" alt="Card image cap" class="card-img-top img-fluid"
                      src="/resources/pic/l/l${main.getRandomPic(5)}.jpg">
                 <div class="card-block">
@@ -67,7 +79,7 @@
 
             <div class="card-deck  ">
                 <c:forEach items="${middle}" var="item">
-                    <div style="width: 20rem;height: 20rem" class="card example hoverable">
+                    <div style="width: 20rem;height: 20rem" class="card hoverable  ">
                         <img  alt="Card image cap" class="card-img-top img-fluid "
                              src="/resources/pic/m/m${item.getRandomPic(5)}.jpg">
                         <div class="card-block">
@@ -141,22 +153,20 @@
     </div>
 
 
-</div>
 
-<div class="container">
+
+
 
     <div class="row">
-        <%--<div class="col">--%>
 
-        <%--</div>--%>
         <div class="col">
             <div class="card-columns">
 
-                <c:forEach items="${items}" var="item" >
+                <c:forEach items="${items}" var="item" varStatus="i" >
                     <!--Panel-->
-                    <div style="width: 22rem;height: 22rem" class="card example hoverable">
-                        <img alt="Card image cap" class="card-img-top img-fluid"
-                             src="/resources/pic/m/m4.jpg">
+                    <div  class="card hoverable ">
+                        <img alt="Card  image cap" class="card-img-top img-fluid"
+                             src="/resources/pic/m/m${i.count}.jpg">
                         <div class="card-block ">
                             <h4 class="card-title font-weight-bold ">${item.title}</h4>
                         </div>
@@ -171,12 +181,22 @@
                     <!--/.Panel-->
                 </c:forEach>
                 <!--/.Panel-->
-            </div>
-        </div>
-        <%--<div class="col">--%>
 
-        <%--</div>--%>
+            </div>
+
+
+            <h4 class="font-weight-bold">Ico news</h4>
+
+            <hr  style="size: 4rem" color="#795548"/>
+        </div>
+
     </div>
+
+</div>
+
+<div class="container">
+
+
 </div>
 
 

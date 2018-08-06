@@ -1,141 +1,88 @@
 
-<hr>
+
 </body>
 
-<footer class="page-footer font-small unique-color-dark">
+<!-- Footer -->
+<footer class="page-footer font-weight-bold brown darken-2">
 
-    <!-- Footer -->
-    <footer class="page-footer font-small mdb-color pt-4">
+    <!-- Footer Links -->
+    <div class="container-fluid text-center text-md-left">
 
-        <!-- Footer Links -->
-        <div class="container text-center text-md-left">
+        <!-- Grid row -->
+        <div class="row">
 
-            <!-- Footer links -->
-            <div class="row text-center text-md-left mt-3 pb-3">
+            <!-- Grid column -->
+            <div class="col-md-6 mt-md-0 mt-3">
 
-                <!-- Grid column -->
-                <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
-                    <h6 class="text-uppercase mb-4 font-weight-bold">Pet project</h6>
-                    <p>...</p>
-                </div>
-                <!-- Grid column -->
-
-                <hr class="w-100 clearfix d-md-none">
-
-                <!-- Grid column -->
-                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
-                    <h6 class="text-uppercase mb-4 font-weight-bold">Products</h6>
-                    <p>
-                        <a href="#!">Spring</a>
-                    </p>
-                    <p>
-                        <a href="#!">Hibernate</a>
-                    </p>
-                    <p>
-                        <a href="#!">Java</a>
-                    </p>
-                    <p>
-                        <a href="#!">Git</a>
-                    </p>
-                </div>
-                <!-- Grid column -->
-
-                <hr class="w-100 clearfix d-md-none">
-
-                <!-- Grid column -->
-                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
-                    <h6 class="text-uppercase mb-4 font-weight-bold">Useful links</h6>
-                    <p>
-                        <a href="#!">Your Account</a>
-                    </p>
-                    <p>
-                        <a href="#!">Become an Affiliate</a>
-                    </p>
-                    <p>
-                        <a href="#!">Shipping Rates</a>
-                    </p>
-                    <p>
-                        <a href="#!">Help</a>
-                    </p>
-                </div>
-
-                <!-- Grid column -->
-                <hr class="w-100 clearfix d-md-none">
-
-                <!-- Grid column -->
-                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
-                    <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
-                    <p>
-                        <i class="fa fa-home mr-3"></i> Moscow, Russia</p>
-                    <p>
-                        <i class="fa fa-envelope mr-3"></i> pkaravaev@gmail.com</p>
-                    <p>
-                        <i class="fa fa-phone mr-3"></i> + 01 234 567 88</p>
-                    <p>
-                        <i class="fa fa-print mr-3"></i> + 01 234 567 89</p>
-                </div>
-                <!-- Grid column -->
+                <!-- Content -->
+                <h5 class="text-weight-bold-uppercase">CRYPTO EAGLE</h5>
+                <p class="text-bold">Some project using Spring(MVC,DATA,SECURITY)JPA(Hibernate)REST API,Jacson</p>
 
             </div>
-            <!-- Footer links -->
+            <!-- Grid column -->
 
-            <hr>
+            <hr class="clearfix w-100 d-md-none pb-3">
 
-            <!-- Grid row -->
-            <div class="row d-flex align-items-center">
+            <!-- Grid column -->
+            <div class="col-md-3 mb-md-0 mb-3">
 
-                <!-- Grid column -->
-                <div class="col-md-7 col-lg-8">
+                <!-- Links -->
+                <h5 class="text-uppercase">Links</h5>
 
-                    <!--Copyright-->
-                    <p class="text-center text-md-left">© 2018 Copyright:
-                        <a href="https://mdbootstrap.com/bootstrap-tutorial/">
-                            <strong> cryptoeagle.com</strong>
-                        </a>
-                    </p>
-
-                </div>
-                <!-- Grid column -->
-
-                <!-- Grid column -->
-                <div class="col-md-5 col-lg-4 ml-lg-0">
-
-                    <!-- Social buttons -->
-                    <div class="text-center text-md-right">
-                        <ul class="list-unstyled list-inline">
-                            <li class="list-inline-item">
-                                <a class="btn-floating btn-sm rgba-white-slight mx-1">
-                                    <i class="fa fa-facebook"></i>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a class="btn-floating btn-sm rgba-white-slight mx-1">
-                                    <i class="fa fa-twitter"></i>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a class="btn-floating btn-sm rgba-white-slight mx-1">
-                                    <i class="fa fa-google-plus"></i>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a class="btn-floating btn-sm rgba-white-slight mx-1">
-                                    <i class="fa fa-linkedin"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
-                </div>
-                <!-- Grid column -->
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="#!">Link 1</a>
+                    </li>
+                    <li>
+                        <a href="#!">Link 2</a>
+                    </li>
+                    <li>
+                        <a href="#!">Link 3</a>
+                    </li>
+                    <li>
+                        <a href="#!">Link 4</a>
+                    </li>
+                </ul>
 
             </div>
-            <!-- Grid row -->
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-3 mb-md-0 mb-3">
+
+                <!-- Links -->
+                <h5 class="text-uppercase">Links</h5>
+
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="#!">Link 1</a>
+                    </li>
+                    <li>
+                        <a href="#!">Link 2</a>
+                    </li>
+                    <li>
+                        <a href="#!">Link 3</a>
+                    </li>
+                    <li>
+                        <a href="#!">Link 4</a>
+                    </li>
+                </ul>
+
+            </div>
+            <!-- Grid column -->
 
         </div>
-        <!-- Footer Links -->
+        <!-- Grid row -->
 
-    </footer>
-    <!-- Footer -->
+    </div>
+    <!-- Footer Links -->
 
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3 brown">© 2018 Copyright:
+        <a href="https://mdbootstrap.com/bootstrap-tutorial/"> pKaravaev.com</a>
+    </div>
+    <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
 
