@@ -52,14 +52,16 @@ public class MainController {
     @RequestMapping("/")
     public String welcome(Model model) {
 
-        List<Item> items = rssService.getItems("https://www.coindesk.com/feed/");
+        List<Item> rawitems = rssService.getItems("https://www.coindesk.com/feed/");
+        List<Item> items = rawitems.stream().limit(6).collect(Collectors.toList());
+
 
         Item main = items.get(0);
 
         List<Item> middle = new ArrayList<>();
         middle.add(items.get(1));
         middle.add(items.get(2));
-        middle.add(items.get(3));
+
 
         List<Coin> topcoins = coinService.getTopGainCoins();
         List<Coin> losercoins = coinService.getTopLoserCoins();

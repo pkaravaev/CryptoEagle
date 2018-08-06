@@ -4,34 +4,41 @@
 
 <script>
     $(document).ready(function () {
-        $(".tbody").click(function () {
-            var url = "coin-list";
-            $(location).attr("href", url);
-        })
-        $("#card").click(function () {
-            var h = $(this).children();
-            var url = h.children()[1].href;
-            $(location).attr("href", url);
+
+        $(".card").click(function () {
+            var href =  $(this).find(".href").text();
+            $(location).attr("href", href);
         })
         $(".card").mouseenter(function () {
             $(this).css('cursor', 'pointer');
-            $(this).removeClass("bg-white");
-            $(this).addClass("bg-light")
+            $(this).addClass("animated shake")
+
+            var title =  $(this).find(".title").text();
+            var description =  $(this).find(".description").text();
+            var date =  $(this).find(".date").text();
+
+
+            $(this).append("<div class=\"card-img-overlay bg-black animated bounceInUp\">\n" +
+                "                    <h4 class=\"card-title text-white brown darken-2\">" + title+ " </h4>\n" +
+                "                    <p class=\"card-text text-white brown darken-2\"> " + description+ " </p>\n" +
+                "                    <p class=\"card-text text-white brown darken-2\"> " + date+ " </p>\n" +
+                "                </div>")
+
         })
         $(".card").mouseleave(function () {
-            $(this).removeClass("bg-light");
-            $(this).addClass("bg-white")
+
+            $(this).find(".card-img-overlay").removeClass("animated bounceInUp")
+            $(this).find(".card-img-overlay").addClass("animated fadeOutDown")
+
         })
 
-        $(function () {
-            $(".sticky").sticky({
-                topSpacing: 90
-                , zIndex: 2
-                , stopper: "#YourStopperId"
-            });
-        });
     })
 </script>
+
+<style>
+
+
+</style>
 
 <div class="container bg-white">
 
@@ -41,55 +48,55 @@
         </div>
 
         <div class="col">
-            <img src="/resources/pic/big/big-1.png" class="img-fluid example hoverable  border border-secondary"
-                 alt="Responsive image">
+
+            <div class="card rounded example hoverable ">
+                <img style="height: 15rem" alt="Card image cap" class="card-img-top img-fluid"
+                     src="/resources/pic/l/l${main.getRandomPic(5)}.jpg">
+                <div class="card-block">
+                    <h4 class="card-title font-weight-bold ">${main.title}</h4>
+                </div>
+                <p class="date">${item.publishDate}</p>
+
+                <p class="title" hidden>${main.title}</p>
+                <p class="description" hidden>${main.description}</p>
+                <p class="date" hidden>${main.publishDate}</p>
+                <p class="href" hidden>${main.link}</p>
+            </div>
+
             <br/>
-            <!- Projects section v.1 -->
-            <section class="text-center my-5">
-                <!-- Grid row -->
-                <div class="row text-center">
-                    <div class="card-columns">
-                    <c:forEach items="${middle}" var="item">
 
-                            <!-- Card Wider -->
-                            <div class="card card-cascade wider">
+            <div class="card-deck  ">
+                <c:forEach items="${middle}" var="item">
+                    <div style="width: 20rem;height: 20rem" class="card example hoverable">
+                        <img  alt="Card image cap" class="card-img-top img-fluid "
+                             src="/resources/pic/m/m${item.getRandomPic(5)}.jpg">
+                        <div class="card-block">
+                            <h4 class="card-title font-weight-bold">${main.title}</h4>
+                        </div>
+                        <p class="date">${item.publishDate}</p>
 
-                                <!-- Card image -->
-                                <div class="view view-cascade overlay">
-                                    <img class="card-img-top" src="/resources/pic/cryptopic/${item.getRandomPic(20)}.jpg" alt="Card image cap">
-                                    <a href="#!">
-                                        <div class="mask rgba-white-slight"></div>
-                                    </a>
-                                </div>
-                                <!-- Card content -->
-                                <div class="card-body card-body-cascade text-center">
-                                    <!-- Subtitle -->
-                                    <h6 class="black-text pb-2 font-italic"><strong>${item.title}</strong></h6>
-                                    <h6 class=" font-italic text-right">${item.publishDate}</h6>
-                                </div>
+                        <p class="title" hidden>${item.title}</p>
+                        <p class="description" hidden>${item.description}</p>
+                        <p class="date" hidden>${item.publishDate}</p>
+                        <p class="href" hidden>${item.link}</p>
+                    </div>
 
-                            </div>
-
-                            <!-- Card Wider -->
-                    </c:forEach>
-                </div>
-                <!-- Grid column -->
-                </div>
-                <!-- Grid row -->
-            </section>
-            <!-- Projects section v.1 -->
+                </c:forEach>
+            </div>
         </div>
+
+        <br/>
 
         <div class="col-4 ">
             <!-- Nav tabs -->
             <ul class="nav nav-tabs nav-justified " role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active  brown darken-2" data-toggle="tab" href="#panel5" role="tab">
-                        <i class="fa fa-user"></i> TOP GAINS</a>
+                    <a class="nav-link active  brown " data-toggle="tab" href="#panel5" role="tab">
+                        <i class="fa fa-sort-up"></i> TOP GAINS</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link  brown darken-2" data-toggle="tab" href="#panel6" role="tab">
-                        <i class="fa fa-heart"></i> TOP LOOSERS</a>
+                    <a class="nav-link  brown " data-toggle="tab" href="#panel6" role="tab">
+                        <i class="fa fa-sort-down"></i> TOP LOOSERS</a>
                 </li>
             </ul>
             <!-- Nav tabs -->
@@ -97,15 +104,7 @@
             <div class="tab-content font-weight-bold">
                 <!--Panel 1-->
                 <div class="tab-pane fade  in show active" id="panel5" role="tabpanel">
-                    <table class="table">
-                        <%--<thead>--%>
-                        <%--<tr>--%>
-                        <%--<th scope="col">symbol</th>--%>
-                        <%--<th scope="col">price</th>--%>
-                        <%--<th scope="col">7D%</th>--%>
-
-                        <%--</tr>--%>
-                        <%--</thead>--%>
+                    <table class="table h-50">
                         <tbody>
 
                         <c:forEach items="${topcoins}" var="coin">
@@ -123,16 +122,7 @@
                 <div class="tab-pane fade " id="panel6" role="tabpanel">
                     <div class="tab-pane fade in show " id="panel" role="tabpanel">
                         <table class="table">
-                            <%--<thead>--%>
-                            <%--<tr>--%>
-                            <%--<th scope="col"><p class="font-weight-normal">SYMBOL</p></th>--%>
-                            <%--<th scope="col"><p class="font-weight-normal">PRICe</p></th>--%>
-                            <%--<th scope="col"><p class="font-weight-normal">7D%</p>%</th>--%>
-
-                            <%--</tr>--%>
-                            <%--</thead>--%>
                             <tbody>
-
                             <c:forEach items="${losercoins}" var="coin">
                                 <tr>
                                     <th><p class="font-weight-normal">${coin.symbol}</p></th>
@@ -151,118 +141,43 @@
     </div>
 
 
-
-
 </div>
-<div class="row">
-    <div class="col">
 
-    </div>
-    <div class="col-7">
+<div class="container">
 
-        <!-- Card deck -->
-        <div class="card-deck">
+    <div class="row">
+        <%--<div class="col">--%>
 
-            <!-- Card -->
-            <div class="card mb-4">
+        <%--</div>--%>
+        <div class="col">
+            <div class="card-columns">
 
-                <!--Card image-->
-                <div class="view overlay">
-                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="Card image cap">
-                    <a href="#!">
-                        <div class="mask rgba-white-slight"></div>
-                    </a>
-                </div>
-                <!--Card content-->
-                <div class="card-body">
-                    <!--Title-->
-                    <h4 class="card-title">Card title</h4>
-                    <!--Text-->
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-                    <button type="button" class="btn btn-light-blue btn-md">Read more</button>
-                </div>
+                <c:forEach items="${items}" var="item" >
+                    <!--Panel-->
+                    <div style="width: 22rem;height: 22rem" class="card example hoverable">
+                        <img alt="Card image cap" class="card-img-top img-fluid"
+                             src="/resources/pic/m/m4.jpg">
+                        <div class="card-block ">
+                            <h4 class="card-title font-weight-bold ">${item.title}</h4>
+                        </div>
 
+                        <p class="date">${item.publishDate}</p>
+                        <p class="title" hidden>${item.title}</p>
+                        <p class="description" hidden>${item.description}</p>
+                        <p class="date" hidden>${item.publishDate}</p>
+                        <p class="href" hidden>${item.link}</p>
+                    </div>
+
+                    <!--/.Panel-->
+                </c:forEach>
+                <!--/.Panel-->
             </div>
-            <!-- Card -->
-
-            <!-- Card -->
-            <div class="card mb-4">
-                <!--Card image-->
-                <div class="view overlay">
-                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/14.jpg" alt="Card image cap">
-                    <a href="#!">
-                        <div class="mask rgba-white-slight"></div>
-                    </a>
-                </div>
-                <!--Card content-->
-                <div class="card-body">
-                    <!--Title-->
-                    <h4 class="card-title">Card title</h4>
-                    <!--Text-->
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-                    <button type="button" class="btn btn-light-blue btn-md">Read more</button>
-
-                </div>
-
-            </div>
-            <!-- Card -->
-
-            <!-- Card -->
-            <div class="card mb-4">
-                <!--Card image-->
-                <div class="view overlay">
-                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/14.jpg" alt="Card image cap">
-                    <a href="#!">
-                        <div class="mask rgba-white-slight"></div>
-                    </a>
-                </div>
-                <!--Card content-->
-                <div class="card-body">
-                    <!--Title-->
-                    <h4 class="card-title">Card title</h4>
-                    <!--Text-->
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-                    <button type="button" class="btn btn-light-blue btn-md">Read more</button>
-
-                </div>
-
-            </div>
-            <!-- Card -->
-
-
-            <!-- Card -->
-            <div class="card mb-4">
-
-                <!--Card image-->
-                <div class="view overlay">
-                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/15.jpg" alt="Card image cap">
-                    <a href="#!">
-                        <div class="mask rgba-white-slight"></div>
-                    </a>
-                </div>
-                <!--Card content-->
-                <div class="card-body">
-                    <!--Title-->
-                    <h4 class="card-title">Card title</h4>
-                    <!--Text-->
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-                    <button type="button" class="btn btn-light-blue btn-md">Read more</button>
-                </div>
-
-            </div>
-            <!-- Card -->
-
         </div>
-        <!-- Card deck -->
-    </div>
+        <%--<div class="col">--%>
 
-    <div class="col">
-
+        <%--</div>--%>
     </div>
 </div>
+
 
 <jsp:include page="template/footer.jsp"/>

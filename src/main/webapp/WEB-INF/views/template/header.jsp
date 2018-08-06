@@ -150,7 +150,7 @@
 
 </nav>
 
-<ul class="nav justify-content-center font-weight-bold   brown darken-2">
+<ul class="nav justify-content-center font-weight-bold brown darken-2">
     <li class="nav-item">
         <a class="nav-link" href="/coin-list"><p class="white-text">active</p> </a>
     </li>
@@ -188,7 +188,7 @@
             <div class="modal-c-tabs">
 
                 <!-- Nav tabs -->
-                <ul class="nav nav-tabs tabs-2 light-blue darken-3" role="tablist">
+                <ul class="nav nav-tabs tabs-2  brown darken-2" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active" data-toggle="tab" href="#panel7" role="tab"><i class="fa fa-user mr-1"></i> Login</a>
                     </li>
