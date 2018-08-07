@@ -88,15 +88,6 @@
         font-weight: 400; }
 </style>
 
-<script>
-
-    $(document).ready(function () {
-
-    })
-
-</script>
-
-
 <!--Navbar-->
 <nav class="navbar navbar-expand-lg navbar-dark brown  ">
 

@@ -58,6 +58,17 @@ public class RestServiceImplTest extends AbstractTest {
     }
 
     @Test
+    public void getIcoWithDataByPage() {
+        List<Ico> ico = service.getIcoWithDataByPage(1);
+        assertTrue(ico.size() == 12);
+        assertTrue(ico.get(0) != null);
+        assertTrue(ico.get(3) != null);
+        assertTrue(ico.get(10) != null);
+    }
+
+
+
+    @Test
     public void getPicCoins() {
         List<PictureCoin> picCoins = service.getPicCoins();
         assertTrue(picCoins.size() > 100);

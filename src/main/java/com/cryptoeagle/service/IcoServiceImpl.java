@@ -5,14 +5,20 @@ import com.cryptoeagle.repository.IcoRepository;
 import com.cryptoeagle.service.abst.IcoService;
 import com.cryptoeagle.service.abst.RestService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 
 @Service
+@EnableScheduling
 public class IcoServiceImpl implements IcoService {
+
+    private static final Logger log = Logger.getLogger(ItemServiceImpl.class.getName());
 
     @Autowired
     IcoRepository repository;
@@ -57,10 +63,13 @@ public class IcoServiceImpl implements IcoService {
     }
 
     @Override
+    @Scheduled(fixedDelay = 150000)
     public void updateIcos() {
+        log.info("update Icos start");
         repository.deleteAll();
         List<Ico> allFromProvider = clientService.getAllIcosFromIcobench();
         saveIcos(allFromProvider);
+        log.info("update Icos finished");
     }
 
     @Override

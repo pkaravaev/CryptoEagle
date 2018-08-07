@@ -18,5 +18,8 @@ public interface RestService {
 
      List<Ico> getIcoByPage(int page);
 
+     List<Ico> getIcoWithDataByPage(int page);
+
+
      Idata getDataForIco(int id);
 }

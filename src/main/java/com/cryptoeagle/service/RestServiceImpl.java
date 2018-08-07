@@ -89,11 +89,9 @@ public class RestServiceImpl implements RestService {
 
             ObjectMapper objectMapper = new ObjectMapper();
             System.out.println("!");
-            for (int i = 0; i < 300; i++) {
+            for (int i = 0; i < 2; i++) {
                 String param = "{\"page\":" + i + "}";
-                Thread.sleep(3000);
                 String s = buildHttpRequest(param, REST_GET_ALL);
-                Thread.sleep(2000);
                 JsonNode node = objectMapper.readTree(buildHttpRequest(param, REST_GET_ALL));
                 Iterator<JsonNode> iterator = node.get("results").iterator();
 
@@ -130,6 +128,8 @@ public class RestServiceImpl implements RestService {
         return idata;
     }
 
+
+
     public List<Ico> getIcoByPage(int page) {
         List<Ico> icoList = new ArrayList<>();
         try {
@@ -151,6 +151,22 @@ public class RestServiceImpl implements RestService {
         return icoList;
     }
 
+    @Override
+    public List<Ico> getIcoWithDataByPage(int page) {
+
+        List<Ico> icos = getIcoByPage(page);
+        List<Ico> icoswithdata = new ArrayList<>();
+
+        for(Ico ico : icos){
+
+            Idata data = getDataForIco(ico.getId());
+            ico.setData(data);
+            icoswithdata.add(ico);
+        }
+
+
+        return icoswithdata;
+    }
 
 
 

@@ -3,6 +3,14 @@
 <jsp:include page="template/header.jsp"/>
 
 
+
+<script>
+
+    $(document).ready(function () {
+        $('#dtMaterialDesignExample').DataTable();
+    });
+</script>
+
 <div class="container bg-white">
     <div class="row">
 
@@ -12,16 +20,30 @@
 
         <div class="col-md-12">
 
-            <table id="data-table" class="table">
-                <br/>
-                <thead class="bg-light">
+            <table id="dtMaterialDesignExample" class="table table-striped" cellspacing="0" width="100%">
+                <thead>
                 <tr>
-                    <th></th>
-                    <th>PROJECT</th>
-                    <th>DESCRIPTION</th>
-                    <th>START TIME</th>
-                    <th>END TIME</th>
-                    <th>RATING</th>
+
+                    <th class="th-sm">
+                        <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                    </th>
+                    <th class="th-sm">Name
+                        <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                    </th>
+
+                    <th class="th-sm">Description
+                        <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                    </th>
+                    <th class="th-sm">Start date
+                        <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                    </th>
+                    <th class="th-sm">End date
+                        <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                    </th>
+                    <th class="th-sm">Rating
+                        <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                    </th>
+
                 </tr>
                 </thead>
                 <tbody>
@@ -39,16 +61,28 @@
                         <fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${parsedDateTime2}" var="icoEnd"/>
                         <td>${icoStart}</td>
                         <td>${icoEnd}</td>
-
-                        <td>
-
-                        </td>
-
+                        <td>${ico.rating}</td>
                     </tr>
                 </c:forEach>
                 </tbody>
+                <tfoot>
+                <tr>
+                    <th></i>
+                    </th>
+                    <th>Name</i>
+                    </th>
+                    <th>Description</i>
+                    </th>
+                    <th>Start date</i>
+                    </th>
+                    <th>End date</i>
+                    </th>
+                    <th>Rating</i>
+                    </th>
+                </tr>
+                </tfoot>
             </table>
-            <br/>
+
         </div>
 
     </div>

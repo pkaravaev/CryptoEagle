@@ -5,19 +5,6 @@
 <script>
     $(document).ready(function () {
         $('#dtMaterialDesignExample').DataTable();
-        // $('#dtMaterialDesignExample_wrapper').find('label').each(function () {
-        //     $(this).parent().append($(this).children());
-        // });
-        // $('#dtMaterialDesignExample_wrapper .dataTables_filter').find('input').each(function () {
-        //     $('input').attr("placeholder", "Search");
-        //     $('input').removeClass('form-control-sm');
-        // });
-        // $('#dtMaterialDesignExample_wrapper .dataTables_length').addClass('d-flex flex-row');
-        // $('#dtMaterialDesignExample_wrapper .dataTables_filter').addClass('md-form');
-        // $('#dtMaterialDesignExample_wrapper select').removeClass('custom-select custom-select-sm form-control form-control-sm');
-        // $('#dtMaterialDesignExample_wrapper select').addClass('mdb-select');
-        // $('#dtMaterialDesignExample_wrapper .mdb-select').material_select();
-        // $('#dtMaterialDesignExample_wrapper .dataTables_filter').find('label').remove();
     });
 </script>
 
@@ -40,22 +27,22 @@
                     <th class="th-sm">
                         <i class="fa fa-sort float-right" aria-hidden="true"></i>
                     </th>
-                    <th class="th-sm">NAME
+                    <th class="th-sm">Name
                         <i class="fa fa-sort float-right" aria-hidden="true"></i>
                     </th>
-                    <th class="th-sm">PRICE
+                    <th class="th-sm">Price
                         <i class="fa fa-sort float-right" aria-hidden="true"></i>
                     </th>
-                    <th class="th-sm">MARKET CAP
+                    <th class="th-sm">Market cap
                         <i class="fa fa-sort float-right" aria-hidden="true"></i>
                     </th>
-                    <th class="th-sm">VOLUME(24h
+                    <th class="th-sm">Volume(24h)
                         <i class="fa fa-sort float-right" aria-hidden="true"></i>
                     </th>
-                    <th class="th-sm">CIRCULATING SUPPLY
+                    <th class="th-sm">Circulating supply
                         <i class="fa fa-sort float-right" aria-hidden="true"></i>
                     </th>
-                    <th class="th-sm">CHANGE(24h)
+                    <th class="th-sm">Change(24h)
                         <i class="fa fa-sort float-right" aria-hidden="true"></i>
                     </th>
 
@@ -85,21 +72,19 @@
                 </tbody>
                 <tfoot>
                 <tr>
-                    <%--<th>#</i>--%>
-                    <%--</th>--%>
                     <th></i>
                     </th>
-                    <th>NAME</i>
+                    <th>Name</i>
                     </th>
-                    <th>PRICE</i>
+                    <th>Price</i>
                     </th>
-                    <th>MARKET CAP</i>
+                    <th>Market cap</i>
                     </th>
-                    <th>VOLUME(24h)</i>
+                    <th>Volume(24h)</i>
                     </th>
-                    <th>CIRCULATING SUPPLY</i>
+                    <th>Circulating supply</i>
                     </th>
-                    <th>CHANGE(24h)</i>
+                    <th>Cahnge(24h)</i>
                     </th>
                 </tr>
                 </tfoot>
