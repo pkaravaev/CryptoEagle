@@ -45,20 +45,15 @@
                     <td>link</td>
                     </th>
                     <c:forEach items="${blog.items}" var="item">
-
                         <tr>
                             <td>${item.title}</td>
                             <td>${item.description}</td>
                             <td>${item.link}</td>
                         </tr>
-
                     </c:forEach>
-
                 </table>
 
-
             </div>
-
 
         </c:forEach>
     </div>

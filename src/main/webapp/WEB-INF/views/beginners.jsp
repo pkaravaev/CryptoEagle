@@ -7,10 +7,13 @@
 
 
 <div class="container">
+
     <div class="row">
+
         <div class="col-md ">
 
         </div>
+
         <div class="col-md-8">
             <h2>Cryptoworld For Beginners</h2>
             <div class="accordion border-white" id="accordionExample">
@@ -164,10 +167,13 @@
 
             </div>
         </div>
+
+
         <div class="col-md ">
 
 
         </div>
+
     </div>
 </div>
 

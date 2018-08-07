@@ -88,6 +88,14 @@
         font-weight: 400; }
 </style>
 
+<script>
+
+    $(document).ready(function () {
+
+    })
+
+</script>
+
 
 <!--Navbar-->
 <nav class="navbar navbar-expand-lg navbar-dark brown  ">
@@ -152,29 +160,21 @@
 
 <ul class="nav justify-content-center font-weight-bold brown darken-2">
     <li class="nav-item">
-        <a class="nav-link" href="/coin-list"><p class="white-text">active</p> </a>
+        <a  id="BTC" class="nav-link" href="/coin-list"><p class="red-text">active</p> </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="/coin-list"><p class="white-text">active</p></a>
+        <a id="ETH" class="nav-link" href="/coin-list"><p class="white-text">active</p></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="/coin-list"><p class="white-text">active</p></a>
+        <a id="NEO" class="nav-link" href="/coin-list"><p class="white-text">active</p></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link " href="/coin-list"><p class="white-text">active</p></a>
+        <a  id="XRP" class="nav-link " href="/coin-list"><p class="white-text">active</p></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link " href="/coin-list"><p class="white-text">active</p></a>
+        <a id="EOS" class="nav-link " href="/coin-list"><p class="white-text">active</p></a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/coin-list"><p class="white-text">active</p></a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/coin-list"><p class="white-text">active</p></a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link " href="/coin-list"><p class="white-text">active</p></a>
-    </li>
+
 </ul>
 <br/>
 
@@ -259,6 +259,7 @@
                             </div>
 
                         </div>
+
                         <!--Footer-->
                         <div class="modal-footer">
                             <div class="options text-right">

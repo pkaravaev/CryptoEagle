@@ -23,10 +23,8 @@
 </style>
 
 <script>
-
     $(document).ready(function () {
         $(".card").mouseenter(function () {
-
             $(this).css('cursor', 'pointer');
             $(this).removeClass("bg-white");
             $(this).addClass("bg-light")
@@ -38,13 +36,10 @@
         })
 
         $(".card").click(function () {
-
             var name =  $(this).find("a").text();
             window.location = name;
         })
-
     })
-
 </script>
 
 <jsp:useBean id="icoc" class="com.cryptoeagle.entity.Ico">
@@ -140,7 +135,6 @@
                                 </li>
                                 <li class="list-group-item  ">
 
-
                                     <a href="${ico.data.getLink("twitter")}" class="icon-block">
                                         <i class="fab fa-twitter fa-lg"></i>
                                     </a>
@@ -164,9 +158,7 @@
                                     </a>
                                     <a href="${ico.data.getLink("medium")}" class="icon-block">
                                         <i class="fab fa-medium fa-lg"></i>
-
                                     </a>
-
 
                                 </li>
 

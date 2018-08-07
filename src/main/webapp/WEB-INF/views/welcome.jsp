@@ -3,6 +3,7 @@
 <jsp:include page="template/header.jsp"/>
 
 <script>
+
     $(document).ready(function () {
 
         $(".card").dblclick(function () {
@@ -24,26 +25,30 @@
             var description =  $(this).find(".description").text();
             var date =  $(this).find(".date").text();
 
+             if($(".card-img-overlay ").hasClass("animated bounceInUp")){
+                 $(".card-img-overlay ").removeClass("animated bounceInUp")
+                 $(".card-img-overlay ").addClass("animated fadeOutUp")
+             }else {
 
             $(this).append("<div class=\"card-img-overlay  animated bounceInUp\">\n" +
-                "                    <h4 class=\"card-title text-white brown darken-2\">" + title+ " </h4>\n" +
-                "                    <p class=\"card-text text-white brown darken-2\"> " + description+ " </p>\n" +
-                "                    <p class=\"card-text text-white brown darken-2\"> " + date+ " </p>\n" +
+                "                    <h4 class=\"card-title text-white brown darken-2\">" + title + " </h4>\n" +
+                "                    <p class=\"card-text text-white brown darken-2\"> " + description + " </p>\n" +
+                "                    <p class=\"card-text text-white brown darken-2\"> " + date + " </p>\n" +
                 "                </div>")
-
+             }
         })
 
         $(".card").mouseleave(function () {
-
-            $(this).find(".card-img-overlay").removeClass("animated bounceInUp")
-            $(this).find(".card-img-overlay").addClass("animated fadeOutDown")
-
+            $(this).find(".card-img-overlay").removeClass("animated bounceInUp").removeClass("animated shake").addClass("animated fadeOutDown");
+            $(this).removeClass("animated shake");
         })
 
     })
+
 </script>
 
 <style>
+
 
 
 </style>
@@ -64,10 +69,12 @@
             <div id="bigCard" class="card hoverable rounded example job ">
                 <img style="height: 15rem" alt="Card image cap" class="card-img-top img-fluid"
                      src="/resources/pic/l/l${main.getRandomPic(5)}.jpg">
+
                 <div class="card-block">
                     <h4 class="card-title font-weight-bold ">${main.title}</h4>
+                    <p class="date text-right font-weight-light">${item.publishDate}</p>
                 </div>
-                <p class="date">${item.publishDate}</p>
+
 
                 <p class="title" hidden>${main.title}</p>
                 <p class="description" hidden>${main.description}</p>
@@ -77,26 +84,27 @@
 
             <br/>
 
-            <div class="card-deck  ">
+            <div class="card-deck">
                 <c:forEach items="${middle}" var="item">
-                    <div style="width: 20rem;height: 20rem" class="card hoverable  ">
-                        <img  alt="Card image cap" class="card-img-top img-fluid "
+                    <div style="height: 20rem;width: 20rem"  class="card hoverable ">
+                        <img style="width: 22rem;height: 12rem"  alt="Card image cap" class="card-img-top img-fluid "
                              src="/resources/pic/m/m${item.getRandomPic(5)}.jpg">
                         <div class="card-block">
                             <h4 class="card-title font-weight-bold">${main.title}</h4>
                         </div>
-                        <p class="date">${item.publishDate}</p>
 
+                        <p class="date text-center">${item.publishDate}</p>
                         <p class="title" hidden>${item.title}</p>
                         <p class="description" hidden>${item.description}</p>
-                        <p class="date" hidden>${item.publishDate}</p>
                         <p class="href" hidden>${item.link}</p>
                     </div>
 
                 </c:forEach>
             </div>
+
         </div>
 
+        <br/>
         <br/>
 
         <div class="col-4 ">
@@ -118,12 +126,16 @@
                 <div class="tab-pane fade  in show active" id="panel5" role="tabpanel">
                     <table class="table h-50">
                         <tbody>
-
                         <c:forEach items="${topcoins}" var="coin">
                             <tr>
-                                <th><p class="font-weight-normal">${coin.symbol}</p></th>
-                                <td><p class="font-weight-normal">${coin.price}</p></td>
-                                <td><p class="font-weight-normal">${coin.percent_change_7d}%</p></td>
+                                <th><p class="font-weight-bold">${coin.symbol}</p></th>
+                                <td><p class="font-weight-bold">${coin.price}</p></td>
+                                <c:if test="${coin.percent_change_7d > 0}">
+                                    <td ><p  style="color: green" class="font-weight-bold">${coin.percent_change_7d}%</p></td>
+                                </c:if>
+                                <c:if test="${coin.percent_change_7d < 0}">
+                                    <td><p  style="color: red" class="font-weight-bold">${coin.percent_change_7d}%</p></td>
+                                </c:if>
                             </tr>
                         </c:forEach>
                         </tbody>
@@ -133,13 +145,18 @@
                 <!--Panel 2-->
                 <div class="tab-pane fade " id="panel6" role="tabpanel">
                     <div class="tab-pane fade in show " id="panel" role="tabpanel">
-                        <table class="table">
+                        <table class="table ">
                             <tbody>
                             <c:forEach items="${losercoins}" var="coin">
-                                <tr>
-                                    <th><p class="font-weight-normal">${coin.symbol}</p></th>
-                                    <td><p class="font-weight-normal">${coin.price}</p></td>
-                                    <td><p class="font-weight-normal">${coin.percent_change_7d}%</p></td>
+                                <tr >
+                                    <th><p class="font-weight-bold">${coin.symbol}</p></th>
+                                    <td><p class="font-weight-bold">${coin.price}</p></td>
+                                    <c:if test="${coin.percent_change_7d > 0}">
+                                        <td ><p  style="color: green" class="font-weight-bold">${coin.percent_change_7d}%</p></td>
+                                    </c:if>
+                                    <c:if test="${coin.percent_change_7d < 0}">
+                                        <td><p  style="color: red" class="font-weight-bold">${coin.percent_change_7d}%</p></td>
+                                    </c:if>
                                 </tr>
                             </c:forEach>
                             </tbody>
@@ -152,52 +169,39 @@
         </div>
     </div>
 
-
-
-
-
-
     <div class="row">
-
         <div class="col">
+            <br/>
             <div class="card-columns">
 
                 <c:forEach items="${items}" var="item" varStatus="i" >
                     <!--Panel-->
-                    <div  class="card hoverable ">
-                        <img alt="Card  image cap" class="card-img-top img-fluid"
-                             src="/resources/pic/m/m${i.count}.jpg">
+                    <div style="height: 20rem;width: 22rem"  class="card hoverable ">
+                        <img  style="width: 22rem;height: 12rem" alt="Card  image cap" class="card-img-top img-fluid"
+                              src="/resources/pic/m/m${i.count}.jpg">
                         <div class="card-block ">
                             <h4 class="card-title font-weight-bold ">${item.title}</h4>
                         </div>
-
-                        <p class="date">${item.publishDate}</p>
+                        <p class="date text-center">${item.publishDate}</p>
                         <p class="title" hidden>${item.title}</p>
                         <p class="description" hidden>${item.description}</p>
-                        <p class="date" hidden>${item.publishDate}</p>
                         <p class="href" hidden>${item.link}</p>
                     </div>
-
-                    <!--/.Panel-->
+                    <!--Panel-->
                 </c:forEach>
-                <!--/.Panel-->
-
             </div>
-
 
             <h4 class="font-weight-bold">Ico news</h4>
 
             <hr  style="size: 4rem" color="#795548"/>
+
         </div>
 
     </div>
 
 </div>
 
-<div class="container">
 
-
-</div>
 
 
 <jsp:include page="template/footer.jsp"/>

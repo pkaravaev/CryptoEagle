@@ -6,17 +6,20 @@ import com.cryptoeagle.service.abst.CoinService;
 import com.cryptoeagle.service.abst.RestService;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 @Service
-//@EnableScheduling
+@EnableScheduling
 public class CoinServiceImpl implements CoinService {
 
-    private static final org.slf4j.Logger log = LoggerFactory.getLogger(CoinServiceImpl.class);
+    private static final Logger log = Logger.getLogger(ItemServiceImpl.class.getName());
 
     @Autowired
     CoinRepository repository;
@@ -57,7 +60,7 @@ public class CoinServiceImpl implements CoinService {
     }
 
     @Override
-//    @Scheduled(fixedDelay = 600000)
+    @Scheduled(fixedDelay = 5000)
     public void updateCoins() {
         log.info("update coins"+ LocalDateTime.now().toString());
         repository.deleteAll();

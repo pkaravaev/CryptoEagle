@@ -17,11 +17,12 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
 
 @Service
 public class ItemServiceImpl implements ItemService {
 
-    private static final org.slf4j.Logger log = LoggerFactory.getLogger(ItemServiceImpl.class);
+    private static final Logger log = Logger.getLogger(ItemServiceImpl.class.getName());
 
     @Autowired
     ItemRepository repository;

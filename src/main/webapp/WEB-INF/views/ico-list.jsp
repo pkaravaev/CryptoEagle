@@ -3,7 +3,6 @@
 
 
 <style>
-
     .card {
         height: 10rem;
         width: 23rem;
@@ -25,7 +24,6 @@
         width: 1500rem;
     }
 
-
 </style>
 
 <script>
@@ -43,8 +41,6 @@
             $(this).removeClass("bg-white");
             $(this).addClass("bg-light")
             $(this).addClass("shadow-sm p-3 mb-5 bg-white rounded");
-
-
         })
 
         $(".card").mouseleave(function () {
@@ -114,7 +110,6 @@
                     </div>
                 </div>
             </c:forEach>
-
         </div>
 
         <div class="col-md-4">
