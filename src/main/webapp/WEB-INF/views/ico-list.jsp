@@ -24,9 +24,8 @@
         width: 1500rem;
     }
 
-
     /*.zoom:hover {*/
-        /*transform: scale(1.1); !* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) *!*/
+    /*transform: scale(1.1); !* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) *!*/
     /*}*/
 
 </style>
@@ -35,8 +34,33 @@
 
     $(document).ready(function () {
 
+        document.oncontextmenu = function() {return false;};
+
+        $(".card").mouseenter(function () {
+            $(this).css("cursor", "hand");
+        })
+        $(".card").mouseleave(function () {
+            $(this).css("cursor", "point");
+        })
+
+        $(".card").click(function () {
 
 
+        })
+
+        $(".card").contextmenu(function () {
+
+            var url = $(this).find("p").text();
+            window.location.href = url;
+
+
+        })
+
+
+        $("#button").click(function () {
+
+            window.location.href = "/ico-stats";
+        })
     })
 
 </script>
@@ -48,29 +72,34 @@
 
         <div class="col-md-4">
 
-            <h1 class="h1 text-center">ACTIVE</h1>
+            <h2 class="text-center font-weight-bold">ACTIVE</h2>
 
             <c:forEach items="${activeIco}" var="ico">
                 <!--Panel-->
                 <div class="card hoverable">
                     <div class="card-body">
-                    <div class="row">
-                        <div class="col">
-                            <%--<img src="${ico.link}" class="float-left" alt="placeholder"/>--%>
+                        <div class="row">
+                            <div class="col">
+                                <br/>
+                                <img class="rounded-circle" src="${ico.logolink}" width="60" height="60">
+                                <br/>
+                                <br/>
+                                <p class="text-left">
+                                    <small>not rated</small>
+                                </p>
+                            </div>
+                            <div class="col">
+                                <h5 class="card-title text-center font-weight-bold">${ico.name}</h5>
+                                <h6 class="card-title text-center font-italic">${ico.data.getCategories("name")}</h6>
+                                    <%--<h7 class="card-title text-center"><small>${ico.data.getFinance("raised")}/${ico.data.getFinance("hardcap")}</small></h7>--%>
+                            </div>
+                            <div class="col">
+                                <p class="text-right">
+                                    <small>End10d</small>
+                                </p>
+                            </div>
                         </div>
 
-                        <div class="col">
-                            <h5 class="card-title text-cnter">${ico.name}</h5>
-                            <%--<p class="card-text">${ico.description}</p>--%>
-
-                        </div>
-
-                        <div class="col">
-                        </div>
-                        <p class="card-text"><small class="text-muted"><p class="text-right">Starts in ${ico.icoStart}</p></small></p>
-                    </div>
-
-                        <%--<img class="float-left" src="${ico.link}"> --%>
 
                     </div>
                 </div>
@@ -79,32 +108,72 @@
             </c:forEach>
         </div>
 
-
         <div class="col-md-4">
-            <h1 class="text-center">UPCOMING</h1>
+            <h2 class="text-center font-weight-bold">UPCOMING</h2>
             <c:forEach items="${upcoming}" var="ico">
-            <!--Panel-->
-            <div class="card hoverable">
-                <div class="card-body">
-                    <h5 class="card-title text-cnter">${ico.name}</h5>
-                    <%--<p class="card-text">${ico.description}</p>--%>
-                    <p class="card-text"><small class="text-muted"><p class="text-right">Starts in ${ico.icoStart}</p></small></p>
+                <!--Panel-->
+                <div class="card hoverable">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <br/>
+                                <img class="rounded-circle" src="${ico.logolink}" width="60" height="60">
+                                <br/>
+                                <br/>
+                                <p class="text-left">
+                                    <small>not rated</small>
+                                </p>
+                            </div>
+                            <div class="col">
+                                <h5 class="card-title text-center font-weight-bold">${ico.name}</h5>
+                                <h6 class="card-title text-center font-italic">${ico.data.getCategories("name")}</h6>
+                                    <%--<h7 class="card-title text-center"><small>${ico.data.getFinance("raised")}/${ico.data.getFinance("hardcap")}</small></h7>--%>
+                            </div>
+                            <div class="col">
+                                <p class="text-right">
+                                    <small>Starts 10d</small>
+                                </p>
+                            </div>
+                            <p hidden>${ico.website_link}</p>
+                        </div>
+
+
+                    </div>
                 </div>
-            </div>
-            <!--/.Panel-->
-                <br />
+                <!--/.Panel-->
+                <br/>
             </c:forEach>
         </div>
 
         <div class="col-md-4">
-            <h1 class="text-center">ENDED</h1>
+            <h2 class="text-center font-weight-bold brown-darken-2 ">ENDED</h2>
             <c:forEach items="${finished}" var="ico">
                 <!--Panel-->
-                <div class="card hoverable zoom">
+                <div class="card hoverable">
                     <div class="card-body">
-                        <h5 class="card-title text-cnter">${ico.name}</h5>
-                        <%--<p class="card-text">${ico.description}</p>--%>
-                        <p class="card-text"><small class="text-muted"><p class="text-right">Starts in ${ico.icoStart}</p></small></p>
+                        <div class="row">
+                            <div class="col">
+                                <br/>
+                                <img class="rounded-circle" src="${ico.logolink}" width="60" height="60">
+                                <br/>
+                                <br/>
+                                <p class="text-left">
+                                    <small>not rated</small>
+                                </p>
+                            </div>
+                            <div class="col">
+                                <h5 class="card-title text-center font-weight-bold">${ico.name}</h5>
+                                <h6 class="card-title text-center font-italic">${ico.data.getCategories("name")}</h6>
+                                    <%--<h7 class="card-title text-center"><small>${ico.data.getFinance("raised")}/${ico.data.getFinance("hardcap")}</small></h7>--%>
+                            </div>
+                            <div class="col">
+                                <p class="text-right">
+                                    <small>Ended 10d</small>
+                                </p>
+                            </div>
+                        </div>
+
+
                     </div>
                 </div>
                 <!--/.Panel-->
@@ -113,6 +182,10 @@
         </div>
 
     </div>
+
+    <button id="button" style="width: 71rem" type="button" class="btn btn-brown btn-lg btn-block">GO MORE ICO</button>
+
+    <br/>
 
 </div>
 

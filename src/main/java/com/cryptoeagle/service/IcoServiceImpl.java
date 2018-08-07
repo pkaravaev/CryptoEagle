@@ -67,8 +67,15 @@ public class IcoServiceImpl implements IcoService {
     public void updateIcos() {
         log.info("update Icos start");
         repository.deleteAll();
-        List<Ico> allFromProvider = clientService.getAllIcosFromIcobench();
-        saveIcos(allFromProvider);
+
+        List<Ico> page = clientService.getIcoWithDataByPage(1);
+        List<Ico> page1 = clientService.getIcoWithDataByPage(2);
+        List<Ico> page2 = clientService.getIcoWithDataByPage(3);
+
+        saveIcos(page);
+        saveIcos(page1);
+        saveIcos(page2);
+
         log.info("update Icos finished");
     }
 

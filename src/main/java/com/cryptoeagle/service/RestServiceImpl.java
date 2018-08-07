@@ -44,7 +44,6 @@ public class RestServiceImpl implements RestService {
 
     @Override
     public List<Ico> getIcos() {
-
         List<Ico> icoList = new ArrayList<>();
         return icoList;
     }
@@ -107,7 +106,6 @@ public class RestServiceImpl implements RestService {
         }
         return icoList;
     }
-
     @Override
     public Idata getDataForIco(int id) {
 
@@ -127,8 +125,6 @@ public class RestServiceImpl implements RestService {
 
         return idata;
     }
-
-
 
     public List<Ico> getIcoByPage(int page) {
         List<Ico> icoList = new ArrayList<>();
@@ -153,18 +149,13 @@ public class RestServiceImpl implements RestService {
 
     @Override
     public List<Ico> getIcoWithDataByPage(int page) {
-
         List<Ico> icos = getIcoByPage(page);
         List<Ico> icoswithdata = new ArrayList<>();
-
         for(Ico ico : icos){
-
             Idata data = getDataForIco(ico.getId());
             ico.setData(data);
             icoswithdata.add(ico);
         }
-
-
         return icoswithdata;
     }
 

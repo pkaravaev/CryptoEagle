@@ -53,7 +53,7 @@
                 <c:forEach items="${coins}" var="coin">
                     <tr>
                         <%--<td>${coin.rank}</td>--%>
-                        <td><img src="${coin.image}" width="60" height="60"></td>
+                        <td><img class="rounded-circle" src="${coin.image}" width="60" height="60"></td>
                         <td>${coin.name}</td>
                         <td>${coin.price}$</td>
                         <td>${coin.market_cap}$</td>

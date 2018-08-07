@@ -50,7 +50,7 @@
 
                 <c:forEach items="${icos}" var="ico">
                     <tr>
-                        <td><img src="${ico.logolink} "></td>
+                        <td><img  class="rounded-circle" src="${ico.logolink} "></td>
                         <td>${ico.name}</td>
                         <td>${ico.description}</td>
                         <fmt:parseDate value="${ico.icoStart}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime1"

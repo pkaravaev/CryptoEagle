@@ -23,32 +23,38 @@ function tt() {
 
 function card() {
 
-    // $(".card").click(function () {
-    //
-    //     var title =  $(this).find(".title").text();
-    //     var description =  $(this).find(".description").text();
-    //
-    //
-    //     var date =  $(this).find(".date").text();
-    //     var href =  $(this).find(".href").text();
-    //
-    //
-    //
-    //     var contain = $(".card-img-overlay").hasClass("animated bounceInUp");
-    //
-    //     if(contain){
-    //         $(".card-img-overlay").removeClass("animated bounceInUp")
-    //         $(".card-img-overlay").addClass("animated zoomOutUp")
-    //      }
-    //
-    // })
-    //
-    // $(".card").mouseleave(function () {
-    //
-    //     var contain = $(".card-img-overlay").hasClass("animated bounceInUp");
-    //
-    //     $(this).find(".card-img-overlay").removeClass("animated bounceInUp").addClass("animated fadeOutDown");
-    //     // $(this).find(".card-img-overlay").addClass("animated fadeOutDown")
-    //     $(this).removeClass("animated shake");
-    // })
+    $(".card").click(function () {
+
+        var title =  $(this).find(".title").text();
+        var description =  $(this).find(".description").text();
+
+
+        var date =  $(this).find(".date").text();
+        var href =  $(this).find(".href").text();
+
+        var contain = $(".card-img-overlay").hasClass("animated bounceInUp");
+
+        if(contain){
+            $(".card-img-overlay").removeClass("animated bounceInUp")
+            $(".card-img-overlay").addClass("animated zoomOutUp")
+         }
+
+    })
+
+    $(".card").contextmenu(function () {
+
+        var url = $(this).find("p").text();
+        window.location.href = url;
+
+
+    })
+
+    $(".card").mouseleave(function () {
+
+        var contain = $(".card-img-overlay").hasClass("animated bounceInUp");
+
+        $(this).find(".card-img-overlay").removeClass("animated bounceInUp").addClass("animated fadeOutDown");
+        // $(this).find(".card-img-overlay").addClass("animated fadeOutDown")
+        $(this).removeClass("animated shake");
+    })
 }

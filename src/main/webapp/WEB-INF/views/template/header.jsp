@@ -88,6 +88,23 @@
         font-weight: 400; }
 </style>
 
+<script>
+
+    $(document).ready(function () {
+        $(function () {
+            $(".sticky").sticky({
+                topSpacing: 90
+                , zIndex: 2
+                , stopper: "#YourStopperId"
+            });
+        });
+
+        $("#eagle").click(function () {
+            window.location.href = "/";
+        })
+    })
+</script>
+
 <!--Navbar-->
 <nav class="navbar navbar-expand-lg navbar-dark brown  ">
 
@@ -120,7 +137,7 @@
 
             <!-- Navbar brand -->
             <a class="navbar-brand px-lg-4 mr-0" href="#">
-                <img  class="animated bounce infinite" src="/resources/pic/eagle.png" width="120" height="80" alt="">
+                <img  id="eagle" class="animated bounce infinite" src="/resources/pic/eagle.png" width="120" height="80" alt="">
             </a>
 
             <!-- Links -->
