@@ -120,6 +120,7 @@ public class MainController {
 
     @RequestMapping("/events")
     public String events(Model model) {
+
         List<Event> events = eventService.getEvents(20);
         model.addAttribute("events",events);
         return "events-page";

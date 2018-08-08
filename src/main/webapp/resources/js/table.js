@@ -2,7 +2,7 @@ $(document).ready(function () {
 
 
     tt();
-    card();
+
 
     var contain = $("div:has(p)");
 
@@ -15,7 +15,7 @@ $(document).ready(function () {
 
 function tt() {
 
-    $(".btn").click(function () {
+    $(".button").click(function () {
         var url = $(this).val();
         $(location).attr("href", url);
     })
@@ -59,4 +59,4 @@ function tt() {
 //         // $(this).find(".card-img-overlay").addClass("animated fadeOutDown")
 //         $(this).removeClass("animated shake");
 //     })
-}
+// }

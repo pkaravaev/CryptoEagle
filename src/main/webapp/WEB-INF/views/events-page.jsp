@@ -189,6 +189,17 @@
     }
 </style>
 
+<script>
+
+    $(document).ready(function () {
+
+        $(".button").click(function () {
+            var url = $(this).val();
+            $(this).location.href = url;
+        })
+    })
+</script>
+
 
 <div class="container">
     <div class="page-header">
@@ -208,19 +219,38 @@
                 </c:otherwise>
 
             </c:choose>
-                <div class="timeline-badge brown"><i class="glyphicon glyphicon-check"></i></div>
-                <div class="timeline-panel">
-                    <div class="timeline-heading">
-                        <h4 class="timeline-title">${event.title}</h4> <i style="color: red" class="fas fa-top fa-fire fa-2x"></i>
-                        <p>
-                            <small class="text-muted"><i class="glyphicon glyphicon-time"></i> ${event.date_event}
-                            </small>
-                        </p>
+            <div class="timeline-badge brown"><i class="glyphicon glyphicon-check"></i></div>
+            <div class="timeline-panel">
+                <div class="timeline-heading">
+
+                    <div class="row">
+                        <div class="col">
+                            <h4 class="timeline-title">${event.title}</h4>
+                            <h3 class="timeline-title">${event.name}</h3>
+                            <h3 class="timeline-title">${event.coinName}</h3>
+                            <button value="${event.proof}" type="button" class="btn btn-brown btn-rounded">Proof
+                            </button>
+                            <button value="${event.source}" type="button" class="btn btn-brown btn-rounded">Source
+                            </button>
+                        </div>
+                        <div class="col">
+                            <i style="color: red" class="fas fa-top fa-fire fa-2x"></i>
+                        </div>
+                        <div class="col">
+                            <i style="color: orange;alignment: right" class="far fa-clock fa-4x"></i>
+                        </div>
+
                     </div>
-                    <div class="timeline-body">
-                        <p>${event.description}</p>
-                    </div>
+
+                    <p>
+                        <small class="text-muted"><i class="glyphicon glyphicon-time"></i> ${event.date_event}
+                        </small>
+                    </p>
                 </div>
+                <div class="timeline-body">
+                    <p>${event.description}</p>
+                </div>
+            </div>
             </li>
 
         </c:forEach>

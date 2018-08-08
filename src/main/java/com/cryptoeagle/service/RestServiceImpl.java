@@ -298,16 +298,27 @@ public class RestServiceImpl implements RestService {
         String description = jsonNode.get("description").toString();
         String twitter = jsonNode.get("twitter_account").toString();
         String proof = jsonNode.get("proof").toString();
+        String source = jsonNode.get("source").toString();
         String hot = jsonNode.get("is_hot").toString();
-        String symbol = jsonNode.get("tip_symbol").toString();
         String date_event = jsonNode.get("date_event").toString();
+
+        Iterator<JsonNode> iterator = jsonNode.get("coins").iterator();
+
+        while (iterator.hasNext()){
+            JsonNode next = iterator.next();
+            String name = next.get("name").toString();
+            String symbol = next.get("symbol").toString();
+
+            event.setCoinName(deleteCommas(symbol));
+            event.setName(deleteCommas(name));
+        }
 
         event.setHot(Boolean.getBoolean(deleteCommas(hot)));
         event.setTitle(deleteCommas(title));
         event.setDescription(deleteCommas(description));
-        event.setCoinName(deleteCommas(symbol));
         event.setTwitter(deleteCommas(twitter));
         event.setProof(deleteCommas(proof));
+        event.setSource(deleteCommas(source));
         ZonedDateTime dateTime = ZonedDateTime.parse(deleteCommas(date_event), DateTimeFormatter.ISO_DATE_TIME);
         event.setDate_event(dateTime);
         return event;

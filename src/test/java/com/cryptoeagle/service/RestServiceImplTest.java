@@ -31,8 +31,6 @@ public class RestServiceImplTest extends AbstractTest {
         assertTrue(events.size() == 10);
     }
 
-
-
         @Test
     public void getTokenOAUTH(){
         String s = service.getTokenOAUTH();

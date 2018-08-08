@@ -445,7 +445,8 @@
             <div class="timeline-badge brown wow "><i class="glyphicon glyphicon-check"></i></div>
             <div class="timeline-panel hoverable wow">
                 <div class="timeline-heading">
-                    <h4 class="timeline-title wow">${event.title}</h4> <i style="color: red"
+                    <h4 class="timeline-title wow">${event.title}</h4>
+                    <i style="color: red"
                                                                       class="fas fa-top fa-fire fa-2x"></i>
                     <p>
                         <small class="text-muted"><i class="glyphicon glyphicon-time"></i> ${event.date_event}
