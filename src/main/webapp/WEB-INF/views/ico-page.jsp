@@ -12,17 +12,21 @@
 
     /*.card-img-top {*/
 
-        /*height: 8rem;*/
-        /*width: 8rem;*/
+    /*height: 8rem;*/
+    /*width: 8rem;*/
     /*}*/
 
     .card-columns {
         column-count: 4;
     }
 
+
 </style>
 
+
 <script>
+
+
     $(document).ready(function () {
         $(".card").mouseenter(function () {
             $(this).css('cursor', 'pointer');
@@ -36,14 +40,15 @@
         })
 
         $(".card").click(function () {
-            var name =  $(this).find("a").text();
+            var name = $(this).find("a").text();
             window.location = name;
         })
     })
 </script>
-
 <jsp:useBean id="icoc" class="com.cryptoeagle.entity.Ico">
     <div class="container bg-white">
+
+
 
         <div class="row">
                 <%--empty--%>
@@ -63,10 +68,8 @@
                              alt="error"/>
                     </div>
                     <div class="col-md-10">
-
                         <h5 class="title">${ico.name} (${ico.data.getCategories("name")})</h5>
-                        <p class="text">
-                                ${ico.data.intro}</p>
+                        <p class="text">${ico.data.intro}</p>
                     </div>
                     <br/>
 
@@ -74,14 +77,11 @@
                 <br/>
                 <hr/>
                 <div class="row">
-
                     <div class="col-md-7">
-
                         <div class="embed-responsive embed-responsive-16by9">
                             <iframe class="embed-responsive-item" src="${ico.data.getLink("youtube")}"
                                     allowfullscreen></iframe>
                         </div>
-
                     </div>
 
                     <div class="col-md">
@@ -163,8 +163,8 @@
                                 </li>
 
                             </ul>
-                        </div>
 
+                        </div>
 
                     </div>
 
@@ -209,24 +209,25 @@
 
                     <div class="tab-pane " id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
 
-                        <div class="card-columns">
+                            <div class="card-columns">
 
                             <c:forEach items="${ico.data.getCrew()}" var="team">
 
-                                <div class="card border-white">
+                            <div class="card border-white">
 
-                                    <div class="card-body">
-                                        <img class="rounded-circle" src="${team.photo}" alt="Card image cap">
-                                        <p class="card-text">${team.name}</p>
-                                        <h6 class="card-title">${team.title}</h6>
+                            <div class="card-body">
+                            <img class="rounded-circle" src="${team.photo}" alt="Card image cap">
+                            <p class="card-text">${team.name}</p>
+                            <h6 class="card-title">${team.title}</h6>
 
-                                        <a href="${team.links}"></a>
-                                    </div>
-                                </div>
-                                <br>
+                            <a href="${team.links}"></a>
+                            </div>
+                            </div>
+                            <br>
 
                             </c:forEach>
-                        </div>
+                            </div>
+
                     </div>
                 </div>
             </div>

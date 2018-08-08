@@ -5,26 +5,26 @@
 <script>
 
     $(document).ready(function () {
-
         $(".card").dblclick(function () {
             var href =  $(this).find(".href").text();
             $(location).attr("href", href);
         })
-
         $(".card").mouseenter(function () {
             $(this).css('cursor', 'pointer');
             $(this).addClass("animated shake")
-
+            $(".container").addClass("animated shake")
         })
+    })
+
+    $(document).ready(function () {
+
+        new WOW().init();
 
         $(".card").click(function () {
             $(this).css('cursor', 'pointer');
-            // $(this).addClass("animated shake")
-
             var title =  $(this).find(".title").text();
             var description =  $(this).find(".description").text();
             var date =  $(this).find(".date").text();
-
              if($(".card-img-overlay ").hasClass("animated bounceInUp")){
                  $(".card-img-overlay ").removeClass("animated bounceInUp")
                  $(".card-img-overlay ").addClass("animated fadeOutUp")
@@ -37,23 +37,16 @@
                 "                </div>")
              }
         })
-
         $(".card").mouseleave(function () {
             $(this).find(".card-img-overlay").removeClass("animated bounceInUp").removeClass("animated shake").addClass("animated fadeOutDown");
             $(this).removeClass("animated shake");
         })
-
     })
-
 </script>
 
-<style>
 
 
-
-</style>
-
-<div class="container bg-white">
+<div class="container bg-white animated shake">
 
     <div class="row">
         <div class="col-">
@@ -93,10 +86,18 @@
                             <h4 class="card-title font-weight-bold">${main.title}</h4>
                         </div>
 
-                        <p class="date text-center">${item.publishDate}</p>
                         <p class="title" hidden>${item.title}</p>
                         <p class="description" hidden>${item.description}</p>
                         <p class="href" hidden>${item.link}</p>
+
+                        <div class="row">
+                            <div class="col">
+                                <p   style="margin-left: 1rem" class="date text-left font-italic">by cointelegraph</p>
+                            </div>
+                            <div class="col">
+                                <p style="margin-right: 1rem" class="date text-right font-italic">10 min ago</p>
+                            </div>
+                        </div>
                     </div>
 
                 </c:forEach>
@@ -191,9 +192,29 @@
                 </c:forEach>
             </div>
 
-            <h4 class="font-weight-bold">Ico news</h4>
+            <h4 class="font-weight-bold wow fadeInUp hoverable">Ico news</h4>
 
             <hr  style="size: 4rem" color="#795548"/>
+
+
+            <div class="card-columns">
+
+                <c:forEach items="${items}" var="item" varStatus="i" >
+                    <!--Panel-->
+                    <div style="height: 20rem;width: 22rem"  class="card  wow zoomInUp hoverable  ">
+                        <img  style="width: 22rem;height: 12rem" alt="Card  image cap" class="card-img-top img-fluid"
+                              src="/resources/pic/m/m${i.count}.jpg">
+                        <div class="card-block ">
+                            <h4 class="card-title font-weight-bold ">${item.title}</h4>
+                        </div>
+                        <p class="date text-center">${item.publishDate}</p>
+                        <p class="title" hidden>${item.title}</p>
+                        <p class="description" hidden>${item.description}</p>
+                        <p class="href" hidden>${item.link}</p>
+                    </div>
+                    <!--Panel-->
+                </c:forEach>
+            </div>
 
         </div>
 

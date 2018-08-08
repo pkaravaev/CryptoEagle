@@ -22,7 +22,7 @@ function getCoins() {
                 $("#" + symbol).text(symbol + "  " + price.toFixed(2) + '$' + " " + change + '%');
 
                 if (change > 0) {
-                    $("#" + symbol).css('color', 'green');
+                    $("#" + symbol).css('color', 'lime');
                 }
                 else {
                     $("#" + symbol).css('color', 'red');

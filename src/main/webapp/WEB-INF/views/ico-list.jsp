@@ -3,30 +3,6 @@
 
 
 <style>
-    .card {
-        height: 10rem;
-        width: 23rem;
-    }
-
-    .img-fluid {
-
-        margin-left: 1rem;
-        margin-top: 1rem;
-    }
-
-    .card-title {
-        margin-left: 2.2rem;
-        margin-top: 0.5rem;
-    }
-
-    .container {
-
-        width: 1500rem;
-    }
-
-    /*.zoom:hover {*/
-    /*transform: scale(1.1); !* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) *!*/
-    /*}*/
 
 </style>
 
@@ -45,13 +21,14 @@
 
         $(".card").click(function () {
 
+            var name = $(this).find(".href").text();;
+            window.location.href = "/ico-page/" + name;
 
         })
 
         $(".card").contextmenu(function () {
 
-            var url = $(this).find("p").text();
-            window.location.href = url;
+
 
 
         })
@@ -99,6 +76,7 @@
                                 </p>
                             </div>
                         </div>
+                        <p class="href" hidden>${ico.name}</p>
 
 
                     </div>
@@ -135,6 +113,7 @@
                                 </p>
                             </div>
                             <p hidden>${ico.website_link}</p>
+                            <p class="href" hidden>${ico.name}</p>
                         </div>
 
 
@@ -173,6 +152,7 @@
                             </div>
                         </div>
 
+                        <p class="href" hidden>${ico.name}</p>
 
                     </div>
                 </div>

@@ -94,6 +94,13 @@ public class MainController {
         return "beginners";
     }
 
+    @RequestMapping("/news")
+    public String news(Model model) {
+        List<Item> items = rssService.getItems("https://www.coindesk.com/feed/");
+        model.addAttribute("items",items);
+        return "news-page";
+    }
+
     @RequestMapping("/blogs")
     public String blogs(Model model) {
 

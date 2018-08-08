@@ -4,30 +4,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-          integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.css"/>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
-          integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-            crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
-            integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
-            crossorigin="anonymous"></script>
-
-    <script
-            src="https://code.jquery.com/jquery-3.3.1.js"
-            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-            crossorigin="anonymous"></script>
-
-
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -49,13 +25,6 @@
             src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.4/js/mdb.min.js"></script>
 
 
-
-
-
-
-    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.js"></script>
-
-
     <script src="/resources/js/table.js"></script>
     <script src="/resources/js/coins.js"></script>
 
@@ -65,39 +34,9 @@
 <body class="body bg-white ">
 
 
-<style>
-    .form-elegant .font-small {
-        font-size: 0.8rem; }
-
-    .form-elegant .z-depth-1a {
-        -webkit-box-shadow: 0 2px 5px 0 rgba(55, 161, 255, 0.26), 0 4px 12px 0 rgba(121, 155, 254, 0.25);
-        box-shadow: 0 2px 5px 0 rgba(55, 161, 255, 0.26), 0 4px 12px 0 rgba(121, 155, 254, 0.25); }
-
-    .form-elegant .z-depth-1-half,
-    .form-elegant .btn:hover {
-        -webkit-box-shadow: 0 5px 11px 0 rgba(85, 182, 255, 0.28), 0 4px 15px 0 rgba(36, 133, 255, 0.15);
-        box-shadow: 0 5px 11px 0 rgba(85, 182, 255, 0.28), 0 4px 15px 0 rgba(36, 133, 255, 0.15); }
-
-    .form-elegant .modal-header {
-        border-bottom: none; }
-
-    .modal-dialog .form-elegant .btn .fa {
-        color: #2196f3!important; }
-
-    .form-elegant .modal-body, .form-elegant .modal-footer {
-        font-weight: 400; }
-</style>
-
 <script>
 
     $(document).ready(function () {
-        $(function () {
-            $(".sticky").sticky({
-                topSpacing: 90
-                , zIndex: 2
-                , stopper: "#YourStopperId"
-            });
-        });
 
         $("#eagle").click(function () {
             window.location.href = "/";
@@ -123,13 +62,17 @@
             <!-- Links -->
             <ul class="navbar-nav ">
                 <li class="nav-item">
-                    <a class="nav-link" href="/beginners">Beginners Guide</a>
+                    <a class="nav-link" href="/beginners">BEGINERS GUIDE</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/news">NEWS</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/coin-list">Coins</a>
+                    <a class="nav-link" href="/coin-list">COINS</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/ico-list">Ico list</a>
+                    <a class="nav-link" href="/ico-list">ICO LIST</a>
                 </li>
 
             </ul>
@@ -142,22 +85,31 @@
 
             <!-- Links -->
             <ul class="navbar-nav">
+
                 <li class="nav-item">
-                    <a class="nav-link" href="/ico-stats">Ico stats</a>
+                    <a class="nav-link" href="/ico-stats">ICO STATS</a>
                 </li>
+
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Pricing</a>
+                    <a class="nav-link" href="#">WHITELIST</a>
                 </li>
+
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Testimonials</a>
+                    <a class="nav-link" href="#">EVENTS</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">ANALITICS</a>
                 </li>
 
                 <li class="nav-item">
                     <a  id="login" class="nav-link" href="#modalLRForm">Login</a>
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link"  href="/register">Register</a>
                 </li>
+
             </ul>
             <!-- Links -->
 

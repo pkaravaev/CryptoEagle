@@ -8,11 +8,17 @@ import com.cryptoeagle.entity.crypto.Team;
 import com.cryptoeagle.service.abst.RestService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.RequestLine;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +28,7 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.MediaType;
 import java.io.IOException;
+import java.io.InputStream;
 import java.math.BigDecimal;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -39,47 +46,16 @@ public class RestServiceImpl implements RestService {
 
     private static final String PRIVATE_KEY = "dca6b42f-115d-4892-8827-08bb79275cef";
     private static final String PUBLIC_KEY = "829d6865-c198-4bcf-9675-5ead3802bb9f";
+
+    private static final String CLIENT_ID = "1093_2df42urz78cggks0ggo88sckgkcggo44cog8ocwkco8o4ows8c";
+    private static final String CLIENT_SECRET = "3ly2qw9v92io084sgcscow0c8w8gkskcwc0k4wkg4sg8cckcg4";
+
     private static final String REST_GET_ALL = "https://icobench.com/api/v1/icos/all";
     private static final String REST_GET_DATA = "https://icobench.com/api/v1/ico/";
-
-    @Override
-    public List<Ico> getIcos() {
-        List<Ico> icoList = new ArrayList<>();
-        return icoList;
-    }
-
-    private List<Ico> getListIco(String url, String status) {
-
-        ObjectMapper objectMapper = new ObjectMapper();
-
-        Client client = ClientBuilder.newClient();
-        String icos = client.target(url)
-                .request(MediaType.APPLICATION_JSON)
-                .get(String.class);
-        List<Ico> icoList = new ArrayList<>();
-        try {
-
-            JsonNode node = objectMapper.readTree(icos);
-            JsonNode node1 = node.findParent(status).get(status);
-
-            Iterator<JsonNode> iterator = node1.iterator();
-
-            while (iterator.hasNext()) {
-
-                JsonNode next = iterator.next();
-                Ico ico = new Ico();
-
-                ico.setName(" ");
-                ico.setDescription(" ");
-                ico.setWebsite_link(" ");
+    private static final String REST_GET_EVENTS = "https://api.coinmarketcal.com/v1/events/";
+    private static final String REST_GET_TOKEN = "https://api.coinmarketcal.com/oauth/v2/token";
 
 
-                icoList.add(ico);
-            }
-        } catch (Exception e) {
-        }
-        return icoList;
-    }
 
     public List<Ico> getAllIcosFromIcobench() {
         int pagesCount = 1;
@@ -106,6 +82,7 @@ public class RestServiceImpl implements RestService {
         }
         return icoList;
     }
+
     @Override
     public Idata getDataForIco(int id) {
 
@@ -160,6 +137,13 @@ public class RestServiceImpl implements RestService {
     }
 
 
+
+
+
+    @Override
+    public List<Event> getEvents() {
+        return null;
+    }
 
 
     @Override
@@ -284,8 +268,6 @@ public class RestServiceImpl implements RestService {
 
         return coins;
     }
-
-
 
 
     private Ico convertJsonToIco(JsonNode jsonNode) {
@@ -471,5 +453,32 @@ public class RestServiceImpl implements RestService {
             System.out.println("Ошибка" + e.getMessage());
             return "";
         }
+    }
+
+    public String getTokenOAUTH(){
+        String token = null;
+        try {
+            HttpGet httpGet = new HttpGet(REST_GET_TOKEN + "?grant_type=client_credentials&client_id=" + CLIENT_ID + "&client_secret=" + CLIENT_SECRET);
+            CloseableHttpClient client = HttpClients.createDefault();
+            CloseableHttpResponse response = client.execute(httpGet);
+            HttpEntity entity = response.getEntity();
+            InputStream content = entity.getContent();
+            List<Character> characterList = new ArrayList<>();
+            StringBuilder builder = new StringBuilder();
+            while (content.available() > 0) {
+                char read = (char) content.read();
+                builder.append(read);
+            }
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode node = mapper.readTree(builder.toString());
+            token = node.get("access_token").toString();
+        }
+
+       catch (Exception ex)  {
+
+           return null;
+       }
+
+        return deleteCommas(token);
     }
 }

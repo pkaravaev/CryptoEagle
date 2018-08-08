@@ -23,7 +23,6 @@
             <table id="dtMaterialDesignExample" class="table table-striped" cellspacing="0" width="100%">
                 <thead>
                 <tr>
-
                     <th class="th-sm">
                         <i class="fa fa-sort float-right" aria-hidden="true"></i>
                     </th>
@@ -82,16 +81,10 @@
                 </tr>
                 </tfoot>
             </table>
-
         </div>
-
     </div>
-
     <div class="col-sm ">
-
-
     </div>
-
 </div>
 </div>
 

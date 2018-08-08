@@ -24,21 +24,21 @@ public class RestServiceImplTest extends AbstractTest {
     RestServiceImpl service;
 
     @Test
-    public void getIcos() {
-        List<Ico> icos = service.getIcos();
-        assertTrue(icos.size() > 50);
+    public void getTokenOAUTH(){
+        String s = service.getTokenOAUTH();
+        assertTrue(86 == s.length());
+
     }
 
     @Test
     public void getAllIcosFromIcobench() {
-
         List<Ico> icos = service.getAllIcosFromIcobench();
+        assertTrue(icos.size() > 10);
     }
-    //todo provider not work
     @Test
     public void getDataForIco() {
-
         Idata data = service.getDataForIco(36262);
+        assertTrue(data != null);
     }
 
     @Test
@@ -65,8 +65,6 @@ public class RestServiceImplTest extends AbstractTest {
         assertTrue(ico.get(3) != null);
         assertTrue(ico.get(10) != null);
     }
-
-
 
     @Test
     public void getPicCoins() {

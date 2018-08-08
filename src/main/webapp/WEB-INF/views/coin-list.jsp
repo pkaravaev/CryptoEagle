@@ -6,6 +6,7 @@
     $(document).ready(function () {
         $('#dtMaterialDesignExample').DataTable();
     });
+
 </script>
 
 
@@ -89,10 +90,6 @@
                 </tr>
                 </tfoot>
             </table>
-
-
-
-
             <br/>
         </div>
 

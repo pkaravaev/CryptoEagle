@@ -1,6 +1,7 @@
 package com.cryptoeagle.service.abst;
 
 import com.cryptoeagle.entity.Coin;
+import com.cryptoeagle.entity.Event;
 import com.cryptoeagle.entity.Ico;
 import com.cryptoeagle.entity.crypto.Idata;
 
@@ -8,11 +9,9 @@ import java.util.List;
 
 public interface RestService {
 
-     List<Ico> getIcos();
+     List<Event> getEvents();
 
      List<Coin> getCoins();
-
-
 
      List<Ico> getAllIcosFromIcobench();
 

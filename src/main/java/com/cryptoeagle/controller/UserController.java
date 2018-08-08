@@ -26,19 +26,15 @@ public class UserController {
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logout(HttpSession session, SessionStatus status) {
-
         status.setComplete();
         session.removeAttribute("user");
-
         return "redirect:/";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String logining(@RequestParam String email, @RequestParam String password, Model model) {
         AppUser appUser = userService.getByEmail(email);
-
         model.addAttribute("user", appUser);
-
         return "redirect:/";
     }
 
