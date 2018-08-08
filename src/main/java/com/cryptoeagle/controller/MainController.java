@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 @Controller
@@ -35,6 +36,9 @@ public class MainController {
     @Autowired
     CoinService coinService;
 
+    @Autowired
+    EventService eventService;
+
     @ModelAttribute("blog")
     public Blog contructBlog() {
         return new Blog();
@@ -53,7 +57,7 @@ public class MainController {
     public String welcome(Model model) {
 
         List<Item> rawitems = rssService.getItems("https://www.coindesk.com/feed/");
-        List<Item> items = rawitems.stream().limit(6).collect(Collectors.toList());
+        List<Item> items = rawitems.stream().limit(3).collect(Collectors.toList());
 
 
         Item main = items.get(0);
@@ -65,12 +69,16 @@ public class MainController {
 
         List<Coin> topcoins = coinService.getTopGainCoins();
         List<Coin> losercoins = coinService.getTopLoserCoins();
+        List<Event> events = eventService.getEvents(6);
+        List<Ico> icos = icoService.getActiveIco().stream().limit(6).collect(Collectors.toList());
 
         model.addAttribute("losercoins",losercoins);
         model.addAttribute("topcoins",topcoins);
         model.addAttribute("items",items);
         model.addAttribute("main",main);
         model.addAttribute("middle",middle);
+        model.addAttribute("icos",icos);
+        model.addAttribute("events",events);
 
         return "welcome";
     }
@@ -108,6 +116,13 @@ public class MainController {
         List<Blog> blogs = blogService.findall(user.getId());
         model.addAttribute("blogs", blogs);
         return "blogs";
+    }
+
+    @RequestMapping("/events")
+    public String events(Model model) {
+        List<Event> events = eventService.getEvents(20);
+        model.addAttribute("events",events);
+        return "events-page";
     }
 
     @RequestMapping("/test")

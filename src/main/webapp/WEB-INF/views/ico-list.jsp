@@ -28,11 +28,7 @@
 
         $(".card").contextmenu(function () {
 
-
-
-
         })
-
 
         $("#button").click(function () {
 

@@ -7,6 +7,7 @@
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <!-- Bootstrap core CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
@@ -31,7 +32,7 @@
 
     <title>Welcome</title>
 </head>
-<body class="body bg-white ">
+<body class="body  ">
 
 
 <script>
@@ -91,11 +92,11 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">WHITELIST</a>
+                    <a class="nav-link" href="/whitelists">WHITELIST</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">EVENTS</a>
+                    <a class="nav-link" href="/events">EVENTS</a>
                 </li>
 
                 <li class="nav-item">
