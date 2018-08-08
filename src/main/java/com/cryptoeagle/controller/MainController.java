@@ -46,9 +46,7 @@ public class MainController {
 
     @RequestMapping("/update")
     public String update(Model model) {
-
-        icoService.updateIcos();;
-
+        icoService.updateIcos();
         return "redirect:/";
     }
 
@@ -58,28 +56,21 @@ public class MainController {
 
         List<Item> rawitems = rssService.getItems("https://www.coindesk.com/feed/");
         List<Item> items = rawitems.stream().limit(3).collect(Collectors.toList());
-
-
         Item main = items.get(0);
-
         List<Item> middle = new ArrayList<>();
         middle.add(items.get(1));
         middle.add(items.get(2));
-
-
         List<Coin> topcoins = coinService.getTopGainCoins();
         List<Coin> losercoins = coinService.getTopLoserCoins();
         List<Event> events = eventService.getEvents(6);
         List<Ico> icos = icoService.getActiveIco().stream().limit(6).collect(Collectors.toList());
-
-        model.addAttribute("losercoins",losercoins);
-        model.addAttribute("topcoins",topcoins);
-        model.addAttribute("items",items);
-        model.addAttribute("main",main);
-        model.addAttribute("middle",middle);
-        model.addAttribute("icos",icos);
-        model.addAttribute("events",events);
-
+        model.addAttribute("losercoins", losercoins);
+        model.addAttribute("topcoins", topcoins);
+        model.addAttribute("items", items);
+        model.addAttribute("main", main);
+        model.addAttribute("middle", middle);
+        model.addAttribute("icos", icos);
+        model.addAttribute("events", events);
         return "welcome";
     }
 
@@ -98,21 +89,19 @@ public class MainController {
 
     @RequestMapping("/beginners")
     public String begginers() {
-
         return "beginners";
     }
 
     @RequestMapping("/news")
     public String news(Model model) {
         List<Item> items = rssService.getItems("https://www.coindesk.com/feed/");
-        model.addAttribute("items",items);
+        model.addAttribute("items", items);
         return "news-page";
     }
 
     @RequestMapping("/blogs")
     public String blogs(Model model) {
-
-        AppUser user = (AppUser)model.asMap().get("user");
+        AppUser user = (AppUser) model.asMap().get("user");
         List<Blog> blogs = blogService.findall(user.getId());
         model.addAttribute("blogs", blogs);
         return "blogs";
@@ -120,16 +109,15 @@ public class MainController {
 
     @RequestMapping("/events")
     public String events(Model model) {
-
-        List<Event> events = eventService.getEvents(20);
-        model.addAttribute("events",events);
+        List<Event> events = eventService.getEvents(50);
+        model.addAttribute("events", events);
         return "events-page";
     }
 
     @RequestMapping("/test")
     public String test(Model model) {
         List<Item> items = rssService.getItems("https://www.coindesk.com/feed/");
-        model.addAttribute("items",items);
+        model.addAttribute("items", items);
         return "test";
     }
 

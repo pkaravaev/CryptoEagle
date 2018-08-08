@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -28,6 +29,7 @@ public class EventServiceImpl implements EventService {
 
     @Override
     @Scheduled(fixedDelay = 20000)
+    @Transactional
     public void update() {
         repository.deleteAll();
         List<Event> events = service.getEvents(12);

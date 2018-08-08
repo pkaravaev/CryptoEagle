@@ -44,18 +44,18 @@ public class Ico {
     private LocalDateTime icoStart;
     private LocalDateTime icoEnd;
 
-    public String daysAgo(){
+    public int todayMinusIcoStart() {
+        return LocalDateTime.now().getDayOfMonth() - icoStart.getDayOfMonth();
+    }
 
-        LocalDateTime now = LocalDateTime.now();
-
-
-        return  " ";
+    public int todayMinusIcoEnd() {
+        return LocalDateTime.now().getDayOfMonth() - icoEnd.getDayOfMonth();
     }
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Idata data;
 
-    class IcoData{
+    class IcoData {
     }
 
 }

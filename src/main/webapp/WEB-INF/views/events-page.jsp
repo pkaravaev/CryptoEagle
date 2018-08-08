@@ -198,18 +198,16 @@
             $(this).location.href = url;
         })
     })
+
 </script>
 
 
 <div class="container">
     <div class="page-header">
-        <h1 id="text-center font-weight-bold timeline">EVENTS</h1>
     </div>
     <ul class="timeline">
 
-
         <c:forEach items="${events}" var="event" varStatus="i">
-
             <c:choose>
                 <c:when test="${(i.count%2) ==0}">
                     <li class="timeline-inverted">
@@ -217,100 +215,91 @@
                 <c:otherwise>
                     <li>
                 </c:otherwise>
-
             </c:choose>
+
             <div class="timeline-badge brown"><i class="glyphicon glyphicon-check"></i></div>
             <div class="timeline-panel">
+
                 <div class="timeline-heading">
 
                     <div class="row">
+
                         <div class="col">
-                            <h4 class="timeline-title">${event.title}</h4>
-                            <h3 class="timeline-title">${event.name}</h3>
-                            <h3 class="timeline-title">${event.coinName}</h3>
-                            <button value="${event.proof}" type="button" class="btn btn-brown btn-rounded">Proof
-                            </button>
-                            <button value="${event.source}" type="button" class="btn btn-brown btn-rounded">Source
-                            </button>
+
+                            <div class="row">
+
+                                <div class="col">
+                                    <%--<c:choose>--%>
+                                        <%--<c:when test="${event.isHot == true}">--%>
+                                            <%--<div class="col">--%>
+                                                <%--<i style="color: red" class="fas fa-clock fa-5x"></i>--%>
+                                            <%--</div>--%>
+                                        <%--</c:when>--%>
+                                    <%--</c:choose>--%>
+                                        <%----%>
+                                        <%--</div>--%>
+                                        <%----%>
+                                        <%--<div class="col">--%>
+                                    <h6 class="timeline-title text-center font-weight-bold">${event.name}</h6>
+                                </div>
+
+                                <div class="col">
+                                    <h3 class="timeline-title font-weight-bold text-right">${event.coinName}</h3>
+                                </div>
+
+                            </div>
+
+                            <div class="col">
+                                <div class="col">
+                                    <h5 class="timeline-title text-center font-weight-bold">${event.title}</h5>
+                                    <h5 class="timeline-title text-center font-weight-bold">left ${event.diffNowBeetweenDataEventDay()} d ${event.diffNowBeetweenDataEventMinute()}m </h5>
+                                </div>
+                            </div>
+
                         </div>
-                        <div class="col">
-                            <i style="color: red" class="fas fa-top fa-fire fa-2x"></i>
-                        </div>
-                        <div class="col">
-                            <i style="color: orange;alignment: right" class="far fa-clock fa-4x"></i>
-                        </div>
+
 
                     </div>
 
-                    <p>
-                        <small class="text-muted"><i class="glyphicon glyphicon-time"></i> ${event.date_event}
-                        </small>
-                    </p>
                 </div>
                 <div class="timeline-body">
                     <p>${event.description}</p>
+
+                    <div class="row">
+                        <div class="col">
+                            <button value="${event.proof}" type="button" class="btn btn-brown btn-rounded">Proof
+                            </button>
+                        </div>
+
+                        <div class="col">
+                            <button value="${event.source}" type="button" class="btn btn-brown btn-rounded">Source
+                            </button>
+                        </div>
+
+                        <c:choose>
+                            <c:when test="${event.diffNowBeetweenDataEventDay() == 0}">
+                                <div class="col">
+                                    <i style="color: red" class="fas fa-clock fa-5x"></i>
+                                </div>
+                            </c:when>
+                            <c:when test="${event.diffNowBeetweenDataEventDay() == 1}">
+                                <div class="col">
+                                    <i style="color: orange" class="fas fa-clock fa-5x"></i>
+                                </div
+                            </c:when>
+                            <c:when test="${event.diffNowBeetweenDataEventDay() > 2}">
+                                <div class="col">
+                                    <i style="color: green" class="fas fa-clock fa-5x"></i>
+                                </div
+                            </c:when>
+                        </c:choose>
+
+                    </div>
                 </div>
             </div>
             </li>
 
         </c:forEach>
-
-
-        <%--<li class="timeline-inverted">--%>
-        <%--<div class="timeline-panel">--%>
-        <%--<div class="timeline-heading">--%>
-        <%--<h4 class="timeline-title">Mussum ipsum cacilds</h4>--%>
-        <%--</div>--%>
-        <%--<div class="timeline-body">--%>
-        <%--<p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>--%>
-        <%--</div>--%>
-        <%--</div>--%>
-        <%--</li>--%>
-        <%--<li>--%>
-        <%--<div class="timeline-badge info"><i class="glyphicon glyphicon-floppy-disk"></i></div>--%>
-        <%--<div class="timeline-panel">--%>
-        <%--<div class="timeline-heading">--%>
-        <%--<h4 class="timeline-title">Mussum ipsum cacilds</h4>--%>
-        <%--</div>--%>
-        <%--<div class="timeline-body">--%>
-        <%--<p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>--%>
-        <%--<hr>--%>
-        <%--<div class="btn-group">--%>
-        <%--<button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">--%>
-        <%--<i class="glyphicon glyphicon-cog"></i> <span class="caret"></span>--%>
-        <%--</button>--%>
-        <%--<ul class="dropdown-menu" role="menu">--%>
-        <%--<li><a href="#">Action</a></li>--%>
-        <%--<li><a href="#">Another action</a></li>--%>
-        <%--<li><a href="#">Something else here</a></li>--%>
-        <%--<li class="divider"></li>--%>
-        <%--<li><a href="#">Separated link</a></li>--%>
-        <%--</ul>--%>
-        <%--</div>--%>
-        <%--</div>--%>
-        <%--</div>--%>
-        <%--</li>--%>
-        <%--<li>--%>
-        <%--<div class="timeline-panel">--%>
-        <%--<div class="timeline-heading">--%>
-        <%--<h4 class="timeline-title">Mussum ipsum cacilds</h4>--%>
-        <%--</div>--%>
-        <%--<div class="timeline-body">--%>
-        <%--<p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>--%>
-        <%--</div>--%>
-        <%--</div>--%>
-        <%--</li>--%>
-        <%--<li class="timeline-inverted">--%>
-        <%--<div class="timeline-badge success"><i class="glyphicon glyphicon-thumbs-up"></i></div>--%>
-        <%--<div class="timeline-panel">--%>
-        <%--<div class="timeline-heading">--%>
-        <%--<h4 class="timeline-title">Mussum ipsum cacilds</h4>--%>
-        <%--</div>--%>
-        <%--<div class="timeline-body">--%>
-        <%--<p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>--%>
-        <%--</div>--%>
-        <%--</div>--%>
-        <%--</li>--%>
     </ul>
 </div>
 

@@ -168,7 +168,6 @@ public class RestServiceImpl implements RestService {
         return events;
     }
 
-
     @Override
     public List<Coin> getCoins() {
 

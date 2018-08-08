@@ -12,7 +12,7 @@ import java.time.ZonedDateTime;
 
 @NamedQueries({
         @NamedQuery( name = Event.GET_ALL, query = "SELECT event FROM Event event ORDER BY event.date_event desc "),
-        @NamedQuery( name = Event.GET_ALL, query = "SELECT event FROM Event event WHERE event.coinName=:coinname ORDER BY event.date_event desc ")
+        @NamedQuery( name = Event.GET_BY_COIN_NAME, query = "SELECT event FROM Event event WHERE event.coinName=:coinname ORDER BY event.date_event desc ")
 })
 
 @Entity
@@ -21,7 +21,7 @@ import java.time.ZonedDateTime;
 public class Event extends BaseEntity {
 
     public static final String GET_ALL = "Event.getAll";
-    public static final String GET_BY_COINNAME = "Event.getByCoinName";
+    public static final String GET_BY_COIN_NAME = "Event.getByCoinName";
 
     private String title;
     private String coinName;
@@ -32,5 +32,15 @@ public class Event extends BaseEntity {
     private String twitter;
     private boolean isHot;
     private ZonedDateTime date_event;
+
+    public int diffNowBeetweenDataEventDay()
+    {
+        return date_event.getDayOfMonth() - ZonedDateTime.now().getDayOfMonth() ;
+    }
+
+    public int diffNowBeetweenDataEventMinute()
+    {
+        return date_event.getMinute() - ZonedDateTime.now().getMinute() ;
+    }
 
 }

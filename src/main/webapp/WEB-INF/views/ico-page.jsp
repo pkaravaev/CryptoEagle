@@ -224,10 +224,8 @@
                             </div>
                             </div>
                             <br>
-
                             </c:forEach>
                             </div>
-
                     </div>
                 </div>
             </div>

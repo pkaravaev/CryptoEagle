@@ -68,7 +68,7 @@
                             </div>
                             <div class="col">
                                 <p class="text-right">
-                                    <small>End10d</small>
+                                    <small>End ${ico.todayMinusIcoEnd()} d</small>
                                 </p>
                             </div>
                         </div>
@@ -105,7 +105,7 @@
                             </div>
                             <div class="col">
                                 <p class="text-right">
-                                    <small>Starts 10d</small>
+                                    <small>Starts ${ico.todayMinusIcoStart()}d</small>
                                 </p>
                             </div>
                             <p hidden>${ico.website_link}</p>
@@ -143,7 +143,7 @@
                             </div>
                             <div class="col">
                                 <p class="text-right">
-                                    <small>Ended 10d</small>
+                                    <small>Ended ${ico.todayMinusIcoEnd()}d</small>
                                 </p>
                             </div>
                         </div>

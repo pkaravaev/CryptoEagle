@@ -15,7 +15,7 @@ $(document).ready(function () {
 
 function tt() {
 
-    $(".button").click(function () {
+    $("button").click(function () {
         var url = $(this).val();
         $(location).attr("href", url);
     })
