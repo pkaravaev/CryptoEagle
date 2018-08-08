@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 
 @Entity
@@ -18,6 +19,6 @@ public class Event extends BaseEntity {
     private String proof;
     private String twitter;
     private boolean isHot;
-    private LocalDateTime date_event;
+    private ZonedDateTime date_event;
 
 }

@@ -24,6 +24,7 @@ import org.springframework.stereotype.Service;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
+import javax.swing.text.StyledEditorKit;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.MediaType;
@@ -35,6 +36,8 @@ import java.security.NoSuchAlgorithmException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Base64;
@@ -52,9 +55,8 @@ public class RestServiceImpl implements RestService {
 
     private static final String REST_GET_ALL = "https://icobench.com/api/v1/icos/all";
     private static final String REST_GET_DATA = "https://icobench.com/api/v1/ico/";
-    private static final String REST_GET_EVENTS = "https://api.coinmarketcal.com/v1/events/";
+    private static final String REST_GET_EVENTS = "https://api.coinmarketcal.com/v1/events";
     private static final String REST_GET_TOKEN = "https://api.coinmarketcal.com/oauth/v2/token";
-
 
 
     public List<Ico> getAllIcosFromIcobench() {
@@ -128,7 +130,7 @@ public class RestServiceImpl implements RestService {
     public List<Ico> getIcoWithDataByPage(int page) {
         List<Ico> icos = getIcoByPage(page);
         List<Ico> icoswithdata = new ArrayList<>();
-        for(Ico ico : icos){
+        for (Ico ico : icos) {
             Idata data = getDataForIco(ico.getId());
             ico.setData(data);
             icoswithdata.add(ico);
@@ -137,12 +139,33 @@ public class RestServiceImpl implements RestService {
     }
 
 
+    public List<Event> getEvents(int count) {
 
+        List<Event> events = new ArrayList<>();
+        String token = getTokenOAUTH();
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            HttpGet httpGet = new HttpGet(REST_GET_EVENTS + "?access_token=" + token + "&max=" + count);
+            CloseableHttpClient client = HttpClients.createDefault();
+            HttpEntity entity = client.execute(httpGet).getEntity();
+            InputStream content = entity.getContent();
+            StringBuilder builder = new StringBuilder();
+            while (content.available() > 0) {
+                char c = (char) content.read();
+                builder.append(c);
+            }
+            JsonNode jsonNode = mapper.readTree(builder.toString());
+            Iterator<JsonNode> iterator = jsonNode.iterator();
+            while (iterator.hasNext()){
 
-
-    @Override
-    public List<Event> getEvents() {
-        return null;
+                JsonNode node = iterator.next();
+                events.add(convertJsonToEvent(node));
+            }
+            System.out.println();
+        } catch (Exception e) {
+            return null;
+        }
+        return events;
     }
 
 
@@ -269,6 +292,26 @@ public class RestServiceImpl implements RestService {
         return coins;
     }
 
+    private Event convertJsonToEvent(JsonNode jsonNode){
+        Event event = new Event();
+        String title = jsonNode.get("title").toString();
+        String description = jsonNode.get("description").toString();
+        String twitter = jsonNode.get("twitter_account").toString();
+        String proof = jsonNode.get("proof").toString();
+        String hot = jsonNode.get("is_hot").toString();
+        String symbol = jsonNode.get("tip_symbol").toString();
+        String date_event = jsonNode.get("date_event").toString();
+
+        event.setHot(Boolean.getBoolean(deleteCommas(hot)));
+        event.setTitle(deleteCommas(title));
+        event.setDescription(deleteCommas(description));
+        event.setCoinName(deleteCommas(symbol));
+        event.setTwitter(deleteCommas(twitter));
+        event.setProof(deleteCommas(proof));
+        ZonedDateTime dateTime = ZonedDateTime.parse(deleteCommas(date_event), DateTimeFormatter.ISO_DATE_TIME);
+        event.setDate_event(dateTime);
+        return event;
+    }
 
     private Ico convertJsonToIco(JsonNode jsonNode) {
 
@@ -455,7 +498,7 @@ public class RestServiceImpl implements RestService {
         }
     }
 
-    public String getTokenOAUTH(){
+    public String getTokenOAUTH() {
         String token = null;
         try {
             HttpGet httpGet = new HttpGet(REST_GET_TOKEN + "?grant_type=client_credentials&client_id=" + CLIENT_ID + "&client_secret=" + CLIENT_SECRET);
@@ -472,13 +515,9 @@ public class RestServiceImpl implements RestService {
             ObjectMapper mapper = new ObjectMapper();
             JsonNode node = mapper.readTree(builder.toString());
             token = node.get("access_token").toString();
+        } catch (Exception ex) {
+            return null;
         }
-
-       catch (Exception ex)  {
-
-           return null;
-       }
-
         return deleteCommas(token);
     }
 }

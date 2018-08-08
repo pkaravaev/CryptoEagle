@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface RestService {
 
-     List<Event> getEvents();
+     List<Event> getEvents(int count);
 
      List<Coin> getCoins();
 

@@ -1,6 +1,7 @@
 package com.cryptoeagle.service;
 
 import com.cryptoeagle.entity.Coin;
+import com.cryptoeagle.entity.Event;
 import com.cryptoeagle.entity.Ico;
 import com.cryptoeagle.entity.PictureCoin;
 import com.cryptoeagle.entity.crypto.Idata;
@@ -23,11 +24,19 @@ public class RestServiceImplTest extends AbstractTest {
     @Autowired
     RestServiceImpl service;
 
+
     @Test
+    public void getEvents() {
+        List<Event> events = service.getEvents(10);
+        assertTrue(events.size() == 10);
+    }
+
+
+
+        @Test
     public void getTokenOAUTH(){
         String s = service.getTokenOAUTH();
         assertTrue(86 == s.length());
-
     }
 
     @Test
