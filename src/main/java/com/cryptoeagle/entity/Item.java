@@ -25,6 +25,7 @@ public class Item extends BaseEntity implements EntityWithPic {
     public final static String GET_ALL_SOURCE = "Item.GetAllSource";
 
     private String title;
+    @Lob
     private String description;
     private Date publishDate;
     private String link;

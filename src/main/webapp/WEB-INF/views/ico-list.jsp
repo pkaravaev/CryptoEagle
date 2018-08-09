@@ -68,7 +68,7 @@
                             </div>
                             <div class="col">
                                 <p class="text-right">
-                                    <small>End ${ico.todayMinusIcoEnd()} d</small>
+                                    <small>${ Math.abs(ico.todayMinusIcoEnd())}d left </small>
                                 </p>
                             </div>
                         </div>
@@ -105,7 +105,7 @@
                             </div>
                             <div class="col">
                                 <p class="text-right">
-                                    <small>Starts ${ico.todayMinusIcoStart()}d</small>
+                                    <small>Starts ${ Math.abs(ico.todayMinusIcoStart())}d</small>
                                 </p>
                             </div>
                             <p hidden>${ico.website_link}</p>
@@ -143,7 +143,7 @@
                             </div>
                             <div class="col">
                                 <p class="text-right">
-                                    <small>Ended ${ico.todayMinusIcoEnd()}d</small>
+                                    <small>Ended ${ Math.abs(ico.todayMinusIcoEnd())}d</small>
                                 </p>
                             </div>
                         </div>

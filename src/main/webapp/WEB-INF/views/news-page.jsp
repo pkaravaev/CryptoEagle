@@ -53,11 +53,16 @@
 
 </script>
 
-<ul class="nav justify-content-center font-weight-bold brown ">
+<ul class="nav justify-content-center font-weight-bold brown lighten-5 ">
 
     <c:forEach items="${sources}" var="s">
         <li class="nav-item">
-            <a   class="nav-link" href= "/news/${s.toString()}"}><p class="red-text">${s.toString()}</p> </a>
+            <%--<a   class="nav-link" href= "/news/${s.toString()}"}><p class="red-text">${s.toString()}</p> </a>--%>
+
+            <button value="/news/${s.toString()}" type="button" class="btn btn-brown btn-rounded">${s.toString()}</button>
+
+                <!--Deep-purple-->
+                <%--<button type="button" class="btn btn-deep-purple">Deep-purple</button>--%>
         </li>
     </c:forEach>
 
@@ -73,29 +78,8 @@
 <section class="text-center my-5">
 
     <div class="card-columns">
-        <c:forEach items="${items}" var="item">
-            <%--<div style="height: 20rem;width: 20rem"  class="card hoverable ">--%>
-                <%--<img style="width: 22rem;height: 12rem"  alt="Card image cap" class="card-img-top img-fluid "--%>
-                     <%--src="/resources/pic/m/m${item.getRandomPic(5)}.jpg">--%>
-                <%--<div class="card-block">--%>
-                    <%--<h4 class="card-title font-weight-bold">${item.title}</h4>--%>
-                <%--</div>--%>
+        <c:forEach items="${items}" var="item" varStatus="i">
 
-                <%--<p class="title" hidden>${item.title}</p>--%>
-                <%--<p class="description" hidden>${item.description}</p>--%>
-                <%--<p class="href" hidden>${item.link}</p>--%>
-
-                <%--<div class="row">--%>
-                    <%--<div class="col">--%>
-                        <%--<p   style="margin-left: 1rem" class="date text-left font-italic">by cointelegraph</p>--%>
-                    <%--</div>--%>
-                    <%--<div class="col">--%>
-                        <%--<p style="margin-right: 1rem" class="date text-right font-italic">10 min ago</p>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
-            <%--</div>--%>
-
-            <!--Panel-->
             <div style="height: 20rem;width: 22rem" class="card hoverable ">
                 <img style="width: 22rem;height: 12rem" alt="Card  image cap" class="card-img-top img-fluid"
                      src="/resources/pic/m/m${i.count}.jpg">
@@ -103,7 +87,7 @@
                     <h4 class="card-title font-weight-bold ">${item.title}</h4>
                 </div>
                 <p class="title" hidden>${item.title}</p>
-                <p class="description" hidden>${item.description}</p>
+                <%--<p class="description" hidden>${item.description}</p>--%>
                 <p class="href" hidden>${item.link}</p>
 
                 <div class="row">

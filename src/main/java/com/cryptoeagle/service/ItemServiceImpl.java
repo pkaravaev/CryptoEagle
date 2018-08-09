@@ -68,15 +68,13 @@ public class ItemServiceImpl implements ItemService {
 
     @Scheduled(fixedDelay = 60000)
     public void updateItems(){
+
         repository.deleteAll();
 
         List<Item> items = rssService.getItems("https://www.coindesk.com/feed/");
         List<Item> items2 = rssService.getItems(" https://www.ccn.com/feed/");
         List<Item> items3= rssService.getItems("https://blog.blockchain.com/feed");
-        List<Item> items5 = rssService.getItems("https://news.bitcoin.com/feed");
 
-
-        repository.saveAll(items5);
 
         repository.saveAll(items3);
         repository.saveAll(items2);

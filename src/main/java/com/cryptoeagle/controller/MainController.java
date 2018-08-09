@@ -135,4 +135,9 @@ public class MainController {
         return "test";
     }
 
+    @RequestMapping("/test2")
+    public String test2(Model model){
+        return "test2";
+    }
+
 }
