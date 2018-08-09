@@ -13,7 +13,8 @@ import java.util.Objects;
 @Entity
 @NamedQueries({
         @NamedQuery(name = Item.GET_ALL, query = "SELECT item FROM Item  item"),
-        @NamedQuery(name = Item.GET_BY_SOURCE, query = "SELECT item FROM Item item WHERE item.source =:source")
+        @NamedQuery(name = Item.GET_BY_SOURCE, query = "SELECT item FROM Item item WHERE item.source =:source"),
+        @NamedQuery(name = Item.GET_ALL_SOURCE, query = "SELECT DISTINCT item.source FROM Item item")
 })
 @Getter
 @Setter
@@ -21,6 +22,7 @@ public class Item extends BaseEntity implements EntityWithPic {
 
     public final static String GET_ALL = "Item.GetAll";
     public final static String GET_BY_SOURCE = "Item.GetBySource";
+    public final static String GET_ALL_SOURCE = "Item.GetAllSource";
 
     private String title;
     private String description;

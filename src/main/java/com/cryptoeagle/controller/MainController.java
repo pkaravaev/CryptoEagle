@@ -97,8 +97,19 @@ public class MainController {
 
     @RequestMapping("/news")
     public String news(Model model) {
-        List<Item> items = rssService.getItems("https://www.coindesk.com/feed/");
+        List<Item> items = itemService.getAll();
+        List<String> sources = itemService.getSources();
         model.addAttribute("items", items);
+        model.addAttribute("sources", sources);
+        return "news-page";
+    }
+
+    @RequestMapping("/news/{source}")
+    public String newsBySource(Model model, @PathVariable String source) {
+        List<Item> items = itemService.getBySource(source);
+        List<String> sources = itemService.getSources();
+        model.addAttribute("items", items);
+        model.addAttribute("sources", sources);
         return "news-page";
     }
 

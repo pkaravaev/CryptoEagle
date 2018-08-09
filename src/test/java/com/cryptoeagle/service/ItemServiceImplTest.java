@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
 public class ItemServiceImplTest  extends AbstractTest{
 
     @Autowired
-    ItemService service;
+    ItemServiceImpl service;
 
     @Test
     public void findall() {
@@ -33,10 +33,19 @@ public class ItemServiceImplTest  extends AbstractTest{
 
     @Test
     public void getBySource(){
-
-        List<Item> items = service.getAll();
-
+        List<Item> items = service.getBySource("ccn");
         assertTrue(items.size() > 0);
+    }
+
+    @Test
+    public void getSources(){
+        List<String> items = service.getSources();
+        assertTrue(items.size() > 0);
+    }
+
+    @Test
+    public void update(){
+        service.updateItems();;
 
     }
 }

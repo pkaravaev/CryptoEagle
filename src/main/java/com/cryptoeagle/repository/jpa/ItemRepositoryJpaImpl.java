@@ -26,6 +26,12 @@ public class ItemRepositoryJpaImpl implements ItemRepository {
     }
 
     @Override
+    public List<String> getSources() {
+       return em.createNamedQuery(Item.GET_ALL_SOURCE, String.class)
+                .getResultList();
+    }
+
+    @Override
     public Item save(Item item, int blog_id) {
         return null;
     }
@@ -33,7 +39,7 @@ public class ItemRepositoryJpaImpl implements ItemRepository {
     @Override
     @Transactional
     public void deleteAll() {
-        em.createQuery("DELETE FROM Item ");
+        em.createQuery("DELETE FROM Item ").executeUpdate();
     }
 
     @Override
@@ -46,7 +52,6 @@ public class ItemRepositoryJpaImpl implements ItemRepository {
         return em.createNamedQuery(Item.GET_BY_SOURCE, Item.class)
                 .setParameter("source", source)
                 .getResultList();
-
     }
 
     @Override

@@ -17,4 +17,6 @@ public interface ItemService {
 
     List<Item> getAll();
 
+    List<String> getSources();
+
 }

@@ -22,4 +22,6 @@ public interface ItemRepository {
     List<Item> getBySource(String source);
 
     List<Item> getall();
+
+    List<String> getSources();
 }

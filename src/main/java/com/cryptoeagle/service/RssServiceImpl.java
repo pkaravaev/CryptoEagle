@@ -38,11 +38,12 @@ public class RssServiceImpl implements RssService {
             String link = entry.getLink();
             String title = entry.getTitle();
 
+
             Item item = new Item();
             item.setSource(Utils.cut(url));
             item.setTitle(title);
             item.setLink(link);
-            item.setDescription(description);
+            item.setDescription(description.substring(0, 100).concat("..."));
             item.setPublishDate(date);
 
             itemList.add(item);

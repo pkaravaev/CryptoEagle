@@ -2,6 +2,8 @@
 
 <jsp:include page="template/header.jsp"/>
 
+<br/>
+
 <script>
 
     $(document).ready(function () {

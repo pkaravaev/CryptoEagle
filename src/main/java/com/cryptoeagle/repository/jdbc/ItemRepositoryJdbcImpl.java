@@ -47,6 +47,11 @@ public class ItemRepositoryJdbcImpl implements ItemRepository {
     }
 
     @Override
+    public List<String> getSources() {
+        return null;
+    }
+
+    @Override
     public Item get(int id, int blog) {
         return null;
     }
