@@ -54,16 +54,21 @@ public class MainController {
     @RequestMapping("/")
     public String welcome(Model model) {
 
-        List<Item> rawitems = rssService.getItems("https://www.coindesk.com/feed/");
-        List<Item> items = rawitems.stream().limit(3).collect(Collectors.toList());
+//        List<Item> rawitems = rssService.getItems("https://www.coindesk.com/feed/");
+
+        List<Item> items = itemService.getAll().stream().limit(3).collect(Collectors.toList());
+
         Item main = items.get(0);
         List<Item> middle = new ArrayList<>();
+
         middle.add(items.get(1));
         middle.add(items.get(2));
+
         List<Coin> topcoins = coinService.getTopGainCoins();
         List<Coin> losercoins = coinService.getTopLoserCoins();
         List<Event> events = eventService.getEvents(6);
         List<Ico> icos = icoService.getActiveIco().stream().limit(6).collect(Collectors.toList());
+
         model.addAttribute("losercoins", losercoins);
         model.addAttribute("topcoins", topcoins);
         model.addAttribute("items", items);
@@ -73,7 +78,6 @@ public class MainController {
         model.addAttribute("events", events);
         return "welcome";
     }
-
 
     @RequestMapping("/{name}")
     public String welcome2(@PathVariable String name) {
@@ -85,7 +89,6 @@ public class MainController {
     public String error() {
         return "error-page";
     }
-
 
     @RequestMapping("/beginners")
     public String begginers() {

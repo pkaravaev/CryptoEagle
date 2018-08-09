@@ -138,7 +138,6 @@ public class RestServiceImpl implements RestService {
         return icoswithdata;
     }
 
-
     public List<Event> getEvents(int count) {
 
         List<Event> events = new ArrayList<>();

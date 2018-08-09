@@ -137,7 +137,7 @@
     </li>
 
 </ul>
-<br/>
+
 
 <!--Modal: Login / Register Form-->
 <div class="modal fade" id="modalLRForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

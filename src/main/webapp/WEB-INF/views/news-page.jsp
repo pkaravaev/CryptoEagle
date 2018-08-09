@@ -53,6 +53,14 @@
 
 </script>
 
+<ul class="nav justify-content-center font-weight-bold brown ">
+
+    <li class="nav-item">
+        <a  id="BTC" class="nav-link" href="/coin-list"><p class="red-text">active</p> </a>
+    </li>
+
+</ul>
+
 <div class="container">
 
 

@@ -3,7 +3,6 @@ $(document).ready(function () {
 
     tt();
 
-
     var contain = $("div:has(p)");
 
     $("#login").click(function () {

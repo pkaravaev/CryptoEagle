@@ -16,11 +16,25 @@ import java.util.List;
 
 @Repository
 public class ItemRepositoryJdbcImpl implements ItemRepository {
+    @Override
+    public List<Item> getBySource(String source) {
+        return null;
+    }
 
     @Autowired
     JdbcTemplate jdbcTemplate;
 
     RowMapper<Item> rowMapper = BeanPropertyRowMapper.newInstance(Item.class);
+
+    @Override
+    public void deleteAll() {
+
+    }
+
+    @Override
+    public void saveAll(List<Item> list) {
+
+    }
 
     @Override
     public Item save(Item item, int blog) {

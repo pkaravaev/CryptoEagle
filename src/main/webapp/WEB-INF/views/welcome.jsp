@@ -276,7 +276,7 @@
 
                         <div class="row">
                             <div class="col">
-                                <p style="margin-left: 1rem" class="date text-left font-italic">by cointelegraph</p>
+                                <p style="margin-left: 1rem" class="date text-left font-italic">by ${item.source}</p>
                             </div>
                             <div class="col">
                                 <p style="margin-right: 1rem" class="date text-right font-italic">10 min ago</p>
@@ -371,10 +371,18 @@
                         <div class="card-block ">
                             <h4 class="card-title font-weight-bold ">${item.title}</h4>
                         </div>
-                        <p class="date text-center">${item.publishDate}</p>
                         <p class="title" hidden>${item.title}</p>
                         <p class="description" hidden>${item.description}</p>
                         <p class="href" hidden>${item.link}</p>
+
+                        <div class="row">
+                            <div class="col">
+                                <p style="margin-left: 1rem" class="date text-left font-italic">by ${item.source}</p>
+                            </div>
+                            <div class="col">
+                                <p style="margin-right: 1rem" class="date text-right font-italic">10 min ago</p>
+                            </div>
+                        </div>
                     </div>
                     <!--Panel-->
                 </c:forEach>

@@ -1,6 +1,7 @@
 package com.cryptoeagle.service;
 
 
+import com.cryptoeagle.Utils;
 import com.cryptoeagle.entity.Item;
 import com.cryptoeagle.service.abst.RssService;
 import com.rometools.rome.feed.synd.SyndContent;
@@ -38,6 +39,7 @@ public class RssServiceImpl implements RssService {
             String title = entry.getTitle();
 
             Item item = new Item();
+            item.setSource(Utils.cut(url));
             item.setTitle(title);
             item.setLink(link);
             item.setDescription(description);

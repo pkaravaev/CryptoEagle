@@ -7,15 +7,14 @@ import java.util.List;
 
 public interface ItemService {
 
-    List<Item> findall();
-
     void saveAndUpdate(Item item);
 
     void delete(int item);
 
     Item getByBlog(Blog blog);
 
+    List<Item> getBySource(String source);
 
-    
+    List<Item> getAll();
 
 }
