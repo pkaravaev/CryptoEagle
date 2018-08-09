@@ -6,9 +6,10 @@
 
 <script>
 
-    $(document).ready(function () {
-        $('#dtMaterialDesignExample').DataTable();
-    });
+   $(document).ready(function () {
+       $('#dtMaterialDesignExample').DataTable();
+   });
+
 </script>
 
 <div class="container bg-white">

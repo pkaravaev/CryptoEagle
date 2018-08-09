@@ -2,11 +2,11 @@
 <jsp:include page="template/header.jsp"/>
 
 
-<style>
 
-</style>
 
 <script>
+
+
 
     $(document).ready(function () {
 
@@ -73,8 +73,6 @@
                             </div>
                         </div>
                         <p class="href" hidden>${ico.name}</p>
-
-
                     </div>
                 </div>
                 <!--/.Panel-->
@@ -111,8 +109,6 @@
                             <p hidden>${ico.website_link}</p>
                             <p class="href" hidden>${ico.name}</p>
                         </div>
-
-
                     </div>
                 </div>
                 <!--/.Panel-->

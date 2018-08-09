@@ -7,7 +7,9 @@
         $('#dtMaterialDesignExample').DataTable();
     });
 
+
 </script>
+
 
 
 <div class="container bg-white">

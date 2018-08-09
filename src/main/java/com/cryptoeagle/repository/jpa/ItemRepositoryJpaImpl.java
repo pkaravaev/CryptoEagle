@@ -20,9 +20,16 @@ public class ItemRepositoryJpaImpl implements ItemRepository {
     @Transactional
     public void saveAll(List<Item> list) {
 
-        for (Item item : list){
-            em.persist(item);
+        try {
+            for (Item item : list){
+                em.persist(item);
+            }
         }
+        catch (Exception e){
+
+            System.out.println("Error : "  + e.getMessage());
+        }
+
     }
 
     @Override

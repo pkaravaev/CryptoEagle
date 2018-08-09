@@ -28,7 +28,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    @Scheduled(fixedDelay = 20000)
+    @Scheduled(fixedDelay = 60000)
     @Transactional
     public void update() {
         repository.deleteAll();

@@ -281,7 +281,7 @@
                                 <p style="margin-left: 1rem" class="date text-left font-italic">by ${item.source}</p>
                             </div>
                             <div class="col">
-                                <p style="margin-right: 1rem" class="date text-right font-italic">10 min ago</p>
+                                <p style="margin-right: 1rem" class="date text-right font-italic">${item.diffMinute()} min ago</p>
                             </div>
                         </div>
                     </div>
@@ -382,7 +382,7 @@
                                 <p style="margin-left: 1rem" class="date text-left font-italic">by ${item.source}</p>
                             </div>
                             <div class="col">
-                                <p style="margin-right: 1rem" class="date text-right font-italic">10 min ago</p>
+                                <p style="margin-right: 1rem" class="date text-right font-italic">${item.diffMinute()} min ago</p>
                             </div>
                         </div>
                     </div>
