@@ -82,7 +82,7 @@
 
             <div style="height: 20rem;width: 22rem" class="card hoverable ">
                 <img style="width: 22rem;height: 12rem" alt="Card  image cap" class="card-img-top img-fluid"
-                     src="/resources/pic/m/m${i.count}.jpg">
+                     src="/resources/pic/m/m${item.getRandomPic(9)}.jpg">
                 <div class="card-block ">
                     <h4 class="card-title font-weight-bold ">${item.title}</h4>
                 </div>
@@ -95,7 +95,19 @@
                         <p style="margin-left: 1rem" class="date text-left font-italic">by ${item.source}</p>
                     </div>
                     <div class="col">
-                        <p style="margin-right: 1rem" class="date text-right font-italic">${item.diffMinute()} min ago</p>
+
+                        <c:choose>
+                            <c:when test="${item.diffHours() == 0}" >
+                                <p style="margin-right: 1rem" class="date text-right font-italic">${ Math.abs(item.diffMinutes())} m ago </p>
+                            </c:when>
+                            <c:otherwise>
+                                <p style="margin-right: 1rem" class="date text-right font-italic">${Math.abs(item.diffHours())} h ago </p>
+                            </c:otherwise>
+
+                        </c:choose>
+
+
+                        <%--<p style="margin-right: 1rem" class="date text-right font-italic">${item.publishDate}</p>--%>
                     </div>
                 </div>
             </div>

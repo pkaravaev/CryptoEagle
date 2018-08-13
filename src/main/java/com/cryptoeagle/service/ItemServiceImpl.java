@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -66,9 +67,8 @@ public class ItemServiceImpl implements ItemService {
         return null;
     }
 
-    @Scheduled(fixedDelay = 60000)
+    @Scheduled(fixedDelay = 600000)
     public void updateItems() {
-
         repository.deleteAll();
 
         List<Item> items = rssService.getItems("https://www.coindesk.com/feed/");
@@ -86,6 +86,7 @@ public class ItemServiceImpl implements ItemService {
         repository.saveAll(items2);
         repository.saveAll(items);
 
+        log.info("UPDATE ITEMS :" + LocalDateTime.now());
 
     }
 }

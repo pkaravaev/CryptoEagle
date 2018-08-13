@@ -6,7 +6,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.Period;
 import java.util.Objects;
 
 @Entity
@@ -31,15 +33,26 @@ public class Item extends BaseEntity implements EntityWithPic {
     private String source;
 
     public int diffDays() {
-        return LocalDateTime.now().getDayOfMonth() - publishDate.getDayOfMonth();
+        return Math.abs(LocalDateTime.now().getDayOfMonth() - publishDate.getDayOfMonth());
     }
 
-    public int diffMinute() {
-        return LocalDateTime.now().getMinute() - publishDate.getMinute();
+    public int diffMinutes() {
+
+//        Period period = Period.between(LocalDateTime.now().toLocalDate(), publishDate.toLocalDate());
+        Duration between = Duration.between(LocalDateTime.now().toLocalTime(), publishDate.toLocalTime());
+//        return LocalDateTime.now().getMinute() - publishDate.getMinute();
+
+        return Math.abs(((int)between.toMinutes()));
     }
 
     public int diffHours() {
-        return LocalDateTime.now().getHour() - publishDate.getHour();
+
+        Duration between = Duration.between(LocalDateTime.now().toLocalTime(), publishDate.toLocalTime());
+        Period period = Period.between(LocalDateTime.now().toLocalDate(), publishDate.toLocalDate());
+        int i = (int)between.toHours();
+
+        return  Math.abs(i);
+//        return LocalDateTime.now().getHour() - publishDate.getHour();
     }
 
     @ManyToOne(cascade = CascadeType.ALL)

@@ -31,7 +31,6 @@ public class Blog extends BaseEntity {
     @ManyToOne(cascade = CascadeType.ALL)
     private AppUser appUser;
 
-
     public Blog(int id_blog, String name, String URL) {
         super(id_blog);
         this.name = name;

@@ -60,5 +60,4 @@ public class UserServiceImpl implements UserService {
         return repository.getall().stream().filter(e -> e.isAdmin() == true).findFirst().get();
     }
 
-
 }

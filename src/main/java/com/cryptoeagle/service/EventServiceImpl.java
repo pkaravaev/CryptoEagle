@@ -10,11 +10,16 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.logging.Logger;
 
 @Service
 @EnableScheduling
 public class EventServiceImpl implements EventService {
+
+    private static final Logger log = Logger.getLogger(EventServiceImpl.class.getName());
+
 
     @Autowired
     RestService service;
@@ -28,9 +33,10 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    @Scheduled(fixedDelay = 60000)
+    @Scheduled(fixedDelay = 600000)
     @Transactional
     public void update() {
+        log.info("UPDATE EVENTS :" + LocalDateTime.now());
         repository.deleteAll();
         List<Event> events = service.getEvents(12);
         repository.saveAll(events);

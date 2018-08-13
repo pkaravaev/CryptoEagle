@@ -6,8 +6,6 @@
 
 <script>
 
-
-
     $(document).ready(function () {
 
         document.oncontextmenu = function() {return false;};
@@ -15,6 +13,7 @@
         $(".card").mouseenter(function () {
             $(this).css("cursor", "hand");
         })
+
         $(".card").mouseleave(function () {
             $(this).css("cursor", "point");
         })
@@ -41,7 +40,7 @@
 
 <div class="container  bg-white">
 
-    <div class="row">
+    <div class="row">1
 
         <div class="col-md-4">
 

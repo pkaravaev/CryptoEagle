@@ -19,7 +19,7 @@ import java.util.logging.Logger;
 @EnableScheduling
 public class CoinServiceImpl implements CoinService {
 
-    private static final Logger log = Logger.getLogger(ItemServiceImpl.class.getName());
+    private static final Logger log = Logger.getLogger(CoinServiceImpl.class.getName());
 
     @Autowired
     CoinRepository repository;
@@ -60,9 +60,9 @@ public class CoinServiceImpl implements CoinService {
     }
 
     @Override
-    @Scheduled(fixedDelay = 60000)
+    @Scheduled(fixedDelay = 600000)
     public void updateCoins() {
-        log.info("update coins" + LocalDateTime.now().toString());
+        log.info("UPDATE COINS :" + LocalDateTime.now().toString());
         repository.deleteAll();
         List<Coin> allCoinsFromProvider = restService.getCoins();
         repository.saveCoins(allCoinsFromProvider);

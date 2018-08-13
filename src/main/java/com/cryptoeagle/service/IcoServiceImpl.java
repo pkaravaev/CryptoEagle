@@ -10,6 +10,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -18,7 +19,7 @@ import java.util.logging.Logger;
 @EnableScheduling
 public class IcoServiceImpl implements IcoService {
 
-    private static final Logger log = Logger.getLogger(ItemServiceImpl.class.getName());
+    private static final Logger log = Logger.getLogger(IcoServiceImpl.class.getName());
 
     @Autowired
     IcoRepository repository;
@@ -62,9 +63,8 @@ public class IcoServiceImpl implements IcoService {
     }
 
     @Override
-    @Scheduled(fixedDelay = 150000)
+    @Scheduled(fixedDelay = 600000)
     public void updateIcos() {
-        log.info("update Icos start");
         repository.deleteAll();
 
         List<Ico> page = clientService.getIcoWithDataByPage(1);
@@ -75,7 +75,7 @@ public class IcoServiceImpl implements IcoService {
         saveIcos(page1);
         saveIcos(page2);
 
-        log.info("update Icos finished");
+        log.info("UPDATE ICOS :" + LocalDateTime.now());
     }
 
     @Override

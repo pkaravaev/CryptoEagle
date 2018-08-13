@@ -54,15 +54,20 @@ public class MainController {
     @RequestMapping("/")
     public String welcome(Model model) {
 
-//        List<Item> rawitems = rssService.getItems("https://www.coindesk.com/feed/");
+        List<Item> items = itemService.getAll().stream().limit(10).collect(Collectors.toList());
 
-        List<Item> items = itemService.getAll().stream().limit(3).collect(Collectors.toList());
+        List<Item> lowerItems = new ArrayList<>();
 
-        Item main = items.get(0);
-        List<Item> middle = new ArrayList<>();
+        List<Item> averageItems = new ArrayList<>();
 
-        middle.add(items.get(1));
-        middle.add(items.get(2));
+        Item topItem = items.get(0);
+
+        averageItems.add(items.get(1));
+        averageItems.add(items.get(2));
+
+        lowerItems.add(items.get(3));
+        lowerItems.add(items.get(4));
+        lowerItems.add(items.get(5));
 
         List<Coin> topcoins = coinService.getTopGainCoins();
         List<Coin> losercoins = coinService.getTopLoserCoins();
@@ -71,9 +76,12 @@ public class MainController {
 
         model.addAttribute("losercoins", losercoins);
         model.addAttribute("topcoins", topcoins);
-        model.addAttribute("items", items);
-        model.addAttribute("main", main);
-        model.addAttribute("middle", middle);
+
+        model.addAttribute("topItem", topItem);
+        model.addAttribute("lowerItems", lowerItems);
+        model.addAttribute("averageItems", averageItems);
+
+
         model.addAttribute("icos", icos);
         model.addAttribute("events", events);
         return "welcome";
@@ -136,7 +144,7 @@ public class MainController {
     }
 
     @RequestMapping("/test2")
-    public String test2(Model model){
+    public String test2(Model model) {
         return "test2";
     }
 

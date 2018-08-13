@@ -2,6 +2,7 @@
 
 <jsp:include page="template/header.jsp"/>
 
+
 <br/>
 
 <script>
@@ -232,7 +233,6 @@
     }
 </style>
 
-
 <div class="container bg-white animated shake">
 
     <div class="row">
@@ -241,37 +241,40 @@
         </div>
 
         <div class="col">
-
             <h4 class="font-weight-bold">CRYPTO NEWS</h4>
             <hr style="size: 4rem" color="#795548"/>
 
             <div id="bigCard" class="card hoverable rounded example job ">
-                <img style="height: 15rem" alt="Card image cap" class="card-img-top img-fluid"
-                     src="/resources/pic/l/l${main.getRandomPic(5)}.jpg">
+                <img style="height: 12rem" alt="Card image cap" class="card-img-top img-fluid"
+                     src="/resources/pic/l/l${topItem.getRandomPic(5)}.jpg">
+                    <h4 class="card-title font-weight-bold ">${topItem.title}</h4>
 
-                <div class="card-block">
-                    <h4 class="card-title font-weight-bold ">${main.title}</h4>
-                    <p class="date text-right font-weight-light">${item.publishDate}</p>
+                <div class="row">
+                    <div class="col">
+                        <p style="margin-left: 1rem" class="date text-left font-italic">by ${topItem.source}</p>
+                    </div>
+                    <div class="col">
+                        <p style="margin-right: 1rem" class="date text-right font-italic">${topItem.diffMinutes()} min ago</p>
+                    </div>
                 </div>
 
-
-                <p class="title" hidden>${main.title}</p>
-                <p class="description" hidden>${main.description}</p>
-                <p class="date" hidden>${main.publishDate}</p>
-                <p class="href" hidden>${main.link}</p>
+                <p class="title" hidden>${topItem.publishDate}</p>
+                <p class="description" hidden>${topItem.description}</p>
+                <p class="date" hidden>${topItem.publishDate}</p>
+                <p class="href" hidden>${topItem.link}</p>
             </div>
 
             <br/>
 
             <div class="card-deck">
-                <c:forEach items="${middle}" var="item">
-                    <div style="height: 20rem;width: 20rem" class="card hoverable ">
-                        <img style="width: 22rem;height: 12rem" alt="Card image cap" class="card-img-top img-fluid "
-                             src="/resources/pic/m/m${item.getRandomPic(5)}.jpg">
-                        <div class="card-block">
-                            <h4 class="card-title font-weight-bold">${main.title}</h4>
+                <c:forEach items="${averageItems}" var="item" varStatus="i">
+                    <!--Panel-->
+                    <div style="height: 20rem;width: 22rem" class="card hoverable ">
+                        <img style="width: 22rem;height: 12rem" alt="Card  image cap" class="card-img-top img-fluid"
+                             src="/resources/pic/m/m${i.count}.jpg">
+                        <div class="card-block ">
+                            <h4 class="card-title font-weight-bold ">${item.title}</h4>
                         </div>
-
                         <p class="title" hidden>${item.title}</p>
                         <p class="description" hidden>${item.description}</p>
                         <p class="href" hidden>${item.link}</p>
@@ -281,11 +284,19 @@
                                 <p style="margin-left: 1rem" class="date text-left font-italic">by ${item.source}</p>
                             </div>
                             <div class="col">
-                                <p style="margin-right: 1rem" class="date text-right font-italic">${item.diffMinute()} min ago</p>
+                                <%--<p style="margin-right: 1rem" class="date text-right font-italic">${item.diffMinutes()} min ago</p>--%>
+                                    <c:choose>
+                                        <c:when test="${item.diffHours() == 0}" >
+                                            <p style="margin-right: 1rem" class="date text-right font-italic">${ Math.abs(item.diffMinutes())} m ago </p>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <p style="margin-right: 1rem" class="date text-right font-italic">${Math.abs(item.diffHours())} h ago </p>
+                                        </c:otherwise>
+                                    </c:choose>
                             </div>
                         </div>
                     </div>
-
+                    <!--Panel-->
                 </c:forEach>
             </div>
 
@@ -365,7 +376,7 @@
             <br/>
             <div class="card-columns">
 
-                <c:forEach items="${items}" var="item" varStatus="i">
+                <c:forEach items="${lowerItems}" var="item" varStatus="i">
                     <!--Panel-->
                     <div style="height: 20rem;width: 22rem" class="card hoverable ">
                         <img style="width: 22rem;height: 12rem" alt="Card  image cap" class="card-img-top img-fluid"
@@ -382,7 +393,14 @@
                                 <p style="margin-left: 1rem" class="date text-left font-italic">by ${item.source}</p>
                             </div>
                             <div class="col">
-                                <p style="margin-right: 1rem" class="date text-right font-italic">${item.diffMinute()} min ago</p>
+                                <c:choose>
+                                    <c:when test="${item.diffHours() == 0}" >
+                                        <p style="margin-right: 1rem" class="date text-right font-italic">${ Math.abs(item.diffMinutes())} m ago </p>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <p style="margin-right: 1rem" class="date text-right font-italic">${Math.abs(item.diffHours())} h ago </p>
+                                    </c:otherwise>
+                                </c:choose>
                             </div>
                         </div>
                     </div>
@@ -468,11 +486,13 @@
                 </div>
             </div>
             </li>
-
         </c:forEach>
-
     </ul>
 </div>
+
+
+
+
 
 
 <jsp:include page="template/footer.jsp"/>

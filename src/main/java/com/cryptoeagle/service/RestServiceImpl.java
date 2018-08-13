@@ -125,7 +125,6 @@ public class RestServiceImpl implements RestService {
         }
         return icoList;
     }
-
     @Override
     public List<Ico> getIcoWithDataByPage(int page) {
         List<Ico> icos = getIcoByPage(page);

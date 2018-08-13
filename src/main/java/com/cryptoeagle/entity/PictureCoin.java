@@ -3,6 +3,7 @@ package com.cryptoeagle.entity;
 public class PictureCoin {
 
     private String symbol;
+
     private String link;
 
     public String getSymbol() {

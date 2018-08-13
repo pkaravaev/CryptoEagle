@@ -25,6 +25,8 @@ import org.springframework.core.env.Environment;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.io.InputStream;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,25 +37,11 @@ public class test {
     private static final String REST_GET_TOKEN = "https://api.coinmarketcal.com/oauth/v2/token";
 
     public static void main(String[] args) throws Exception {
-
-        HttpGet httpGet = new HttpGet(REST_GET_TOKEN + "?grant_type=client_credentials&client_id=" + CLIENT_ID + "&client_secret=" + CLIENT_SECRET);
-        CloseableHttpClient client = HttpClients.createDefault();
-        CloseableHttpResponse response = client.execute(httpGet);
-        HttpEntity entity = response.getEntity();
-        InputStream content = entity.getContent();
-        List<Character> characterList = new ArrayList<>();
-        StringBuilder builder = new StringBuilder();
-        while (content.available() > 0) {
-            char read = (char) content.read();
-            builder.append(read);
-        }
-        ObjectMapper mapper = new ObjectMapper();
-        JsonNode node = mapper.readTree(builder.toString());
-        String accesToken = node.get("access_token").toString();
-
-        System.out.println(builder);
+        LocalDateTime localDateTimeStart = LocalDateTime.of(2018, 8, 10, 01, 00);
+        LocalDateTime localDateTimeEnd= LocalDateTime.of(2018, 8, 10, 20, 00);
+        Duration between = Duration.between(localDateTimeStart.toLocalTime(), localDateTimeEnd.toLocalTime());
+        System.out.println(between.toHours());
     }
-
 }
 
 

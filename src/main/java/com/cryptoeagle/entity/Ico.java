@@ -49,7 +49,7 @@ public class Ico {
     }
 
     public int todayMinusIcoEnd() {
-        return LocalDateTime.now().getDayOfMonth() - icoEnd.getDayOfMonth();
+        return Math.abs(LocalDateTime.now().getDayOfMonth() - icoEnd.getDayOfMonth());
     }
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
