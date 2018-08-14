@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,10 +25,14 @@ public class Blog extends BaseEntity {
     public static final String DELETE = "Blog.delete";
     public static final String GET = "Blog.getById";
 
+    @NotNull
     private String name;
+    @Column(unique = true)
     private String url;
+    @NotNull
     @OneToMany(mappedBy = "blog", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true, targetEntity = Item.class)
     private List<Item> items = new ArrayList<>();
+    @NotNull
     @ManyToOne(cascade = CascadeType.ALL)
     private AppUser appUser;
 

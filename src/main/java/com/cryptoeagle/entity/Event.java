@@ -3,9 +3,11 @@ package com.cryptoeagle.entity;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 
@@ -23,14 +25,23 @@ public class Event extends BaseEntity {
     public static final String GET_ALL = "Event.getAll";
     public static final String GET_BY_COIN_NAME = "Event.getByCoinName";
 
+    @Column(unique = true)
     private String title;
+    @NotNull
     private String coinName;
+    @NotNull
     private String name;
+    @NotNull
     private String description;
+    @NotNull
     private String proof;
+    @NotNull
     private String source;
+    @NotNull
     private String twitter;
+    @NotNull
     private boolean isHot;
+    @NotNull
     private ZonedDateTime date_event;
 
     public int diffNowBeetweenDataEventDay()

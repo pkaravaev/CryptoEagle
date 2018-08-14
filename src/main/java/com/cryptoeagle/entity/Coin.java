@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 
@@ -30,16 +31,27 @@ public class Coin extends BaseEntity {
     public static final String GET_LOSER = "Coin.getLoser";
     public static final String UPDATE = "Coin.update";
 
+    @Column(unique = true)
     private String name;
+    @Column(unique = true)
     private String image;
+    @Column(unique = true)
     private String symbol;
+    @NotNull
     private int rank;
+    @NotNull
     private BigDecimal circulating_supply;
+    @NotNull
     private double price;
+    @NotNull
     private BigDecimal volume_24h;
+    @NotNull
     private BigDecimal market_cap;
+    @NotNull
     private double percent_change_1h;
+    @NotNull
     private double percent_change_7d;
+    @NotNull
     private double percent_change_24h;
 
 

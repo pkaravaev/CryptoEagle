@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-
 @Controller
 @SessionAttributes("user")
 public class MainController {
@@ -39,6 +38,24 @@ public class MainController {
     @Autowired
     EventService eventService;
 
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public String logining(@RequestParam("email") String email, @RequestParam("password") String password, Model model) {
+        AppUser appUser = userService.getByEmail(email);
+        if (appUser == null){
+            model.addAttribute("error","User not found!!!");
+            return "error-page";
+        }
+        model.addAttribute("user", appUser);
+        return "ico-stats";
+    }
+
+
+//    @RequestMapping("/login")
+//    public String xxx(){
+//
+//        return "ico-page";
+//    }
+
     @ModelAttribute("blog")
     public Blog contructBlog() {
         return new Blog();
@@ -54,9 +71,7 @@ public class MainController {
     public String welcome(Model model) {
 
         List<Item> items = itemService.getAll().stream().limit(10).collect(Collectors.toList());
-
         List<Item> lowerItems = new ArrayList<>();
-
         List<Item> averageItems = new ArrayList<>();
 
         Item topItem = items.get(0);

@@ -5,6 +5,8 @@ import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,13 +30,17 @@ public class AppUser extends BaseEntity {
     public static final String GET_ALL = "AppUser.getall";
     public static final String GET_BY_EMAIL = "AppUser.getByEmail";
 
-
+    @Min(3)
     private String name;
+    @Column(unique = true)
     private String email;
+    @Min(5)
     private String password;
+    @NotNull
     private boolean enable;
+    @NotNull
     private boolean admin;
-
+    @NotNull
     @OneToMany(mappedBy = "appUser", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Blog> blogs = new ArrayList<>();
 

@@ -65,12 +65,7 @@
 
     <c:forEach items="${sources}" var="s">
         <li class="nav-item">
-            <%--<a   class="nav-link" href= "/news/${s.toString()}"}><p class="red-text">${s.toString()}</p> </a>--%>
-
             <button value="/news/${s.toString()}" type="button" class="btn btn-brown btn-rounded">${s.toString()}</button>
-
-                <!--Deep-purple-->
-                <%--<button type="button" class="btn btn-deep-purple">Deep-purple</button>--%>
         </li>
     </c:forEach>
 

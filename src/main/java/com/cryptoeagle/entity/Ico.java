@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @NamedQueries({
@@ -31,10 +32,15 @@ public class Ico {
     public static final String GET_ENDED = "Ico.getEnded";
     public static final String GET_ACTIVE = "Ico.getActive";
 
+    @Column(unique = true)
     private String name;
+    @Column(unique = true)
     private String logolink;
+    @NotNull
     private String description;
+    @NotNull
     private String website_link;
+    @NotNull
     private double rating;
 
     private int page;

@@ -1,11 +1,13 @@
 package com.cryptoeagle.repository.jpa;
 
 import com.cryptoeagle.entity.AppUser;
+import com.cryptoeagle.exception.UserNotFoundException;
 import com.cryptoeagle.repository.UserRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
@@ -13,7 +15,6 @@ import java.util.List;
 @Repository
 @Transactional(readOnly = true)
 public class UserRepositoryJpaImpl implements UserRepository {
-
 
     @PersistenceContext
     EntityManager em;
@@ -45,9 +46,18 @@ public class UserRepositoryJpaImpl implements UserRepository {
 
     @Override
     public AppUser getByEmail(String email) {
-        return em.createNamedQuery(AppUser.GET_BY_EMAIL, AppUser.class)
-                .setParameter("email", email)
-                .getSingleResult();
+
+        try {
+            return em.createNamedQuery(AppUser.GET_BY_EMAIL, AppUser.class)
+                    .setParameter("email", email)
+                    .getSingleResult();
+
+        }
+        catch (Exception e){
+
+            return null;
+        }
+
     }
 
     @Override

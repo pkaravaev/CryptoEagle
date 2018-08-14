@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -25,11 +26,16 @@ public class Item extends BaseEntity implements EntityWithPic {
     public final static String GET_BY_SOURCE = "Item.GetBySource";
     public final static String GET_ALL_SOURCE = "Item.GetAllSource";
 
+    @Column(unique = true)
     private String title;
     @Lob
+    @NotNull
     private String description;
+    @NotNull
     private LocalDateTime publishDate;
+    @NotNull
     private String link;
+    @NotNull
     private String source;
 
     public int diffDays() {

@@ -1,6 +1,7 @@
 package com.cryptoeagle.service;
 
 import com.cryptoeagle.entity.AppUser;
+import com.cryptoeagle.exception.UserNotFoundException;
 import com.cryptoeagle.repository.UserRepository;
 
 import com.cryptoeagle.service.abst.UserService;
@@ -40,6 +41,7 @@ public class UserServiceImpl implements UserService {
     public AppUser getByEmail(String email) {
         log.info("get user id", email);
         return repository.getByEmail(email);
+
     }
 
     @Override

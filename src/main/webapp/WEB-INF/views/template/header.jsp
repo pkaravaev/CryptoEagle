@@ -32,7 +32,6 @@
     <script type="text/javascript" src="/resources/js/addons/datatables.min.js"></script>
 
 
-
     <script src="/resources/js/table.js"></script>
     <script src="/resources/js/coins.js"></script>
 
@@ -109,12 +108,13 @@
                 </li>
 
                 <li class="nav-item">
-                    <a id="login" class="nav-link" href="#modalLRForm">Login</a>
+                    <a id="modal" class="nav-link">Login / Register</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/register">Register</a>
+                    <a id="account" class="nav-link" href="#modalLRForm">My account</a>
                 </li>
+
 
             </ul>
             <!-- Links -->
@@ -175,7 +175,8 @@
 
                             <div class="md-form form-sm mb-5">
                                 <i class="fa fa-envelope prefix"></i>
-                                <input name="email" type="email" id="modalLRInput10" class="form-control form-control-sm validate">
+                                <input name="email" type="email" id="modalLRInput10"
+                                       class="form-control form-control-sm validate">
                                 <label data-error="wrong" data-success="right" for="modalLRInput10">Your email</label>
                             </div>
 
@@ -190,7 +191,8 @@
 
 
                             <div class="text-center mt-2">
-                                <button type="submit" id="log" formaction="/login" formmethod="post" class="btn  btn-brown">Log in <i class="fa fa-sign-in ml-1"></i></button>
+                                <button type="submit" id="log" formaction="/login" formmethod="post"
+                                        class="btn  btn-brown">Log in <i class="fa fa-sign-in ml-1"></i></button>
                             </div>
 
                         </div>
@@ -212,12 +214,14 @@
 
                             <div class="md-form form-sm mb-5">
                                 <i class="fa fa-user prefix"></i>
-                                <input name="name" type="text" id="modalLRInput16" class="form-control form-control-sm validate">
+                                <input name="name" type="text" id="modalLRInput16"
+                                       class="form-control form-control-sm validate">
                                 <label data-error="wrong" data-success="right" for="modalLRInput12">Your name</label>
                             </div>
                             <div class="md-form form-sm mb-5">
                                 <i class="fa fa-envelope prefix"></i>
-                                <input name="email" type="email" id="modalLRInput12" class="form-control form-control-sm validate">
+                                <input name="email" type="email" id="modalLRInput12"
+                                       class="form-control form-control-sm validate">
                                 <label data-error="wrong" data-success="right" for="modalLRInput12">Your email</label>
                             </div>
 
@@ -238,7 +242,8 @@
                             </div>
 
                             <div class="text-center form-sm mt-2">
-                                <button id="reg" class="btn btn-brown">Sign up <i class="fa fa-sign-in ml-1"></i></button>
+                                <button id="reg" class="btn btn-brown">Sign up <i class="fa fa-sign-in ml-1"></i>
+                                </button>
                             </div>
 
                         </div>

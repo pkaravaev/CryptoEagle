@@ -31,12 +31,16 @@ public class UserController {
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String logining(@RequestParam String email, @RequestParam String password, Model model) {
-        AppUser appUser = userService.getByEmail(email);
-        model.addAttribute("user", appUser);
-        return "redirect:/";
-    }
+//    @RequestMapping(value = "/login", method = RequestMethod.POST)
+//    public String logining(@RequestParam("email") String email, @RequestParam("password") String password, Model model) {
+//        AppUser appUser = userService.getByEmail(email);
+//        if (appUser == null){
+//            model.addAttribute("error","User not found!!!");
+//            return "error-page";
+//        }
+//        model.addAttribute("user", appUser);
+//        return "ico-stats";
+//    }
 
     @RequestMapping("/users")
     public String users(Model model) {
@@ -68,9 +72,8 @@ public class UserController {
                              @RequestParam String email,
                              @RequestParam String password,
                              @RequestParam String password_again) {
-
         AppUser appUser = new AppUser(name, email, password, true, false);
         userService.save(appUser);
-        return "redirect:/login";
+        return "redirect:/";
     }
 }

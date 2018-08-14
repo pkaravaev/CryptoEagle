@@ -1,5 +1,6 @@
 package com.cryptoeagle.service;
 
+import com.cryptoeagle.entity.AppUser;
 import com.cryptoeagle.service.abst.UserService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,10 @@ public class UserServiceImplTest  extends AbstractTest{
 
     @Test
     public void getByEmail() {
+
+        AppUser byEmail = service.getByEmail("andrey@gmail.com");
+
+        assertTrue(byEmail != null);
     }
 
     @Test

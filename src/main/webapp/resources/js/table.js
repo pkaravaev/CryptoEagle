@@ -3,34 +3,34 @@ $(document).ready(function () {
 
     modal();
 
-    var contain = $("div:has(p)");
-
-    $("#login").click(function () {
-        var href = $(this).attr('href');
-        $(href).modal('show')
-    })
 
 })
 
-function tt() {
-
-    $("button").click(function () {
-        var url = $(this).val();
-        $(location).attr("href", url);
-    })
-}
-
 function modal() {
+
+
+    $("#modal").click(function () {
+
+        $("#modalLRForm").modal('show');
+    })
 
     $("#log").click(function () {
         var x = $(this).parent().parent().find("input");
-        var p = x[0].value;
-        var e = x[1].value;
+
+        var e = x[0].value;
+        var p = x[1].value;
+
+        var suc = function(){
+
+            alert("success");
+            $("#modalLRForm").modal('hide');
+        }
 
         $.ajax({
             url: "/login",
             type: 'POST',
-            data: {email: e, password: p}
+            data: {email: e, password: p},
+            success: suc()
         })
 
     })
@@ -43,10 +43,18 @@ function modal() {
         var p = x[2].value;
         var r = x[3].value;
 
+        var er = function(){
+
+            alert("Error")
+            $(this).hide();
+        }
+
+
         $.ajax({
             url: "/register",
             type: 'POST',
-            data: {name:n, email: e, password: p, password_again:r}
+            data: {name:n, email: e, password: p, password_again:r},
+            error : er()
         })
 
     })
