@@ -38,24 +38,6 @@ public class MainController {
     @Autowired
     EventService eventService;
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String logining(@RequestParam("email") String email, @RequestParam("password") String password, Model model) {
-        AppUser appUser = userService.getByEmail(email);
-        if (appUser == null){
-            model.addAttribute("error","User not found!!!");
-            return "error-page";
-        }
-        model.addAttribute("user", appUser);
-        return "ico-stats";
-    }
-
-
-//    @RequestMapping("/login")
-//    public String xxx(){
-//
-//        return "ico-page";
-//    }
-
     @ModelAttribute("blog")
     public Blog contructBlog() {
         return new Blog();

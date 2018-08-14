@@ -31,16 +31,16 @@ public class UserController {
         return "redirect:/";
     }
 
-//    @RequestMapping(value = "/login", method = RequestMethod.POST)
-//    public String logining(@RequestParam("email") String email, @RequestParam("password") String password, Model model) {
-//        AppUser appUser = userService.getByEmail(email);
-//        if (appUser == null){
-//            model.addAttribute("error","User not found!!!");
-//            return "error-page";
-//        }
-//        model.addAttribute("user", appUser);
-//        return "ico-stats";
-//    }
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public String logining(@RequestParam("email") String email, @RequestParam("password") String password, Model model) {
+        AppUser appUser = userService.getByEmail(email);
+        if (appUser == null){
+            model.addAttribute("error","User not found!!!");
+            return "error-page";
+        }
+        model.addAttribute("user", appUser);
+        return "ico-stats";
+    }
 
     @RequestMapping("/users")
     public String users(Model model) {
