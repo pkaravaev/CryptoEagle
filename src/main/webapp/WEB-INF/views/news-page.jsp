@@ -53,6 +53,14 @@
 
 </script>
 
+<style>
+
+    h4 {
+        height: 5.2rem;
+        overflow: hidden;
+    }
+</style>
+
 <ul class="nav justify-content-center font-weight-bold brown lighten-5 ">
 
     <c:forEach items="${sources}" var="s">

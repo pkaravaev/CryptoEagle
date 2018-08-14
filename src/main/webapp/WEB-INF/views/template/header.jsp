@@ -6,17 +6,19 @@
 <head>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+          integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
     <!-- Bootstrap core CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.4/css/mdb.min.css" rel="stylesheet">
-
     <!-- MDBootstrap Datatables  -->
     <link href="/resources/css/addons/datatables.min.css" rel="stylesheet">
 
+
     <!-- JQuery -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <!-- Bootstrap tooltips -->
     <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
@@ -26,14 +28,13 @@
     <!-- MDB core JavaScript -->
     <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.4/js/mdb.min.js"></script>
-
     <!-- MDBootstrap Datatables  -->
     <script type="text/javascript" src="/resources/js/addons/datatables.min.js"></script>
 
 
+
     <script src="/resources/js/table.js"></script>
     <script src="/resources/js/coins.js"></script>
-
 
     <title>Welcome</title>
 </head>
@@ -41,9 +42,7 @@
 
 
 <script>
-
     $(document).ready(function () {
-
         $("#eagle").click(function () {
             window.location.href = "/";
         })
@@ -86,7 +85,8 @@
 
             <!-- Navbar brand -->
             <a class="navbar-brand px-lg-4 mr-0" href="#">
-                <img  id="eagle" class="animated bounce infinite" src="/resources/pic/eagle.png" width="120" height="80" alt="">
+                <img id="eagle" class="animated bounce infinite" src="/resources/pic/eagle.png" width="120" height="80"
+                     alt="">
             </a>
 
             <!-- Links -->
@@ -109,11 +109,11 @@
                 </li>
 
                 <li class="nav-item">
-                    <a  id="login" class="nav-link" href="#modalLRForm">Login</a>
+                    <a id="login" class="nav-link" href="#modalLRForm">Login</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link"  href="/register">Register</a>
+                    <a class="nav-link" href="/register">Register</a>
                 </li>
 
             </ul>
@@ -126,7 +126,7 @@
 
 <ul class="nav justify-content-center font-weight-bold brown darken-2">
     <li class="nav-item">
-        <a  id="BTC" class="nav-link" href="/coin-list"><p class="red-text">active</p> </a>
+        <a id="BTC" class="nav-link" href="/coin-list"><p class="red-text">active</p></a>
     </li>
     <li class="nav-item">
         <a id="ETH" class="nav-link" href="/coin-list"><p class="white-text">active</p></a>
@@ -135,7 +135,7 @@
         <a id="NEO" class="nav-link" href="/coin-list"><p class="white-text">active</p></a>
     </li>
     <li class="nav-item">
-        <a  id="XRP" class="nav-link " href="/coin-list"><p class="white-text">active</p></a>
+        <a id="XRP" class="nav-link " href="/coin-list"><p class="white-text">active</p></a>
     </li>
     <li class="nav-item">
         <a id="EOS" class="nav-link " href="/coin-list"><p class="white-text">active</p></a>
@@ -156,10 +156,12 @@
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs tabs-2  brown darken-2" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#panel7" role="tab"><i class="fa fa-user mr-1"></i> Login</a>
+                        <a class="nav-link active" data-toggle="tab" href="#panel7" role="tab"><i
+                                class="fa fa-user mr-1"></i> Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#panel8" role="tab"><i class="fa fa-user-plus mr-1"></i> Register</a>
+                        <a class="nav-link" data-toggle="tab" href="#panel8" role="tab"><i
+                                class="fa fa-user-plus mr-1"></i> Register</a>
                     </li>
                 </ul>
 
@@ -170,28 +172,33 @@
 
                         <!--Body-->
                         <div class="modal-body mb-1">
+
                             <div class="md-form form-sm mb-5">
                                 <i class="fa fa-envelope prefix"></i>
-                                <input type="email" id="modalLRInput10" class="form-control form-control-sm validate">
+                                <input name="email" type="email" id="modalLRInput10" class="form-control form-control-sm validate">
                                 <label data-error="wrong" data-success="right" for="modalLRInput10">Your email</label>
                             </div>
 
+
                             <div class="md-form form-sm mb-4">
                                 <i class="fa fa-lock prefix"></i>
-                                <input type="password" id="modalLRInput11" class="form-control form-control-sm validate">
-                                <label data-error="wrong" data-success="right" for="modalLRInput11">Your password</label>
+                                <input name="password" type="password" id="modalLRInput11"
+                                       class="form-control form-control-sm validate">
+                                <label data-error="wrong" data-success="right" for="modalLRInput11">Your
+                                    password</label>
                             </div>
+
+
                             <div class="text-center mt-2">
-                                <button class="btn btn-info">Log in <i class="fa fa-sign-in ml-1"></i></button>
+                                <button type="submit" id="log" formaction="/login" formmethod="post" class="btn  btn-brown">Log in <i class="fa fa-sign-in ml-1"></i></button>
                             </div>
+
                         </div>
                         <!--Footer-->
                         <div class="modal-footer">
-                            <div class="options text-center text-md-right mt-1">
-                                <p>Not a member? <a href="#" class="blue-text">Sign Up</a></p>
-                                <p>Forgot <a href="#" class="blue-text">Password?</a></p>
-                            </div>
-                            <button type="button" class="btn btn-outline-info waves-effect ml-auto" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-outline-brown waves-effect ml-auto"
+                                    data-dismiss="modal">Close
+                            </button>
                         </div>
 
                     </div>
@@ -202,36 +209,45 @@
 
                         <!--Body-->
                         <div class="modal-body">
+
+                            <div class="md-form form-sm mb-5">
+                                <i class="fa fa-user prefix"></i>
+                                <input name="name" type="text" id="modalLRInput16" class="form-control form-control-sm validate">
+                                <label data-error="wrong" data-success="right" for="modalLRInput12">Your name</label>
+                            </div>
                             <div class="md-form form-sm mb-5">
                                 <i class="fa fa-envelope prefix"></i>
-                                <input type="email" id="modalLRInput12" class="form-control form-control-sm validate">
+                                <input name="email" type="email" id="modalLRInput12" class="form-control form-control-sm validate">
                                 <label data-error="wrong" data-success="right" for="modalLRInput12">Your email</label>
                             </div>
 
                             <div class="md-form form-sm mb-5">
                                 <i class="fa fa-lock prefix"></i>
-                                <input type="password" id="modalLRInput13" class="form-control form-control-sm validate">
-                                <label data-error="wrong" data-success="right" for="modalLRInput13">Your password</label>
+                                <input name="password" type="password" id="modalLRInput13"
+                                       class="form-control form-control-sm validate">
+                                <label data-error="wrong" data-success="right" for="modalLRInput13">Your
+                                    password</label>
                             </div>
 
                             <div class="md-form form-sm mb-4">
                                 <i class="fa fa-lock prefix"></i>
-                                <input type="password" id="modalLRInput14" class="form-control form-control-sm validate">
-                                <label data-error="wrong" data-success="right" for="modalLRInput14">Repeat password</label>
+                                <input name="repeatpassword" type="password" id="modalLRInput14"
+                                       class="form-control form-control-sm validate">
+                                <label data-error="wrong" data-success="right" for="modalLRInput14">Repeat
+                                    password</label>
                             </div>
 
                             <div class="text-center form-sm mt-2">
-                                <button class="btn btn-info">Sign up <i class="fa fa-sign-in ml-1"></i></button>
+                                <button id="reg" class="btn btn-brown">Sign up <i class="fa fa-sign-in ml-1"></i></button>
                             </div>
 
                         </div>
 
                         <!--Footer-->
                         <div class="modal-footer">
-                            <div class="options text-right">
-                                <p class="pt-1">Already have an account? <a href="#" class="blue-text">Log In</a></p>
-                            </div>
-                            <button type="button" class="btn btn-outline-info waves-effect ml-auto" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-outline-brown waves-effect ml-auto"
+                                    data-dismiss="modal">Close
+                            </button>
                         </div>
                     </div>
                     <!--/.Panel 8-->

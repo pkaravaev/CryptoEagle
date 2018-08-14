@@ -83,11 +83,11 @@
                 </tfoot>
             </table>
         </div>
+
     </div>
-    <div class="col-sm ">
-    </div>
+
 </div>
-</div>
+
 
 
 <jsp:include page="template/footer.jsp"/>

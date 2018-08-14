@@ -74,12 +74,12 @@ public class ItemServiceImpl implements ItemService {
         List<Item> items = rssService.getItems("https://www.coindesk.com/feed/");
         List<Item> items2 = rssService.getItems("https://www.ccn.com/feed/");
         List<Item> items3 = rssService.getItems("https://blog.blockchain.com/feed");
-        List<Item> items4 = rssService.getItems("https://newsbtc.com/feed ");
+        List<Item> items4 = rssService.getItems("https://www.newsbtc.com/feed ");
         List<Item> items5 = rssService.getItems("https://blog.spectrocoin.com/en/feed");
-        List<Item> items6 = rssService.getItems("blog.ethereum.org/feed ");
+//        List<Item> items6 = rssService.getItems("blog.ethereum.org/feed ");
 
 
-        repository.saveAll(items6);
+//        repository.saveAll(items6);
         repository.saveAll(items5);
         repository.saveAll(items4);
         repository.saveAll(items3);

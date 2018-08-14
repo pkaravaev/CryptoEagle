@@ -48,6 +48,11 @@
 </script>
 
 <style>
+
+    h4 {
+        height: 5.2rem;
+        overflow: hidden;
+    }
     .timeline {
         list-style: none;
         padding: 20px 0 20px;
@@ -237,18 +242,14 @@
 
     <div class="row">
         <div class="col-">
-
         </div>
-
-        <div class="col">
-            <h4 class="font-weight-bold">CRYPTO NEWS</h4>
-            <hr style="size: 4rem" color="#795548"/>
-
+        <div  class="col">
+            <h3 class="font-weight-bold">CRYPTO NEWS</h3>
+            <hr color="#795548"/>
             <div id="bigCard" class="card hoverable rounded example job ">
-                <img style="height: 12rem" alt="Card image cap" class="card-img-top img-fluid"
+                <img  alt="Card image cap" class="card-img-top img-fluid"
                      src="/resources/pic/l/l${topItem.getRandomPic(5)}.jpg">
                     <h4 class="card-title font-weight-bold ">${topItem.title}</h4>
-
                 <div class="row">
                     <div class="col">
                         <p style="margin-left: 1rem" class="date text-left font-italic">by ${topItem.source}</p>
@@ -257,15 +258,12 @@
                         <p style="margin-right: 1rem" class="date text-right font-italic">${topItem.diffMinutes()} min ago</p>
                     </div>
                 </div>
-
                 <p class="title" hidden>${topItem.publishDate}</p>
                 <p class="description" hidden>${topItem.description}</p>
                 <p class="date" hidden>${topItem.publishDate}</p>
                 <p class="href" hidden>${topItem.link}</p>
             </div>
-
             <br/>
-
             <div class="card-deck">
                 <c:forEach items="${averageItems}" var="item" varStatus="i">
                     <!--Panel-->
@@ -278,7 +276,6 @@
                         <p class="title" hidden>${item.title}</p>
                         <p class="description" hidden>${item.description}</p>
                         <p class="href" hidden>${item.link}</p>
-
                         <div class="row">
                             <div class="col">
                                 <p style="margin-left: 1rem" class="date text-left font-italic">by ${item.source}</p>
@@ -299,12 +296,9 @@
                     <!--Panel-->
                 </c:forEach>
             </div>
-
         </div>
-
         <br/>
         <br/>
-
         <div class="col-4 ">
             <!-- Nav tabs -->
             <ul class="nav nav-tabs nav-justified " role="tablist">
@@ -407,12 +401,8 @@
                     <!--Panel-->
                 </c:forEach>
             </div>
-
-            <h4 class="font-weight-bold wow fadeInUp hoverable">HOT ICO</h4>
-
+            <h3 class="font-weight-bold wow fadeInUp hoverable">HOT ICO</h3>
             <hr style="size: 4rem" color="#795548"/>
-
-
             <div class="card-columns">
 
                 <c:forEach items="${icos}" var="ico">
@@ -449,14 +439,10 @@
                     <br/>
                 </c:forEach>
             </div>
-
-            <h4 class="font-weight-bold wow fadeInUp hoverable">UPCOMING EVENTS</h4>
+            <h3 class="font-weight-bold wow fadeInUp hoverable">UPCOMING EVENTS</h3>
             <hr style="size: 4rem" color="#795548"/>
-
         </div>
-
     </div>
-
 </div>
 
 <div class="container">

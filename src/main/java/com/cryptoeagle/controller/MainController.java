@@ -50,7 +50,6 @@ public class MainController {
         return "redirect:/";
     }
 
-
     @RequestMapping("/")
     public String welcome(Model model) {
 

@@ -2,13 +2,10 @@
 <jsp:include page="template/header.jsp"/>
 
 
-
-
 <script>
 
     $(document).ready(function () {
 
-        document.oncontextmenu = function() {return false;};
 
         $(".card").mouseenter(function () {
             $(this).css("cursor", "hand");
@@ -20,7 +17,7 @@
 
         $(".card").click(function () {
 
-            var name = $(this).find(".href").text();;
+            var name = $(this).find(".href").text();
             window.location.href = "/ico-page/" + name;
 
         })
@@ -40,11 +37,12 @@
 
 <div class="container  bg-white">
 
-    <div class="row">1
+    <div class="row">
 
+        <br/>
         <div class="col-md-4">
 
-            <h2 class="text-center font-weight-bold">ACTIVE</h2>
+            <h3 class="text-center font-weight-bold">ACTIVE</h3>
 
             <c:forEach items="${activeIco}" var="ico">
                 <!--Panel-->
@@ -57,7 +55,7 @@
                                 <br/>
                                 <br/>
                                 <p class="text-left">
-                                    <small>not rated</small>
+                                    <small>rating ${ico.rating}</small>
                                 </p>
                             </div>
                             <div class="col">
@@ -67,7 +65,8 @@
                             </div>
                             <div class="col">
                                 <p class="text-right">
-                                    <small>${ Math.abs(ico.todayMinusIcoEnd())}d left </small>
+                                        <small>${ Math.abs(ico.todayMinusIcoEnd())}d left </small>
+
                                 </p>
                             </div>
                         </div>
@@ -80,7 +79,7 @@
         </div>
 
         <div class="col-md-4">
-            <h2 class="text-center font-weight-bold">UPCOMING</h2>
+            <h3 class="text-center font-weight-bold">UPCOMING</h3>
             <c:forEach items="${upcoming}" var="ico">
                 <!--Panel-->
                 <div class="card hoverable">
@@ -92,7 +91,7 @@
                                 <br/>
                                 <br/>
                                 <p class="text-left">
-                                    <small>not rated</small>
+                                    <small>rating ${ico.rating}</small>
                                 </p>
                             </div>
                             <div class="col">
@@ -102,7 +101,7 @@
                             </div>
                             <div class="col">
                                 <p class="text-right">
-                                    <small>Starts ${ Math.abs(ico.todayMinusIcoStart())}d</small>
+                                        <small>Starts ${ Math.abs(ico.todayMinusIcoStart())}d</small>
                                 </p>
                             </div>
                             <p hidden>${ico.website_link}</p>
@@ -116,7 +115,7 @@
         </div>
 
         <div class="col-md-4">
-            <h2 class="text-center font-weight-bold brown-darken-2 ">ENDED</h2>
+            <h3 class="text-center font-weight-bold brown-darken-2 ">ENDED</h3>
             <c:forEach items="${finished}" var="ico">
                 <!--Panel-->
                 <div class="card hoverable">
@@ -128,7 +127,7 @@
                                 <br/>
                                 <br/>
                                 <p class="text-left">
-                                    <small>not rated</small>
+                                    <small>rating ${ico.rating}</small>
                                 </p>
                             </div>
                             <div class="col">
@@ -138,7 +137,7 @@
                             </div>
                             <div class="col">
                                 <p class="text-right">
-                                    <small>Ended ${ Math.abs(ico.todayMinusIcoEnd())}d</small>
+                                        <small>Ended ${ ico.todayMinusIcoEnd()}d</small>
                                 </p>
                             </div>
                         </div>

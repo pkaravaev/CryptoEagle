@@ -4,28 +4,18 @@
 
 
 <style>
-
     .card {
         height: 13rem;
         width: 8rem;
     }
 
-    /*.card-img-top {*/
-
-    /*height: 8rem;*/
-    /*width: 8rem;*/
-    /*}*/
-
     .card-columns {
         column-count: 4;
     }
-
-
 </style>
 
 
 <script>
-
 
     $(document).ready(function () {
         $(".card").mouseenter(function () {
@@ -45,10 +35,8 @@
         })
     })
 </script>
-<jsp:useBean id="icoc" class="com.cryptoeagle.entity.Ico">
+
     <div class="container bg-white">
-
-
 
         <div class="row">
                 <%--empty--%>
@@ -238,13 +226,7 @@
         <hr/>
 
     </div>
-    <%--empty--%>
-    <div class="col-md">
 
     </div>
 
-    </div>
-
-    </div>
-</jsp:useBean>
 <jsp:include page="template/footer.jsp"/>
