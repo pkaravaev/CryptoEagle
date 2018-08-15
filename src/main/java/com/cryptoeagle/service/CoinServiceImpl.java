@@ -21,11 +21,15 @@ public class CoinServiceImpl implements CoinService {
 
     private static final Logger log = Logger.getLogger(CoinServiceImpl.class.getName());
 
-    @Autowired
     CoinRepository repository;
 
-    @Autowired
     RestService restService;
+
+    @Autowired
+    public void CoinServiceImpl(CoinRepository repository, RestService restService) {
+        this.repository = repository;
+        this.restService = restService;
+    }
 
     public List<Coin> getCoins(String... symbols) {
         log.info("get  coins : " + symbols);

@@ -46,18 +46,16 @@ public class UserRepositoryJpaImpl implements UserRepository {
 
     @Override
     public AppUser getByEmail(String email) {
-
+        AppUser user;
         try {
-            return em.createNamedQuery(AppUser.GET_BY_EMAIL, AppUser.class)
+             user = em.createNamedQuery(AppUser.GET_BY_EMAIL, AppUser.class)
                     .setParameter("email", email)
                     .getSingleResult();
-
         }
-        catch (Exception e){
-
-            return null;
+        catch (NoResultException ex){
+            throw new UserNotFoundException(email);
         }
-
+        return user;
     }
 
     @Override

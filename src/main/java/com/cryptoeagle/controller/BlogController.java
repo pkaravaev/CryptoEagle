@@ -14,7 +14,7 @@ public class BlogController {
     BlogService blogService;
 
     @RequestMapping("/blog/remove/{id}")
-    public String remove(@PathVariable int id){
+    public String remove(@PathVariable int id) {
     blogService.delete(id,100);
         return "redirect:/blogs";
     }

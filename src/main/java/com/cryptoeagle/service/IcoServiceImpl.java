@@ -21,11 +21,16 @@ public class IcoServiceImpl implements IcoService {
 
     private static final Logger log = Logger.getLogger(IcoServiceImpl.class.getName());
 
-    @Autowired
     IcoRepository repository;
 
+    RestService service;
+
     @Autowired
-    RestService clientService;
+    public void IcoServiceImpl(IcoRepository repository, RestService service){
+
+        this.repository = repository;
+        this.service = service;
+    }
 
     public List<Ico> getAll() {
        return repository.getAllico();
@@ -67,9 +72,9 @@ public class IcoServiceImpl implements IcoService {
     public void updateIcos() {
         repository.deleteAll();
 
-        List<Ico> page = clientService.getIcoWithDataByPage(1);
-        List<Ico> page1 = clientService.getIcoWithDataByPage(2);
-        List<Ico> page2 = clientService.getIcoWithDataByPage(3);
+        List<Ico> page = service.getIcoWithDataByPage(1);
+        List<Ico> page1 = service.getIcoWithDataByPage(2);
+        List<Ico> page2 = service.getIcoWithDataByPage(3);
 
         saveIcos(page);
         saveIcos(page1);

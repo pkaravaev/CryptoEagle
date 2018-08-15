@@ -4,7 +4,6 @@ import com.cryptoeagle.entity.Blog;
 import com.cryptoeagle.entity.Item;
 import com.cryptoeagle.repository.BlogRepository;
 import com.cryptoeagle.service.abst.BlogService;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

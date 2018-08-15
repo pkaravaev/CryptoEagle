@@ -34,7 +34,12 @@ public class ItemServiceImpl implements ItemService {
     ItemRepository repository;
 
     @Autowired
-    RssService rssService;
+    RssService service;
+
+    public void ItemServiceImpl(ItemRepository repository, RssService service){
+        this.repository =repository;
+        this.service = service;
+    }
 
     @Override
     public List<String> getSources() {
@@ -71,11 +76,11 @@ public class ItemServiceImpl implements ItemService {
     public void updateItems() {
         repository.deleteAll();
 
-        List<Item> items = rssService.getItems("https://www.coindesk.com/feed/");
-        List<Item> items2 = rssService.getItems("https://www.ccn.com/feed/");
-        List<Item> items3 = rssService.getItems("https://blog.blockchain.com/feed");
-        List<Item> items4 = rssService.getItems("https://www.newsbtc.com/feed ");
-        List<Item> items5 = rssService.getItems("https://blog.spectrocoin.com/en/feed");
+        List<Item> items = service.getItems("https://www.coindesk.com/feed/");
+        List<Item> items2 = service.getItems("https://www.ccn.com/feed/");
+        List<Item> items3 = service.getItems("https://blog.blockchain.com/feed");
+        List<Item> items4 = service.getItems("https://www.newsbtc.com/feed ");
+        List<Item> items5 = service.getItems("https://blog.spectrocoin.com/en/feed");
 //        List<Item> items6 = rssService.getItems("blog.ethereum.org/feed ");
 
 

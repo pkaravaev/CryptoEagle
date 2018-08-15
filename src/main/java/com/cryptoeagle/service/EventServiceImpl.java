@@ -2,6 +2,7 @@ package com.cryptoeagle.service;
 
 import com.cryptoeagle.entity.Event;
 import com.cryptoeagle.repository.EventRepository;
+import com.cryptoeagle.repository.jpa.EventRepositoryImpl;
 import com.cryptoeagle.service.abst.EventService;
 import com.cryptoeagle.service.abst.RestService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +21,14 @@ public class EventServiceImpl implements EventService {
 
     private static final Logger log = Logger.getLogger(EventServiceImpl.class.getName());
 
-
-    @Autowired
     RestService service;
+    EventRepository repository;
 
     @Autowired
-    EventRepository repository;
+    public void  EventRepositoryImpl(RestService service, EventRepository repository){
+        this.service = service;
+        this.repository = repository;
+    }
 
     @Override
     public List<Event> getEvents(int count) {
