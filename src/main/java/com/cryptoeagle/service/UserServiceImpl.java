@@ -20,6 +20,12 @@ public class UserServiceImpl implements UserService {
     private UserRepository repository;
 
     @Override
+    public void deleteAll() {
+        log.info("delete all");
+        repository.getall();
+    }
+
+    @Override
     public List<AppUser> findAll() {
         log.info("get all users");
         return repository.getall();

@@ -11,7 +11,7 @@
 
     <!--<context:property-placeholder location="classpath:db/heroku.properties"/>-->
 
-    <!--<jdbc:initialize-database  >-->
+    <!--<jdbc:initialize-database>-->
         <!--<jdbc:script location="db/initdb.sql"/>-->
         <!--<jdbc:script location="db/populate.sql"/>-->
     <!--</jdbc:initialize-database>-->
@@ -28,26 +28,26 @@
     </beans>
 
 
-    <!--<beans profile="PostgreSQL">-->
-
-        <!--<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
-            <!--<property name="driverClassName" value="org.postgresql.Driver"/>-->
-            <!--<property name="url" value="${database.url}"/>-->
-            <!--<property name="username" value="${database.username}"/>-->
-            <!--<property name="password" value="${database.password}"/>-->
-        <!--</bean>-->
-    <!--</beans>-->
-
-
     <beans profile="PostgreSQL">
 
         <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
             <property name="driverClassName" value="org.postgresql.Driver"/>
-            <property name="url" value="jdbc:postgresql://ec2-50-16-217-122.compute-1.amazonaws.com/dfqp5i7cmi3clp?ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory"/>
-            <property name="username" value="quctlnsjqcquqk"/>
-            <property name="password" value="617073e80f7b87d2faaf9f80d4d0d35d52293dde18d5f08e8d8151592c674578"/>
+            <property name="url" value="${database.url}"/>
+            <property name="username" value="${database.username}"/>
+            <property name="password" value="${database.password}"/>
         </bean>
     </beans>
+
+
+    <!--<beans profile="PostgreSQL">-->
+
+    <!--<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
+    <!--<property name="driverClassName" value="org.postgresql.Driver"/>-->
+    <!--<property name="url" value="jdbc:postgresql://ec2-50-16-217-122.compute-1.amazonaws.com/dfqp5i7cmi3clp?ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory"/>-->
+    <!--<property name="username" value="quctlnsjqcquqk"/>-->
+    <!--<property name="password" value="617073e80f7b87d2faaf9f80d4d0d35d52293dde18d5f08e8d8151592c674578"/>-->
+    <!--</bean>-->
+    <!--</beans>-->
 
 
     <beans profile="Jdbc">

@@ -18,5 +18,7 @@ public interface UserService {
 
     void delete(AppUser appUser);
 
+    void deleteAll();
+
     AppUser findAmin();
 }

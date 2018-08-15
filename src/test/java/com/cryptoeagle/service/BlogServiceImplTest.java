@@ -11,12 +11,12 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 import static com.cryptoeagle.TestData.BLOG1;
 import static com.cryptoeagle.TestData.BLOG3;
 import static com.cryptoeagle.TestData.BLOG3_UPDATE;
 import static org.junit.Assert.*;
-
-
 
 
 public class BlogServiceImplTest extends AbstractTest {
@@ -40,6 +40,8 @@ public class BlogServiceImplTest extends AbstractTest {
 
     @Test
     public void findall() {
+        List<Blog> findallUser1 = service.findall(100);
+        assertTrue(findallUser1.size() == 2);
     }
 
     @Test
@@ -48,5 +50,9 @@ public class BlogServiceImplTest extends AbstractTest {
 
     @Test
     public void delete() {
+        service.delete(100,1000);
+        List<Blog> findallUser1 = service.findall(100);
+        assertTrue(findallUser1.size() == 1);
     }
+
 }
