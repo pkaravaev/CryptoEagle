@@ -14,6 +14,14 @@ function modal() {
         window.location.href = url;
     })
 
+    $("#ico-card").click(function () {
+
+        var name = $(this).find(".href").text();
+        if (name != 0)
+            window.location.href = "/ico-page/" + name;
+
+    })
+
 
     $("#modal").click(function () {
 

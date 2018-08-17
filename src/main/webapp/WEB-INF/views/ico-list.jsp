@@ -15,7 +15,7 @@
             $(this).css("cursor", "point");
         })
 
-        $(".card").click(function () {
+        $(".card").dblclick(function () {
 
             var name = $(this).find(".href").text();
             window.location.href = "/ico-page/" + name;
@@ -41,8 +41,9 @@
 
         <br/>
         <div class="col-md-4">
-
+            <br/>
             <h3 class="text-center font-weight-bold">ACTIVE</h3>
+
 
             <c:forEach items="${activeIco}" var="ico">
                 <!--Panel-->
@@ -66,7 +67,6 @@
                             <div class="col">
                                 <p class="text-right">
                                         <small>${ Math.abs(ico.todayMinusIcoEnd())}d left </small>
-
                                 </p>
                             </div>
                         </div>
@@ -79,6 +79,7 @@
         </div>
 
         <div class="col-md-4">
+            <br/>
             <h3 class="text-center font-weight-bold">UPCOMING</h3>
             <c:forEach items="${upcoming}" var="ico">
                 <!--Panel-->
@@ -115,6 +116,7 @@
         </div>
 
         <div class="col-md-4">
+            <br/>
             <h3 class="text-center font-weight-bold brown-darken-2 ">ENDED</h3>
             <c:forEach items="${finished}" var="ico">
                 <!--Panel-->

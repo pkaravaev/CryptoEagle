@@ -43,22 +43,15 @@ public class Item extends BaseEntity implements EntityWithPic {
     }
 
     public int diffMinutes() {
-
-//        Period period = Period.between(LocalDateTime.now().toLocalDate(), publishDate.toLocalDate());
         Duration between = Duration.between(LocalDateTime.now().toLocalTime(), publishDate.toLocalTime());
-//        return LocalDateTime.now().getMinute() - publishDate.getMinute();
-
         return Math.abs(((int)between.toMinutes()));
     }
 
     public int diffHours() {
-
         Duration between = Duration.between(LocalDateTime.now().toLocalTime(), publishDate.toLocalTime());
         Period period = Period.between(LocalDateTime.now().toLocalDate(), publishDate.toLocalDate());
         int i = (int)between.toHours();
-
         return  Math.abs(i);
-//        return LocalDateTime.now().getHour() - publishDate.getHour();
     }
 
     @ManyToOne(cascade = CascadeType.ALL)

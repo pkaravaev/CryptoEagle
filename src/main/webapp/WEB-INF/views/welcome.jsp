@@ -8,20 +8,19 @@
 <script>
 
     $(document).ready(function () {
+
+        new WOW().init();
+
         $(".card").dblclick(function () {
             var href = $(this).find(".href").text();
             $(location).attr("href", href);
         })
+
         $(".card").mouseenter(function () {
             $(this).css('cursor', 'pointer');
             $(this).addClass("animated shake")
             $(".container").addClass("animated shake")
         })
-    })
-
-    $(document).ready(function () {
-
-        new WOW().init();
 
         $(".card").click(function () {
             $(this).css('cursor', 'pointer');
@@ -40,6 +39,15 @@
                     "                </div>")
             }
         })
+
+        // $("#ico-card").click(function () {
+        //
+        //     var name = $(this).find(".href").text();
+        //     if (name != 0)
+        //     window.location.href = "/ico-page/" + name;
+        //
+        // })
+
         $(".card").mouseleave(function () {
             $(this).find(".card-img-overlay").removeClass("animated bounceInUp").removeClass("animated shake").addClass("animated fadeOutDown");
             $(this).removeClass("animated shake");
@@ -263,7 +271,7 @@
                             ago</p>
                     </div>
                 </div>
-                <%--<p class="title" hidden>${topItem.title}</p>--%>
+                <p class="title" hidden>${topItem.title}</p>
                 <%--<p class="description" hidden>${topItem.description}</p>--%>
                 <%--<p class="date" hidden>${topItem.publishDate}</p>--%>
                 <%--<p class="href" hidden>${topItem.link}</p>--%>
@@ -272,13 +280,13 @@
             <div class="card-deck">
                 <c:forEach items="${averageItems}" var="item" varStatus="i">
                     <!--Panel-->
-                    <div style="height: 20rem;width: 22rem" class="card hoverable ">
+                    <div id="bigCard" style="height: 20rem;width: 22rem" class="card hoverable ">
                         <img style="width: 22rem;height: 12rem" alt="Card  image cap" class="card-img-top img-fluid"
                              src="/resources/pic/m/m${i.count}.jpg">
                         <div class="card-block ">
                             <h4 class="card-title font-weight-bold ">${item.title}</h4>
                         </div>
-                        <%--<p class="title" hidden>${item.title}</p>--%>
+                        <p class="title" hidden>${item.title}</p>
                         <%--<p class="description" hidden>${item.description}</p>--%>
                         <%--<p class="href" hidden>${item.link}</p>--%>
                         <div class="row">
@@ -386,7 +394,7 @@
                         <div class="card-block ">
                             <h4 class="card-title font-weight-bold ">${item.title}</h4>
                         </div>
-                        <%--<p class="title" hidden>${item.title}</p>--%>
+                        <p class="title" hidden>${item.title}</p>
                         <%--<p class="description" hidden>${item.description}</p>--%>
                         <%--<p class="href" hidden>${item.link}</p>--%>
 
@@ -419,7 +427,7 @@
                 <c:forEach items="${icos}" var="ico">
 
                     <!--Panel-->
-                    <div class="card hoverable">
+                    <div class="card  hoverable">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">

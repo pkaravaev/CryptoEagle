@@ -38,9 +38,9 @@
             $(this).addClass("bg-white")
         })
 
-        $(".card").click(function () {
-            var name = $(this).find("a").text();
-            window.location = name;
+        $(".btn").click(function () {
+            var url = $(this).val();
+            window.location = url;
         })
 
     })
@@ -123,13 +123,13 @@
 
                             <li class="list-group-item">
                                 <button value="${ico.data.getLink("whitepaper")}" type="button"
-                                        class="btn btn-brown btn-sm">Web site
+                                        class="btn btn-brown btn-sm">White list
                                 </button>
                             </li>
 
                             <li class="list-group-item">
                                 <button value="${ico.data.getLink("www")}" type="button"
-                                        class="btn btn-brown btn-sm">White list
+                                        class="btn btn-brown btn-sm">White site
                                 </button>
                             </li>
 
@@ -236,7 +236,6 @@
             </div>
 
         </div>
-
 
         <div class="col-md">
 

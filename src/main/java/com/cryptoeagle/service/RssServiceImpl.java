@@ -43,11 +43,9 @@ public class RssServiceImpl implements RssService {
 
                 Item item = new Item();
                 item.setSource(Utils.cut(url));
-//            item.setTitle(title.substring(0, title.length()).concat("..."));
                 item.setTitle(Utils.clearString(title));
                 item.setLink(link);
-//            item.setDescription(description.substring(0, description.length() -1 ).concat("..."));
-                item.setDescription(Utils.clearString(description));
+//                item.setDescription(Utils.clearString(description));
                 item.setPublishDate(localDateTime);
 
                 itemList.add(item);

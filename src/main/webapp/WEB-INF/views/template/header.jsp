@@ -102,12 +102,12 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/analitics">ANALITICS</a>
                 </li>
-                <li class="nav-item">
-                    <a id="modal" class="nav-link">Login / Register</a>
-                </li>
-                <li class="nav-item">
-                    <a id="account" class="nav-link" href="#modalLRForm">My account</a>
-                </li>
+                <%--<li class="nav-item">--%>
+                    <%--<a id="modal" class="nav-link">Login / Register</a>--%>
+                <%--</li>--%>
+                <%--<li class="nav-item">--%>
+                    <%--<a id="account" class="nav-link" href="#modalLRForm">My account</a>--%>
+                <%--</li>--%>
             </ul>
             <!-- Links -->
 

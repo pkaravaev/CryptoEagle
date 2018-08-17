@@ -43,6 +43,12 @@ public class MainController {
         return new Blog();
     }
 
+
+    @RequestMapping("/analitics")
+    public String analitics() {
+        return "analitics";
+    }
+
     @RequestMapping("/update")
     public String update(Model model) {
         icoService.updateIcos();
@@ -65,7 +71,6 @@ public class MainController {
             lowerItems.add(items.get(4));
             lowerItems.add(items.get(5));
         }
-
 
 
         List<Coin> topcoins = coinService.getTopGainCoins();
