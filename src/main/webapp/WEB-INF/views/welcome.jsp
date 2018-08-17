@@ -36,7 +36,7 @@
                 $(this).append("<div class=\"card-img-overlay  animated bounceInUp\">\n" +
                     "                    <h4 class=\"card-title text-white brown darken-2\">" + title + " </h4>\n" +
                     "                    <p class=\"card-text text-white brown darken-2\"> " + description + " </p>\n" +
-                    "                    <p class=\"card-text text-white brown darken-2\"> " + date + " </p>\n" +
+                    "                    <p class=\"card-text text-white brown darken-2\">     " + date + " </p>\n" +
                     "                </div>")
             }
         })
@@ -54,6 +54,7 @@
         height: 5.2rem;
         overflow: hidden;
     }
+
     .timeline {
         list-style: none;
         padding: 20px 0 20px;
@@ -239,30 +240,33 @@
     }
 </style>
 
+
+
 <div class="container bg-white animated shake">
 
     <div class="row">
         <div class="col-">
         </div>
-        <div  class="col">
+        <div class="col">
             <h3 class="font-weight-bold">CRYPTO NEWS</h3>
             <hr color="#795548"/>
             <div id="bigCard" class="card hoverable rounded example job ">
-                <img  alt="Card image cap" class="card-img-top img-fluid"
+                <img alt="Card image cap" class="card-img-top img-fluid"
                      src="/resources/pic/l/l${topItem.getRandomPic(5)}.jpg">
-                    <h4 class="card-title font-weight-bold ">${topItem.title}</h4>
+                <h4 class="card-title font-weight-bold ">${topItem.title}</h4>
                 <div class="row">
                     <div class="col">
                         <p style="margin-left: 1rem" class="date text-left font-italic">by ${topItem.source}</p>
                     </div>
                     <div class="col">
-                        <p style="margin-right: 1rem" class="date text-right font-italic">${topItem.diffMinutes()} min ago</p>
+                        <p style="margin-right: 1rem" class="date text-right font-italic">${topItem.diffMinutes()} min
+                            ago</p>
                     </div>
                 </div>
-                <p class="title" hidden>${topItem.publishDate}</p>
-                <p class="description" hidden>${topItem.description}</p>
-                <p class="date" hidden>${topItem.publishDate}</p>
-                <p class="href" hidden>${topItem.link}</p>
+                <%--<p class="title" hidden>${topItem.title}</p>--%>
+                <%--<p class="description" hidden>${topItem.description}</p>--%>
+                <%--<p class="date" hidden>${topItem.publishDate}</p>--%>
+                <%--<p class="href" hidden>${topItem.link}</p>--%>
             </div>
             <br/>
             <div class="card-deck">
@@ -274,23 +278,26 @@
                         <div class="card-block ">
                             <h4 class="card-title font-weight-bold ">${item.title}</h4>
                         </div>
-                        <p class="title" hidden>${item.title}</p>
-                        <p class="description" hidden>${item.description}</p>
-                        <p class="href" hidden>${item.link}</p>
+                        <%--<p class="title" hidden>${item.title}</p>--%>
+                        <%--<p class="description" hidden>${item.description}</p>--%>
+                        <%--<p class="href" hidden>${item.link}</p>--%>
                         <div class="row">
                             <div class="col">
                                 <p style="margin-left: 1rem" class="date text-left font-italic">by ${item.source}</p>
                             </div>
                             <div class="col">
-                                <%--<p style="margin-right: 1rem" class="date text-right font-italic">${item.diffMinutes()} min ago</p>--%>
-                                    <c:choose>
-                                        <c:when test="${item.diffHours() == 0}" >
-                                            <p style="margin-right: 1rem" class="date text-right font-italic">${ Math.abs(item.diffMinutes())} m ago </p>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <p style="margin-right: 1rem" class="date text-right font-italic">${Math.abs(item.diffHours())} h ago </p>
-                                        </c:otherwise>
-                                    </c:choose>
+                                    <%--<p style="margin-right: 1rem" class="date text-right font-italic">${item.diffMinutes()} min ago</p>--%>
+                                <c:choose>
+                                    <c:when test="${item.diffHours() == 0}">
+                                        <p style="margin-right: 1rem"
+                                           class="date text-right font-italic">${ Math.abs(item.diffMinutes())} m
+                                            ago </p>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <p style="margin-right: 1rem"
+                                           class="date text-right font-italic">${Math.abs(item.diffHours())} h ago </p>
+                                    </c:otherwise>
+                                </c:choose>
                             </div>
                         </div>
                     </div>
@@ -379,9 +386,9 @@
                         <div class="card-block ">
                             <h4 class="card-title font-weight-bold ">${item.title}</h4>
                         </div>
-                        <p class="title" hidden>${item.title}</p>
-                        <p class="description" hidden>${item.description}</p>
-                        <p class="href" hidden>${item.link}</p>
+                        <%--<p class="title" hidden>${item.title}</p>--%>
+                        <%--<p class="description" hidden>${item.description}</p>--%>
+                        <%--<p class="href" hidden>${item.link}</p>--%>
 
                         <div class="row">
                             <div class="col">
@@ -389,11 +396,14 @@
                             </div>
                             <div class="col">
                                 <c:choose>
-                                    <c:when test="${item.diffHours() == 0}" >
-                                        <p style="margin-right: 1rem" class="date text-right font-italic">${ Math.abs(item.diffMinutes())} m ago </p>
+                                    <c:when test="${item.diffHours() == 0}">
+                                        <p style="margin-right: 1rem"
+                                           class="date text-right font-italic">${ Math.abs(item.diffMinutes())} m
+                                            ago </p>
                                     </c:when>
                                     <c:otherwise>
-                                        <p style="margin-right: 1rem" class="date text-right font-italic">${Math.abs(item.diffHours())} h ago </p>
+                                        <p style="margin-right: 1rem"
+                                           class="date text-right font-italic">${Math.abs(item.diffHours())} h ago </p>
                                     </c:otherwise>
                                 </c:choose>
                             </div>
@@ -407,6 +417,7 @@
             <div class="card-columns">
 
                 <c:forEach items="${icos}" var="ico">
+
                     <!--Panel-->
                     <div class="card hoverable">
                         <div class="card-body">
@@ -417,23 +428,24 @@
                                     <br/>
                                     <br/>
                                     <p class="text-left">
-                                        <small>not rated</small>
+                                        <small>rating ${ico.rating}</small>
                                     </p>
                                 </div>
                                 <div class="col">
                                     <h5 class="card-title text-center font-weight-bold">${ico.name}</h5>
                                     <h6 class="card-title text-center font-italic">${ico.data.getCategories("name")}</h6>
-                                        <%--<h7 class="card-title text-center"><small>${ico.data.getFinance("raised")}/${ico.data.getFinance("hardcap")}</small></h7>--%>
+                                    <h6 class="card-title text-center">
+                                        <small>${ico.data.getFinance("raised")}/${ico.data.getFinance("hardcap")}</small>
+                                    </h6>
                                 </div>
                                 <div class="col">
                                     <p class="text-right">
-                                        <small>End10d</small>
+                                        <small>${ Math.abs(ico.todayMinusIcoEnd())}d left</small>
+
                                     </p>
                                 </div>
                             </div>
                             <p class="href" hidden>${ico.name}</p>
-
-
                         </div>
                     </div>
                     <!--/.Panel-->
@@ -444,42 +456,114 @@
             <hr style="size: 4rem" color="#795548"/>
         </div>
     </div>
+
 </div>
 
+
 <div class="container">
+
     <ul class="timeline">
+
         <c:forEach items="${events}" var="event" varStatus="i">
             <c:choose>
                 <c:when test="${(i.count%2) ==0}">
-                    <li class="timeline-inverted ">
+                    <li class="timeline-inverted">
                 </c:when>
                 <c:otherwise>
-                    <li >
+                    <li>
                 </c:otherwise>
             </c:choose>
-            <div class="timeline-badge brown wow "><i class="glyphicon glyphicon-check"></i></div>
-            <div class="timeline-panel hoverable wow">
-                <div class="timeline-heading">
-                    <h4 class="timeline-title wow">${event.title}</h4>
-                    <i style="color: red"
-                                                                      class="fas fa-top fa-fire fa-2x"></i>
-                    <p>
-                        <small class="text-muted"><i class="glyphicon glyphicon-time"></i> ${event.date_event}
-                        </small>
-                    </p>
+
+            <div class="timeline-badge brown"><i class="glyphicon glyphicon-check"></i></div>
+
+            <div class="timeline-panel ">
+
+                <div class="timeline-heading ">
+
+                    <div class="row">
+
+                        <div class="col">
+
+                            <div class="row">
+
+                                <div class="col">
+
+                                    <h6 class="timeline-title text-center font-weight-bold">${event.name}</h6>
+
+                                </div>
+
+                                <div class="col">
+                                    <c:choose>
+                                        <c:when test="${event.isHot()}">
+                                            <i style="color: red" class="fas fa-fire fa-2x"></i>
+                                        </c:when>
+                                    </c:choose>
+                                </div>
+
+                                <div class="col">
+                                    <h3 class="timeline-title font-weight-bold text-right">${event.coinName}</h3>
+                                </div>
+
+                            </div>
+
+                            <div class="col">
+                                <div class="col">
+                                    <h5 class="timeline-title text-center font-weight-bold">${event.title}</h5>
+                                        <%--<h5 class="timeline-title text-center font-weight-bold">left ${event.diffNowBeetweenDataEventDay()} d ${event.diffNowBeetweenDataEventMinute()}m </h5>--%>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
                 </div>
-                <div class="timeline-body wow">
+
+                <div class="timeline-body ">
                     <p>${event.description}</p>
+
+                    <div class="row">
+                        <div class="col">
+                            <button value="${event.proof}" type="button" class="btn btn-brown btn-rounded">Proof
+                            </button>
+                            <button value="${event.source}" type="button" class="btn btn-brown btn-rounded">Source
+                            </button>
+                        </div>
+                        <br/>
+                        <h6 class="timeline-title text-center font-weight-bold">
+                            left ${event.diffNowBeetweenDataEventDay()}
+                            d ${event.diffNowBeetweenDataEventMinute()}m </h6>
+
+                        <div style="margin-top: 2rem; margin-left: 2rem" class="col">
+                            <c:choose>
+                                <c:when test="${event.diffNowBeetweenDataEventDay() == 0}">
+                                    <div class="col">
+                                        <i style="color: red" class="fas fa-clock fa-5x"></i>
+                                    </div>
+                                </c:when>
+                                <c:when test="${event.diffNowBeetweenDataEventDay() > 0}">
+                                    <div class="col">
+                                        <i style="color: orange" class="fas fa-clock fa-5x"></i>
+                                    </div
+                                </c:when>
+                                <c:when test="${event.diffNowBeetweenDataEventDay() > 2}">
+                                    <div class="col">
+                                        <i style="color: green" class="fas fa-clock fa-5x"></i>
+                                    </div
+                                </c:when>
+                            </c:choose>
+                        </div>
+
+                    </div>
                 </div>
             </div>
             </li>
+
         </c:forEach>
+
     </ul>
+
 </div>
-
-
-
-
 
 
 <jsp:include page="template/footer.jsp"/>

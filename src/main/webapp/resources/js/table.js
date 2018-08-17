@@ -8,6 +8,12 @@ $(document).ready(function () {
 
 function modal() {
 
+    $(".btn").click(function () {
+        var url = $(this).val();
+        // window.location.href = "http://stackoverflow.com";
+        window.location.href = url;
+    })
+
 
     $("#modal").click(function () {
 

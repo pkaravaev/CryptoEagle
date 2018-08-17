@@ -3,6 +3,7 @@ package com.cryptoeagle;
 
 import com.cryptoeagle.entity.AppUser;
 import com.cryptoeagle.entity.Coin;
+import com.cryptoeagle.entity.Event;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.util.JSONPObject;
@@ -61,6 +62,8 @@ public class test {
 
     public static void main(String[] args) throws Exception {
 
+
+        Event event = new Event();
         Options opt = new OptionsBuilder()
                 .include(test.class.getSimpleName())
                 .forks(1)

@@ -39,7 +39,7 @@ public class UserController {
             return "error-page";
         }
         model.addAttribute("user", appUser);
-        return "ico-stats";
+        return "user-profile";
     }
 
     @RequestMapping("/users")
@@ -71,8 +71,10 @@ public class UserController {
     public String createUser(@RequestParam String name,
                              @RequestParam String email,
                              @RequestParam String password,
-                             @RequestParam String password_again) {
+                             @RequestParam String password_again, Model model) {
         AppUser appUser = new AppUser(name, email, password, true, false);
+        model.addAttribute("register", true);
+        model.addAttribute("name", name);
         userService.save(appUser);
         return "redirect:/";
     }

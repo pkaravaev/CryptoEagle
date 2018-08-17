@@ -1,7 +1,4 @@
 <jsp:include page="template/header.jsp"/>
 
 
-
-<li class="nav-item">
-    <button value="/news/newsbtc" type="button" class="btn btn-brown btn-rounded">newsbtc</button>
-</li>
+<a class="btn btn-info" onclick="toastr.info('Hi! I am info message.');">Info message</a>

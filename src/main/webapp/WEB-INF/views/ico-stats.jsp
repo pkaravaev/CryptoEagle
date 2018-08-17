@@ -30,7 +30,6 @@
                     <th class="th-sm">Name
                         <i class="fa fa-sort float-right" aria-hidden="true"></i>
                     </th>
-
                     <th class="th-sm">Description
                         <i class="fa fa-sort float-right" aria-hidden="true"></i>
                     </th>

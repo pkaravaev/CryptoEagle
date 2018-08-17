@@ -289,10 +289,15 @@ public class RestServiceImpl implements RestService {
         return coins;
     }
 
+
+
     private Event convertJsonToEvent(JsonNode jsonNode){
         Event event = new Event();
         String title = jsonNode.get("title").toString();
         String description = jsonNode.get("description").toString();
+        if (description == "null"){
+            description = "";
+        }
         String twitter = jsonNode.get("twitter_account").toString();
         String proof = jsonNode.get("proof").toString();
         String source = jsonNode.get("source").toString();
@@ -310,7 +315,7 @@ public class RestServiceImpl implements RestService {
             event.setName(deleteCommas(name));
         }
 
-        event.setHot(Boolean.getBoolean(deleteCommas(hot)));
+        event.setHot(Boolean.valueOf(hot));
         event.setTitle(deleteCommas(title));
         event.setDescription(deleteCommas(description));
         event.setTwitter(deleteCommas(twitter));
@@ -460,6 +465,8 @@ public class RestServiceImpl implements RestService {
 
         return idata;
     }
+
+
 
     private String buildHttpRequest(String param, String url) {
 

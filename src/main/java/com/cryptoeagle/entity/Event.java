@@ -46,12 +46,12 @@ public class Event extends BaseEntity {
 
     public int diffNowBeetweenDataEventDay()
     {
-        return date_event.getDayOfMonth() - ZonedDateTime.now().getDayOfMonth() ;
+        return Math.abs(date_event.getDayOfMonth() - ZonedDateTime.now().getDayOfMonth());
     }
 
     public int diffNowBeetweenDataEventMinute()
     {
-        return date_event.getMinute() - ZonedDateTime.now().getMinute() ;
+        return Math.abs(date_event.getMinute() - ZonedDateTime.now().getMinute());
     }
 
 }

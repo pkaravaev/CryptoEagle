@@ -100,7 +100,7 @@
                     <a class="nav-link" href="/events">EVENTS</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">ANALITICS</a>
+                    <a class="nav-link" href="/analitics">ANALITICS</a>
                 </li>
                 <li class="nav-item">
                     <a id="modal" class="nav-link">Login / Register</a>
@@ -118,19 +118,19 @@
 
 <ul class="nav justify-content-center font-weight-bold brown darken-2">
     <li class="nav-item">
-        <a id="BTC" class="nav-link" href="/coin-list"><p class="red-text">active</p></a>
+        <a id="BTC" class="nav-link" href="/coin-list"><p class="red-text"></p></a>
     </li>
     <li class="nav-item">
-        <a id="ETH" class="nav-link" href="/coin-list"><p class="white-text">active</p></a>
+        <a id="ETH" class="nav-link" href="/coin-list"><p class="white-text"></p></a>
     </li>
     <li class="nav-item">
-        <a id="NEO" class="nav-link" href="/coin-list"><p class="white-text">active</p></a>
+        <a id="NEO" class="nav-link" href="/coin-list"><p class="white-text"></p></a>
     </li>
     <li class="nav-item">
-        <a id="XRP" class="nav-link " href="/coin-list"><p class="white-text">active</p></a>
+        <a id="XRP" class="nav-link " href="/coin-list"><p class="white-text"></p></a>
     </li>
     <li class="nav-item">
-        <a id="EOS" class="nav-link " href="/coin-list"><p class="white-text">active</p></a>
+        <a id="EOS" class="nav-link " href="/coin-list"><p class="white-text"></p></a>
     </li>
 
 </ul>

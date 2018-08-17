@@ -55,15 +55,18 @@ public class MainController {
         List<Item> items = itemService.getAll().stream().limit(10).collect(Collectors.toList());
         List<Item> lowerItems = new ArrayList<>();
         List<Item> averageItems = new ArrayList<>();
+        Item topItem = null;
+        if (items.size() > 0) {
+            topItem = items.get(0);
+            averageItems.add(items.get(1));
+            averageItems.add(items.get(2));
 
-        Item topItem = items.get(0);
+            lowerItems.add(items.get(3));
+            lowerItems.add(items.get(4));
+            lowerItems.add(items.get(5));
+        }
 
-        averageItems.add(items.get(1));
-        averageItems.add(items.get(2));
 
-        lowerItems.add(items.get(3));
-        lowerItems.add(items.get(4));
-        lowerItems.add(items.get(5));
 
         List<Coin> topcoins = coinService.getTopGainCoins();
         List<Coin> losercoins = coinService.getTopLoserCoins();
