@@ -45,6 +45,7 @@
             $(this).removeClass("animated shake");
         })
     })
+
 </script>
 
 <style>

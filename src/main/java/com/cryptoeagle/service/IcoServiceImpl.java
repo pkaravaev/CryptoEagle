@@ -68,7 +68,7 @@ public class IcoServiceImpl implements IcoService {
     }
 
     @Override
-    @Scheduled(fixedDelay = 600000)
+    @Scheduled(fixedDelay = 600000, initialDelay = 8000)
     public void updateIcos() {
         repository.deleteAll();
 

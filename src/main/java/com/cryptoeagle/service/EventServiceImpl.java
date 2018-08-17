@@ -36,7 +36,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    @Scheduled(fixedDelay = 600000)
+    @Scheduled(fixedDelay = 600000, initialDelay = 7000)
     @Transactional
     public void update() {
         log.info("UPDATE EVENTS :" + LocalDateTime.now());

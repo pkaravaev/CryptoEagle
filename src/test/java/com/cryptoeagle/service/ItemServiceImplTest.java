@@ -17,9 +17,7 @@ public class ItemServiceImplTest  extends AbstractTest{
 
     @Test
     public void findall() {
-
         List<Item> all = service.getAll();
-
         System.out.println();
     }
 

@@ -14,7 +14,6 @@
             $(this).css('cursor', 'pointer');
             $(this).addClass("animated shake")
             $(".container").addClass("animated shake")
-
         })
     })
 
@@ -47,9 +46,7 @@
             $(this).find(".card-img-overlay").removeClass("animated bounceInUp").removeClass("animated shake").addClass("animated fadeOutDown");
             $(this).removeClass("animated shake");
         })
-
     })
-
 
 </script>
 
@@ -68,8 +65,6 @@
             <button value="/news/${s.toString()}" type="button" class="btn btn-brown btn-rounded">${s.toString()}</button>
         </li>
     </c:forEach>
-
-
 
 </ul>
 
@@ -108,7 +103,6 @@
                             </c:otherwise>
 
                         </c:choose>
-
 
                         <%--<p style="margin-right: 1rem" class="date text-right font-italic">${item.publishDate}</p>--%>
                     </div>

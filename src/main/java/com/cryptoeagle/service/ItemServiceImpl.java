@@ -72,8 +72,9 @@ public class ItemServiceImpl implements ItemService {
         return null;
     }
 
-    @Scheduled(fixedDelay = 600000)
+    @Scheduled(fixedDelay = 600000, initialDelay = 5000)
     public void updateItems() {
+
         repository.deleteAll();
 
         List<Item> items = service.getItems("https://www.coindesk.com/feed/");
@@ -81,10 +82,7 @@ public class ItemServiceImpl implements ItemService {
         List<Item> items3 = service.getItems("https://blog.blockchain.com/feed");
         List<Item> items4 = service.getItems("https://www.newsbtc.com/feed ");
         List<Item> items5 = service.getItems("https://blog.spectrocoin.com/en/feed");
-//        List<Item> items6 = rssService.getItems("blog.ethereum.org/feed ");
 
-
-//        repository.saveAll(items6);
         repository.saveAll(items5);
         repository.saveAll(items4);
         repository.saveAll(items3);

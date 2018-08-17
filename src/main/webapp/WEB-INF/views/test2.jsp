@@ -2,6 +2,6 @@
 
 
 
-<div class="alert alert-primary" role="alert">
-    A simple primary alert—check it out!
-</div>
+<li class="nav-item">
+    <button value="/news/newsbtc" type="button" class="btn btn-brown btn-rounded">newsbtc</button>
+</li>

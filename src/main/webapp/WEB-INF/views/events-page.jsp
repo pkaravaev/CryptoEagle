@@ -29,6 +29,7 @@
     }
 
     .timeline > li:before,
+
     .timeline > li:after {
         content: " ";
         display: table;
@@ -39,6 +40,7 @@
     }
 
     .timeline > li:before,
+
     .timeline > li:after {
         content: " ";
         display: table;

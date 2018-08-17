@@ -90,32 +90,24 @@
 
             <!-- Links -->
             <ul class="navbar-nav">
-
                 <li class="nav-item">
                     <a class="nav-link" href="/ico-stats">ICO STATS</a>
                 </li>
-
                 <li class="nav-item">
                     <a class="nav-link" href="/whitelists">WHITELIST</a>
                 </li>
-
                 <li class="nav-item">
                     <a class="nav-link" href="/events">EVENTS</a>
                 </li>
-
                 <li class="nav-item">
                     <a class="nav-link" href="#">ANALITICS</a>
                 </li>
-
                 <li class="nav-item">
                     <a id="modal" class="nav-link">Login / Register</a>
                 </li>
-
                 <li class="nav-item">
                     <a id="account" class="nav-link" href="#modalLRForm">My account</a>
                 </li>
-
-
             </ul>
             <!-- Links -->
 

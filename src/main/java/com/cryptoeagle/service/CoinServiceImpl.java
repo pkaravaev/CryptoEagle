@@ -31,6 +31,7 @@ public class CoinServiceImpl implements CoinService {
         this.restService = restService;
     }
 
+
     public List<Coin> getCoins(String... symbols) {
         log.info("get  coins : " + symbols);
         List<Coin> coinList = new ArrayList<>();
@@ -41,10 +42,12 @@ public class CoinServiceImpl implements CoinService {
         return coinList;
     }
 
+
     private Coin getCoin(String symbol) {
         log.info("get  coin  : " + symbol);
         return repository.getBySymbol(symbol);
     }
+
 
     public List<Coin> getTopGainCoins() {
         log.info("get top  coins");
