@@ -4,6 +4,7 @@ package com.cryptoeagle;
 import com.cryptoeagle.entity.AppUser;
 import com.cryptoeagle.entity.Coin;
 import com.cryptoeagle.entity.Event;
+import com.cryptoeagle.entity.WhiteList;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.util.JSONPObject;
@@ -20,6 +21,10 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
+import org.jsoup.Connection;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Mode;
@@ -38,6 +43,7 @@ import java.io.InputStream;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -62,14 +68,34 @@ public class test {
 
     public static void main(String[] args) throws Exception {
 
+//
+//        Document document = Jsoup.connect("https://icodrops.com/whitelist/").get();
+//
+//        Iterator<Element> iterator = document.select("div.whtico-row").iterator();
+//
+//        List<WhiteList> whiteLists = new ArrayList<>();
+//
+//        while (iterator.hasNext()){
+//            Element next = iterator.next();
+//
+//            String status =  next.select("div.whitelist_date").first().childNode(0).toString();
+//            String name = next.select("div.whtico-row").first().select("div.white_info").first().childNode(1).childNode(0).childNode(0).toString();
+//            String category = next.select("div.whtico-row").first().select("div.white_info").select(".white-ico-category-name").first().childNode(0).toString();
+//            String logo = next.select("div.whtico-row").first().select("div.white_ico-icon").get(0).childNode(1).childNode(1).attr("data-src").toString();
+//
+//            WhiteList whiteList = new WhiteList();
+//
+//            whiteList.setStatus(status);
+//            whiteList.setName(name);
+//            whiteList.setLogo(logo);
+//            whiteList.setCategory(category);
+//
+//            whiteLists.add(whiteList);
+//        }
 
-        Event event = new Event();
-        Options opt = new OptionsBuilder()
-                .include(test.class.getSimpleName())
-                .forks(1)
-                .build();
+         WhiteList whiteList = new WhiteList();
 
-        new Runner(opt).run();
+        System.out.println();
 
     }
 }

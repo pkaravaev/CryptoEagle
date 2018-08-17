@@ -94,7 +94,7 @@
                     <a class="nav-link" href="/ico-stats">ICO STATS</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/whitelists">WHITELIST</a>
+                    <a class="nav-link" href="/whitelist">WHITELIST</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/events">EVENTS</a>

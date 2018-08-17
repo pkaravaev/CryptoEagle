@@ -38,6 +38,9 @@ public class MainController {
     @Autowired
     EventService eventService;
 
+    @Autowired
+    ParserService parserService;
+
     @ModelAttribute("blog")
     public Blog contructBlog() {
         return new Blog();
@@ -47,6 +50,13 @@ public class MainController {
     @RequestMapping("/analitics")
     public String analitics() {
         return "analitics";
+    }
+
+    @RequestMapping("/whitelist")
+    public String whitelist(Model model) {
+        List<WhiteList> whiteLists = parserService.getWhiteList();
+        model.addAttribute("whiteLists",whiteLists);
+        return "white-list";
     }
 
     @RequestMapping("/update")
