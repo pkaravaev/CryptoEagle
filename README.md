@@ -1,3 +1,4 @@
 # CryptoEagle
-
-https://travis-ci.org/pkaravaev/CryptoEagle.svg?branch=master
+<p align="center">
+  <img src="https://travis-ci.org/pkaravaev/CryptoEagle.svg?branch=master" width="120" title="hover text">
+</p>
