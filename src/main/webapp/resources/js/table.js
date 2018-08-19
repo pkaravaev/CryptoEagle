@@ -8,6 +8,28 @@ $(document).ready(function () {
 
 function modal() {
 
+    $(".r").click(function () {
+        var name = $(this).find("#name").text();
+        window.location.href = "/ico-page/" + name;
+    })
+
+    $(".r").dblclick(function () {
+        var t = $(this).find(".href");
+        window.location.href = "/ico-page/" + name;
+    })
+
+    $(".r").mouseleave(function () {
+        $(this).removeClass("animated shake");
+    })
+
+
+    $(".r").mouseenter(function () {
+        $(this).css('cursor', 'pointer');
+        $(this).addClass("animated shake")
+        $(".container").addClass("animated shake")
+    })
+
+
     $(".btn").click(function () {
         var url = $(this).val();
         // window.location.href = "http://stackoverflow.com";
@@ -34,7 +56,7 @@ function modal() {
         var e = x[0].value;
         var p = x[1].value;
 
-        var suc = function(){
+        var suc = function () {
 
             alert("success");
             $("#modalLRForm").modal('hide');
@@ -57,7 +79,7 @@ function modal() {
         var p = x[2].value;
         var r = x[3].value;
 
-        var er = function(){
+        var er = function () {
 
             alert("Error")
             $(this).hide();
@@ -67,8 +89,8 @@ function modal() {
         $.ajax({
             url: "/register",
             type: 'POST',
-            data: {name:n, email: e, password: p, password_again:r},
-            error : er()
+            data: {name: n, email: e, password: p, password_again: r},
+            error: er()
         })
 
     })

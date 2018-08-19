@@ -27,7 +27,6 @@ public class IcoServiceImpl implements IcoService {
 
     @Autowired
     public void IcoServiceImpl(IcoRepository repository, RestService service){
-
         this.repository = repository;
         this.service = service;
     }
@@ -71,15 +70,10 @@ public class IcoServiceImpl implements IcoService {
     @Scheduled(fixedDelay = 600000, initialDelay = 8000)
     public void updateIcos() {
         repository.deleteAll();
-
-        List<Ico> page = service.getIcoWithDataByPage(1);
-        List<Ico> page1 = service.getIcoWithDataByPage(2);
-        List<Ico> page2 = service.getIcoWithDataByPage(3);
-
-        saveIcos(page);
-        saveIcos(page1);
-        saveIcos(page2);
-
+        for (int i = 1 ; i < 250; i++){
+            List<Ico> page = service.getIcoWithDataByPage(i);
+            saveIcos(page);
+        }
         log.info("UPDATE ICOS :" + LocalDateTime.now());
     }
 

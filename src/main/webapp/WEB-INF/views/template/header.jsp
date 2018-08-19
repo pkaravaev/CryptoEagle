@@ -102,6 +102,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/analitics">ANALITICS</a>
                 </li>
+
+
+
                 <%--<li class="nav-item">--%>
                     <%--<a id="modal" class="nav-link">Login / Register</a>--%>
                 <%--</li>--%>

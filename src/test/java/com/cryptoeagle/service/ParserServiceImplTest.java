@@ -18,6 +18,6 @@ public class ParserServiceImplTest extends AbstractTest {
     public void getWhiteList() {
 
         List<WhiteList> whiteList = service.getWhiteList();
-        System.out.println();
+       assertTrue(whiteList.size() > 5);
     }
 }

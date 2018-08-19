@@ -40,6 +40,7 @@
     <div class="row">
 
         <br/>
+
         <div class="col-md-4">
             <br/>
             <h3 class="text-center font-weight-bold">ACTIVE</h3>
@@ -47,7 +48,7 @@
 
             <c:forEach items="${activeIco}" var="ico">
                 <!--Panel-->
-                <div class="card hoverable">
+                <div style="width: 22rem; height: 10rem" class="card hoverable">
                     <div class="card-body">
                         <div class="row">
                             <div class="col">
@@ -56,17 +57,34 @@
                                 <br/>
                                 <br/>
                                 <p class="text-left">
-                                    <small>rating ${ico.rating}</small>
+
+                                    <c:choose>
+                                        <c:when test="${ico.rating < 4} ">
+                                            <small style="color: orangered">rating ${ico.rating}</small>
+                                        </c:when>
+
+                                        <c:when test="${ico.rating > 4 && ico.rating < 4.5}">
+                                            <small style="color: orange">rating ${ico.rating}</small>
+                                        </c:when>
+
+                                        <c:when test="${ico.rating > 4.5}">
+                                            <small style="color: green">rating ${ico.rating}</small>
+                                        </c:when>
+
+                                    </c:choose>
+
                                 </p>
                             </div>
                             <div class="col">
                                 <h5 class="card-title text-center font-weight-bold">${ico.name}</h5>
                                 <h6 class="card-title text-center font-italic">${ico.data.getCategories("name")}</h6>
-                                    <h6 class="card-title text-center"><small>${ico.data.getFinance("raised")}/${ico.data.getFinance("hardcap")}</small></h6>
+                                <%--<h6 class="card-title text-center">--%>
+                                    <%--<small>${ico.data.getFinance("raised")}/${ico.data.getFinance("hardcap")}</small>--%>
+                                <%--</h6>--%>
                             </div>
                             <div class="col">
                                 <p class="text-right">
-                                        <small>${ Math.abs(ico.todayMinusIcoEnd())}d left </small>
+                                    <small>${ Math.abs(ico.todayMinusIcoEnd())}d left</small>
                                 </p>
                             </div>
                         </div>
@@ -83,7 +101,7 @@
             <h3 class="text-center font-weight-bold">UPCOMING</h3>
             <c:forEach items="${upcoming}" var="ico">
                 <!--Panel-->
-                <div class="card hoverable">
+                <div style="width: 22rem; height: 10rem" class="card hoverable">
                     <div class="card-body">
                         <div class="row">
                             <div class="col">
@@ -98,11 +116,13 @@
                             <div class="col">
                                 <h5 class="card-title text-center font-weight-bold">${ico.name}</h5>
                                 <h6 class="card-title text-center font-italic">${ico.data.getCategories("name")}</h6>
-                                    <h6 class="card-title text-center"><small>${ico.data.getFinance("raised")}/${ico.data.getFinance("hardcap")}</small></h6>
+                                <%--<h6 class="card-title text-center">--%>
+                                    <%--<small>${ico.data.getFinance("raised")}/${ico.data.getFinance("hardcap")}</small>--%>
+                                <%--</h6>--%>
                             </div>
                             <div class="col">
                                 <p class="text-right">
-                                        <small>Starts ${ Math.abs(ico.todayMinusIcoStart())}d</small>
+                                    <small>Starts ${ Math.abs(ico.todayMinusIcoStart())}d</small>
                                 </p>
                             </div>
                             <p hidden>${ico.website_link}</p>
@@ -120,7 +140,7 @@
             <h3 class="text-center font-weight-bold brown-darken-2 ">ENDED</h3>
             <c:forEach items="${finished}" var="ico">
                 <!--Panel-->
-                <div class="card hoverable">
+                <div style="width: 22rem; height: 10rem" class="card hoverable">
                     <div class="card-body">
                         <div class="row">
                             <div class="col">
@@ -135,11 +155,13 @@
                             <div class="col">
                                 <h5 class="card-title text-center font-weight-bold">${ico.name}</h5>
                                 <h6 class="card-title text-center font-italic">${ico.data.getCategories("name")}</h6>
-                                    <h6 class="card-title text-center"><small>${ico.data.getFinance("raised")}/${ico.data.getFinance("hardcap")}</small></h6>
+                                <%--<h6 class="card-title text-center">--%>
+                                    <%--<small>${ico.data.getFinance("raised")}/${ico.data.getFinance("hardcap")}</small>--%>
+                                <%--</h6>--%>
                             </div>
                             <div class="col">
                                 <p class="text-right">
-                                        <small>Ended ${ ico.todayMinusIcoEnd()}d</small>
+                                    <small>Ended ${ico.todayMinusIcoEnd()}d</small>
                                 </p>
                             </div>
                         </div>

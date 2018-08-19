@@ -18,9 +18,8 @@ public class ParserServiceImpl implements ParserService {
     public List<WhiteList> getWhiteList() {
 
         List<WhiteList> whiteLists = null;
+
         try {
-
-
             Document document = Jsoup.connect("https://icodrops.com/whitelist/").get();
 
             Iterator<Element> iterator = document.select("div.whtico-row").iterator();

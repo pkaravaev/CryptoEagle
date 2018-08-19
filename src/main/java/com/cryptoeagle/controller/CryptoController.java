@@ -39,7 +39,7 @@ public class CryptoController {
 
         model.addAttribute("activeIco", activeIco);
         model.addAttribute("upcoming", upcoming);
-        model.addAttribute("finished", upcoming);
+        model.addAttribute("finished", finished);
 
         return "ico-list";
     }

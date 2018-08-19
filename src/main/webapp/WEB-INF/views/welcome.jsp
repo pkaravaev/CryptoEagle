@@ -22,6 +22,11 @@
             $(".container").addClass("animated shake")
         })
 
+        $(".card").mouseleave(function () {
+            $(this).find(".card-img-overlay").removeClass("animated bounceInUp").removeClass("animated shake").addClass("animated fadeOutDown");
+            $(this).removeClass("animated shake");
+        })
+
         $(".card").click(function () {
             $(this).css('cursor', 'pointer');
             var title = $(this).find(".title").text();
@@ -48,10 +53,7 @@
         //
         // })
 
-        $(".card").mouseleave(function () {
-            $(this).find(".card-img-overlay").removeClass("animated bounceInUp").removeClass("animated shake").addClass("animated fadeOutDown");
-            $(this).removeClass("animated shake");
-        })
+
     })
 
 </script>

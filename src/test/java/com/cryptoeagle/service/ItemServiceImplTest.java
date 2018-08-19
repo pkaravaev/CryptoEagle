@@ -47,7 +47,7 @@ public class ItemServiceImplTest  extends AbstractTest{
 
     @Test
     public void update(){
-        service.updateItems();;
+        service.updateItems();
 
     }
 }

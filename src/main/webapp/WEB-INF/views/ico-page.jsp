@@ -65,7 +65,7 @@
                          alt="error"/>
                 </div>
                 <div class="col-md-10">
-                    <h5 class="title">${ico.name} (${ico.data.getCategories("name")})</h5>
+                    <h5 class="title font-weight-bold">${ico.name} (${ico.data.getCategories("name")})</h5>
                     <p class="text">${ico.data.intro}</p>
                 </div>
                 <br/>
@@ -114,11 +114,12 @@
                                 <fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${parsPreIcoEnd}"
                                                 var="preIcoEnd"/>
 
-                                <h6 class="text-left">Toke sales : Ended</h6>
-                                <h6 class="text-left">Toke pre sale : <strong> ${preIcoStart}</strong></h6>
-                                <h6 class="text-left">Toke end pre sale : <strong>${preIcoEnd}</strong></h6>
-                                <h6 class="text-left">Toke start sale : <strong>${icoStart}</strong></h6>
-                                <h6 class="text-left">Toke end sale : <strong>${icoEnd}</strong></h6>
+                                <h6 class="text-left">Token status : <span class="font-weight-bold"> ${ico.status()}</span></h6>
+
+                                <h6 class="text-left"> Pre sale : <strong> ${preIcoStart}</strong></h6>
+                                <h6 class="text-left"> End pre sale : <strong>${preIcoEnd}</strong></h6>
+                                <h6 class="text-left"> Start sale : <strong>${icoStart}</strong></h6>
+                                <h6 class="text-left"> End sale : <strong class="text-center">${icoEnd}</strong></h6>
                             </li>
 
                             <li class="list-group-item">

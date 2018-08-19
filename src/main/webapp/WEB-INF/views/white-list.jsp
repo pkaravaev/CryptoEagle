@@ -22,9 +22,9 @@
 
             <c:forEach items="${whiteLists}" var="item">
             <tr class="table">
-                <td><img width="45" src="${item.logo}" class="rounded-circle"></td>
+                <td><img width="60" src="${item.logo}" class="rounded-circle"></td>
                 <td class="font-weight-bold">${item.name}</td>
-                <td class="font-weight-bold">${item.name}</td>
+                <td class="font-weight-bold">${item.category}</td>
                 <td class="font-weight-bold"><span>white lsit + kyc</span></td>
                 <td class="font-weight-bold">${item.status}</td>
             </tr>

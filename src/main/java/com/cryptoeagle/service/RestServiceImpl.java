@@ -131,6 +131,8 @@ public class RestServiceImpl implements RestService {
         List<Ico> icoswithdata = new ArrayList<>();
         for (Ico ico : icos) {
             Idata data = getDataForIco(ico.getId());
+            if (data.getIntro() == null)
+                continue;
             ico.setData(data);
             icoswithdata.add(ico);
         }

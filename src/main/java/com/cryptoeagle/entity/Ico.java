@@ -12,9 +12,9 @@ import java.time.LocalDateTime;
         @NamedQuery(name = Ico.GET_ALL, query = " SELECT ico FROM  Ico  ico"),
         @NamedQuery(name = Ico.GET_BY_ID, query = "SELECT ico  FROM  Ico ico   WHERE  ico.id = :id"),
         @NamedQuery(name = Ico.GET_BY_NAME, query = "SELECT ico  FROM  Ico ico   WHERE  ico.name = :name"),
-        @NamedQuery(name = Ico.GET_UPCOMING, query = "SELECT ico  FROM  Ico ico WHERE  ico.icoStart > :date"),
-        @NamedQuery(name = Ico.GET_ENDED, query = "SELECT ico  FROM  Ico ico WHERE  ico.icoEnd < :date"),
-        @NamedQuery(name = Ico.GET_ACTIVE, query = "SELECT ico  FROM  Ico ico WHERE  ico.icoEnd > :date"),
+        @NamedQuery(name = Ico.GET_UPCOMING, query = "SELECT ico  FROM  Ico ico WHERE  ico.icoStart > :date order by ico.icoStart desc "),
+        @NamedQuery(name = Ico.GET_ENDED, query = "SELECT ico  FROM  Ico ico WHERE  ico.icoEnd < :date order by ico.icoEnd desc "),
+        @NamedQuery(name = Ico.GET_ACTIVE, query = "SELECT ico  FROM  Ico ico WHERE  ico.icoEnd > :date AND ico.icoStart < :date order by ico.icoStart asc"),
 })
 @Cacheable
 @Entity
@@ -50,8 +50,36 @@ public class Ico {
     private LocalDateTime icoStart;
     private LocalDateTime icoEnd;
 
+    public boolean isEnd(){
+        return icoEnd.isBefore(LocalDateTime.now());
+    }
+
+    public String status(){
+
+        String result = null;
+
+        if (isEnd())
+            result = "END";
+
+        if (isUpcoming())
+            result = "UPCOMING";
+
+        if (isActive())
+            result = "ACTIVE";
+
+        return result;
+    }
+
+    public boolean isUpcoming(){
+        return icoStart.isAfter(LocalDateTime.now());
+    }
+
+    public boolean isActive(){
+        return icoStart.isBefore(LocalDateTime.now()) && icoEnd.isAfter(LocalDateTime.now());
+    }
+
     public int todayMinusIcoStart() {
-        return LocalDateTime.now().getDayOfMonth() - icoStart.getDayOfMonth();
+        return  Math.abs(LocalDateTime.now().getDayOfMonth() - icoStart.getDayOfMonth());
     }
 
     public int todayMinusIcoEnd() {

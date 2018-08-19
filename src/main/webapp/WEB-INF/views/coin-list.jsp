@@ -57,17 +57,17 @@
                     <tr>
                         <%--<td>${coin.rank}</td>--%>
                         <td><img class="rounded-circle" src="${coin.image}" width="60" height="60"></td>
-                        <td>${coin.name}</td>
-                        <td>${coin.price}$</td>
-                        <td>${coin.market_cap}$</td>
-                        <td>${coin.volume_24h}$</td>
-                        <td>${coin.circulating_supply}${coin.symbol}</td>
+                        <td class="font-weight-bold">${coin.name}</td>
+                        <td class="font-weight-bold">${coin.price}$</td>
+                        <td class="font-weight-bold">${coin.market_cap}$</td>
+                        <td class="font-weight-bold">${coin.volume_24h}$</td>
+                        <td class="font-weight-bold">${coin.circulating_supply}${coin.symbol}</td>
                         <c:choose>
                             <c:when test="${coin.percent_change_24h > 0}">
-                                <td style="color: lawngreen">  ${coin.percent_change_24h}%</td>
+                                <td class="font-weight-bold" style="color: lawngreen">  ${coin.percent_change_24h}%</td>
                             </c:when>
                             <c:when test="${coin.percent_change_24h < 0}">
-                                <td style="color: red">  ${coin.percent_change_24h}%</td>
+                                <td class="font-weight-bold"style="color: red">  ${coin.percent_change_24h}%</td>
                             </c:when>
                         </c:choose>
                     </tr>
