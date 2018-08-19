@@ -2,8 +2,9 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
-       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:cache="http://www.springframework.org/schema/cache"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
 
     <tx:annotation-driven/>
 
@@ -61,6 +62,16 @@
     </beans>
 
     <beans profile="Jpa">
+
+        <cache:annotation-driven />
+
+        <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager"
+              p:cache-manager-ref="ehcache"/>
+
+        <bean id="ehcache" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean"
+              p:config-location="classpath:ehcache.xml" p:shared="true"/>
+
+
         <bean id="provider" class="org.hibernate.jpa.HibernatePersistenceProvider"/>
         <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
             <property name="dataSource" ref="dataSource"/>
@@ -72,7 +83,7 @@
                     <!--<entry key="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>-->
                     <entry key="hibernate.hbm2ddl.auto" value="update"/>
                     <entry key="hibernate.format_sql" value="true"/>
-                    <entry key="hibernate.show_sql" value="false"/>
+                    <entry key="hibernate.show_sql" value="true"/>
                 </map>
             </property>
         </bean>

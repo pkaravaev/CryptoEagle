@@ -37,6 +37,7 @@ public class IcoServiceImplTest extends AbstractTest {
     @Test
     public void getUpcoming() {
         List<Ico> upcoming = service.getUpcoming();
+        List<Ico> upcoming2 = service.getUpcoming();
         for (Ico ico : upcoming) {
             assertTrue(ico.getIcoStart().isAfter(LocalDateTime.now()));
         }

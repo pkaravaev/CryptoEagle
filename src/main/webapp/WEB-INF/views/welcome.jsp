@@ -40,7 +40,7 @@
                 $(this).append("<div class=\"card-img-overlay  animated bounceInUp\">\n" +
                     "                    <h4 class=\"card-title text-white brown darken-2\">" + title + " </h4>\n" +
                     "                    <p class=\"card-text text-white brown darken-2\"> " + description + " </p>\n" +
-                    "                    <p class=\"card-text text-white brown darken-2\">     " + date + " </p>\n" +
+                    "                    <p class=\"card-text text-white brown darken-2\">         " + date + " </p>\n" +
                     "                </div>")
             }
         })
@@ -260,8 +260,8 @@
         <div class="col">
             <h3 class="font-weight-bold">CRYPTO NEWS</h3>
             <hr color="#795548"/>
-            <div id="bigCard" class="card hoverable rounded example job ">
-                <img alt="Card image cap" class="card-img-top img-fluid"
+            <div  class="card hoverable rounded example job ">
+                <img  alt="Card image cap" class="card-img-top img-fluid"
                      src="/resources/pic/l/l${topItem.getRandomPic(5)}.jpg">
                 <h4 class="card-title font-weight-bold ">${topItem.title}</h4>
                 <div class="row">
@@ -283,7 +283,7 @@
                 <c:forEach items="${averageItems}" var="item" varStatus="i">
                     <!--Panel-->
                     <div id="bigCard" style="height: 20rem;width: 22rem" class="card hoverable ">
-                        <img style="width: 22rem;height: 12rem" alt="Card  image cap" class="card-img-top img-fluid"
+                        <img  alt="Card  image cap" class="card-img-top img-fluid"
                              src="/resources/pic/m/m${i.count}.jpg">
                         <div class="card-block ">
                             <h4 class="card-title font-weight-bold ">${item.title}</h4>

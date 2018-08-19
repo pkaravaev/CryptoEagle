@@ -70,9 +70,9 @@ public class CoinServiceImpl implements CoinService {
     @Scheduled(fixedDelay = 600000)
     public void updateCoins() {
         log.info("UPDATE COINS :" + LocalDateTime.now().toString());
-        repository.deleteAll();
-        List<Coin> allCoinsFromProvider = restService.getCoins();
-        repository.saveCoins(allCoinsFromProvider);
+//        repository.deleteAll();
+//        List<Coin> allCoinsFromProvider = restService.getCoins();
+//        repository.saveCoins(allCoinsFromProvider);
     }
 
 }

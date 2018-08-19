@@ -5,6 +5,7 @@ import com.cryptoeagle.repository.IcoRepository;
 import com.cryptoeagle.service.abst.IcoService;
 import com.cryptoeagle.service.abst.RestService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -41,6 +42,7 @@ public class IcoServiceImpl implements IcoService {
     }
 
     @Override
+    @Cacheable
     public List<Ico> getUpcoming() {
         return repository.getUpcomingIco();
     }
@@ -69,11 +71,11 @@ public class IcoServiceImpl implements IcoService {
     @Override
     @Scheduled(fixedDelay = 600000, initialDelay = 8000)
     public void updateIcos() {
-        repository.deleteAll();
-        for (int i = 1 ; i < 250; i++){
-            List<Ico> page = service.getIcoWithDataByPage(i);
-            saveIcos(page);
-        }
+//        repository.deleteAll();
+//        for (int i = 1 ; i < 250; i++){
+//            List<Ico> page = service.getIcoWithDataByPage(i);
+//            saveIcos(page);
+//        }
         log.info("UPDATE ICOS :" + LocalDateTime.now());
     }
 

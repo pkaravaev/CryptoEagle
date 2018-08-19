@@ -7,6 +7,8 @@
           <element id="module-output" name="CryptoEagle" />
         </element>
         <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: net.sf.ehcache:ehcache:2.10.5" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.25" />
           <element id="library" level="project" name="Maven: org.jsoup:jsoup:1.11.3" />
           <element id="library" level="project" name="Maven: org.openjdk.jmh:jmh-core:1.21" />
           <element id="library" level="project" name="Maven: net.sf.jopt-simple:jopt-simple:4.6" />
@@ -93,6 +95,7 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-core:5.0.7.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-jcl:5.0.7.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-expression:5.0.7.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-context-support:5.0.7.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:5.0.7.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-web:5.0.7.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-jdbc:5.0.7.RELEASE" />
@@ -116,7 +119,6 @@
           <element id="library" level="project" name="Maven: org.springframework.data:spring-data-commons:2.0.8.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-orm:5.0.7.RELEASE" />
           <element id="library" level="project" name="Maven: org.aspectj:aspectjrt:1.8.13" />
-          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.25" />
           <element id="library" level="project" name="Maven: javax.xml.bind:jaxb-api:2.3.0" />
           <element id="library" level="project" name="Maven: com.rometools:rome:1.11.0" />
           <element id="library" level="project" name="Maven: com.rometools:rome-utils:1.11.0" />
