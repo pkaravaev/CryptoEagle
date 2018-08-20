@@ -43,7 +43,10 @@ public class UserServiceImplTest  extends AbstractTest{
     @Test
     public void get() {
         AppUser user = service.get(USER3.getId());
-        assertEquals(USER3, user);
+
+        assertTrue(USER3.getPassword().equals(user.getPassword()));
+        assertTrue(USER3.getName().equals(user.getEmail()));
+        assertTrue(USER3.getEmail().equals(user.getName()));
     }
 
     @Test(expected = UserNotFoundException.class)

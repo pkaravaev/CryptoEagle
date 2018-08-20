@@ -38,6 +38,23 @@
             $(this).addClass("bg-white")
         })
 
+        $(".team").click(function () {
+
+            var url = $(this).find("a").href();
+            window.location = url;
+        })
+
+        $(".team").mouseenter(function () {
+            $(this).css('cursor', 'pointer');
+            $(this).removeClass("bg-white");
+            $(this).addClass("bg-light")
+        })
+
+        $(".team").mouseleave(function () {
+            $(this).removeClass("bg-light");
+            $(this).addClass("bg-white")
+        })
+
         $(".btn").click(function () {
             var url = $(this).val();
             window.location = url;
@@ -214,13 +231,13 @@
                             <c:forEach items="${ico.data.getCrew()}" var="team">
 
                                 <!-- Grid column -->
-                                <div class="col-lg-3 col-md-6 mb-lg-0 mb-5 hoverable ">
+                                <div class="team col-lg-3 col-md-6 mb-lg-0 mb-5 hoverable ">
                                     <div class="avatar mx-auto">
                                         <img style="margin-top: 1rem" src="${team.photo}"
                                              class="rounded-circle z-depth-1" alt="Sample avatar">
                                     </div>
                                     <p class="font-weight-bold">${team.name}</p>
-                                    <p class="text brown-text">${team.title} <a href="${tem.links}"
+                                    <p class="text brown-text">${team.title} <a href="${team.links}"
                                                                                 class="icon-linkedin">
                                         <i class="fab fa-linkedin fa-lg"></i>
                                     </a></p>

@@ -66,12 +66,12 @@ public class CoinServiceImpl implements CoinService {
     }
 
     @Override
-    @Scheduled(fixedDelay = 600000)
+    @Scheduled(fixedDelay = 1000000, initialDelay = 10000)
     public void updateCoins() {
-//        log.info("UPDATE COINS :" + LocalDateTime.now().toString());
-//        repository.deleteAll();
-//        List<Coin> allCoinsFromProvider = restService.getCoins();
-//        repository.saveCoins(allCoinsFromProvider);
+        log.info("UPDATE COINS :" + LocalDateTime.now().toString());
+        repository.deleteAll();
+        List<Coin> allCoinsFromProvider = restService.getCoins();
+        repository.saveCoins(allCoinsFromProvider);
     }
 
 }

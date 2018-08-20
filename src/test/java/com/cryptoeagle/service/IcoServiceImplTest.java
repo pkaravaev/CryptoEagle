@@ -17,11 +17,6 @@ public class IcoServiceImplTest extends AbstractTest {
     @Autowired
     IcoService service;
 
-    @Before
-    public  void update() {
-        service.updateIcos();
-    }
-
     @Test
     public void getAll() {
         List<Ico> all = service.getAll();

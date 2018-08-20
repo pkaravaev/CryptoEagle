@@ -74,7 +74,7 @@ public class ItemServiceImpl implements ItemService {
         return null;
     }
 
-    @Scheduled(fixedDelay = 600000, initialDelay = 5000)
+    @Scheduled(fixedDelay = 600000, initialDelay = 50000)
     public void updateItems() {
 
         repository.deleteAll();

@@ -14,6 +14,11 @@ function modal() {
         window.location.href = "/ico-page/" + name;
     })
 
+    $(".team").click(function () {
+        var url = $(this).find("a").attr('href');
+        window.open(url);
+    })
+
     $(".r").dblclick(function () {
         var t = $(this).find(".href");
         window.location.href = "/ico-page/" + name;

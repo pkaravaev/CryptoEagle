@@ -56,7 +56,6 @@ public class CoinRestController {
         return eventRepository.getAll();
     }
 
-
     @GetMapping(value = "/rest/icos", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Ico> retrieveAllIcos() {
         return icoRepository.getAllico();
