@@ -4,6 +4,7 @@ package com.cryptoeagle.controller;
 import com.cryptoeagle.entity.*;
 import com.cryptoeagle.exception.UserNotFoundException;
 import com.cryptoeagle.service.abst.*;
+import org.openjdk.jmh.annotations.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -57,7 +58,7 @@ public class MainController {
     @RequestMapping("/whitelist")
     public String whitelist(Model model) {
         List<WhiteList> whiteLists = parserService.getWhiteList();
-        model.addAttribute("whiteLists",whiteLists);
+        model.addAttribute("whiteLists", whiteLists);
         return "white-list";
     }
 
@@ -83,7 +84,6 @@ public class MainController {
             lowerItems.add(items.get(4));
             lowerItems.add(items.get(5));
         }
-
 
         List<Coin> topcoins = coinService.getTopGainCoins();
         List<Coin> losercoins = coinService.getTopLoserCoins();
@@ -154,8 +154,11 @@ public class MainController {
 
     @RequestMapping("/test")
     public String test(Model model) {
-        List<Item> items = rssService.getItems("https://www.coindesk.com/feed/");
-        model.addAttribute("items", items);
+//        List<Item> items = rssService.getItems("https://www.coindesk.com/feed/");
+//        model.addAttribute("items", items);
+
+        if (true)
+            throw new UserNotFoundException("xxxx");
         return "test";
     }
 
@@ -166,11 +169,9 @@ public class MainController {
 
 
     @ExceptionHandler({UserNotFoundException.class})
-    public String handle(){
-
-
-
-        return "";
+    public String handle(Model model) {
+         model.addAttribute("error", "User not found");
+        return "error-page";
     }
 
 
