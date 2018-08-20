@@ -1,5 +1,5 @@
 drop table if exists AppUser CASCADE;
--- drop table if exists Blog CASCADE;
+drop table if exists Blog CASCADE;
 -- drop table if exists Item CASCADE;
 -- drop table if exists Role CASCADE;
 -- drop sequence if exists global_seq;
@@ -16,13 +16,14 @@ create table AppUser (
   primary key (id)
 );
 
--- create table Blog (
---   id int4 not null,
---   name varchar(255),
---   url varchar(255),
---   appUser_id int4,
---   primary key (id)
--- );
+create table Blog (
+  id         int4 not null,
+  appUser_id int4,
+  name       varchar(255),
+  url        varchar(255),
+  primary key (id),
+  foreign key (appUser_id) references AppUser (id) ON DELETE CASCADE
+);
 --
 -- create table Item (
 --   id int4 not null,

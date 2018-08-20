@@ -47,4 +47,10 @@ public class BlogServiceImpl implements BlogService {
         log.info("delete blog");
         repository.delete(blog_id,user_id);
     }
+
+    @Override
+    public List<Blog> getAll() {
+        log.info("get all blogs");
+        return repository.getAll();
+    }
 }

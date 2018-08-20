@@ -66,15 +66,14 @@ public class RestServiceImplTest extends AbstractTest {
 
     @Test
     public void getIcoWithDataByPage() {
-
-        for (int i = 0; i < 10; i++){
-            List<Ico> ico = service.getIcoWithDataByPage(i);
+        List<Ico> icos = null;
+        for (int i = 0; i < 3; i++){
+           icos = service.getIcoWithDataByPage(i);
         }
-
-//        assertTrue(ico.size() == 12);
-//        assertTrue(ico.get(0) != null);
-//        assertTrue(ico.get(3) != null);
-//        assertTrue(ico.get(10) != null);
+        assertTrue(icos.size() > 5);
+        assertTrue(icos.get(0) != null);
+        assertTrue(icos.get(3) != null);
+        assertTrue(icos.get(7) != null);
     }
 
     @Test

@@ -35,6 +35,7 @@ import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.Environment;
@@ -70,6 +71,13 @@ public class test {
 
     public static void main(String[] args) throws Exception {
 
+
+        GenericXmlApplicationContext applicationContext = new GenericXmlApplicationContext();
+        applicationContext.getEnvironment().setActiveProfiles("Jpa", "PostgreSQL");
+        applicationContext.load("/spring/spring-app.xml","/spring/spring-db.xml","/spring/spring-mvc.xml");
+        applicationContext.refresh();
+
+        System.out.println();
 
     }
 }

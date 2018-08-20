@@ -3,6 +3,8 @@ package com.cryptoeagle.service;
 import com.cryptoeagle.entity.Item;
 import com.cryptoeagle.repository.ItemRepository;
 import com.cryptoeagle.service.abst.ItemService;
+import com.cryptoeagle.service.abst.RestService;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -14,6 +16,13 @@ public class ItemServiceImplTest  extends AbstractTest{
 
     @Autowired
     ItemServiceImpl service;
+
+    @BeforeClass
+    @Autowired
+    public static void init(RestService service){
+
+
+    }
 
     @Test
     public void findall() {

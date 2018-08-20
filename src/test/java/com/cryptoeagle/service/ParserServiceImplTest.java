@@ -16,7 +16,6 @@ public class ParserServiceImplTest extends AbstractTest {
 
     @Test
     public void getWhiteList() {
-
         List<WhiteList> whiteList = service.getWhiteList();
        assertTrue(whiteList.size() > 5);
     }

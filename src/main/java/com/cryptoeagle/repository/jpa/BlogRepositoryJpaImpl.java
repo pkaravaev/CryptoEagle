@@ -53,4 +53,10 @@ public class BlogRepositoryJpaImpl implements BlogRepository {
                 .setParameter("user_id", user_id)
                 .getSingleResult();
     }
+
+    @Override
+    public List<Blog> getAll() {
+        return em.createNamedQuery(Blog.GET_ALL, Blog.class)
+                .getResultList();
+    }
 }

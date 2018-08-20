@@ -26,15 +26,12 @@ public class BlogServiceImplTest extends AbstractTest {
 
     @Test
     public void save() {
-
          service.save(BLOG1,1);
     }
 
     @Test
     public void update() {
-
         service.save(BLOG3,1);
-
         service.update(BLOG3_UPDATE,1);
     }
 
@@ -42,6 +39,8 @@ public class BlogServiceImplTest extends AbstractTest {
     public void findall() {
         List<Blog> findallUser1 = service.findall(100);
         assertTrue(findallUser1.size() == 2);
+        List<Blog> findallUser2 = service.findall(104);
+        assertTrue(findallUser1.size() == 1);
     }
 
     @Test
@@ -53,6 +52,12 @@ public class BlogServiceImplTest extends AbstractTest {
         service.delete(100,1000);
         List<Blog> findallUser1 = service.findall(100);
         assertTrue(findallUser1.size() == 1);
+    }
+
+    @Test
+    public void getAll() {
+        List<Blog> all = service.getAll();
+        assertTrue(all.size() == 9);
     }
 
 }

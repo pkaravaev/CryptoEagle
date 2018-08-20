@@ -1,5 +1,7 @@
 package com.cryptoeagle.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -23,6 +25,7 @@ public abstract class BaseEntity implements Serializable {
         this.id = id;
     }
 
+    @JsonIgnore
     public boolean isNew(){
         return id == 0;
     }

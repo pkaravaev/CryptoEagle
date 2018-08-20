@@ -5,21 +5,24 @@ into
 values
   (false, 'user1@mail.ru', true, 'username1', 'user1password', 100),
   (false, 'user2@mail.ru', true, 'username2', 'user2password', 101),
-  (true, 'user3@mail.ru', true,  'username3',  'user3password', 102),
+  (true, 'user3@mail.ru', true, 'username3', 'user3password', 102),
   (false, 'user4@mail.ru', true, 'username4', 'user4password', 103),
   (false, 'user5@mail.ru', true, 'username5', 'user5password', 104);
 
--- insert
--- into
---   Blog
---   (appUser_id, name, url, id)
--- values
---   (100, 'pavelblog1', 'blog1.com', 1000),
---   (100, 'pavelblog2', 'blog2.com', 1001),
---   (101, 'Vasyablog1', 'blog1.com', 1002),
---   (101, 'Vasyablog2', 'blog2.com', 1003),
---   (101, 'Vasyablog3', 'blog3.com', 1004),
--- (102, 'Alenablog1', 'blog1.com', 1005);
+insert
+into
+  Blog
+  (appUser_id, name, url, id)
+values
+  (100, 'user1_blog1', 'user1_blog1.com', 1000),
+  (100, 'user1_blog2', 'user1_blog2.com', 1001),
+  (101, 'user2_blog1', 'user2_blog1.com', 1002),
+  (101, 'user2_blog2', 'user2_blog2.com', 1003),
+  (101, 'user2_blog3', 'user2_blog3.com', 1004),
+  (102, 'user3_blog1', 'user3_blog1.com', 1005),
+  (103, 'user4_blog1', 'user4_blog1.com', 1006),
+  (103, 'user4_blog2', 'user4_blog2.com', 1007),
+  (104, 'user5_blog1', 'user5_blog1.com', 1008);
 --
 --
 -- insert

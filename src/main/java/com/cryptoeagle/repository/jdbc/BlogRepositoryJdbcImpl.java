@@ -19,6 +19,11 @@ public class BlogRepositoryJdbcImpl implements BlogRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    @Override
+    public List<Blog> getAll() {
+        return null;
+    }
+
     @Autowired
     DataSource dataSource;
 
