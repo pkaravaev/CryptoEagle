@@ -37,7 +37,7 @@ public class UserRepositoryJdbcImpl implements UserRepository {
     private RowMapper<AppUser> rowMapper = BeanPropertyRowMapper.newInstance(AppUser.class);
 
     @Override
-    public AppUser save(AppUser appUser) {
+    public AppUser saveAndUpdate(AppUser appUser) {
 
         if (appUser.isNew()) {
             jdbcTemplate.update("INSERT INTO appuser (id, name, email, password, enable, admin) values (?,?,?,?,?,?)", id++, appUser.getName(), appUser.getEmail()

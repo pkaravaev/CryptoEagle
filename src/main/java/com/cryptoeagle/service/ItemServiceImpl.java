@@ -12,6 +12,7 @@ import com.rometools.rome.io.SyndFeedInput;
 import com.rometools.rome.io.XmlReader;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -47,6 +48,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
+//    @Cacheable(cacheNames = "all")
     public List<Item> getAll() {
         List<Item> itemList = repository.getall();
         return itemList;
@@ -75,19 +77,19 @@ public class ItemServiceImpl implements ItemService {
     @Scheduled(fixedDelay = 600000, initialDelay = 5000)
     public void updateItems() {
 
-//        repository.deleteAll();
-//
-//        List<Item> items = service.getItems("https://www.coindesk.com/feed/");
-//        List<Item> items2 = service.getItems("https://www.ccn.com/feed/");
-//        List<Item> items3 = service.getItems("https://blog.blockchain.com/feed");
-//        List<Item> items4 = service.getItems("https://www.newsbtc.com/feed ");
-//        List<Item> items5 = service.getItems("https://blog.spectrocoin.com/en/feed");
-//
-//        repository.saveAll(items5);
-//        repository.saveAll(items4);
-//        repository.saveAll(items3);
-//        repository.saveAll(items2);
-//        repository.saveAll(items);
+        repository.deleteAll();
+
+        List<Item> items = service.getItems("https://www.coindesk.com/feed/");
+        List<Item> items2 = service.getItems("https://www.ccn.com/feed/");
+        List<Item> items3 = service.getItems("https://blog.blockchain.com/feed");
+        List<Item> items4 = service.getItems("https://www.newsbtc.com/feed ");
+        List<Item> items5 = service.getItems("https://blog.spectrocoin.com/en/feed");
+
+        repository.saveAll(items5);
+        repository.saveAll(items4);
+        repository.saveAll(items3);
+        repository.saveAll(items2);
+        repository.saveAll(items);
 
         log.info("UPDATE ITEMS :" + LocalDateTime.now());
 

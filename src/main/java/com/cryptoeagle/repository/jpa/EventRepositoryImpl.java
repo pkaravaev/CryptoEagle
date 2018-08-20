@@ -2,6 +2,7 @@ package com.cryptoeagle.repository.jpa;
 
 import com.cryptoeagle.entity.Event;
 import com.cryptoeagle.repository.EventRepository;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

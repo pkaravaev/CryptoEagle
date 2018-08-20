@@ -8,7 +8,7 @@ public interface UserService {
 
     List<AppUser> findAll();
 
-    void save(AppUser appUser);
+    void saveAndUpdate(AppUser appUser);
 
     AppUser get(int id);
 

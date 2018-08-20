@@ -3,6 +3,8 @@ package com.cryptoeagle.repository.jpa;
 import com.cryptoeagle.entity.Coin;
 import com.cryptoeagle.repository.CoinRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,6 +32,13 @@ public class CoinRepositoryJpaImpl implements CoinRepository {
         return entityManager.createNamedQuery(Coin.GET_BY_SYMBOL, Coin.class)
                 .setParameter("symbol", symbol)
                 .getSingleResult();
+    }
+
+    @Override
+    public List<Coin> getBySymbols(List<String> symbols) {
+        return entityManager.createNamedQuery(Coin.GET_BY_SYMBOLS, Coin.class)
+                .setParameter("symbols", symbols)
+                .getResultList();
     }
 
     @Override

@@ -4,9 +4,9 @@
          monitoring="autodetect"
          dynamicConfig="true">
 
-    <!--<diskStore path="java.io.tmpdir" />-->
+    <diskStore path="java.io.tmpdir" />
 
-    <!--<cache name="movieFindCache"-->
+    <!--<cache name="coins"-->
            <!--maxEntriesLocalHeap="10000"-->
            <!--maxEntriesLocalDisk="1000"-->
            <!--eternal="false"-->
@@ -16,5 +16,76 @@
            <!--transactionalMode="off">-->
         <!--<persistence strategy="localTempSwap" />-->
     <!--</cache>-->
+
+    <!--<cache name="icos"-->
+           <!--maxEntriesLocalHeap="10000"-->
+           <!--maxEntriesLocalDisk="1000"-->
+           <!--eternal="false"-->
+           <!--diskSpoolBufferSizeMB="20"-->
+           <!--timeToIdleSeconds="300" timeToLiveSeconds="600"-->
+           <!--memoryStoreEvictionPolicy="LFU"-->
+           <!--transactionalMode="off">-->
+        <!--<persistence strategy="localTempSwap" />-->
+    <!--</cache>-->
+
+
+    <!--<cache name="allicos"-->
+           <!--maxEntriesLocalHeap="10000"-->
+           <!--maxEntriesLocalDisk="1000"-->
+           <!--eternal="false"-->
+           <!--diskSpoolBufferSizeMB="20"-->
+           <!--timeToIdleSeconds="300" timeToLiveSeconds="600"-->
+           <!--memoryStoreEvictionPolicy="LFU"-->
+           <!--transactionalMode="off">-->
+        <!--<persistence strategy="localTempSwap" />-->
+    <!--</cache>-->
+
+    <!--<cache name="allicoins"-->
+           <!--maxEntriesLocalHeap="10000"-->
+           <!--maxEntriesLocalDisk="1000"-->
+           <!--eternal="false"-->
+           <!--diskSpoolBufferSizeMB="20"-->
+           <!--timeToIdleSeconds="300" timeToLiveSeconds="600"-->
+           <!--memoryStoreEvictionPolicy="LFU"-->
+           <!--transactionalMode="off">-->
+        <!--<persistence strategy="localTempSwap" />-->
+    <!--</cache>-->
+
+    <!--<cache name="icos"-->
+           <!--maxEntriesLocalHeap="10000"-->
+           <!--maxEntriesLocalDisk="1000"-->
+           <!--eternal="false"-->
+           <!--diskSpoolBufferSizeMB="20"-->
+           <!--timeToIdleSeconds="300" timeToLiveSeconds="600"-->
+           <!--memoryStoreEvictionPolicy="LFU"-->
+           <!--transactionalMode="off">-->
+        <!--<persistence strategy="localTempSwap" />-->
+    <!--</cache>-->
+
+
+    <!--<cache name="allicos"-->
+           <!--maxEntriesLocalHeap="10000"-->
+           <!--maxEntriesLocalDisk="1000"-->
+           <!--eternal="false"-->
+           <!--diskSpoolBufferSizeMB="20"-->
+           <!--timeToIdleSeconds="300" timeToLiveSeconds="600"-->
+           <!--memoryStoreEvictionPolicy="LFU"-->
+           <!--transactionalMode="off">-->
+        <!--<persistence strategy="localTempSwap" />-->
+    <!--</cache>-->
+
+    <cache name="all"
+           maxEntriesLocalHeap="10000"
+           maxEntriesLocalDisk="1000"
+           eternal="false"
+           diskSpoolBufferSizeMB="20"
+           timeToIdleSeconds="300" timeToLiveSeconds="600"
+           memoryStoreEvictionPolicy="LFU"
+           transactionalMode="off">
+        <persistence strategy="localTempSwap" />
+    </cache>
+
+
+
 
 </ehcache>

@@ -3,6 +3,7 @@ package com.cryptoeagle.repository.jpa;
 import com.cryptoeagle.entity.Ico;
 import com.cryptoeagle.entity.crypto.Idata;
 import com.cryptoeagle.repository.IcoRepository;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +25,7 @@ public class IcoRepositoryJpaImpl implements IcoRepository {
     @Override
     public List<Ico> getAllico() {
         return em.createNamedQuery(Ico.GET_ALL, Ico.class)
+                .setMaxResults(30)
                 .getResultList();
     }
 
@@ -36,7 +38,6 @@ public class IcoRepositoryJpaImpl implements IcoRepository {
     }
 
     @Override
-    @Cacheable("activeico")
     public List<Ico> getActiveIco() {
         LocalDateTime localDateTime = LocalDateTime.now();
         return em.createNamedQuery(Ico.GET_ACTIVE, Ico.class)
@@ -84,5 +85,13 @@ public class IcoRepositoryJpaImpl implements IcoRepository {
                 .setParameter("name", name)
                 .getSingleResult();
     }
+
+    @Override
+    public List<Ico> getByNames(List<String> names) {
+        return em.createNamedQuery(Ico.GET_BY_NAMES, Ico.class)
+                .setParameter("names", names)
+                .getResultList();
+    }
 }
+
 

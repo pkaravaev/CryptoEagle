@@ -443,10 +443,10 @@
                                 </div>
                                 <div class="col">
                                     <h5 class="card-title text-center font-weight-bold">${ico.name}</h5>
-                                    <h6 class="card-title text-center font-italic">${ico.data.getCategories("name")}</h6>
-                                    <h6 class="card-title text-center">
-                                        <small>${ico.data.getFinance("raised")}/${ico.data.getFinance("hardcap")}</small>
-                                    </h6>
+                                    <%--<h6 class="card-title text-center font-italic">${ico.data.getCategories("name")}</h6>--%>
+                                    <%--<h6 class="card-title text-center">--%>
+                                        <%--<small>${ico.data.getFinance("raised")}/${ico.data.getFinance("hardcap")}</small>--%>
+                                    <%--</h6>--%>
                                 </div>
                                 <div class="col">
                                     <p class="text-right">

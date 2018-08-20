@@ -75,7 +75,7 @@ public class UserController {
         AppUser appUser = new AppUser(name, email, password, true, false);
         model.addAttribute("register", true);
         model.addAttribute("name", name);
-        userService.save(appUser);
+        userService.saveAndUpdate(appUser);
         return "redirect:/";
     }
 }

@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface UserRepository {
 
-    AppUser save(AppUser appUser);
+    AppUser saveAndUpdate(AppUser appUser);
 
     void delete(int id);
 

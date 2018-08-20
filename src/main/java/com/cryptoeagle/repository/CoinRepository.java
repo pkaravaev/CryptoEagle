@@ -10,6 +10,8 @@ public interface CoinRepository {
 
     Coin getBySymbol(String symbol);
 
+    List<Coin> getBySymbols(List<String> symbols);
+
     void saveCoins(List<Coin> list);
 
     void deleteAll();

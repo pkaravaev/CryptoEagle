@@ -16,6 +16,8 @@ public interface IcoRepository {
 
     Ico getByName(String name);
 
+    List<Ico> getByNames(List<String> names);
+
     List<Ico> getUpcomingIco();
 
     List<Ico> getFinishedIco();

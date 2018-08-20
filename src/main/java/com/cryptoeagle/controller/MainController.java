@@ -2,8 +2,10 @@ package com.cryptoeagle.controller;
 
 
 import com.cryptoeagle.entity.*;
+import com.cryptoeagle.exception.UserNotFoundException;
 import com.cryptoeagle.service.abst.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -161,5 +163,15 @@ public class MainController {
     public String test2(Model model) {
         return "test2";
     }
+
+
+    @ExceptionHandler({UserNotFoundException.class})
+    public String handle(){
+
+
+
+        return "";
+    }
+
 
 }

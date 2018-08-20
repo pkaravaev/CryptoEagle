@@ -6,10 +6,6 @@ $(document).ready(function () {
 
 })
 
-function card() {
-
-
-}
 
 function modal() {
 

@@ -9,9 +9,10 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @NamedQueries({
-        @NamedQuery(name = Ico.GET_ALL, query = " SELECT ico FROM  Ico  ico"),
+        @NamedQuery(name = Ico.GET_ALL, query = " SELECT ico FROM  Ico  ico "),
         @NamedQuery(name = Ico.GET_BY_ID, query = "SELECT ico  FROM  Ico ico   WHERE  ico.id = :id"),
         @NamedQuery(name = Ico.GET_BY_NAME, query = "SELECT ico  FROM  Ico ico   WHERE  ico.name = :name"),
+        @NamedQuery(name = Ico.GET_BY_NAMES, query = "SELECT ico  FROM  Ico ico   WHERE  ico.name = :names"),
         @NamedQuery(name = Ico.GET_UPCOMING, query = "SELECT ico  FROM  Ico ico WHERE  ico.icoStart > :date order by ico.icoStart desc "),
         @NamedQuery(name = Ico.GET_ENDED, query = "SELECT ico  FROM  Ico ico WHERE  ico.icoEnd < :date order by ico.icoEnd desc "),
         @NamedQuery(name = Ico.GET_ACTIVE, query = "SELECT ico  FROM  Ico ico WHERE  ico.icoEnd > :date AND ico.icoStart < :date order by ico.icoStart asc"),
@@ -28,6 +29,7 @@ public class Ico {
     public static final String GET_ALL = "Ico.getALL";
     public static final String GET_BY_ID = "Ico.getById";
     public static final String GET_BY_NAME = "Ico.getByName";
+    public static final String GET_BY_NAMES = "Ico.getByNames";
     public static final String GET_UPCOMING = "Ico.getUpcoming";
     public static final String GET_ENDED = "Ico.getEnded";
     public static final String GET_ACTIVE = "Ico.getActive";
@@ -86,7 +88,7 @@ public class Ico {
         return Math.abs(LocalDateTime.now().getDayOfMonth() - icoEnd.getDayOfMonth());
     }
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Idata data;
 
     class IcoData {

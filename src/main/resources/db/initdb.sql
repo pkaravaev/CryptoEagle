@@ -16,13 +16,13 @@ create table AppUser (
   primary key (id)
 );
 
-create table Blog (
-  id int4 not null,
-  name varchar(255),
-  url varchar(255),
-  appUser_id int4,
-  primary key (id)
-);
+-- create table Blog (
+--   id int4 not null,
+--   name varchar(255),
+--   url varchar(255),
+--   appUser_id int4,
+--   primary key (id)
+-- );
 --
 -- create table Item (
 --   id int4 not null,

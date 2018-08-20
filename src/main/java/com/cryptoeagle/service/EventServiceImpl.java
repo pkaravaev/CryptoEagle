@@ -40,8 +40,8 @@ public class EventServiceImpl implements EventService {
     @Transactional
     public void update() {
         log.info("UPDATE EVENTS :" + LocalDateTime.now());
-//        repository.deleteAll();
-//        List<Event> events = service.getEvents(12);
-//        repository.saveAll(events);
+        repository.deleteAll();
+        List<Event> events = service.getEvents(12);
+        repository.saveAll(events);
     }
 }

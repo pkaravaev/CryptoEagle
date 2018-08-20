@@ -1,7 +1,9 @@
 package com.cryptoeagle.entity;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
@@ -23,6 +25,8 @@ import java.util.Objects;
 })
 @Getter
 @Setter
+@ToString
+@EqualsAndHashCode
 public class AppUser extends BaseEntity {
 
     public static final String DELETE = "AppUser.delete";

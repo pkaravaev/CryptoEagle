@@ -24,6 +24,11 @@
        // })
    });
 
+   $(document).ready(function () {
+       $('#dtMaterialDesignExample').DataTable();
+   });
+
+
 </script>
 
 <div class="container bg-white">
@@ -62,7 +67,7 @@
                 <tbody>
 
                 <c:forEach items="${icos}" var="ico">
-                    <tr class="r">
+                    <tr class="r hoverable">
 
                         <td><img  class="rounded-circle" src="${ico.logolink} "></td>
 
@@ -72,12 +77,14 @@
 
                         <fmt:parseDate value="${ico.icoStart}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime1"
                                        type="both"/>
-                        <fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${parsedDateTime1}" var="icoStart"/>
+                        <fmt:formatDate pattern="dd.MM.yyyy" value="${parsedDateTime1}" var="icoStart"/>
+
+
 
                         <fmt:parseDate value="${ico.icoEnd}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime2"
                                        type="both"/>
 
-                        <fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${parsedDateTime2}" var="icoEnd"/>
+                        <fmt:formatDate pattern="dd.MM.yyyy" value="${parsedDateTime2}" var="icoEnd"/>
 
                         <td  class="font-weight-bold">${icoStart}</td>
 

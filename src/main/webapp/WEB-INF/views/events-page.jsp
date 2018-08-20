@@ -232,7 +232,7 @@
                             <div class="row">
 
                                 <div class="col">
-
+                                    <h6 class="timeline-title text-center">company</h6>
                                     <h6 class="timeline-title text-center font-weight-bold">${event.name}</h6>
 
                                 </div>
@@ -246,6 +246,7 @@
                                 </div>
 
                                 <div class="col">
+                                    <h6 class="timeline-title text-right">symbol</h6>
                                     <h3 class="timeline-title font-weight-bold text-right">${event.coinName}</h3>
                                 </div>
 
@@ -269,10 +270,10 @@
 
                     <div class="row">
                         <div class="col">
-                            <button value="${event.proof}" type="button" class="btn btn-brown btn-rounded">Proof
-                            </button>
-                            <button value="${event.source}" type="button" class="btn btn-brown btn-rounded">Source
-                            </button>
+
+                            <button value="${event.proof}" type="button" class="btn btn-brown btn-rounded">Proof</button>
+                            <button value="${event.source}" type="button" class="btn btn-brown btn-rounded">Source</button>
+
                         </div>
                         <br/>
                         <h6 class="timeline-title text-center font-weight-bold">

@@ -63,15 +63,6 @@
 
     <beans profile="Jpa">
 
-        <cache:annotation-driven />
-
-        <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager"
-              p:cache-manager-ref="ehcache"/>
-
-        <bean id="ehcache" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean"
-              p:config-location="classpath:ehcache.xml" p:shared="true"/>
-
-
         <bean id="provider" class="org.hibernate.jpa.HibernatePersistenceProvider"/>
         <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
             <property name="dataSource" ref="dataSource"/>
@@ -84,6 +75,7 @@
                     <entry key="hibernate.hbm2ddl.auto" value="update"/>
                     <entry key="hibernate.format_sql" value="true"/>
                     <entry key="hibernate.show_sql" value="true"/>
+                    <entry key="hibernate.enable_lazy_load_no_trans" value="true"/>
                 </map>
             </property>
         </bean>

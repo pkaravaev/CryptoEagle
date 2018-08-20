@@ -13,6 +13,8 @@ import net.sealake.binance.api.client.BinanceApiRestClient;
 import net.sealake.binance.api.client.domain.market.Candlestick;
 import net.sealake.binance.api.client.domain.market.CandlestickInterval;
 import net.sealake.binance.api.client.impl.BinanceApiRestClientImpl;
+import net.sf.ehcache.Cache;
+import net.sf.ehcache.CacheManager;
 import org.apache.http.HttpEntity;
 import org.apache.http.RequestLine;
 import org.apache.http.client.HttpClient;
@@ -68,34 +70,6 @@ public class test {
 
     public static void main(String[] args) throws Exception {
 
-//
-//        Document document = Jsoup.connect("https://icodrops.com/whitelist/").get();
-//
-//        Iterator<Element> iterator = document.select("div.whtico-row").iterator();
-//
-//        List<WhiteList> whiteLists = new ArrayList<>();
-//
-//        while (iterator.hasNext()){
-//            Element next = iterator.next();
-//
-//            String status =  next.select("div.whitelist_date").first().childNode(0).toString();
-//            String name = next.select("div.whtico-row").first().select("div.white_info").first().childNode(1).childNode(0).childNode(0).toString();
-//            String category = next.select("div.whtico-row").first().select("div.white_info").select(".white-ico-category-name").first().childNode(0).toString();
-//            String logo = next.select("div.whtico-row").first().select("div.white_ico-icon").get(0).childNode(1).childNode(1).attr("data-src").toString();
-//
-//            WhiteList whiteList = new WhiteList();
-//
-//            whiteList.setStatus(status);
-//            whiteList.setName(name);
-//            whiteList.setLogo(logo);
-//            whiteList.setCategory(category);
-//
-//            whiteLists.add(whiteList);
-//        }
-
-         WhiteList whiteList = new WhiteList();
-
-        System.out.println();
 
     }
 }

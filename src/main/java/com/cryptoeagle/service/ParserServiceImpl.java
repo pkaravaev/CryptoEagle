@@ -20,6 +20,7 @@ public class ParserServiceImpl implements ParserService {
         List<WhiteList> whiteLists = null;
 
         try {
+
             Document document = Jsoup.connect("https://icodrops.com/whitelist/").get();
 
             Iterator<Element> iterator = document.select("div.whtico-row").iterator();
@@ -27,6 +28,7 @@ public class ParserServiceImpl implements ParserService {
             whiteLists = new ArrayList<>();
 
             while (iterator.hasNext()) {
+
                 Element next = iterator.next();
 
                 String status = next.select("div.whitelist_date").first().childNode(0).toString();
@@ -43,6 +45,7 @@ public class ParserServiceImpl implements ParserService {
 
                 whiteLists.add(whiteList);
             }
+
         } catch (Exception ex) {
             return whiteLists;
         }

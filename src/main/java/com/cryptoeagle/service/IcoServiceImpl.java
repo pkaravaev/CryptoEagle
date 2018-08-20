@@ -32,6 +32,8 @@ public class IcoServiceImpl implements IcoService {
         this.service = service;
     }
 
+
+//    @Cacheable(cacheNames = "all")
     public List<Ico> getAll() {
        return repository.getAllico();
     }
@@ -42,17 +44,19 @@ public class IcoServiceImpl implements IcoService {
     }
 
     @Override
-    @Cacheable
+//    @Cacheable(cacheNames = "all")
     public List<Ico> getUpcoming() {
         return repository.getUpcomingIco();
     }
 
     @Override
+//    @Cacheable(cacheNames = "all")
     public List<Ico> getFinished() {
         return repository.getFinishedIco();
     }
 
     @Override
+//    @Cacheable(cacheNames = "all")
     public List<Ico> getActiveIco() {
         return repository.getActiveIco();
     }
@@ -69,14 +73,14 @@ public class IcoServiceImpl implements IcoService {
     }
 
     @Override
-    @Scheduled(fixedDelay = 600000, initialDelay = 8000)
+    @Scheduled(fixedDelay = 1000000, initialDelay = 10000)
     public void updateIcos() {
 //        repository.deleteAll();
-//        for (int i = 1 ; i < 250; i++){
+//        for (int i = 1 ; i < 5; i++){
 //            List<Ico> page = service.getIcoWithDataByPage(i);
 //            saveIcos(page);
 //        }
-        log.info("UPDATE ICOS :" + LocalDateTime.now());
+//        log.info("UPDATE ICOS :" + LocalDateTime.now());
     }
 
     @Override

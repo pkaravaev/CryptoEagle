@@ -16,7 +16,6 @@
     <!-- MDBootstrap Datatables  -->
     <link href="/resources/css/addons/datatables.min.css" rel="stylesheet">
 
-
     <!-- JQuery -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <!-- Bootstrap tooltips -->
@@ -31,6 +30,9 @@
     <!-- MDBootstrap Datatables  -->
     <script type="text/javascript" src="/resources/js/addons/datatables.min.js"></script>
 
+    <!-- Change the "src" attribute according to your installation path -->
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
+
 
     <script src="/resources/js/table.js"></script>
     <script src="/resources/js/coins.js"></script>
@@ -39,14 +41,20 @@
 </head>
 <body class="body  ">
 
-
+<script src="js/form-validation.js"></script>
 <script>
     $(document).ready(function () {
         $("#eagle").click(function () {
             window.location.href = "/";
         })
+
+        $
+
+        $("#loginForm").validate();
+
     })
 </script>
+
 
 <!--Navbar-->
 <nav class="navbar navbar-expand-lg navbar-dark brown  ">
@@ -104,13 +112,12 @@
                 </li>
 
 
-
-                <%--<li class="nav-item">--%>
-                    <%--<a id="modal" class="nav-link">Login / Register</a>--%>
-                <%--</li>--%>
-                <%--<li class="nav-item">--%>
-                    <%--<a id="account" class="nav-link" href="#modalLRForm">My account</a>--%>
-                <%--</li>--%>
+                <li class="nav-item">
+                    <a id="modal" class="nav-link">Login / Register</a>
+                </li>
+                <li class="nav-item">
+                    <a id="account" class="nav-link" href="#modalLRForm">My account</a>
+                </li>
             </ul>
             <!-- Links -->
 
@@ -119,6 +126,7 @@
 
 </nav>
 
+<!--Navbar-->
 <ul class="nav justify-content-center font-weight-bold brown darken-2">
     <li class="nav-item">
         <a id="BTC" class="nav-link" href="/coin-list"><p class="red-text"></p></a>
@@ -168,34 +176,38 @@
                         <!--Body-->
                         <div class="modal-body mb-1">
 
-                            <div class="md-form form-sm mb-5">
-                                <i class="fa fa-envelope prefix"></i>
-                                <input name="email" type="email" id="modalLRInput10"
-                                       class="form-control form-control-sm validate">
-                                <label data-error="wrong" data-success="right" for="modalLRInput10">Your email</label>
-                            </div>
+                            <form id="loginForm">
+
+                                <div class="md-form form-sm mb-5">
+                                    <i class="fa fa-envelope prefix"></i>
+                                    <input name="email" type="email" id="modalLRInput10"
+                                           class="form-control form-control-sm validate">
+                                    <%--<label data-error="wrong" data-success="right" for="modalLRInput10">Your--%>
+                                        <%--email</label>--%>
+                                </div>
 
 
-                            <div class="md-form form-sm mb-4">
-                                <i class="fa fa-lock prefix"></i>
-                                <input name="password" type="password" id="modalLRInput11"
-                                       class="form-control form-control-sm validate">
-                                <label data-error="wrong" data-success="right" for="modalLRInput11">Your
-                                    password</label>
-                            </div>
+                                <div class="md-form form-sm mb-4">
+                                    <i class="fa fa-lock prefix"></i>
+                                    <input name="password" type="password" id="modalLRInput11"
+                                           class="form-control form-control-sm validate">
+                                    <label data-error="wrong" data-success="right" for="modalLRInput11">Your
+                                        password</label>
+                                </div>
 
 
-                            <div class="text-center mt-2">
-                                <button type="submit" id="log" formaction="/login" formmethod="post"
-                                        class="btn  btn-brown">Log in <i class="fa fa-sign-in ml-1"></i></button>
-                            </div>
+                                <div class="text-center mt-2">
+                                    <button  type="submit" id="log" formaction="/login" formmethod="post"
+                                            class="btn  btn-brown">Log in <i class="fa fa-sign-in ml-1"></i></button>
+                                </div>
+                                <!--Footer-->
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-brown waves-effect ml-auto"
+                                            data-dismiss="modal">Close
+                                    </button>
+                                </div>
 
-                        </div>
-                        <!--Footer-->
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-brown waves-effect ml-auto"
-                                    data-dismiss="modal">Close
-                            </button>
+                            </form>
                         </div>
 
                     </div>

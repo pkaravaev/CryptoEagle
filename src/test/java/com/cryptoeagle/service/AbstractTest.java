@@ -9,7 +9,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @ContextConfiguration({"/spring/spring-app.xml","/spring/spring-db.xml"})
 @RunWith(SpringRunner.class)
-//@Sql({"classpath:/db/initdb.sql","classpath:/db/populate.sql"})
+@Sql({"classpath:/db/initdb.sql","classpath:/db/populate.sql"})
 @ActiveProfiles({"Jpa","PostgreSQL"})
 public class AbstractTest {
 }

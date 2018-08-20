@@ -32,9 +32,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void save(AppUser appUser) {
+    public void saveAndUpdate(AppUser appUser) {
         log.info("save appUser");
-        repository.save(appUser);
+        repository.saveAndUpdate(appUser);
     }
 
     @Override
@@ -46,8 +46,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public AppUser getByEmail(String email) {
         log.info("get user id", email);
+        AppUser user = repository.getByEmail(email);
+        if (user == null){
+            throw  new UserNotFoundException("User with email " + email + " not found!!!");
+        }
         return repository.getByEmail(email);
-
     }
 
     @Override
