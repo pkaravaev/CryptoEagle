@@ -61,9 +61,13 @@ public class CryptoController {
     }
 
     @RequestMapping("/coin-page")
-    public String coinPage() {
+    public String coinPage(Model model) {
 
-        return "coin-page";
+        Coin eth = coinService.getCoin("ETH");
+
+        model.addAttribute("coin", eth);
+
+         return "coin-page";
     }
 
 }

@@ -33,33 +33,30 @@ public class CoinServiceImpl implements CoinService {
         this.restService = restService;
     }
 
-//    @Cacheable(cacheNames = "all")
+
     public List<Coin> getCoins(String... symbols) {
         log.info("get  coins : " + symbols);
         return repository.getBySymbols(Arrays.asList(symbols));
 
     }
 
-    private Coin getCoin(String symbol) {
+    public Coin getCoin(String symbol) {
         log.info("get  coin  : " + symbol);
         return repository.getBySymbol(symbol);
     }
 
-//    @Cacheable(cacheNames = "all")
     public List<Coin> getTopGainCoins() {
         log.info("get top  coins");
         return repository.getTopGainCoins();
     }
 
     @Override
-//    @Cacheable(cacheNames = "all")
     public List<Coin> getTopLoserCoins() {
         log.info("get top losers coins");
         return repository.getTopLoserCoins();
     }
 
     @Override
-//    @Cacheable(cacheNames = "all")
     public List<Coin> getAllCoins() {
         log.info("get all coins");
         return repository.getAllCoins();

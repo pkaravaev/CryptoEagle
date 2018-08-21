@@ -10,6 +10,8 @@ public interface CoinService {
 
     List<Coin> getCoins(String[] ids);
 
+    Coin getCoin(String symbol);
+
     void updateCoins();
 
     List<Coin> getAllCoins();
