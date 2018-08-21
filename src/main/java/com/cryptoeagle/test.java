@@ -72,12 +72,14 @@ public class test {
     public static void main(String[] args) throws Exception {
 
 
-        GenericXmlApplicationContext applicationContext = new GenericXmlApplicationContext();
-        applicationContext.getEnvironment().setActiveProfiles("Jpa", "PostgreSQL");
-        applicationContext.load("/spring/spring-app.xml","/spring/spring-db.xml","/spring/spring-mvc.xml");
-        applicationContext.refresh();
+        BinanceApiClientFactory factory = BinanceApiClientFactory.newInstance();
+        BinanceApiRestClient client = factory.newRestClient();
 
-        System.out.println();
+
+        List<Candlestick> ETH = client.getCandlestickBars("ETHUSDT", CandlestickInterval.DAILY);
+
+        System.out.println(ETH);
+
 
     }
 }

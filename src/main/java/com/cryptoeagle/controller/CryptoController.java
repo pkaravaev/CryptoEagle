@@ -60,4 +60,10 @@ public class CryptoController {
         return "ico-page";
     }
 
+    @RequestMapping("/coin-page")
+    public String coinPage() {
+
+        return "coin-page";
+    }
+
 }

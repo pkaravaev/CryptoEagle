@@ -6,6 +6,7 @@
 
     $(document).ready(function () {
 
+        new WOW().init();
 
         $(".card").mouseenter(function () {
             $(this).css("cursor", "hand");
@@ -48,7 +49,7 @@
 
             <c:forEach items="${activeIco}" var="ico">
                 <!--Panel-->
-                <div style="width: 22rem; height: 10rem" class="card hoverable">
+                <div style="width: 22rem; height: 10rem" class="card  wow zoomInLeft hoverable ">
                     <div class="card-body">
                         <div class="row">
                             <div class="col">

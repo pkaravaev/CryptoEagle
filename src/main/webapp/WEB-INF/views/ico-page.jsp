@@ -18,9 +18,6 @@
         font-weight: bold;
     }
 
-    i{
-        color: #795548 ;
-    }
 
 </style>
 
@@ -110,25 +107,25 @@
                                 <fmt:parseDate value="${ico.icoStart}" pattern="yyyy-MM-dd'T'HH:mm"
                                                var="parsIcoStart"
                                                type="both"/>
-                                <fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${parsIcoStart}" var="icoStart"/>
+                                <fmt:formatDate pattern="dd.MM.yyyy " value="${parsIcoStart}" var="icoStart"/>
 
 
                                 <fmt:parseDate value="${ico.icoEnd}" pattern="yyyy-MM-dd'T'HH:mm" var="parsIcoEnd"
                                                type="both"/>
-                                <fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${parsIcoEnd}" var="icoEnd"/>
+                                <fmt:formatDate pattern="dd.MM.yyyy " value="${parsIcoEnd}" var="icoEnd"/>
 
 
                                 <fmt:parseDate value="${ico.preIcoStart}" pattern="yyyy-MM-dd'T'HH:mm"
                                                var="parsPreIcoStart"
                                                type="both"/>
-                                <fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${parsPreIcoStart}"
+                                <fmt:formatDate pattern="dd.MM.yyyy " value="${parsPreIcoStart}"
                                                 var="preIcoStart"/>
 
 
                                 <fmt:parseDate value="${ico.preIcoEnd}" pattern="yyyy-MM-dd'T'HH:mm"
                                                var="parsPreIcoEnd"
                                                type="both"/>
-                                <fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${parsPreIcoEnd}"
+                                <fmt:formatDate pattern="dd.MM.yyyy " value="${parsPreIcoEnd}"
                                                 var="preIcoEnd"/>
 
                                 <h6 class="text-left">Token status : <span class="font-weight-bold"> ${ico.status()}</span></h6>
@@ -186,14 +183,13 @@
             </div>
 
             <br/>
-
             <ul class="nav nav-pills  justify-content-center mb-3" id="pills-tab" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link  active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
+                    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
                        aria-controls="pills-home" aria-selected="true">Finance</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab"
+                    <a class="nav-link  " id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab"
                        aria-controls="pills-profile" aria-selected="false">Teams</a>
                 </li>
             </ul>
@@ -236,6 +232,7 @@
                                         <img style="margin-top: 1rem" src="${team.photo}"
                                              class="rounded-circle z-depth-1" alt="Sample avatar">
                                     </div>
+                                    <br/>
                                     <p class="font-weight-bold">${team.name}</p>
                                     <p class="text brown-text">${team.title} <a href="${team.links}"
                                                                                 class="icon-linkedin">

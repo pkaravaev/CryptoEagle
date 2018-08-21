@@ -71,9 +71,9 @@
 
                         <td><img  class="rounded-circle" src="${ico.logolink} "></td>
 
-                        <td id="name" class="font-weight-bold">${ico.name}</td>
+                        <td id="name" class="font-weight-bold text-center">${ico.name}</td>
 
-                        <td class="font-weight-bold">${ico.description}</td>
+                        <td class="font-weight-bold text-center">${ico.description}</td>
 
                         <fmt:parseDate value="${ico.icoStart}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime1"
                                        type="both"/>

@@ -54,7 +54,7 @@
                 <tbody>
 
                 <c:forEach items="${coins}" var="coin">
-                    <tr>
+                    <tr class="hoverable">
                         <%--<td>${coin.rank}</td>--%>
                         <td><img class="rounded-circle" src="${coin.image}" width="60" height="60"></td>
                         <td class="font-weight-bold">${coin.name}</td>
