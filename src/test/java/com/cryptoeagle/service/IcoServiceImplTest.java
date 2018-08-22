@@ -74,4 +74,5 @@ public class IcoServiceImplTest extends AbstractTest {
         List<Ico> all = service.getAll();
         assertTrue(all.size() == 0);
     }
+
 }

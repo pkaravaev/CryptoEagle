@@ -56,5 +56,7 @@ public class Coin extends BaseEntity {
     @NotNull
     private double percent_change_24h;
 
+    private boolean dataAvalible;
+
 
 }

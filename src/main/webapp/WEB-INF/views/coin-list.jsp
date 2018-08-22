@@ -78,7 +78,19 @@
                                 <td class="font-weight-bold" style="color: red">  ${coin.percent_change_24h}%</td>
                             </c:when>
                         </c:choose>
-                        <td style="color: green" class="font-weight-bold">Yes</td>
+
+                        <c:choose>
+                            <c:when test="${coin.dataAvalible}">
+                                <td style="color: green" class="font-weight-bold">Yes</td>
+
+                            </c:when>
+
+                            <c:when test="${!coin.dataAvalible}">
+
+                                <td style="color: red" class="font-weight-bold">No</td>
+                            </c:when>
+                        </c:choose>
+
                     </tr>
                 </c:forEach>
                 </tbody>

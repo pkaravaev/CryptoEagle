@@ -1,6 +1,7 @@
 package com.cryptoeagle.service;
 
 import com.cryptoeagle.entity.Coin;
+import com.cryptoeagle.entity.crypto.Chart;
 import com.cryptoeagle.repository.CoinRepository;
 import com.cryptoeagle.service.abst.CoinService;
 import com.cryptoeagle.service.abst.RestService;
@@ -40,6 +41,14 @@ public class CoinServiceImpl implements CoinService {
 
     }
 
+    @Override
+    public boolean isAvalible(String symbol) {
+        List<Chart> chartCoin = restService.getChartCoin(symbol);
+        if (chartCoin.size() > 4)
+            return true;
+        return false;
+    }
+
     public Coin getCoin(String symbol) {
         log.info("get  coin  : " + symbol);
         return repository.getBySymbol(symbol);
@@ -68,6 +77,7 @@ public class CoinServiceImpl implements CoinService {
         log.info("UPDATE COINS :" + LocalDateTime.now().toString());
         repository.deleteAll();
         List<Coin> allCoinsFromProvider = restService.getCoins();
+        allCoinsFromProvider.stream().forEach( e -> e.setDataAvalible(isAvalible(e.getSymbol())));
         repository.saveCoins(allCoinsFromProvider);
     }
 

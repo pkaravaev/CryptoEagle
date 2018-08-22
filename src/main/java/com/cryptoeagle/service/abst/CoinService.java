@@ -14,6 +14,8 @@ public interface CoinService {
 
     void updateCoins();
 
+    boolean isAvalible(String symbol);
+
     List<Coin> getAllCoins();
 
     List<Coin> getTopGainCoins();

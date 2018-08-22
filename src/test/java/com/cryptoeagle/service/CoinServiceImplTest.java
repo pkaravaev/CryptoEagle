@@ -29,6 +29,8 @@ public class CoinServiceImplTest extends AbstractTest{
 
     @Test
     public void getAllCoins() {
+
+
     }
 
     @Test
@@ -50,5 +52,19 @@ public class CoinServiceImplTest extends AbstractTest{
     public void getCoins1() {
         String[]  symbols = {"BTC","ETH","NEO","EOS","XRP"};
         List<Coin> coins = service.getCoins(symbols);
+    }
+
+    @Test
+    public  void isAvalible(){
+
+        boolean eth = service.isAvalible("ETH");
+        boolean xxx = service.isAvalible("XXX");
+
+        boolean btc = service.isAvalible("BTC");
+
+        boolean sdf = service.isAvalible("XRP");
+        boolean gdf = service.isAvalible("YYY");
+        boolean cvc = service.isAvalible("VVV");
+
     }
 }

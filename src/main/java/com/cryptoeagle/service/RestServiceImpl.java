@@ -132,6 +132,7 @@ public class RestServiceImpl implements RestService {
         }
         return icoList;
     }
+
     @Override
     public List<Ico> getIcoWithDataByPage(int page) {
         List<Ico> icos = getIcoByPage(page);
@@ -163,7 +164,7 @@ public class RestServiceImpl implements RestService {
             }
             JsonNode jsonNode = mapper.readTree(builder.toString());
             Iterator<JsonNode> iterator = jsonNode.iterator();
-            while (iterator.hasNext()){
+            while (iterator.hasNext()) {
 
                 JsonNode node = iterator.next();
                 events.add(convertJsonToEvent(node));
@@ -299,25 +300,31 @@ public class RestServiceImpl implements RestService {
     }
 
 
-    public List<Chart> getChartCoin(String symbol){
-
-        BinanceApiClientFactory factory = BinanceApiClientFactory.newInstance();
-        BinanceApiRestClient client = factory.newRestClient();
-
-        List<Candlestick> candlesticks = client.getCandlestickBars(symbol + "USDT", CandlestickInterval.DAILY);
+    public List<Chart> getChartCoin(String symbol) {
         List<Chart> chartList = new ArrayList<>();
+        try {
+            BinanceApiClientFactory factory = BinanceApiClientFactory.newInstance();
+            BinanceApiRestClient client = factory.newRestClient();
 
-        for (int i = 0 ; i < candlesticks.size() ; i++){
-            Candlestick candlestick = candlesticks.get(i);
-            Chart  chart = converter(candlestick);
-            chartList.add(chart);
+            List<Candlestick> candlesticks = client.getCandlestickBars(symbol + "USDT", CandlestickInterval.DAILY);
+            chartList = new ArrayList<>();
+
+            for (int i = 0; i < candlesticks.size(); i++) {
+                Candlestick candlestick = candlesticks.get(i);
+                Chart chart = converter(candlestick);
+                chartList.add(chart);
+            }
+        } catch (Exception e) {
+
+            return chartList;
         }
+
 
         return chartList;
     }
 
 
-    private static Chart converter(Candlestick candlestick){
+    private static Chart converter(Candlestick candlestick) {
 
         Chart chart = new Chart();
 
@@ -337,11 +344,11 @@ public class RestServiceImpl implements RestService {
 
     }
 
-    private Event convertJsonToEvent(JsonNode jsonNode){
+    private Event convertJsonToEvent(JsonNode jsonNode) {
         Event event = new Event();
         String title = jsonNode.get("title").toString();
         String description = jsonNode.get("description").toString();
-        if (description == "null"){
+        if (description == "null") {
             description = "";
         }
         String twitter = jsonNode.get("twitter_account").toString();
@@ -352,7 +359,7 @@ public class RestServiceImpl implements RestService {
 
         Iterator<JsonNode> iterator = jsonNode.get("coins").iterator();
 
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             JsonNode next = iterator.next();
             String name = next.get("name").toString();
             String symbol = next.get("symbol").toString();
@@ -511,7 +518,6 @@ public class RestServiceImpl implements RestService {
 
         return idata;
     }
-
 
 
     private String buildHttpRequest(String param, String url) {

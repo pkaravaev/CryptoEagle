@@ -34,8 +34,6 @@ public class IcoServiceImpl implements IcoService {
     }
 
 
-
-
     public List<Ico> getAll() {
        return repository.getAllico();
     }
