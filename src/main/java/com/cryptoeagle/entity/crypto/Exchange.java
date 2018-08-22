@@ -17,4 +17,6 @@ public class Exchange extends BaseEntity {
     private String logo;
     private String currency;
     private  String roi;
+
+
 }

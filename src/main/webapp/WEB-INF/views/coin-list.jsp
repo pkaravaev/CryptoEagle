@@ -3,30 +3,38 @@
 <jsp:include page="template/header.jsp"/>
 
 <script>
+
     $(document).ready(function () {
+
         $('#dtMaterialDesignExample').DataTable();
+
+        // $(".coin").mouseenter(function () {
+        //     $(this).css("cursor", "hand");
+        // })
+        //
+        // $(".coin").mouseleave(function () {
+        //     $(this).css("cursor", "point");
+        // })
+        //
+        // $(".coin").dblclick(function () {
+        //     var symbol = $(this).find(".symbol").text();
+        //     window.location.href = "/coin-page/" + symbol;
+        // })
     });
 
-
 </script>
-
 
 
 <div class="container bg-white">
     <div class="row">
 
-        <div class="col-sm ">
+        <div class="col">
         </div>
 
-        <div class="col-md-12">
-
-
+        <div class="col-12">
             <table id="dtMaterialDesignExample" class="table table-striped" cellspacing="0" width="100%">
                 <thead>
                 <tr>
-                    <%--<th class="th-sm">#--%>
-                        <%--<i class="fa fa-sort float-right" aria-hidden="true"></i>--%>
-                    <%--</th>--%>
                     <th class="th-sm">
                         <i class="fa fa-sort float-right" aria-hidden="true"></i>
                     </th>
@@ -48,54 +56,56 @@
                     <th class="th-sm">Change(24h)
                         <i class="fa fa-sort float-right" aria-hidden="true"></i>
                     </th>
+                    <th>Data avalible
+                    </th>
 
                 </tr>
                 </thead>
                 <tbody>
-
                 <c:forEach items="${coins}" var="coin">
-                    <tr class="hoverable">
-                        <%--<td>${coin.rank}</td>--%>
+                    <tr  class="coin hoverable">
                         <td><img class="rounded-circle" src="${coin.image}" width="60" height="60"></td>
-                        <td class="font-weight-bold">${coin.name}</td>
-                        <td class="font-weight-bold">${coin.price}$</td>
-                        <td class="font-weight-bold">${coin.market_cap}$</td>
-                        <td class="font-weight-bold">${coin.volume_24h}$</td>
-                        <td class="font-weight-bold">${coin.circulating_supply}${coin.symbol}</td>
+                        <td class="font-weight-bold ">${coin.symbol}</td>
+                        <td class="font-weight-bold">${coin.price} $</td>
+                        <td class="font-weight-bold">${coin.market_cap} $</td>
+                        <td class="font-weight-bold">${coin.volume_24h} $</td>
+                        <td class="font-weight-bold">${coin.circulating_supply} ${coin.symbol}</td>
                         <c:choose>
                             <c:when test="${coin.percent_change_24h > 0}">
                                 <td class="font-weight-bold" style="color: lawngreen">  ${coin.percent_change_24h}%</td>
                             </c:when>
                             <c:when test="${coin.percent_change_24h < 0}">
-                                <td class="font-weight-bold"style="color: red">  ${coin.percent_change_24h}%</td>
+                                <td class="font-weight-bold" style="color: red">  ${coin.percent_change_24h}%</td>
                             </c:when>
                         </c:choose>
+                        <td style="color: green" class="font-weight-bold">Yes</td>
                     </tr>
                 </c:forEach>
                 </tbody>
                 <tfoot>
                 <tr>
-                    <th></i>
+                    <th>
                     </th>
-                    <th>Name</i>
+                    <th>Name
                     </th>
-                    <th>Price</i>
+                    <th>Price
                     </th>
-                    <th>Market cap</i>
+                    <th>Market cap
                     </th>
-                    <th>Volume(24h)</i>
+                    <th>Volume(24h)
                     </th>
-                    <th>Circulating supply</i>
+                    <th>Circulating supply
                     </th>
-                    <th>Cahnge(24h)</i>
+                    <th>Change(24h)
+                    </th>
+                    <th>Data avalible
                     </th>
                 </tr>
                 </tfoot>
             </table>
             <br/>
         </div>
-
-        <div class="col-sm ">
+        <div class="col">
         </div>
     </div>
 </div>

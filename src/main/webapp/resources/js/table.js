@@ -9,8 +9,26 @@ $(document).ready(function () {
 
 function modal() {
 
+    $(".coin").mouseenter(function () {
+        $(this).css("cursor", "hand");
+    })
+
+    $(".coin").mouseleave(function () {
+        $(this).css("cursor", "point");
+    })
+
+    $(".coin").dblclick(function () {
+        var symbol = $(this).find("td")[1].innerText;
+        window.location.href = "/coin-page/" + symbol;
+    })
+
+    $(".coin").click(function () {
+        var symbol = $(this).find("td")[1].innerText;
+        window.location.href = "/coin-page/" + symbol;
+    })
+
     $(".r").click(function () {
-        var name = $(this).find("#name").text();
+        var name = $(this).find(".name").text();
         window.location.href = "/ico-page/" + name;
     })
 

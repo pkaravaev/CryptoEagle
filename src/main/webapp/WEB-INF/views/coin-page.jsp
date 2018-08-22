@@ -1,13 +1,7 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="template/header.jsp"/>
 
 
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <script type="text/javascript">
         window.onload = function () {
 
@@ -17,12 +11,6 @@
                 animationEnabled: true,
                 exportEnabled: true,
                 zoomEnabled: true,
-                title: {
-                    text: "Bitcoin"
-                },
-                subtitles: [{
-                    text: "2012 - 2017"
-                }],
                 axisX: {
                     valueFormatString: "YYYY"
                 },
@@ -40,7 +28,8 @@
                 }]
             });
 
-            $.getJSON("http://localhost:8080/restfull-service/starbucks-corporation-stock-price.json", parseData);
+            // $.getJSON("http://localhost:8080/restfull-service/starbucks-corporation-stock-price.json", parseData);
+            $.getJSON("http://localhost:8080/ajax/coins/${symbol}", parseData);
 
             function parseData(result) {
                 for (var i = 0; i < result.length; i++) {
@@ -54,12 +43,9 @@
 
         }
     </script>
-</head>
-<body>
-
 
 <br/>
-<div class="container">
+<div class="container-fluid">
 
 
     <div class="row">
@@ -69,58 +55,72 @@
         </div>
 
 
-
-
         <div class="col-8">
+
+            <div class="text-center">
+                <img  style="height: 5rem" src="${coin.image}"
+                      class="img-fluid rounded-circle align-content-lg-center text-center " alt="hoverable">
+            </div>
+
+            <h4 class="text-center">${coin.name} (${coin.symbol})</h4>
 
             <div class="row">
 
-                <div class="col">
+                <div class="col-lg-2">
 
-                    <div class="row">
+                    <h6 class="font-weight-bold text-center">MARKET CAP</h6>
+                    <h4 class="text-center">${coin.market_cap}$</h4>
 
-                        <div class="col">
-                            <!-- Hoverable -->
-                            <img src="${coin.image}" class="img-fluid rounded-circle hoverable" alt="hoverable">
+                    <h6 class="font-weight-bold text-center">CIRCULATING SUPPLY</h6>
+                    <h4 class="text-center">${coin.circulating_supply}$</h4>
 
-                            <h4>${coin.name}</h4>
-                        </div>
+                    <h6 class="font-weight-bold text-center">CHANGE 1H</h6>
 
-                    </div>
+                    <c:choose>
+                        <c:when test="${coin.percent_change_1h > 0}">
+                            <h4 style="color: green" class="text-center">${coin.percent_change_1h}%</h4>
+                        </c:when>
 
+                        <c:when test="${coin.percent_change_1h < 0}">
+                            <h4 style="color: red" class="text-center">${coin.percent_change_1h}%</h4>
+                        </c:when>
+                    </c:choose>
+
+                    <h6 class="font-weight-bold text-center">CHANGE 7D</h6>
+
+                    <c:choose>
+                        <c:when test="${coin.percent_change_7d > 0}">
+                            <h4 style="color: green" class="text-center">${coin.percent_change_7d}%</h4>
+                        </c:when>
+
+                        <c:when test="${coin.percent_change_7d < 0}">
+                            <h4 style="color: red" class="text-center">${coin.percent_change_7d}%</h4>
+                        </c:when>
+                    </c:choose>
+
+                    <h6 class="font-weight-bold text-center">CHANGE 24H</h6>
+
+                    <c:choose>
+                        <c:when test="${coin.percent_change_24h > 0}">
+                            <h4 style="color: green" class="text-center">${coin.percent_change_24h}%</h4>
+                        </c:when>
+
+                        <c:when test="${coin.percent_change_24h < 0}">
+                            <h4 style="color: red" class="text-center">${coin.percent_change_24h}%</h4>
+                        </c:when>
+                    </c:choose>
 
 
                 </div>
 
-                <div class="col">
 
-                    <h6 class="font-weight-bold text-center">market cap</h6>
-                    <h4>${coin.market_cap}$</h4>
-                </div>
-
-                <div class="col">
-
-                    <h6 class="font-weight-bold text-center">change 1h</h6>
-                    <h4 class="text-center">${coin.percent_change_1h}%</h4>
-                </div>
-
-                <div class="col">
-                    <h6 class="font-weight-bold text-center">chnage 7d</h6>
-                    <h4 class="text-center">${coin.percent_change_7d}%</h4>
-                </div>
-
-                <div class="col">
-                    <h6 class="font-weight-bold text-center">change 24h</h6>
-                    <h4 class="text-center">${coin.percent_change_24h}%</h4>
+                <div class="col-10">
+                    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
                 </div>
 
             </div>
 
-
-            <div id="chartContainer" style="height: 370px; width: 100%;"></div>
-
         </div>
-
 
 
         <div class="col">
@@ -139,9 +139,9 @@
 <br/>
 <br/>
 
+<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
-    <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
-    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </body>
 </html>
 

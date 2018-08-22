@@ -2,12 +2,17 @@ package com.cryptoeagle.service;
 
 import com.cryptoeagle.entity.*;
 import com.cryptoeagle.entity.Ico;
+import com.cryptoeagle.entity.crypto.Chart;
 import com.cryptoeagle.entity.crypto.Exchange;
 import com.cryptoeagle.entity.crypto.Idata;
 import com.cryptoeagle.entity.crypto.Team;
 import com.cryptoeagle.service.abst.RestService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import net.sealake.binance.api.client.BinanceApiClientFactory;
+import net.sealake.binance.api.client.BinanceApiRestClient;
+import net.sealake.binance.api.client.domain.market.Candlestick;
+import net.sealake.binance.api.client.domain.market.CandlestickInterval;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.RequestLine;
@@ -43,6 +48,8 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Iterator;
 import java.util.List;
+
+import static com.cryptoeagle.test.converter;
 
 @Service
 public class RestServiceImpl implements RestService {
@@ -292,6 +299,43 @@ public class RestServiceImpl implements RestService {
     }
 
 
+    public List<Chart> getChartCoin(String symbol){
+
+        BinanceApiClientFactory factory = BinanceApiClientFactory.newInstance();
+        BinanceApiRestClient client = factory.newRestClient();
+
+        List<Candlestick> candlesticks = client.getCandlestickBars(symbol + "USDT", CandlestickInterval.DAILY);
+        List<Chart> chartList = new ArrayList<>();
+
+        for (int i = 0 ; i < candlesticks.size() ; i++){
+            Candlestick candlestick = candlesticks.get(i);
+            Chart  chart = converter(candlestick);
+            chartList.add(chart);
+        }
+
+        return chartList;
+    }
+
+
+    private static Chart converter(Candlestick candlestick){
+
+        Chart chart = new Chart();
+
+        long opentime = candlestick.getOpenTime();
+
+        double high = Double.parseDouble(candlestick.getHigh());
+        double close = Double.parseDouble(candlestick.getClose());
+        double open = Double.parseDouble(candlestick.getOpen());
+        double low = Double.parseDouble(candlestick.getLow());
+
+        double[] y = {open, high, low, close};
+
+        chart.setY(y);
+        chart.setX(opentime);
+
+        return chart;
+
+    }
 
     private Event convertJsonToEvent(JsonNode jsonNode){
         Event event = new Event();

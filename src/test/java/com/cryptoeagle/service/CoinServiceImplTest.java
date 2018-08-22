@@ -39,8 +39,12 @@ public class CoinServiceImplTest extends AbstractTest{
 
     }
     @Test
-    public void getCoins() {
+    public void getCoin() {
+
+        Coin eth = service.getCoin("ETH");
+        assertTrue(eth.getSymbol().equals("ETH"));
     }
+
 
     @Test
     public void getCoins1() {

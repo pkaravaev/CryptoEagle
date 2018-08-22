@@ -1,6 +1,7 @@
 package com.cryptoeagle.service;
 
 import com.cryptoeagle.entity.Ico;
+import com.cryptoeagle.entity.crypto.Chart;
 import com.cryptoeagle.repository.IcoRepository;
 import com.cryptoeagle.service.abst.IcoService;
 import com.cryptoeagle.service.abst.RestService;
@@ -33,7 +34,8 @@ public class IcoServiceImpl implements IcoService {
     }
 
 
-//    @Cacheable(cacheNames = "all")
+
+
     public List<Ico> getAll() {
        return repository.getAllico();
     }
@@ -44,19 +46,16 @@ public class IcoServiceImpl implements IcoService {
     }
 
     @Override
-//    @Cacheable(cacheNames = "all")
     public List<Ico> getUpcoming() {
         return repository.getUpcomingIco();
     }
 
     @Override
-//    @Cacheable(cacheNames = "all")
     public List<Ico> getFinished() {
         return repository.getFinishedIco();
     }
 
     @Override
-//    @Cacheable(cacheNames = "all")
     public List<Ico> getActiveIco() {
         return repository.getActiveIco();
     }

@@ -157,8 +157,6 @@ public class MainController {
 //        List<Item> items = rssService.getItems("https://www.coindesk.com/feed/");
 //        model.addAttribute("items", items);
 
-        if (true)
-            throw new UserNotFoundException("xxxx");
         return "test";
     }
 

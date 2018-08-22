@@ -4,6 +4,7 @@ import com.cryptoeagle.entity.Coin;
 import com.cryptoeagle.entity.Event;
 import com.cryptoeagle.entity.Ico;
 import com.cryptoeagle.entity.PictureCoin;
+import com.cryptoeagle.entity.crypto.Chart;
 import com.cryptoeagle.entity.crypto.Idata;
 import com.cryptoeagle.service.abst.RestService;
 import com.cryptoeagle.service.abst.RssService;
@@ -42,6 +43,21 @@ public class RestServiceImplTest extends AbstractTest {
         List<Ico> icos = service.getAllIcosFromIcobench();
         assertTrue(icos.size() > 10);
     }
+    @Test
+    public void getChartCoin(){
+
+        List<Chart> ETH = service.getChartCoin("ETH");
+        List<Chart> ADA = service.getChartCoin("ADA");
+        List<Chart> TRX = service.getChartCoin("TRX");
+        List<Chart> IOTA = service.getChartCoin("IOTA");
+        List<Chart> BNB = service.getChartCoin("BNB");
+        assertTrue(ETH.size() > 5);
+        assertTrue(ADA.size() > 5);
+        assertTrue(TRX.size() > 5);
+        assertTrue(IOTA.size() > 5);
+        assertTrue(BNB.size() > 5);
+    }
+
     @Test
     public void getDataForIco() {
         Idata data = service.getDataForIco(36262);

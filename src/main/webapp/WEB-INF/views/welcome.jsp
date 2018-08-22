@@ -315,8 +315,8 @@
                 </c:forEach>
             </div>
         </div>
-        <br/>
-        <br/>
+        <%--<br/>--%>
+        <%--<br/>--%>
         <div class="col-4 ">
             <!-- Nav tabs -->
             <ul class="nav nav-tabs nav-justified " role="tablist">

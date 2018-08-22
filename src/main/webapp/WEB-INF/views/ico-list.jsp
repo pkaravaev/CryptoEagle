@@ -36,11 +36,13 @@
 </script>
 
 
-<div class="container  bg-white">
+<div class="container bg-white">
 
     <div class="row">
 
-        <br/>
+        <div class="col">
+
+        </div>
 
         <div class="col-md-4">
             <br/>
@@ -174,6 +176,10 @@
                 <!--/.Panel-->
                 <br/>
             </c:forEach>
+        </div>
+
+        <div class="col">
+
         </div>
 
     </div>

@@ -3,13 +3,16 @@ package com.cryptoeagle.controller;
 
 import com.cryptoeagle.entity.Coin;
 import com.cryptoeagle.entity.Ico;
+import com.cryptoeagle.entity.crypto.Chart;
 import com.cryptoeagle.service.abst.CoinService;
 import com.cryptoeagle.service.abst.IcoService;
+import com.cryptoeagle.service.abst.RestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,6 +25,9 @@ public class CryptoController {
 
     @Autowired
     CoinService coinService;
+
+    @Autowired
+    RestService restService;
 
     @RequestMapping("/ico-stats")
     public String icoStats(Model model) {
@@ -60,12 +66,14 @@ public class CryptoController {
         return "ico-page";
     }
 
-    @RequestMapping("/coin-page")
-    public String coinPage(Model model) {
+    @RequestMapping("/coin-page/{symbol}")
+    public String coinPage(Model model,@PathVariable String symbol) {
 
-        Coin eth = coinService.getCoin("ETH");
+        Coin eth = coinService.getCoin(symbol);
+        List<Chart> charts = restService.getChartCoin(symbol);
 
         model.addAttribute("coin", eth);
+        model.addAttribute("chart", eth);
 
          return "coin-page";
     }

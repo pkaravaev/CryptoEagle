@@ -1,8 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="template/header.jsp"/>
 
-
-
 <script>
 
     $(document).ready(function () {
@@ -70,47 +68,51 @@
 
 <div class="container">
 
+    <div class="col">
 
+    </div>
 
-<!-- Section: Blog v.2 -->
-<section class="text-center my-5">
+    <div class="col-12">
 
-    <div class="card-columns">
-        <c:forEach items="${items}" var="item" varStatus="i">
+        <div class="card-columns">
 
-            <div style="height: 20rem;width: 22rem" class="card hoverable ">
-                <img style="width: 22rem;height: 12rem" alt="Card  image cap" class="card-img-top img-fluid"
-                     src="/resources/pic/m/m${item.getRandomPic(9)}.jpg">
-                <div class="card-block ">
-                    <h4 class="card-title font-weight-bold ">${item.title}</h4>
-                </div>
-                <p class="title" hidden>${item.title}</p>
-                <%--<p class="description" hidden>${item.description}</p>--%>
-                <p class="href" hidden>${item.link}</p>
+            <c:forEach items="${items}" var="item" varStatus="i">
 
-                <div class="row">
-                    <div class="col">
-                        <p style="margin-left: 1rem" class="date text-left font-italic">by ${item.source}</p>
+                <div style="height: 20rem;width: 22rem" class="card hoverable ">
+
+                    <img style="width: 22rem;height: 12rem" alt="Card  image cap" class="card-img-top img-fluid"
+                         src="/resources/pic/m/m${item.getRandomPic(9)}.jpg">
+                    <div class="card-block ">
+                        <h4 class="card-title font-weight-bold ">${item.title}</h4>
                     </div>
-                    <div class="col">
 
-                        <c:choose>
-                            <c:when test="${item.diffHours() == 0}" >
-                                <p style="margin-right: 1rem" class="date text-right font-italic">${ Math.abs(item.diffMinutes())} m ago </p>
-                            </c:when>
-                            <c:otherwise>
-                                <p style="margin-right: 1rem" class="date text-right font-italic">${Math.abs(item.diffHours())} h ago </p>
-                            </c:otherwise>
+                    <p class="title" hidden>${item.title}</p>
+                        <%--<p class="description" hidden>${item.description}</p>--%>
+                    <p class="href" hidden>${item.link}</p>
 
-                        </c:choose>
-
-                        <%--<p style="margin-right: 1rem" class="date text-right font-italic">${item.publishDate}</p>--%>
+                    <div class="row">
+                        <div class="col">
+                            <p style="margin-left: 1rem" class="date text-left font-italic">by ${item.source}</p>
+                        </div>
+                        <div class="col">
+                            <c:choose>
+                                <c:when test="${item.diffHours() == 0}" >
+                                    <p style="margin-right: 1rem" class="date text-right font-italic">${ Math.abs(item.diffMinutes())} m ago </p>
+                                </c:when>
+                                <c:otherwise>
+                                    <p style="margin-right: 1rem" class="date text-right font-italic">${Math.abs(item.diffHours())} h ago </p>
+                                </c:otherwise>
+                            </c:choose>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!--Panel-->
+                <!--Panel-->
+            </c:forEach>
+        </div>
+    </div>
 
-        </c:forEach>
+    <div class="col">
+
     </div>
 
 </div>

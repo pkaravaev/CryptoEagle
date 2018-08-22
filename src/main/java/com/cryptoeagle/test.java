@@ -5,6 +5,7 @@ import com.cryptoeagle.entity.AppUser;
 import com.cryptoeagle.entity.Coin;
 import com.cryptoeagle.entity.Event;
 import com.cryptoeagle.entity.WhiteList;
+import com.cryptoeagle.entity.crypto.Chart;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.util.JSONPObject;
@@ -46,6 +47,7 @@ import java.io.InputStream;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -67,6 +69,26 @@ public class test {
 
     }
 
+    public static Chart converter(Candlestick candlestick){
+
+        Chart chart = new Chart();
+
+        long opentime = candlestick.getOpenTime();
+
+        double high = Double.parseDouble(candlestick.getHigh());
+        double close = Double.parseDouble(candlestick.getClose());
+        double open = Double.parseDouble(candlestick.getOpen());
+        double low = Double.parseDouble(candlestick.getLow());
+
+        double[] y = {open, high, low, close};
+
+        chart.setY(y);
+        chart.setX(opentime);
+
+        return chart;
+
+    }
+
 
 
     public static void main(String[] args) throws Exception {
@@ -75,10 +97,26 @@ public class test {
         BinanceApiClientFactory factory = BinanceApiClientFactory.newInstance();
         BinanceApiRestClient client = factory.newRestClient();
 
+        long s = System.nanoTime();
+        long f = System.nanoTime();
 
+        System.out.println(f-s);
+
+        long start = System.currentTimeMillis();
         List<Candlestick> ETH = client.getCandlestickBars("ETHUSDT", CandlestickInterval.DAILY);
+        List<Chart> chartList = new ArrayList<>();
 
-        System.out.println(ETH);
+         for (int i = 0 ; i < ETH.size() ; i++){
+             Candlestick candlestick = ETH.get(i);
+             Chart  chart = converter(candlestick);
+             chartList.add(chart);
+         }
+
+         long finish = System.currentTimeMillis() - start;
+
+
+
+        System.out.println(finish);
 
 
     }
