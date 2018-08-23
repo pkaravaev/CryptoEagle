@@ -27,9 +27,16 @@
 
         })
 
-        $("#button").click(function () {
+        $("#buttonActive").click(function () {
+            window.location.href = "/ico-list/active";
+        })
 
-            window.location.href = "/ico-stats";
+        $("#buttonUpcoming").click(function () {
+            window.location.href = "/ico-list/upcoming";
+        })
+
+        $("#buttonFinished").click(function () {
+            window.location.href = "/ico-list/finished";
         })
     })
 
@@ -94,7 +101,7 @@
                 <br/>
             </c:forEach>
 
-            <button id="button" style="width: 20rem" type="button" class="btn btn-brown btn-lg btn-block">GO MORE ACTIVE ICO</button>
+            <button id="buttonActive" style="width: 22rem" type="button" class="btn btn-brown btn-lg btn-block">GO MORE ACTIVE ICO</button>
 
         </div>
 
@@ -103,7 +110,7 @@
             <h3 class="text-center font-weight-bold">UPCOMING</h3>
             <c:forEach items="${upcoming}" var="ico">
                 <!--Panel-->
-                <div style="width: 22rem; height: 10rem" class="card hoverable">
+                <div style="width: 22rem; height: 10rem" class="card wow zoomInUp hoverable">
                     <div class="card-body">
                         <div class="row">
                             <div class="col">
@@ -136,7 +143,7 @@
                 <br/>
             </c:forEach>
 
-            <button id="button" style="width: 20rem" type="button" class="btn btn-brown btn-lg btn-block">GO MORE UPCOMING ICO</button>
+            <button id="buttonUpcoming" style="width: 22rem" type="button" class="btn btn-brown btn-lg btn-block">GO MORE UPCOMING ICO</button>
         </div>
 
         <div class="col-md-4">
@@ -144,7 +151,7 @@
             <h3 class="text-center font-weight-bold brown-darken-2 ">ENDED</h3>
             <c:forEach items="${finished}" var="ico">
                 <!--Panel-->
-                <div style="width: 22rem; height: 10rem" class="card hoverable">
+                <div style="width: 22rem; height: 10rem" class="card  wow zoomInRight hoverable">
                     <div class="card-body">
                         <div class="row">
                             <div class="col">
@@ -179,7 +186,7 @@
             </c:forEach>
 
 
-            <button id="button" style="width: 20rem" type="button" class="btn btn-brown btn-lg btn-block">GO MORE FINISHED ICO</button>
+            <button id="buttonFinished" style="width: 22rem" type="button" class="btn btn-brown btn-lg btn-block">GO MORE FINISHED ICO</button>
         </div>
 
 

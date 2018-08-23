@@ -47,6 +47,34 @@ public class CryptoController {
         return "ico-list";
     }
 
+    @RequestMapping("/ico-list/active")
+    public String icoListActive(Model model) {
+        List<Ico> activeIco = icoService.getActiveIco().stream().limit(10).collect(Collectors.toList());
+        model.addAttribute("category", "Active Ico");
+        model.addAttribute("icos", activeIco);
+        return "ico-category";
+    }
+
+    @RequestMapping("/ico-list/upcoming")
+    public String icoListUpcoming(Model model) {
+        List<Ico> upcoming = icoService.getUpcoming().stream().limit(10).collect(Collectors.toList());
+        model.addAttribute("category", "Upcoming Ico");
+        model.addAttribute("icos", upcoming);
+        return "ico-category";
+    }
+
+    @RequestMapping("/ico-list/finished")
+    public String icoListFinished(Model model) {
+        List<Ico> finished = icoService.getFinished().stream().limit(10).collect(Collectors.toList());
+        model.addAttribute("category", "Finished Ico");
+        model.addAttribute("icos", finished);
+        return "ico-category";
+    }
+
+
+
+
+
     @RequestMapping("/coin-list")
     public String coinList(Model model) {
         List<Coin> coins = coinService.getAllCoins();
