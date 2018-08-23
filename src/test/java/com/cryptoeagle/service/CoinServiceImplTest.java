@@ -14,39 +14,32 @@ public class CoinServiceImplTest extends AbstractTest{
     @Autowired
     CoinService service;
 
-
     @Test
     public void getTopGainCoins() {
-
         List<Coin> topGainCoins = service.getTopGainCoins();
     }
 
     @Test
     public void getTopLoserCoins() {
-
         List<Coin> topLoserCoins = service.getTopLoserCoins();
     }
 
     @Test
     public void getAllCoins() {
-
-
+        List<Coin> coins = service.getAllCoins();
+        assertTrue(coins.size() > 20);
     }
 
     @Test
     public void updateCoins() {
-
         service.updateCoins();
-
-
     }
+
     @Test
     public void getCoin() {
-
         Coin eth = service.getCoin("ETH");
         assertTrue(eth.getSymbol().equals("ETH"));
     }
-
 
     @Test
     public void getCoins1() {
@@ -56,15 +49,19 @@ public class CoinServiceImplTest extends AbstractTest{
 
     @Test
     public  void isAvalible(){
+        boolean eth = service.isAvailable("ETH");
+        boolean xxx = service.isAvailable("XXX");
+        boolean btc = service.isAvailable("BTC");
+        boolean XRP = service.isAvailable("XRP");
+        boolean gdf = service.isAvailable("YYY");
+        boolean cvc = service.isAvailable("VVV");
 
-        boolean eth = service.isAvalible("ETH");
-        boolean xxx = service.isAvalible("XXX");
-
-        boolean btc = service.isAvalible("BTC");
-
-        boolean sdf = service.isAvalible("XRP");
-        boolean gdf = service.isAvalible("YYY");
-        boolean cvc = service.isAvalible("VVV");
+        assertTrue(eth);
+        assertTrue(btc);
+        assertFalse(xxx);
+        assertTrue(XRP);
+        assertFalse(cvc);
+        assertFalse(gdf);
 
     }
 }

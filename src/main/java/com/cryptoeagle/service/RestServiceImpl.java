@@ -299,7 +299,6 @@ public class RestServiceImpl implements RestService {
         return coins;
     }
 
-
     public List<Chart> getChartCoin(String symbol) {
         List<Chart> chartList = new ArrayList<>();
         try {
@@ -307,6 +306,7 @@ public class RestServiceImpl implements RestService {
             BinanceApiRestClient client = factory.newRestClient();
 
             List<Candlestick> candlesticks = client.getCandlestickBars(symbol + "USDT", CandlestickInterval.DAILY);
+
             chartList = new ArrayList<>();
 
             for (int i = 0; i < candlesticks.size(); i++) {
@@ -322,7 +322,6 @@ public class RestServiceImpl implements RestService {
 
         return chartList;
     }
-
 
     private static Chart converter(Candlestick candlestick) {
 
@@ -387,6 +386,10 @@ public class RestServiceImpl implements RestService {
         String logo = deleteCommas(jsonNode.get("logo").toString());
 
         String desc = deleteCommas(jsonNode.get("desc").toString());
+
+        if (desc.length() > 250){
+            desc = desc.substring(0,250);
+        }
         String rating = jsonNode.get("rating").toString();
         String raised = jsonNode.get("raised").toString();
 
@@ -518,7 +521,6 @@ public class RestServiceImpl implements RestService {
 
         return idata;
     }
-
 
     private String buildHttpRequest(String param, String url) {
 

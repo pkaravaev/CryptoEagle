@@ -42,7 +42,7 @@ public class CoinServiceImpl implements CoinService {
     }
 
     @Override
-    public boolean isAvalible(String symbol) {
+    public boolean isAvailable(String symbol) {
         List<Chart> chartCoin = restService.getChartCoin(symbol);
         if (chartCoin.size() > 4)
             return true;
@@ -77,7 +77,7 @@ public class CoinServiceImpl implements CoinService {
         log.info("UPDATE COINS :" + LocalDateTime.now().toString());
         repository.deleteAll();
         List<Coin> allCoinsFromProvider = restService.getCoins();
-        allCoinsFromProvider.stream().forEach( e -> e.setDataAvalible(isAvalible(e.getSymbol())));
+        allCoinsFromProvider.stream().forEach( e -> e.setDataAvailable(isAvailable(e.getSymbol())));
         repository.saveCoins(allCoinsFromProvider);
     }
 

@@ -60,6 +60,8 @@ public class IcoServiceImplTest extends AbstractTest {
     @Test
     public void getByName() {
         Ico name = service.getByName("Fanfare");
+
+        Ico ico = service.getByName("Digital Credit");
         assertEquals(name.getName(),"Fanfare");
     }
 

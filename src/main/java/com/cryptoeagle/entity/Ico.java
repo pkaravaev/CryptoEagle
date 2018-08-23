@@ -22,7 +22,6 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class Ico {
-
     @Id
     private int id;
 

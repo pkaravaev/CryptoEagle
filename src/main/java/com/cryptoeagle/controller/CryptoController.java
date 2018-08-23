@@ -38,15 +38,12 @@ public class CryptoController {
 
     @RequestMapping("/ico-list")
     public String icoList(Model model) {
-
-        List<Ico> activeIco = icoService.getActiveIco().stream().limit(20).collect(Collectors.toList());
-        List<Ico> upcoming = icoService.getUpcoming().stream().limit(20).collect(Collectors.toList());
-        List<Ico> finished = icoService.getFinished().stream().limit(20).collect(Collectors.toList());
-
+        List<Ico> activeIco = icoService.getActiveIco().stream().limit(10).collect(Collectors.toList());
+        List<Ico> upcoming = icoService.getUpcoming().stream().limit(10).collect(Collectors.toList());
+        List<Ico> finished = icoService.getFinished().stream().limit(10).collect(Collectors.toList());
         model.addAttribute("activeIco", activeIco);
         model.addAttribute("upcoming", upcoming);
         model.addAttribute("finished", finished);
-
         return "ico-list";
     }
 
@@ -59,23 +56,18 @@ public class CryptoController {
 
     @RequestMapping("/ico-page/{name}")
     public String icoPage(@PathVariable String name, Model model) {
-
         Ico ico = icoService.getByName(name);
         model.addAttribute("ico", ico);
-
         return "ico-page";
     }
 
     @RequestMapping("/coin-page/{symbol}")
-    public String coinPage(Model model,@PathVariable String symbol) {
-
+    public String coinPage(Model model, @PathVariable String symbol) {
         Coin eth = coinService.getCoin(symbol);
         List<Chart> charts = restService.getChartCoin(symbol);
-
         model.addAttribute("coin", eth);
         model.addAttribute("chart", eth);
-
-         return "coin-page";
+        return "coin-page";
     }
 
 }

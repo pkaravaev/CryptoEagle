@@ -25,15 +25,14 @@ public class RestServiceImplTest extends AbstractTest {
     @Autowired
     RestServiceImpl service;
 
-
     @Test
     public void getEvents() {
         List<Event> events = service.getEvents(10);
         assertTrue(events.size() == 10);
     }
 
-        @Test
-    public void getTokenOAUTH(){
+    @Test
+    public void getTokenOAUTH() {
         String s = service.getTokenOAUTH();
         assertTrue(86 == s.length());
     }
@@ -43,9 +42,9 @@ public class RestServiceImplTest extends AbstractTest {
         List<Ico> icos = service.getAllIcosFromIcobench();
         assertTrue(icos.size() > 10);
     }
-    @Test
-    public void getChartCoin(){
 
+    @Test
+    public void getChartCoin() {
         List<Chart> ETH = service.getChartCoin("ETH");
         List<Chart> ADA = service.getChartCoin("ADA");
         List<Chart> TRX = service.getChartCoin("TRX");
@@ -83,8 +82,8 @@ public class RestServiceImplTest extends AbstractTest {
     @Test
     public void getIcoWithDataByPage() {
         List<Ico> icos = null;
-        for (int i = 0; i < 3; i++){
-           icos = service.getIcoWithDataByPage(i);
+        for (int i = 0; i < 3; i++) {
+            icos = service.getIcoWithDataByPage(i);
         }
         assertTrue(icos.size() > 5);
         assertTrue(icos.get(0) != null);

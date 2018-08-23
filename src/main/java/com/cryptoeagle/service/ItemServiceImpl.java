@@ -48,7 +48,6 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-//    @Cacheable(cacheNames = "all")
     public List<Item> getAll() {
         List<Item> itemList = repository.getall();
         return itemList;

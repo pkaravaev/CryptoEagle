@@ -23,7 +23,7 @@
         <h6 class="font-weight-bold text-center">Current list of ICOs where Whitelist is active. Registration is required for participation.</h6>
 
         <!--Table-->
-        <table class="table table-striped w-auto">
+        <table class="table table-striped">
 
             <!--Table body-->
             <tbody>

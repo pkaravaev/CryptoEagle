@@ -14,7 +14,7 @@ public interface CoinService {
 
     void updateCoins();
 
-    boolean isAvalible(String symbol);
+    boolean isAvailable(String symbol);
 
     List<Coin> getAllCoins();
 

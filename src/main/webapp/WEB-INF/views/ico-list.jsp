@@ -40,15 +40,11 @@
 
     <div class="row">
 
-        <div class="col">
 
-        </div>
 
         <div class="col-md-4">
             <br/>
             <h3 class="text-center font-weight-bold">ACTIVE</h3>
-
-
             <c:forEach items="${activeIco}" var="ico">
                 <!--Panel-->
                 <div style="width: 22rem; height: 10rem" class="card  wow zoomInLeft hoverable ">
@@ -97,6 +93,9 @@
                 <!--/.Panel-->
                 <br/>
             </c:forEach>
+
+            <button id="button" style="width: 20rem" type="button" class="btn btn-brown btn-lg btn-block">GO MORE ACTIVE ICO</button>
+
         </div>
 
         <div class="col-md-4">
@@ -136,6 +135,8 @@
                 <!--/.Panel-->
                 <br/>
             </c:forEach>
+
+            <button id="button" style="width: 20rem" type="button" class="btn btn-brown btn-lg btn-block">GO MORE UPCOMING ICO</button>
         </div>
 
         <div class="col-md-4">
@@ -176,15 +177,13 @@
                 <!--/.Panel-->
                 <br/>
             </c:forEach>
+
+
+            <button id="button" style="width: 20rem" type="button" class="btn btn-brown btn-lg btn-block">GO MORE FINISHED ICO</button>
         </div>
 
-        <div class="col">
-
-        </div>
 
     </div>
-
-    <button id="button" style="width: 71rem" type="button" class="btn btn-brown btn-lg btn-block">GO MORE ICO</button>
 
     <br/>
 
