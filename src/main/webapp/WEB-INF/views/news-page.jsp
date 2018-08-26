@@ -17,8 +17,6 @@
 
     $(document).ready(function () {
 
-        new WOW().init();
-
         $(".card").click(function () {
             $(this).css('cursor', 'pointer');
             // $(this).addClass("animated shake")
@@ -74,6 +72,8 @@
 
     <div class="col-12">
 
+        <br/>
+
         <div class="card-columns">
 
             <c:forEach items="${items}" var="item" varStatus="i">
@@ -87,7 +87,7 @@
                     </div>
 
                     <p class="title" hidden>${item.title}</p>
-                        <%--<p class="description" hidden>${item.description}</p>--%>
+
                     <p class="href" hidden>${item.link}</p>
 
                     <div class="row">

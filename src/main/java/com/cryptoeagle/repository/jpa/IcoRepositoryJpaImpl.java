@@ -73,9 +73,7 @@ public class IcoRepositoryJpaImpl implements IcoRepository {
         Ico ico = em.createNamedQuery(Ico.GET_BY_ID, Ico.class)
                 .setParameter("id", id)
                 .getSingleResult();
-
         ico.getData();
-
         return ico;
     }
 

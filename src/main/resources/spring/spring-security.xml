@@ -8,8 +8,17 @@
 
     <!--<http>-->
         <!--<intercept-url pattern="/**" access="hasRole('USER')" />-->
-        <!--<form-login />-->
+        <!--<form-login login-page="WEB-INF/views/" />-->
         <!--<logout />-->
     <!--</http>-->
+
+
+    <!--<authentication-manager>-->
+        <!--<authentication-provider>-->
+            <!--<user-service>-->
+                <!--<user name="admin" password="admin" authorities="ROLE_USER, ROLE_ADMIN" />-->
+            <!--</user-service>-->
+        <!--</authentication-provider>-->
+    <!--</authentication-manager>-->
 
 </beans:beans>

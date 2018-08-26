@@ -1,12 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="template/header.jsp"/>
 
-
 <script>
 
     $(document).ready(function () {
-
-        new WOW().init();
 
         $(".card").mouseenter(function () {
             $(this).css("cursor", "hand");
@@ -42,19 +39,16 @@
 
 </script>
 
-
 <div class="container bg-white">
 
     <div class="row">
-
-
 
         <div class="col-md-4">
             <br/>
             <h3 class="text-center font-weight-bold">ACTIVE</h3>
             <c:forEach items="${activeIco}" var="ico">
                 <!--Panel-->
-                <div style="width: 22rem; height: 10rem" class="card  wow zoomInLeft hoverable ">
+                <div style="width: 22rem; height: 10rem" class="card hoverable">
                     <div class="card-body">
                         <div class="row">
                             <div class="col">
@@ -110,7 +104,7 @@
             <h3 class="text-center font-weight-bold">UPCOMING</h3>
             <c:forEach items="${upcoming}" var="ico">
                 <!--Panel-->
-                <div style="width: 22rem; height: 10rem" class="card wow zoomInUp hoverable">
+                <div style="width: 22rem; height: 10rem" class="card hoverable ">
                     <div class="card-body">
                         <div class="row">
                             <div class="col">
@@ -151,7 +145,7 @@
             <h3 class="text-center font-weight-bold brown-darken-2 ">ENDED</h3>
             <c:forEach items="${finished}" var="ico">
                 <!--Panel-->
-                <div style="width: 22rem; height: 10rem" class="card  wow zoomInRight hoverable">
+                <div style="width: 22rem; height: 10rem" class="card hoverable">
                     <div class="card-body">
                         <div class="row">
                             <div class="col">
@@ -185,10 +179,9 @@
                 <br/>
             </c:forEach>
 
-
             <button id="buttonFinished" style="width: 22rem" type="button" class="btn btn-brown btn-lg btn-block">GO MORE FINISHED ICO</button>
-        </div>
 
+        </div>
 
     </div>
 

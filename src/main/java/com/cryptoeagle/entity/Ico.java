@@ -51,11 +51,28 @@ public class Ico {
     private LocalDateTime icoStart;
     private LocalDateTime icoEnd;
 
-    public boolean isEnd(){
-        return icoEnd.isBefore(LocalDateTime.now());
+    public boolean isEnd() {
+        if (icoEnd != null)
+            return icoEnd.isBefore(LocalDateTime.now());
+        else
+            return false;
     }
 
-    public String status(){
+    public boolean isUpcoming() {
+        if (icoEnd != null)
+        return icoStart.isAfter(LocalDateTime.now());
+        else
+            return false;
+    }
+
+    public boolean isActive() {
+        if (icoEnd != null)
+        return icoStart.isBefore(LocalDateTime.now()) && icoEnd.isAfter(LocalDateTime.now());
+        else
+            return false;
+    }
+
+    public String status() {
 
         String result = null;
 
@@ -71,16 +88,8 @@ public class Ico {
         return result;
     }
 
-    public boolean isUpcoming(){
-        return icoStart.isAfter(LocalDateTime.now());
-    }
-
-    public boolean isActive(){
-        return icoStart.isBefore(LocalDateTime.now()) && icoEnd.isAfter(LocalDateTime.now());
-    }
-
     public int todayMinusIcoStart() {
-        return  Math.abs(LocalDateTime.now().getDayOfMonth() - icoStart.getDayOfMonth());
+        return Math.abs(LocalDateTime.now().getDayOfMonth() - icoStart.getDayOfMonth());
     }
 
     public int todayMinusIcoEnd() {

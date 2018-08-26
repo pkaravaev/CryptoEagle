@@ -94,29 +94,16 @@ public class test {
     public static void main(String[] args) throws Exception {
 
 
-        BinanceApiClientFactory factory = BinanceApiClientFactory.newInstance();
-        BinanceApiRestClient client = factory.newRestClient();
 
-        long s = System.nanoTime();
-        long f = System.nanoTime();
-
-        System.out.println(f-s);
-
-        long start = System.currentTimeMillis();
-        List<Candlestick> ETH = client.getCandlestickBars("ETHUSDT", CandlestickInterval.DAILY);
-        List<Chart> chartList = new ArrayList<>();
-
-         for (int i = 0 ; i < ETH.size() ; i++){
-             Candlestick candlestick = ETH.get(i);
-             Chart  chart = converter(candlestick);
-             chartList.add(chart);
-         }
-
-         long finish = System.currentTimeMillis() - start;
+//
+//        GenericXmlApplicationContext applicationContext = new GenericXmlApplicationContext();
+//        applicationContext.getEnvironment().setActiveProfiles("Jpa", "PostgreSQL");
+//        applicationContext.load("/spring/spring-db.xml","/spring/spring-mvc.xml");
+//        applicationContext.refresh();
 
 
+        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("/spring/spring-app.xml", "/spring/spring-mvc.xml");
 
-        System.out.println(finish);
 
 
     }

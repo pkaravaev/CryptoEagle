@@ -27,6 +27,26 @@
             $(this).removeClass("animated shake");
         })
 
+
+
+        $("tr").click(function () {
+            $(location).attr("href", "/coin-list");
+        })
+
+
+
+        $("tr").mouseenter(function () {
+            $(this).css('cursor', 'pointer');
+            $(this).addClass("animated shake")
+            $(".container").addClass("animated shake")
+        })
+
+        $("tr").mouseleave(function () {
+            $(this).find(".card-img-overlay").removeClass("animated bounceInUp").removeClass("animated shake").addClass("animated fadeOutDown");
+            $(this).removeClass("animated shake");
+        })
+
+
         $(".card").click(function () {
             $(this).css('cursor', 'pointer');
             var title = $(this).find(".title").text();
@@ -44,15 +64,6 @@
                     "                </div>")
             }
         })
-
-        // $("#ico-card").click(function () {
-        //
-        //     var name = $(this).find(".href").text();
-        //     if (name != 0)
-        //     window.location.href = "/ico-page/" + name;
-        //
-        // })
-
 
     })
 
@@ -250,8 +261,6 @@
     }
 </style>
 
-
-
 <div class="container bg-white animated shake">
 
     <div class="row">
@@ -260,8 +269,8 @@
         <div class="col">
             <h3 class="font-weight-bold">CRYPTO NEWS</h3>
             <hr color="#795548"/>
-            <div  class="card hoverable rounded example job ">
-                <img  alt="Card image cap" class="card-img-top img-fluid"
+            <div  style="height: 18rem" class="card hoverable rounded example job ">
+                <img  style="height: 13rem" alt="Card image cap" class="card-img-top img-fluid"
                      src="/resources/pic/l/l${topItem.getRandomPic(5)}.jpg">
                 <h4 class="card-title font-weight-bold ">${topItem.title}</h4>
                 <div class="row">
@@ -274,29 +283,23 @@
                     </div>
                 </div>
                 <p class="title" hidden>${topItem.title}</p>
-                <%--<p class="description" hidden>${topItem.description}</p>--%>
-                <%--<p class="date" hidden>${topItem.publishDate}</p>--%>
-                <%--<p class="href" hidden>${topItem.link}</p>--%>
             </div>
             <br/>
             <div class="card-deck">
                 <c:forEach items="${averageItems}" var="item" varStatus="i">
                     <!--Panel-->
                     <div id="bigCard" style="height: 20rem;width: 22rem" class="card hoverable ">
-                        <img  alt="Card  image cap" class="card-img-top img-fluid"
+                        <img style="width: 22rem;height: 12rem" alt="Card  image cap" class="card-img-top img-fluid"
                              src="/resources/pic/m/m${i.count}.jpg">
                         <div class="card-block ">
                             <h4 class="card-title font-weight-bold ">${item.title}</h4>
                         </div>
                         <p class="title" hidden>${item.title}</p>
-                        <%--<p class="description" hidden>${item.description}</p>--%>
-                        <%--<p class="href" hidden>${item.link}</p>--%>
                         <div class="row">
                             <div class="col">
                                 <p style="margin-left: 1rem" class="date text-left font-italic">by ${item.source}</p>
                             </div>
                             <div class="col">
-                                    <%--<p style="margin-right: 1rem" class="date text-right font-italic">${item.diffMinutes()} min ago</p>--%>
                                 <c:choose>
                                     <c:when test="${item.diffHours() == 0}">
                                         <p style="margin-right: 1rem"
@@ -337,9 +340,9 @@
                     <table class="table h-50">
                         <tbody>
                         <c:forEach items="${topcoins}" var="coin">
-                            <tr>
+                            <tr class="hoverable">
                                 <th><p class="font-weight-bold">${coin.symbol}</p></th>
-                                <td><p class="font-weight-bold">${coin.price}</p></td>
+                                <td><p class="font-weight-bold">${coin.price} $</p></td>
                                 <c:if test="${coin.percent_change_7d > 0}">
                                     <td><p style="color: green" class="font-weight-bold">${coin.percent_change_7d}%</p>
                                     </td>
@@ -362,7 +365,7 @@
                             <c:forEach items="${losercoins}" var="coin">
                                 <tr>
                                     <th><p class="font-weight-bold">${coin.symbol}</p></th>
-                                    <td><p class="font-weight-bold">${coin.price}</p></td>
+                                    <td><p class="font-weight-bold">${coin.price} $</p></td>
                                     <c:if test="${coin.percent_change_7d > 0}">
                                         <td><p style="color: green"
                                                class="font-weight-bold">${coin.percent_change_7d}%</p></td>

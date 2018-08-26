@@ -36,9 +36,10 @@ public class IcoServiceImplTest extends AbstractTest {
         List<Ico> finished = service.getFinished();
         List<Ico> active = service.getActiveIco();
 
-//        for (Ico ico : upcoming) {
-///          assertTrue(ico.getIcoStart().isAfter(LocalDateTime.now()));
-///        }
+      for (Ico ico : upcoming) {
+        assertTrue(ico.getIcoStart().isAfter(LocalDateTime.now()));
+      }
+
     }
 
     @Test
@@ -60,7 +61,6 @@ public class IcoServiceImplTest extends AbstractTest {
     @Test
     public void getByName() {
         Ico name = service.getByName("Fanfare");
-
         Ico ico = service.getByName("Digital Credit");
         assertEquals(name.getName(),"Fanfare");
     }

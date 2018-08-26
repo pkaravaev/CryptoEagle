@@ -34,7 +34,6 @@ public class CoinServiceImpl implements CoinService {
         this.restService = restService;
     }
 
-
     public List<Coin> getCoins(String... symbols) {
         log.info("get  coins : " + symbols);
         return repository.getBySymbols(Arrays.asList(symbols));
@@ -49,10 +48,12 @@ public class CoinServiceImpl implements CoinService {
         return false;
     }
 
+
     public Coin getCoin(String symbol) {
         log.info("get  coin  : " + symbol);
         return repository.getBySymbol(symbol);
     }
+
 
     public List<Coin> getTopGainCoins() {
         log.info("get top  coins");
@@ -76,6 +77,7 @@ public class CoinServiceImpl implements CoinService {
     public void updateCoins() {
         log.info("UPDATE COINS :" + LocalDateTime.now().toString());
         repository.deleteAll();
+        Coin coin = new Coin();
         List<Coin> allCoinsFromProvider = restService.getCoins();
         allCoinsFromProvider.stream().forEach( e -> e.setDataAvailable(isAvailable(e.getSymbol())));
         repository.saveCoins(allCoinsFromProvider);

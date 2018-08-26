@@ -49,6 +49,7 @@ public class CoinServiceImplTest extends AbstractTest{
 
     @Test
     public  void isAvalible(){
+
         boolean eth = service.isAvailable("ETH");
         boolean xxx = service.isAvailable("XXX");
         boolean btc = service.isAvailable("BTC");
@@ -62,6 +63,5 @@ public class CoinServiceImplTest extends AbstractTest{
         assertTrue(XRP);
         assertFalse(cvc);
         assertFalse(gdf);
-
     }
 }

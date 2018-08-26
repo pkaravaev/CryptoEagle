@@ -34,11 +34,11 @@ public class UserController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String logining(@RequestParam("email") String email, @RequestParam("password") String password, Model model) {
         AppUser appUser = userService.getByEmail(email);
-        if (appUser == null){
-            model.addAttribute("error","User not found!!!");
+        if (appUser == null) {
+            model.addAttribute("error", "User not found!!!");
             return "error-page";
         }
-        model.addAttribute("user", appUser);
+
         return "user-profile";
     }
 

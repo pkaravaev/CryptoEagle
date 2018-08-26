@@ -21,7 +21,6 @@ public class ItemServiceImplTest  extends AbstractTest{
     @Autowired
     public static void init(RestService service){
 
-
     }
 
     @Test
