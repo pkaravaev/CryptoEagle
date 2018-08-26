@@ -17,11 +17,6 @@ public class ItemServiceImplTest  extends AbstractTest{
     @Autowired
     ItemServiceImpl service;
 
-    @BeforeClass
-    @Autowired
-    public static void init(RestService service){
-
-    }
 
     @Test
     public void findall() {

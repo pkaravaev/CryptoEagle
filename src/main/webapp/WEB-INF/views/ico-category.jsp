@@ -39,8 +39,8 @@
         </tr>
         </thead>
         <tbody>
-
-        <h4 class="font-weight-bold text-center">${category}</h4>
+        <br/>
+        <h3 class="font-weight-bold text-center">${category}</h3>
         <c:forEach items="${icos}" var="ico">
             <tr  class="r">
                 <td><img class="rounded-circle" src="${ico.logolink} "></td>

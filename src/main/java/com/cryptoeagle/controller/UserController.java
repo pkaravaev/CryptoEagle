@@ -2,6 +2,8 @@ package com.cryptoeagle.controller;
 
 
 import com.cryptoeagle.entity.AppUser;
+import com.cryptoeagle.entity.Item;
+import com.cryptoeagle.service.abst.BlogService;
 import com.cryptoeagle.service.abst.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,9 @@ public class UserController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    BlogService blogService;
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login() {
@@ -38,7 +43,9 @@ public class UserController {
             model.addAttribute("error", "User not found!!!");
             return "error-page";
         }
-
+        List<Item> list = blogService.itemsFromBlogs(appUser.getId());
+        model.addAttribute("blogs", list);
+        model.addAttribute("user", appUser);
         return "user-profile";
     }
 

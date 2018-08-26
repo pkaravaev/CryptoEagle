@@ -63,11 +63,11 @@
                                             <small style="color: orangered">rating ${ico.rating}</small>
                                         </c:when>
 
-                                        <c:when test="${ico.rating > 4 && ico.rating < 4.5}">
+                                        <c:when test="${ico.rating >= 4 && ico.rating < 4.5}">
                                             <small style="color: orange">rating ${ico.rating}</small>
                                         </c:when>
 
-                                        <c:when test="${ico.rating > 4.5}">
+                                        <c:when test="${ico.rating >= 4.5}">
                                             <small style="color: green">rating ${ico.rating}</small>
                                         </c:when>
 
@@ -77,10 +77,7 @@
                             </div>
                             <div class="col">
                                 <h5 class="card-title text-center font-weight-bold">${ico.name}</h5>
-                                <%--<h6 class="card-title text-center font-italic">${ico.data.getCategories("name")}</h6>--%>
-                                <%--<h6 class="card-title text-center">--%>
-                                    <%--<small>${ico.data.getFinance("raised")}/${ico.data.getFinance("hardcap")}</small>--%>
-                                <%--</h6>--%>
+                                <%--<h6 class="card-title text-center font-weight-normal">${ico.data.getCategories("name")}</h6>--%>
                             </div>
                             <div class="col">
                                 <p class="text-right">
@@ -118,10 +115,7 @@
                             </div>
                             <div class="col">
                                 <h5 class="card-title text-center font-weight-bold">${ico.name}</h5>
-                                <%--<h6 class="card-title text-center font-italic">${ico.data.getCategories("name")}</h6>--%>
-                                <%--<h6 class="card-title text-center">--%>
-                                    <%--<small>${ico.data.getFinance("raised")}/${ico.data.getFinance("hardcap")}</small>--%>
-                                <%--</h6>--%>
+                                <%--<h6 class="card-title text-center font-weight-normal">${ico.data.getCategories("name")}</h6>--%>
                             </div>
                             <div class="col">
                                 <p class="text-right">
@@ -159,10 +153,7 @@
                             </div>
                             <div class="col">
                                 <h5 class="card-title text-center font-weight-bold">${ico.name}</h5>
-                                <%--<h6 class="card-title text-center font-italic">${ico.data.getCategories("name")}</h6>--%>
-                                <%--<h6 class="card-title text-center">--%>
-                                    <%--<small>${ico.data.getFinance("raised")}/${ico.data.getFinance("hardcap")}</small>--%>
-                                <%--</h6>--%>
+                                <%--<h6 class="card-title text-center font-weight-normal">${ico.data.getCategories("name")}</h6>--%>
                             </div>
                             <div class="col">
                                 <p class="text-right">

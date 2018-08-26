@@ -28,7 +28,6 @@ public class Item extends BaseEntity implements EntityWithPic {
 
     @Column(unique = true)
     private String title;
-    @Lob
     @NotNull
     private String description;
     @NotNull

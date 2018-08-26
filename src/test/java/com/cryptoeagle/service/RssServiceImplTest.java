@@ -23,6 +23,7 @@ public class RssServiceImplTest extends AbstractTest {
     @Test
     public void getItems() {
         List<Item> items = rssService.getItems("https://www.coindesk.com/feed/");
+
         assertTrue(items.size() > 10);
     }
 }

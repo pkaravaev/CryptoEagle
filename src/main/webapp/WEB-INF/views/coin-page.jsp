@@ -56,9 +56,8 @@
 
 
         <div class="col-8">
-
+            <br/>
             <div class="row">
-
                 <div class="col">
                     <div class="text-center">
                         <img style="height: 5rem" src="${coin.image}"

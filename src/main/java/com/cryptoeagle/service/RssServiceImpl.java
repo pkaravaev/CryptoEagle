@@ -9,6 +9,7 @@ import com.rometools.rome.feed.synd.SyndEntry;
 import com.rometools.rome.feed.synd.SyndFeed;
 import com.rometools.rome.io.SyndFeedInput;
 import com.rometools.rome.io.XmlReader;
+import org.jsoup.Jsoup;
 import org.springframework.stereotype.Service;
 
 import java.net.URL;
@@ -17,6 +18,8 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import static org.jsoup.nodes.Document.OutputSettings.Syntax.html;
 
 
 @Service
@@ -45,7 +48,13 @@ public class RssServiceImpl implements RssService {
                 item.setSource(Utils.cut(url));
                 item.setTitle(Utils.clearString(title));
                 item.setLink(link);
-//                item.setDescription(Utils.clearString(description));
+                String plain = Jsoup.parse(description).text();
+
+                if (plain.length() > 30){
+                    plain = plain.substring(0,30);
+                }
+
+                item.setDescription(plain);
                 item.setPublishDate(localDateTime);
 
                 itemList.add(item);

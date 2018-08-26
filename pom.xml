@@ -120,13 +120,12 @@
             <scope>test</scope>
         </dependency>
 
-
-        <!-- https://mvnrepository.com/artifact/org.springmodules/spring-modules-cache -->
-        <!--<dependency>-->
-        <!--<groupId>org.springmodules</groupId>-->
-        <!--<artifactId>spring-modules-cache</artifactId>-->
-        <!--<version>0.8</version>-->
-        <!--</dependency>-->
+        <!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.11.3</version>
+        </dependency>
 
 
         <!-- https://mvnrepository.com/artifact/net.sf.ehcache/ehcache -->

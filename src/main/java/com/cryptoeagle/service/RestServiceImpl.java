@@ -94,7 +94,6 @@ public class RestServiceImpl implements RestService {
 
     @Override
     public Idata getDataForIco(int id) {
-
         Idata idata = new Idata();
 
         try {
@@ -323,6 +322,8 @@ public class RestServiceImpl implements RestService {
         return chartList;
     }
 
+
+
     private static Chart converter(Candlestick candlestick) {
 
         Chart chart = new Chart();
@@ -342,6 +343,8 @@ public class RestServiceImpl implements RestService {
         return chart;
 
     }
+
+
 
     private Event convertJsonToEvent(JsonNode jsonNode) {
         Event event = new Event();
@@ -522,6 +525,8 @@ public class RestServiceImpl implements RestService {
         return idata;
     }
 
+
+
     private String buildHttpRequest(String param, String url) {
 
         String hmac384sign = HMAC384sign(PRIVATE_KEY, param);
@@ -549,6 +554,9 @@ public class RestServiceImpl implements RestService {
         else
             return old;
     }
+
+
+
 
     private String HMAC384sign(String private_key, String data) {
         try {

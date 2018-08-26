@@ -47,7 +47,7 @@
         $("#eagle").click(function () {
             window.location.href = "/";
         })
-        $("#loginForm").validate();
+        // $("#loginForm").validate();
     })
 </script>
 

@@ -31,9 +31,9 @@
             }else {
 
                 $(this).append("<div class=\"card-img-overlay  animated bounceInUp\">\n" +
-                    "                    <h4 class=\"card-title text-white brown darken-2\">" + title + " </h4>\n" +
+                    // "                    <h4 class=\"card-title text-white brown darken-2\">" + title + " </h4>\n" +
                     "                    <p class=\"card-text text-white brown darken-2\"> " + description + " </p>\n" +
-                    "                    <p class=\"card-text text-white brown darken-2\"> " + date + " </p>\n" +
+                    // "                    <p class=\"card-text text-white brown darken-2\"> " + date + " </p>\n" +
                     "                </div>")
             }
         })
@@ -87,6 +87,8 @@
                     </div>
 
                     <p class="title" hidden>${item.title}</p>
+
+                    <p class="description" hidden>${item.description}</p>
 
                     <p class="href" hidden>${item.link}</p>
 
