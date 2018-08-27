@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.Assert.*;
 
@@ -56,6 +57,8 @@ public class IcoServiceImplTest extends AbstractTest {
         for (Ico ico : active) {
             assertTrue(ico.getIcoEnd().isAfter(LocalDateTime.now()));
         }
+
+        List<Ico> collect = service.getActiveIco().stream().limit(6).collect(Collectors.toList());
     }
 
     @Test

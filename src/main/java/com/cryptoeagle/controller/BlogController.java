@@ -25,9 +25,9 @@ public class BlogController {
     @Autowired
     RssService rssService;
 
-    @RequestMapping("/blog/remove/{id}")
-    public String remove(@PathVariable int id) {
-        blogService.delete(id, 100);
+    @RequestMapping("/blog/remove")
+    public String remove(@RequestParam String name) {
+       //todo blogService delete byName
         return "redirect:/blogs";
     }
 
@@ -43,7 +43,6 @@ public class BlogController {
         if (items != null) {
             blog.setItems(items);
             blog.setAppUser(user);
-            items.stream().forEach(e -> e.setBlog(blog));
         }
         else
             throw new RssNewsNotFoundException(url);

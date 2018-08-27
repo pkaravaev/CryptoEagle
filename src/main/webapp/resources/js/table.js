@@ -54,11 +54,10 @@ function modal() {
     })
 
 
-    $(".btn").click(function () {
-        var url = $(this).val();
-        // window.location.href = "http://stackoverflow.com";
-        window.location.href = url;
-    })
+    // $(".btn").click(function () {
+    //     var url = $(this).val();
+    //     window.location.href = url;
+    // })
 
     $("#ico-card").click(function () {
 
@@ -67,6 +66,20 @@ function modal() {
             window.location.href = "/ico-page/" + name;
 
     })
+
+    $(".btn ").click(function () {
+
+        var blogName= $("#blogName").text();
+
+        $.ajax({
+            url: "/blog/remove",
+            type: 'GET',
+            data: {name: blogName}
+        })
+    })
+
+
+
 
     $("#blogButton").click(function () {
         var blogName = $("#defaultForm-name").val();

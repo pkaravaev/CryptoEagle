@@ -53,9 +53,6 @@ public class Item extends BaseEntity implements EntityWithPic {
         return  Math.abs(i);
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Blog blog;
-
     public Item(int id_item, String title, String description, LocalDateTime publishDate, String link) {
         super(id_item);
         this.title = title;

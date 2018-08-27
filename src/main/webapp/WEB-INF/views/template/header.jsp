@@ -112,23 +112,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/logout">Logout</a>
                 </li>
-                <%--<c:choose>--%>
-
-                    <%--<c:when test="${sessionScope.containsKey(user) == true}">--%>
-                        <%--<li class="nav-item">--%>
-                            <%--<a id="account" class="nav-link" href="#modalLRForm">My account</a>--%>
-                        <%--</li>--%>
-
-                    <%--</c:when>--%>
-
-                    <%--<c:when test="${sessionScope.get(user).toString() == null}">--%>
-                        <%--<li class="nav-item">--%>
-                            <%--<a id="modal" class="nav-link">Login / Register</a>--%>
-                        <%--</li>--%>
-
-                    <%--</c:when>--%>
-
-                <%--</c:choose>--%>
 
             </ul>
             <!-- Links -->

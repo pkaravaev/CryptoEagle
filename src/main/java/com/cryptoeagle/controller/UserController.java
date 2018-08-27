@@ -14,10 +14,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 
 import javax.servlet.http.HttpSession;
+import java.util.Enumeration;
 import java.util.List;
 
 @Controller
-//@SessionAttributes("user")
+@SessionAttributes("user")
 public class UserController {
 
     @Autowired
@@ -40,8 +41,10 @@ public class UserController {
         return "redirect:/";
     }
 
+
+
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String logining(@RequestParam("email") String email, @RequestParam("password") String password, Model model,HttpSession session) {
+    public String logining(@RequestParam("email") String email, @RequestParam("password") String password, Model model) {
         AppUser appUser = userService.getByEmail(email);
         if (appUser == null) {
             model.addAttribute("error", "User not found!!!");
@@ -49,16 +52,20 @@ public class UserController {
         }
         List<Item> list = blogService.itemsFromBlogs(appUser.getId());
         model.addAttribute("blogs", list);
-        session.setAttribute("user",appUser);
+        model.addAttribute("user", appUser);
         return "redirect:/user-profile";
     }
 
-    @RequestMapping("/user-profile")
-    public String userProfile(@SessionAttribute AppUser user, Model model) {
-        List<Blog> blogs = blogService.findall(user.getId());
 
+
+    @RequestMapping("/user-profile")
+    public String userProfile(@SessionAttribute("user") AppUser user, Model model) {
+
+        List<Blog> blogs = blogService.findall(user.getId());
         model.addAttribute("blogs", blogs);
+        model.addAttribute("name", user.getName());
         return "user-profile";
+
     }
 
     @RequestMapping("/users")
