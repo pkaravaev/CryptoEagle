@@ -1,5 +1,8 @@
 package com.cryptoeagle.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -19,7 +22,6 @@ import java.util.List;
 })
 @Getter
 @Setter
-@ToString
 public class Blog extends BaseEntity {
 
     public static final String GET_ALL_BY_USER = "Blog.getByUser";
@@ -29,11 +31,14 @@ public class Blog extends BaseEntity {
 
     @NotNull
     private String name;
+
     @Column(unique = true)
     private String url;
+
     @NotNull
     @OneToMany(mappedBy = "blog", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true, targetEntity = Item.class)
     private List<Item> items = new ArrayList<>();
+
     @NotNull
     @ManyToOne(cascade = CascadeType.ALL)
     private AppUser appUser;

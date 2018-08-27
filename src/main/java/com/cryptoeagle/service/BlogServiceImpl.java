@@ -4,6 +4,8 @@ import com.cryptoeagle.entity.Blog;
 import com.cryptoeagle.entity.Item;
 import com.cryptoeagle.repository.BlogRepository;
 import com.cryptoeagle.service.abst.BlogService;
+import com.cryptoeagle.service.abst.RestService;
+import com.cryptoeagle.service.abst.RssService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,24 +19,27 @@ public class BlogServiceImpl implements BlogService {
     private static final Logger log = Logger.getLogger(BlogServiceImpl.class.getName());
 
     @Autowired
-    BlogRepository repository;
+    BlogRepository blogRepository;
+
+    @Autowired
+    RssService rssService;
 
     @Override
     public void save(Blog blog, int user_id) {
         log.info("save blog");
-        repository.save(blog, user_id);
+        blogRepository.save(blog, user_id);
     }
 
     @Override
     public void update(Blog blog, int user_id) {
         log.info("update blog");
-        repository.save(blog, user_id);
+        blogRepository.save(blog, user_id);
     }
 
     @Override
     public List<Blog> findall(int user_id) {
         log.info("get all blogs by user");
-      return repository.getallByUser(user_id);
+      return blogRepository.getallByUser(user_id);
     }
 
     @Override
@@ -45,12 +50,24 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public void delete(int blog_id, int user_id) {
         log.info("delete blog");
-        repository.delete(blog_id,user_id);
+        blogRepository.delete(blog_id,user_id);
     }
 
     @Override
     public List<Blog> getAll() {
         log.info("get all blogs");
-        return repository.getAll();
+        return blogRepository.getAll();
+    }
+
+    @Override
+    public void updateFromRss() {
+        List<Blog> all = blogRepository.getAll();
+        for (Blog blog : all){
+            List<Item> items = rssService.getItems(blog.getUrl());
+            if (items != null) {
+                blog.setItems(items);
+                blogRepository.save(blog, blog.getAppUser().getId());
+            }
+        }
     }
 }

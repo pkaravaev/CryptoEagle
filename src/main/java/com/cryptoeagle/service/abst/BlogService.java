@@ -19,5 +19,7 @@ public interface BlogService {
 
     List<Item> itemsFromBlogs(int user_id);
 
+    public void updateFromRss();
+
 
 }

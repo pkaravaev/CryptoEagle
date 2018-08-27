@@ -103,12 +103,15 @@
 
 
                 <li class="nav-item">
-                    <a id="account" class="nav-link" href="#modalLRForm">My account</a>
+                    <a id="account" class="nav-link" href="/user-profile">My account</a>
                 </li>
                 <li class="nav-item">
                     <a id="modal" class="nav-link">Login / Register</a>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
                 <%--<c:choose>--%>
 
                     <%--<c:when test="${sessionScope.containsKey(user) == true}">--%>

@@ -43,7 +43,6 @@ public class RssServiceImpl implements RssService {
                 String link = entry.getLink();
                 String title = entry.getTitle();
 
-
                 Item item = new Item();
                 item.setSource(Utils.cut(url));
                 item.setTitle(Utils.clearString(title));

@@ -68,9 +68,21 @@ function modal() {
 
     })
 
+    $("#blogButton").click(function () {
+        var blogName = $("#defaultForm-name").val();
+        var blogUrl = $("#defaultForm-url").val();
+        $.ajax({
+            url: "/blog/add",
+            type: 'GET',
+            data: {name: blogName, url: blogUrl},
+            success: function () {
+            }
+        })
+        $('#modalLoginForm').modal('hide')
+    })
+
 
     $("#modal").click(function () {
-
         $("#modalLRForm").modal('show');
     })
 

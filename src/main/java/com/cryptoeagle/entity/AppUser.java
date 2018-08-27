@@ -1,5 +1,7 @@
 package com.cryptoeagle.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,7 +18,6 @@ import java.util.Objects;
 
 
 @Entity
-
 @NamedQueries({
         @NamedQuery(name = AppUser.DELETE, query = "DELETE FROM AppUser u WHERE u.id=:id"),
         @NamedQuery(name = AppUser.GET_ALL, query = "SELECT user FROM AppUser user"),
@@ -25,8 +26,6 @@ import java.util.Objects;
 })
 @Getter
 @Setter
-@ToString
-@EqualsAndHashCode
 public class AppUser extends BaseEntity {
 
     public static final String DELETE = "AppUser.delete";
@@ -48,8 +47,6 @@ public class AppUser extends BaseEntity {
     @OneToMany(mappedBy = "appUser", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Blog> blogs = new ArrayList<>();
 
-//    @OneToMany(mappedBy = "user")
-//    private List<Role> roles = new ArrayList<>();
 
     public AppUser(int id, String name, String email, String password, boolean enable, boolean admin) {
         super(id);

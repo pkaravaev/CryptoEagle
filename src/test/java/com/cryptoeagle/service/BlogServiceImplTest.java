@@ -62,4 +62,9 @@ public class BlogServiceImplTest extends AbstractTest {
         assertTrue(all.size() == 9);
     }
 
+    @Test
+    public void updateFromRss(){
+        service.updateFromRss();
+    }
+
 }

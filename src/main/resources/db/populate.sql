@@ -14,15 +14,15 @@ into
   Blog
   (appUser_id, name, url, id)
 values
-  (100, 'user1_blog1', 'user1_blog1.com', 1000),
-  (100, 'user1_blog2', 'user1_blog2.com', 1001),
-  (101, 'user2_blog1', 'user2_blog1.com', 1002),
-  (101, 'user2_blog2', 'user2_blog2.com', 1003),
-  (101, 'user2_blog3', 'user2_blog3.com', 1004),
-  (102, 'user3_blog1', 'user3_blog1.com', 1005),
-  (103, 'user4_blog1', 'user4_blog1.com', 1006),
-  (103, 'user4_blog2', 'user4_blog2.com', 1007),
-  (104, 'user5_blog1', 'user5_blog1.com', 1008);
+  (100, 'user1_blog1', 'https://www.coindesk.com/feed/', 1000),
+  (100, 'user1_blog2', 'https://www.ccn.com/feed/', 1001),
+  (101, 'user2_blog1', 'https://blog.blockchain.com/feed', 1002),
+  (101, 'user2_blog2', 'https://www.newsbtc.com/feed', 1003),
+  (101, 'user2_blog3', 'https://blog.spectrocoin.com/en/feed"', 1004);
+--   (102, 'user3_blog1', 'user3_blog1.com', 1005),
+--   (103, 'user4_blog1', 'user4_blog1.com', 1006),
+--   (103, 'user4_blog2', 'user4_blog2.com', 1007),
+--   (104, 'user5_blog1', 'user5_blog1.com', 1008);
 --
 --
 -- insert
