@@ -15,6 +15,10 @@ import java.util.List;
 
 @Repository
 public class BlogRepositoryJdbcImpl implements BlogRepository {
+    @Override
+    public void deleteByName(String name) {
+
+    }
 
     @Autowired
     private JdbcTemplate jdbcTemplate;

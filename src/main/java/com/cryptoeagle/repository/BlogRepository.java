@@ -11,6 +11,8 @@ public interface BlogRepository {
 
     void delete(int id, int user);
 
+    void deleteByName(String name);
+
     Blog get(int id, int user);
 
     List<Blog> getallByUser( int user);

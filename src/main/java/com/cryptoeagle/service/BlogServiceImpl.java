@@ -25,6 +25,12 @@ public class BlogServiceImpl implements BlogService {
     RssService rssService;
 
     @Override
+    public void deleteByName(String name) {
+        log.info("delete by name  blog : " + name);
+        blogRepository.deleteByName(name);
+    }
+
+    @Override
     public void save(Blog blog, int user_id) {
         log.info("save blog");
         blogRepository.save(blog, user_id);

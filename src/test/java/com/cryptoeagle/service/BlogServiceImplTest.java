@@ -57,6 +57,13 @@ public class BlogServiceImplTest extends AbstractTest {
     }
 
     @Test
+    public void deleteByName() {
+        service.delete(100,1000);
+        List<Blog> findallUser1 = service.findall(100);
+        assertTrue(findallUser1.size() == 1);
+    }
+
+    @Test
     public void getAll() {
         List<Blog> all = service.getAll();
         assertTrue(all.size() == 9);

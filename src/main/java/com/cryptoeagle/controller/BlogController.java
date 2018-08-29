@@ -27,8 +27,8 @@ public class BlogController {
 
     @RequestMapping("/blog/remove")
     public String remove(@RequestParam String name) {
-       //todo blogService delete byName
-        return "redirect:/blogs";
+        blogService.deleteByName(name);
+        return "redirect:/user-profile";
     }
 
     @RequestMapping("/blog/add")

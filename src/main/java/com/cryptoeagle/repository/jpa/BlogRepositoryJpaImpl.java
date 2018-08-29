@@ -14,8 +14,12 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class BlogRepositoryJpaImpl implements BlogRepository {
 
+
     @PersistenceContext
     EntityManager em;
+
+
+
 
     @Override
     public List<Blog> getallByUser(int user_Id) {
@@ -44,6 +48,14 @@ public class BlogRepositoryJpaImpl implements BlogRepository {
                 .setParameter("blog_id", blog_id)
                 .setParameter("user_id", user_id)
                 .executeUpdate();
+    }
+
+
+    @Override
+    public void deleteByName(String name) {
+      em.createNamedQuery(Blog.DELETE_BY_NAME)
+              .setParameter("blogName",name)
+              .executeUpdate();
     }
 
     @Override

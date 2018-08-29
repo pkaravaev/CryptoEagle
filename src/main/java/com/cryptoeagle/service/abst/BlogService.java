@@ -13,6 +13,8 @@ public interface BlogService {
 
     void delete(int blog_int, int user_id);
 
+    void deleteByName(String name);
+
     List<Blog> findall(int user_id);
 
     List<Blog> getAll();
