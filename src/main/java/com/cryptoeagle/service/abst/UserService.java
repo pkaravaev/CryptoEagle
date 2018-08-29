@@ -1,24 +1,24 @@
 package com.cryptoeagle.service.abst;
 
-import com.cryptoeagle.entity.AppUser;
+import com.cryptoeagle.entity.User;
 
 import java.util.List;
 
 public interface UserService {
 
-    List<AppUser> findAll();
+    List<User> findAll();
 
-    void saveAndUpdate(AppUser appUser);
+    void saveAndUpdate(User user);
 
-    AppUser get(int id);
+    User get(int id);
 
-    AppUser getByEmail(String email);
+    User getByEmail(String email);
 
     void delete(int id);
 
-    void delete(AppUser appUser);
+    void delete(User user);
 
     void deleteAll();
 
-    AppUser findAmin();
+    User findAmin();
 }

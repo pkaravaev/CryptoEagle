@@ -4,7 +4,6 @@ import com.cryptoeagle.entity.Blog;
 import com.cryptoeagle.entity.Item;
 import com.cryptoeagle.repository.BlogRepository;
 import com.cryptoeagle.service.abst.BlogService;
-import com.cryptoeagle.service.abst.RestService;
 import com.cryptoeagle.service.abst.RssService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -72,7 +71,7 @@ public class BlogServiceImpl implements BlogService {
             List<Item> items = rssService.getItems(blog.getUrl());
             if (items != null) {
                 blog.setItems(items);
-                blogRepository.save(blog, blog.getAppUser().getId());
+                blogRepository.save(blog, blog.getUser().getId());
             }
         }
     }

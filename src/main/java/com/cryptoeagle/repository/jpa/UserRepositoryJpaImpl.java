@@ -1,14 +1,12 @@
 package com.cryptoeagle.repository.jpa;
 
-import com.cryptoeagle.entity.AppUser;
+import com.cryptoeagle.entity.User;
 import com.cryptoeagle.exception.UserNotFoundException;
 import com.cryptoeagle.repository.UserRepository;
-import org.glassfish.jersey.jaxb.internal.XmlJaxbElementProvider;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
@@ -21,28 +19,28 @@ public class UserRepositoryJpaImpl implements UserRepository {
     EntityManager em;
 
     @Override
-    public AppUser saveAndUpdate(AppUser appUser) {
-        if (appUser.isNew()) {
-            em.persist(appUser);
-            return appUser;
+    public User saveAndUpdate(User user) {
+        if (user.isNew()) {
+            em.persist(user);
+            return user;
         } else {
-            return em.merge(appUser);
+            return em.merge(user);
         }
     }
 
     @Override
     @Transactional
     public void delete(int id) {
-        em.createNamedQuery(AppUser.DELETE)
+        em.createNamedQuery(User.DELETE)
                 .setParameter("id", id)
                 .executeUpdate();
     }
 
     @Override
-    public AppUser get(int id) {
-        AppUser user;
+    public User get(int id) {
+        User user;
         try {
-            user = (AppUser) em.createNamedQuery(AppUser.GET_BY_ID)
+            user = (User) em.createNamedQuery(User.GET_BY_ID)
                     .setParameter("id", id)
                     .getSingleResult();
         }catch (Exception e){
@@ -54,10 +52,10 @@ public class UserRepositoryJpaImpl implements UserRepository {
     }
 
     @Override
-    public AppUser getByEmail(String email) {
-        AppUser user;
+    public User getByEmail(String email) {
+        User user;
         try {
-            user = em.createNamedQuery(AppUser.GET_BY_EMAIL, AppUser.class)
+            user = em.createNamedQuery(User.GET_BY_EMAIL, User.class)
                     .setParameter("email", email)
                     .getSingleResult();
         } catch (Exception ex) {
@@ -67,12 +65,12 @@ public class UserRepositoryJpaImpl implements UserRepository {
     }
 
     @Override
-    public List<AppUser> getall() {
-        return em.createNamedQuery(AppUser.GET_ALL, AppUser.class).getResultList();
+    public List<User> getall() {
+        return em.createNamedQuery(User.GET_ALL, User.class).getResultList();
     }
 
     @Override
-    public List<AppUser> getAllWithBlogs() {
+    public List<User> getAllWithBlogs() {
         return null;
     }
 }

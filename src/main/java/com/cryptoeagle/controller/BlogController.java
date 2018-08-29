@@ -1,7 +1,7 @@
 package com.cryptoeagle.controller;
 
 
-import com.cryptoeagle.entity.AppUser;
+import com.cryptoeagle.entity.User;
 import com.cryptoeagle.entity.Blog;
 import com.cryptoeagle.entity.Item;
 import com.cryptoeagle.exception.RssNewsNotFoundException;
@@ -9,10 +9,8 @@ import com.cryptoeagle.service.abst.BlogService;
 import com.cryptoeagle.service.abst.RssService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -32,17 +30,17 @@ public class BlogController {
     }
 
     @RequestMapping("/blog/add")
-    public String add(@RequestParam String name, @RequestParam String url, @SessionAttribute("user") AppUser user) {
+    public String add(@RequestParam String name, @RequestParam String url, @SessionAttribute("user") User user) {
 
         Blog blog = new Blog();
         blog.setName(name);
         blog.setUrl(url);
-        blog.setAppUser(user);
+        blog.setUser(user);
 
         List<Item> items = rssService.getItems(url);
         if (items != null) {
             blog.setItems(items);
-            blog.setAppUser(user);
+            blog.setUser(user);
         }
         else
             throw new RssNewsNotFoundException(url);

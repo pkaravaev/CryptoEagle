@@ -46,7 +46,6 @@ function modal() {
         $(this).removeClass("animated shake");
     })
 
-
     $(".r").mouseenter(function () {
         $(this).css('cursor', 'pointer');
         $(this).addClass("animated shake")
@@ -54,32 +53,20 @@ function modal() {
     })
 
 
-    // $(".btn").click(function () {
-    //     var url = $(this).val();
-    //     window.location.href = url;
-    // })
-
     $("#ico-card").click(function () {
-
         var name = $(this).find(".href").text();
         if (name != 0)
             window.location.href = "/ico-page/" + name;
-
     })
 
-    $(".btn ").click(function () {
-
+    $("#blogDelete ").click(function () {
         var blogName= $("#blogName").text();
-
         $.ajax({
             url: "/blog/remove",
             type: 'GET',
             data: {name: blogName}
         })
     })
-
-
-
 
     $("#blogButton").click(function () {
         var blogName = $("#defaultForm-name").val();
@@ -94,20 +81,15 @@ function modal() {
         $('#modalLoginForm').modal('hide')
     })
 
-
     $("#modal").click(function () {
         $("#modalLRForm").modal('show');
     })
 
     $("#log").click(function () {
         var x = $(this).parent().parent().find("input");
-
         var e = x[0].value;
         var p = x[1].value;
-
         var suc = function () {
-
-            alert("success");
             $("#modalLRForm").modal('hide');
         }
 
@@ -128,19 +110,13 @@ function modal() {
         var p = x[2].value;
         var r = x[3].value;
 
-        var er = function () {
-
-            alert("Error")
-            $(this).hide();
-        }
-
-
         $.ajax({
             url: "/register",
             type: 'POST',
-            data: {name: n, email: e, password: p, password_again: r},
-            error: er()
+            data: {name: n, email: e, password: p, password_again: r}
         })
+
+        $("#modalLRForm").modal('hide');
 
     })
 

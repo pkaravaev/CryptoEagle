@@ -6,7 +6,6 @@
 
     $(document).ready(function () {
 
-
         $(".card").mouseenter(function () {
             $(this).css('cursor', 'pointer');
             $(this).addClass("animated shake")
@@ -20,7 +19,6 @@
 
         $("#exampleModalCenter").show();
 
-
     })
 </script>
 
@@ -31,18 +29,18 @@
 <div class="container">
 
     <div class="row">
+
         <div class="col">
             <h1 class="text-right font-weight-normal"> Welcome ${name}</h1>
         </div>
+
         <div class="col">
             <div class="text-left">
-                <a  class="btn del btn-brown btn-rounded mb-4 hoverable" data-toggle="modal" data-target="#modalLoginForm">Add
+                <a id="addBlogButton"  class="btn del btn-brown btn-rounded mb-4 hoverable" data-toggle="modal" data-target="#modalLoginForm">Add
                     Blog</a>
             </div>
         </div>
     </div>
-
-
 
     <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
          aria-hidden="true">
@@ -91,8 +89,6 @@
                     </div>
 
                     <div class="col">
-                            <%--<h5 class="text-left font-weight-bold"> ${blog.name}</h5>--%>
-
                         <p id="blogName" class="text-center font-weight-bold">${blog.name}</p>
                     </div>
 
@@ -102,7 +98,7 @@
 
                     <div class="col">
                         <div class="float-right">
-                            <button type="button-right" class="btn btn-brown">Delete</button>
+                            <button id="blogDelete" type="button-right" class="btn btn-brown">Delete</button>
                         </div>
                     </div>
 

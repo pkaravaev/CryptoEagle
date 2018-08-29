@@ -67,17 +67,20 @@
 
             <!-- Links -->
             <ul class="navbar-nav ">
+                <%--<li class="nav-item">--%>
+                <%--<a class="nav-link" href="/beginners">BEGINERS GUIDE</a>--%>
+                <%--</li>--%>
                 <li class="nav-item">
-                    <a class="nav-link" href="/beginners">BEGINERS GUIDE</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/news">NEWS</a>
+                    <a class="nav-link" href="/news">CRYPTO NEWS</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/coin-list">COINS</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/ico-list">LIST</a>
+                    <a class="nav-link" href="/ico-list">ICO LIST</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/ico-stats">ICO STATS</a>
                 </li>
             </ul>
             <!-- Links -->
@@ -88,9 +91,7 @@
             </a>
             <!-- Links -->
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="/ico-stats">STATS</a>
-                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="/whitelist">WHITELIST</a>
                 </li>

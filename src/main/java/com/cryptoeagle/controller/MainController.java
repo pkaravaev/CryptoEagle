@@ -4,17 +4,14 @@ package com.cryptoeagle.controller;
 import com.cryptoeagle.entity.*;
 import com.cryptoeagle.exception.UserNotFoundException;
 import com.cryptoeagle.service.abst.*;
-import org.openjdk.jmh.annotations.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import java.security.Principal;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Controller
 @SessionAttributes("user")
@@ -48,7 +45,6 @@ public class MainController {
     public Blog contructBlog() {
         return new Blog();
     }
-
 
     @RequestMapping("/analitics")
     public String analitics() {
@@ -141,7 +137,7 @@ public class MainController {
 
     @RequestMapping("/blogs")
     public String blogs(Model model) {
-        AppUser user = (AppUser) model.asMap().get("user");
+        User user = (User) model.asMap().get("user");
         List<Blog> blogs = blogService.findall(user.getId());
         model.addAttribute("blogs", blogs);
         return "blogs";
@@ -164,12 +160,16 @@ public class MainController {
         return "test2";
     }
 
+    @RequestMapping("/admin")
+    public String admin(Model model, Principal principal , Authentication authentication) {
+
+        return "admin-page";
+    }
 
     @ExceptionHandler({UserNotFoundException.class})
     public String handle(Model model) {
          model.addAttribute("error", "User not found");
         return "error-page";
     }
-
 
 }

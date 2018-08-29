@@ -1,6 +1,6 @@
 package com.cryptoeagle.service;
 
-import com.cryptoeagle.entity.AppUser;
+import com.cryptoeagle.entity.User;
 import com.cryptoeagle.exception.UserNotFoundException;
 import com.cryptoeagle.repository.UserRepository;
 
@@ -26,27 +26,27 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<AppUser> findAll() {
+    public List<User> findAll() {
         log.info("get all users");
         return repository.getall();
     }
 
     @Override
-    public void saveAndUpdate(AppUser appUser) {
-        log.info("save appUser");
-        repository.saveAndUpdate(appUser);
+    public void saveAndUpdate(User user) {
+        log.info("save user");
+        repository.saveAndUpdate(user);
     }
 
     @Override
-    public AppUser get(int id) {
+    public User get(int id) {
         log.info("get user id", id);
         return repository.get(id);
     }
 
     @Override
-    public AppUser getByEmail(String email) {
+    public User getByEmail(String email) {
         log.info("get user id", email);
-        AppUser user = repository.getByEmail(email);
+        User user = repository.getByEmail(email);
         if (user == null){
             throw  new UserNotFoundException("User with email " + email + " not found!!!");
         }
@@ -60,13 +60,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void delete(AppUser appUser) {
-        log.info("delete appUser");
-        repository.delete(appUser.getId());
+    public void delete(User user) {
+        log.info("delete user");
+        repository.delete(user.getId());
     }
 
     @Override
-    public AppUser findAmin() {
+    public User findAmin() {
         log.info("find admin user");
         return repository.getall().stream().filter(e -> e.isAdmin() == true).findFirst().get();
     }

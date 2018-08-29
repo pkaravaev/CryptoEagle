@@ -17,14 +17,14 @@
                 <div class="form-group">
                     <label for="name" class="col-sm-2 control-label">Name:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="name" name="name" value="${appUser.name}" />
+                        <input type="text" class="form-control" id="name" name="name" value="${user.name}" />
 
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="email" class="col-sm-2 control-label">Email:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="email" name="email" value="${appUser.email}" />
+                        <input type="text" class="form-control" id="email" name="email" value="${user.email}" />
                     </div>
                 </div>
                 <div class="form-group">

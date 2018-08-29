@@ -1,6 +1,6 @@
 package com.cryptoeagle.repository.jdbc;
 
-import com.cryptoeagle.entity.AppUser;
+import com.cryptoeagle.entity.User;
 import com.cryptoeagle.entity.Blog;
 import com.cryptoeagle.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,19 +34,19 @@ public class UserRepositoryJdbcImpl implements UserRepository {
 
     private static int id = 200;
 
-    private RowMapper<AppUser> rowMapper = BeanPropertyRowMapper.newInstance(AppUser.class);
+    private RowMapper<User> rowMapper = BeanPropertyRowMapper.newInstance(User.class);
 
     @Override
-    public AppUser saveAndUpdate(AppUser appUser) {
+    public User saveAndUpdate(User user) {
 
-        if (appUser.isNew()) {
-            jdbcTemplate.update("INSERT INTO appuser (id, name, email, password, enable, admin) values (?,?,?,?,?,?)", id++, appUser.getName(), appUser.getEmail()
-                    , appUser.getPassword(), appUser.isEnable(), appUser.isAdmin());
+        if (user.isNew()) {
+            jdbcTemplate.update("INSERT INTO appuser (id, name, email, password, enable, admin) values (?,?,?,?,?,?)", id++, user.getName(), user.getEmail()
+                    , user.getPassword(), user.isEnable(), user.isAdmin());
         } else {
-            jdbcTemplate.update("UPDATE appuser SET id = ?, name =?, email = ?, password=?, enable=?,admin = ? WHERE id =?", appUser.getId(), appUser.getName(), appUser.getEmail()
-                    , appUser.getPassword(), appUser.isEnable(), appUser.isAdmin(), appUser.getId());
+            jdbcTemplate.update("UPDATE appuser SET id = ?, name =?, email = ?, password=?, enable=?,admin = ? WHERE id =?", user.getId(), user.getName(), user.getEmail()
+                    , user.getPassword(), user.isEnable(), user.isAdmin(), user.getId());
         }
-        return appUser;
+        return user;
     }
 
     @Override
@@ -55,42 +55,42 @@ public class UserRepositoryJdbcImpl implements UserRepository {
     }
 
     @Override
-    public AppUser get(int id) {
+    public User get(int id) {
         UserRowMapper userRowMapper = new UserRowMapper();
-        AppUser appUser = jdbcTemplate.queryForObject("SELECT * FROM appuser WHERE id=?", rowMapper, id);
-        return appUser;
+        User user = jdbcTemplate.queryForObject("SELECT * FROM appuser WHERE id=?", rowMapper, id);
+        return user;
     }
 
     @Override
-    public AppUser getByEmail(String email) {
+    public User getByEmail(String email) {
         UserRowMapper userRowMapper = new UserRowMapper();
-        AppUser appUser = jdbcTemplate.queryForObject("SELECT * FROM appuser WHERE email=?", rowMapper, email);
-        return appUser;
+        User user = jdbcTemplate.queryForObject("SELECT * FROM appuser WHERE email=?", rowMapper, email);
+        return user;
     }
 
     @Override
-    public List<AppUser> getall() {
+    public List<User> getall() {
         UserRowMapper userRowMapper = new UserRowMapper();
-        List<AppUser> appUserList = jdbcTemplate.query("SELECT * FROM appuser ", userRowMapper);
-        return appUserList;
+        List<User> userList = jdbcTemplate.query("SELECT * FROM appuser ", userRowMapper);
+        return userList;
     }
 
     @Override
-    public List<AppUser> getAllWithBlogs() {
+    public List<User> getAllWithBlogs() {
         DeeExtractSet deeExtractSet = new DeeExtractSet();
-        List<AppUser> appUserList = jdbcTemplate.query("SELECT * FROM appuser  INNER JOIN blog b on appuser.id = b.id", deeExtractSet);
-        return appUserList;
+        List<User> userList = jdbcTemplate.query("SELECT * FROM appuser  INNER JOIN blog b on appuser.id = b.id", deeExtractSet);
+        return userList;
     }
 
-    class DeeExtractSet implements ResultSetExtractor<List<AppUser>> {
+    class DeeExtractSet implements ResultSetExtractor<List<User>> {
         @Override
-        public List<AppUser> extractData(ResultSet rs) throws SQLException, DataAccessException {
+        public List<User> extractData(ResultSet rs) throws SQLException, DataAccessException {
 
-            List<AppUser> appUsers = new ArrayList<>();
+            List<User> users = new ArrayList<>();
 
-            AppUser appUser = new AppUser();
+            User user = new User();
 
-            if (appUser.isNew()) {
+            if (user.isNew()) {
 
                 int user_id = rs.getInt(1);
                 String user_name = rs.getString(2);
@@ -103,23 +103,23 @@ public class UserRepositoryJdbcImpl implements UserRepository {
                 String blog_name = rs.getString(8);
                 String blog_url = rs.getString(9);
 
-                appUser.setId(user_id);
-                appUser.setName(user_name);
-                appUser.setEmail(user_email);
-                appUser.setPassword(user_password);
-                appUser.setEnable(user_enable);
-                appUser.setAdmin(user_admin);
+                user.setId(user_id);
+                user.setName(user_name);
+                user.setEmail(user_email);
+                user.setPassword(user_password);
+                user.setEnable(user_enable);
+                user.setAdmin(user_admin);
 
                 Blog blog = new Blog();
                 blog.setId(blog_id);
                 blog.setName(blog_name);
                 blog.setUrl(blog_url);
-                blog.setAppUser(appUser);
+                blog.setUser(user);
 
 
-                List<Blog> blogs = appUser.getBlogs();
+                List<Blog> blogs = user.getBlogs();
                 blogs.add(blog);
-                appUser.setBlogs(blogs);
+                user.setBlogs(blogs);
 
             } else {
                 int blog_id = rs.getInt(7);
@@ -129,10 +129,10 @@ public class UserRepositoryJdbcImpl implements UserRepository {
                 blog.setId(blog_id);
                 blog.setName(blog_name);
                 blog.setUrl(blog_url);
-                blog.setAppUser(appUser);
-                List<Blog> blogs = appUser.getBlogs();
+                blog.setUser(user);
+                List<Blog> blogs = user.getBlogs();
                 blogs.add(blog);
-                appUser.setBlogs(blogs);
+                user.setBlogs(blogs);
 
             }
 
@@ -141,15 +141,15 @@ public class UserRepositoryJdbcImpl implements UserRepository {
             }
 
 
-            return appUsers;
+            return users;
         }
 
     }
 
-    class UserRowMapper implements RowMapper<AppUser> {
+    class UserRowMapper implements RowMapper<User> {
         @Override
-        public AppUser mapRow(ResultSet rs, int rowNum) throws SQLException {
-            AppUser appUser = new AppUser();
+        public User mapRow(ResultSet rs, int rowNum) throws SQLException {
+            User user = new User();
             int id_user = rs.getInt("id_user");
             String name = rs.getString("name");
             String email = rs.getString("email");
@@ -157,14 +157,14 @@ public class UserRepositoryJdbcImpl implements UserRepository {
             boolean enable = rs.getBoolean("enable");
             boolean admin = rs.getBoolean("admin");
 
-            appUser.setId(id_user);
-            appUser.setName(name);
-            appUser.setEmail(email);
-            appUser.setPassword(password);
-            appUser.setEnable(enable);
-            appUser.setAdmin(admin);
+            user.setId(id_user);
+            user.setName(name);
+            user.setEmail(email);
+            user.setPassword(password);
+            user.setEnable(enable);
+            user.setAdmin(admin);
 
-            return appUser;
+            return user;
 
         }
     }

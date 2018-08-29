@@ -1,19 +1,19 @@
 package com.cryptoeagle;
 
-import com.cryptoeagle.entity.AppUser;
+import com.cryptoeagle.entity.User;
 import com.cryptoeagle.entity.Blog;
 
 public class TestData {
     // Users test data
-    public static final AppUser USER1 = new AppUser(100, "username1", "user1@mail.ru", "user1password", true, false);
-    public static final AppUser USER2 = new AppUser(101, "username2", "user2@mail.ru", "user2password", true, false);
-    public static final AppUser USER3 = new AppUser(102, "username3", "user3@mail.ru", "user3password", true, true);
-    public static final AppUser USER4 = new AppUser(103, "username4", "user4@mail.ru", "user4password", true, false);
-    public static final AppUser USER5 = new AppUser(104, "username5", "user5@mail.ru", "user5password", true, false);
+    public static final User USER1 = new User(100, "username1", "user1@mail.ru", "user1password", true, false);
+    public static final User USER2 = new User(101, "username2", "user2@mail.ru", "user2password", true, false);
+    public static final User USER3 = new User(102, "username3", "user3@mail.ru", "user3password", true, true);
+    public static final User USER4 = new User(103, "username4", "user4@mail.ru", "user4password", true, false);
+    public static final User USER5 = new User(104, "username5", "user5@mail.ru", "user5password", true, false);
 
-    public static final AppUser USER6 = new AppUser(105, "username6", "user6@mail.ru", "user6password", true, false);
+    public static final User USER6 = new User(105, "username6", "user6@mail.ru", "user6password", true, false);
 
-    public static final AppUser USER4_UPDATE = new AppUser(103, "username4updated", "user4updated@mail.ru", "user4updatedpassword", false, false);
+    public static final User USER4_UPDATE = new User(103, "username4updated", "user4updated@mail.ru", "user4updatedpassword", false, false);
 
     public static final int USERS_COUNT = 5;
 
@@ -40,7 +40,7 @@ public class TestData {
 
     static {
 
-        BLOG3_UPDATE.setAppUser(USER3);
+        BLOG3_UPDATE.setUser(USER3);
     }
 
     public static final int BLOG_COUNT = 9;

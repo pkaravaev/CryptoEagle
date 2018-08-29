@@ -1,7 +1,7 @@
 package com.cryptoeagle.controller;
 
 
-import com.cryptoeagle.entity.AppUser;
+import com.cryptoeagle.entity.User;
 import com.cryptoeagle.entity.Blog;
 import com.cryptoeagle.entity.Item;
 import com.cryptoeagle.service.abst.BlogService;
@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 
 import javax.servlet.http.HttpSession;
-import java.util.Enumeration;
 import java.util.List;
 
 @Controller
@@ -41,25 +40,21 @@ public class UserController {
         return "redirect:/";
     }
 
-
-
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String logining(@RequestParam("email") String email, @RequestParam("password") String password, Model model) {
-        AppUser appUser = userService.getByEmail(email);
-        if (appUser == null) {
+        User user = userService.getByEmail(email);
+        if (user == null) {
             model.addAttribute("error", "User not found!!!");
             return "error-page";
         }
-        List<Item> list = blogService.itemsFromBlogs(appUser.getId());
+        List<Item> list = blogService.itemsFromBlogs(user.getId());
         model.addAttribute("blogs", list);
-        model.addAttribute("user", appUser);
+        model.addAttribute("user", user);
         return "redirect:/user-profile";
     }
 
-
-
     @RequestMapping("/user-profile")
-    public String userProfile(@SessionAttribute("user") AppUser user, Model model) {
+    public String userProfile(@SessionAttribute("user") User user, Model model) {
 
         List<Blog> blogs = blogService.findall(user.getId());
         model.addAttribute("blogs", blogs);
@@ -70,8 +65,8 @@ public class UserController {
 
     @RequestMapping("/users")
     public String users(Model model) {
-        List<AppUser> appUsers = userService.findAll();
-        model.addAttribute("users", appUsers);
+        List<User> users = userService.findAll();
+        model.addAttribute("users", users);
         return "users";
     }
 
@@ -83,8 +78,8 @@ public class UserController {
 
     @RequestMapping("/users/edit/{id}")
     public String editUsers(@PathVariable int id, Model model) {
-        AppUser appUser = userService.get(id);
-        model.addAttribute("user", appUser);
+        User user = userService.get(id);
+        model.addAttribute("user", user);
         return "register";
     }
 
@@ -98,10 +93,10 @@ public class UserController {
                              @RequestParam String email,
                              @RequestParam String password,
                              @RequestParam String password_again, Model model) {
-        AppUser appUser = new AppUser(name, email, password, true, false);
+        User user = new User(name, email, password, true, false);
         model.addAttribute("register", true);
         model.addAttribute("name", name);
-        userService.saveAndUpdate(appUser);
+        userService.saveAndUpdate(user);
         return "redirect:/";
     }
 }

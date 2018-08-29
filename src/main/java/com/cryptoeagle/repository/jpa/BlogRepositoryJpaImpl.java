@@ -1,6 +1,6 @@
 package com.cryptoeagle.repository.jpa;
 
-import com.cryptoeagle.entity.AppUser;
+import com.cryptoeagle.entity.User;
 import com.cryptoeagle.entity.Blog;
 import com.cryptoeagle.repository.BlogRepository;
 import org.springframework.stereotype.Repository;
@@ -33,8 +33,8 @@ public class BlogRepositoryJpaImpl implements BlogRepository {
     public Blog save(Blog blog, int user_id) {
 
         if (blog.isNew()) {
-            AppUser user = em.find(AppUser.class, user_id);
-            blog.setAppUser(user);
+            User user = em.find(User.class, user_id);
+            blog.setUser(user);
             em.persist(blog);
             return blog;
         } else {
