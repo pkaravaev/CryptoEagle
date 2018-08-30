@@ -57,22 +57,21 @@
                                 <br/>
                                 <br/>
                                 <p class="text-left">
-
                                     <c:choose>
-                                        <c:when test="${ico.rating < 4} ">
-                                            <small style="color: orangered">rating ${ico.rating}</small>
+
+                                        <c:when test="${ico.rating < 4}">
+                                            <small class="font-weight-bold" style="color: #bd2130">rating ${ico.rating}</small>
                                         </c:when>
 
                                         <c:when test="${ico.rating >= 4 && ico.rating < 4.5}">
-                                            <small style="color: orange">rating ${ico.rating}</small>
+                                            <small class="font-weight-bold" style="color: orange">rating ${ico.rating}</small>
                                         </c:when>
 
                                         <c:when test="${ico.rating >= 4.5}">
-                                            <small style="color: green">rating ${ico.rating}</small>
+                                            <small class="font-weight-bold" style="color: green">rating ${ico.rating}</small>
                                         </c:when>
 
                                     </c:choose>
-
                                 </p>
                             </div>
                             <div class="col">
@@ -110,7 +109,21 @@
                                 <br/>
                                 <br/>
                                 <p class="text-left">
-                                    <small>rating ${ico.rating}</small>
+                                    <c:choose>
+
+                                        <c:when test="${ico.rating < 4}">
+                                            <small class="font-weight-bold" style="color: #bd2130">rating ${ico.rating}</small>
+                                        </c:when>
+
+                                        <c:when test="${ico.rating >= 4 && ico.rating < 4.5}">
+                                            <small class="font-weight-bold" style="color: orange">rating ${ico.rating}</small>
+                                        </c:when>
+
+                                        <c:when test="${ico.rating >= 4.5}">
+                                            <small class="font-weight-bold" style="color: green">rating ${ico.rating}</small>
+                                        </c:when>
+
+                                    </c:choose>
                                 </p>
                             </div>
                             <div class="col">
@@ -148,7 +161,19 @@
                                 <br/>
                                 <br/>
                                 <p class="text-left">
-                                    <small>rating ${ico.rating}</small>
+                                    <c:choose>
+                                        <c:when test="${ico.rating < 4}">
+                                            <small class="font-weight-bold" style="color: #bd2130">rating ${ico.rating}</small>
+                                        </c:when>
+
+                                        <c:when test="${ico.rating >= 4 && ico.rating < 4.5}">
+                                            <small class="font-weight-bold" style="color: orange">rating ${ico.rating}</small>
+                                        </c:when>
+
+                                        <c:when test="${ico.rating >= 4.5}">
+                                            <small class="font-weight-bold" style="color: green">rating ${ico.rating}</small>
+                                        </c:when>
+                                    </c:choose>
                                 </p>
                             </div>
                             <div class="col">

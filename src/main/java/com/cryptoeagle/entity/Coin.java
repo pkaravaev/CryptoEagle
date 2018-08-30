@@ -35,7 +35,7 @@ public class Coin extends BaseEntity {
 
     @Column(unique = true)
     private String name;
-    @Column(unique = true)
+    @Column
     private String image;
     @Column(unique = true)
     private String symbol;

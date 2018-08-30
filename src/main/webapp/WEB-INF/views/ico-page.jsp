@@ -18,6 +18,10 @@
         font-weight: bold;
     }
 
+    .navbar-light .navbar-nav .nav-link {
+        color: red;
+    }
+
 
 </style>
 
@@ -185,11 +189,11 @@
             <br/>
             <ul  class="nav nav-pills  justify-content-center mb-3" id="pills-tab" role="tablist">
                 <li  class="nav-item">
-                    <a class="nav-link active" id="pills-finance-tab" data-toggle="pill" href="#pills-finance" role="tab"
+                    <a class="nav-link active brown-text font-weight-bold" id="pills-finance-tab" data-toggle="pill" href="#pills-finance" role="tab"
                        aria-controls="pills-home" aria-selected="true">Finance</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " id="pills-team-tab" data-toggle="pill" href="#pills-team" role="tab"
+                    <a class="nav-link brown-text font-weight-bold " id="pills-team-tab" data-toggle="pill" href="#pills-team" role="tab"
                        aria-controls="pills-team" aria-selected="false">Teams</a>
                 </li>
             </ul>

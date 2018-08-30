@@ -38,6 +38,7 @@ public class CryptoController {
 
     @RequestMapping("/ico-list")
     public String icoList(Model model) {
+
         List<Ico> activeIco = icoService.getActiveIco().stream().limit(10).collect(Collectors.toList());
         List<Ico> upcoming = icoService.getUpcoming().stream().limit(10).collect(Collectors.toList());
         List<Ico> finished = icoService.getFinished().stream().limit(10).collect(Collectors.toList());
@@ -45,6 +46,7 @@ public class CryptoController {
         model.addAttribute("activeIco", activeIco);
         model.addAttribute("upcoming", upcoming);
         model.addAttribute("finished", finished);
+
         return "ico-list";
     }
 

@@ -79,9 +79,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/ico-list">ICO LIST</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/ico-stats">ICO STATS</a>
-                </li>
+
             </ul>
             <!-- Links -->
             <!-- Navbar brand -->
@@ -92,27 +90,32 @@
             <!-- Links -->
             <ul class="navbar-nav">
 
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/ico-stats">ICO STATS</a>
+                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="/whitelist">WHITELIST</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/events">EVENTS</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/analitics">ANALITICS</a>
-                </li>
+                <%--<li class="nav-item">--%>
+                    <%--<a class="nav-link" href="/analitics">ANALITICS</a>--%>
+                <%--</li>--%>
 
 
-                <li class="nav-item">
-                    <a id="account" class="nav-link" href="/user-profile">My account</a>
-                </li>
-                <li class="nav-item">
-                    <a id="modal" class="nav-link">Login / Register</a>
-                </li>
+                <%--<li class="nav-item">--%>
+                    <%--<a id="account" class="nav-link" href="/user-profile">My account</a>--%>
+                <%--</li>--%>
+                <%--<li class="nav-item">--%>
+                    <%--<a id="modal" class="nav-link">Login / Register</a>--%>
+                <%--</li>--%>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="/logout">Logout</a>
-                </li>
+                <%--<li class="nav-item">--%>
+                    <%--<a class="nav-link" href="/logout">Logout</a>--%>
+                <%--</li>--%>
 
             </ul>
             <!-- Links -->

@@ -29,7 +29,6 @@
                 $(".card-img-overlay ").removeClass("animated bounceInUp")
                 $(".card-img-overlay ").addClass("animated fadeOutUp")
             }else {
-
                 $(this).append("<div class=\"card-img-overlay  animated bounceInUp\">\n" +
                     // "                    <h4 class=\"card-title text-white brown darken-2\">" + title + " </h4>\n" +
                     "                    <p class=\"card-text text-white brown darken-2\"> " + description + " </p>\n" +

@@ -11,7 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @SessionAttributes("user")
@@ -67,37 +69,36 @@ public class MainController {
     @RequestMapping("/")
     public String welcome(Model model) {
 
-//        List<Item> items = itemService.getAll().stream().limit(10).collect(Collectors.toList());
-//        List<Item> lowerItems = new ArrayList<>();
-//        List<Item> averageItems = new ArrayList<>();
-//        Item topItem = null;
-//        if (items.size() > 0) {
-//            topItem = items.get(0);
-//            averageItems.add(items.get(1));
-//            averageItems.add(items.get(2));
-//
-//            lowerItems.add(items.get(3));
-//            lowerItems.add(items.get(4));
-//            lowerItems.add(items.get(5));
-//        }
-//
-//        List<Coin> topcoins = coinService.getTopGainCoins();
-//        List<Coin> losercoins = coinService.getTopLoserCoins();
-//        List<Event> events = eventService.getEvents(6);
-//        List<Ico> icos2 = icoService.getActiveIco().stream().limit(6).collect(Collectors.toList());
-//
-////        List<Ico> icos = icoService.getActiveIco();
-//
-//        model.addAttribute("losercoins", losercoins);
-//        model.addAttribute("topcoins", topcoins);
-//
-//        model.addAttribute("topItem", topItem);
-//        model.addAttribute("lowerItems", lowerItems);
-//        model.addAttribute("averageItems", averageItems);
-//
-//
-//        model.addAttribute("icos", icos2);
-//        model.addAttribute("events", events);
+        List<Item> items = itemService.getAll().stream().limit(10).collect(Collectors.toList());
+        List<Item> lowerItems = new ArrayList<>();
+        List<Item> averageItems = new ArrayList<>();
+        Item topItem = null;
+        if (items.size() > 0) {
+            topItem = items.get(0);
+            averageItems.add(items.get(1));
+            averageItems.add(items.get(2));
+
+            lowerItems.add(items.get(3));
+            lowerItems.add(items.get(4));
+            lowerItems.add(items.get(5));
+        }
+
+        List<Coin> topcoins = coinService.getTopGainCoins();
+        List<Coin> losercoins = coinService.getTopLoserCoins();
+        List<Event> events = eventService.getEvents(6);
+        List<Ico> icos2 = icoService.getActiveIco().stream().limit(6).collect(Collectors.toList());
+
+
+        model.addAttribute("losercoins", losercoins);
+        model.addAttribute("topcoins", topcoins);
+
+        model.addAttribute("topItem", topItem);
+        model.addAttribute("lowerItems", lowerItems);
+        model.addAttribute("averageItems", averageItems);
+
+
+        model.addAttribute("icos", icos2);
+        model.addAttribute("events", events);
         return "welcome";
     }
 

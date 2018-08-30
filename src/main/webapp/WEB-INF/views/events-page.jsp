@@ -205,8 +205,10 @@
 
 <br/>
 <div class="container">
+
     <div class="page-header">
     </div>
+
     <ul class="timeline">
 
         <c:forEach items="${events}" var="event" varStatus="i">

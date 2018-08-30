@@ -1,9 +1,5 @@
 $(document).ready(function () {
-
-
     modal();
-
-
 })
 
 
@@ -17,7 +13,7 @@ function modal() {
         $(this).css("cursor", "point");
     })
 
-    $(".coin").dblclick(function () {
+    $("#icoCard").dblclick(function () {
         var symbol = $(this).find("td")[1].innerText;
         window.location.href = "/coin-page/" + symbol;
     })
@@ -52,6 +48,10 @@ function modal() {
         $(".container").addClass("animated shake")
     })
 
+    $(".card").dblclick(function () {
+        var href = $(this).find(".href").text();
+        $(location).attr("href", href);
+    })
 
     $("#ico-card").click(function () {
         var name = $(this).find(".href").text();
