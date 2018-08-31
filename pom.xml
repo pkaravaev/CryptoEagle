@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>crypto-blog</groupId>
-    <artifactId>cryptoeagle</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
+    <artifactId>cryptoeagle</artifactId>
 
     <properties>
         <spring.version>5.0.7.RELEASE</spring.version>
@@ -18,8 +18,37 @@
     </properties>
 
 
+
+
     <build>
+
         <plugins>
+            <!--<plugin>-->
+            <!--<groupId>org.apache.maven.plugins</groupId>-->
+            <!--<artifactId>maven-dependency-plugin</artifactId>-->
+            <!--<version>3.0.1</version>-->
+            <!--<executions>-->
+            <!--<execution>-->
+            <!--<id>copy-dependencies</id>-->
+            <!--<phase>package</phase>-->
+            <!--<goals><goal>copy-dependencies</goal></goals>-->
+            <!--</execution>-->
+            <!--</executions>-->
+            <!--</plugin>-->
+
+
+            <!--<plugin>-->
+                <!--<groupId>com.heroku.sdk</groupId>-->
+                <!--<artifactId>heroku-maven-plugin</artifactId>-->
+                <!--<version>2.0.6</version>-->
+                <!--<configuration>-->
+                    <!--<processTypes>-->
+                        <!--<web>web: java $JAVA_OPTS -jar target/dependency/webapp-runner.jar &#45;&#45;port $PORT target/*.war</web>-->
+                    <!--</processTypes>-->
+                    <!--<appName>cryptoeagle</appName>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
+
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -34,6 +63,7 @@
                 </executions>
             </plugin>
 
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -47,51 +77,27 @@
             </plugin>
 
 
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.1</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>report</id>
-                        <phase>test</phase>
-                        <goals>
-                            <goal>report</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <version>3.0.2</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>copy</goal>
-                        </goals>
-                        <configuration>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>com.github.jsimone</groupId>
-                                    <artifactId>webapp-runner</artifactId>
-                                    <version>8.5.31.0</version>
-                                    <destFileName>webapp-runner.jar</destFileName>
-                                </artifactItem>
-                            </artifactItems>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
+            <!--<plugin>-->
+            <!--<groupId>org.apache.maven.plugins</groupId>-->
+            <!--<artifactId>maven-dependency-plugin</artifactId>-->
+            <!--<version>2.3</version>-->
+            <!--<executions>-->
+            <!--<execution>-->
+            <!--<phase>package</phase>-->
+            <!--<goals><goal>copy</goal></goals>-->
+            <!--<configuration>-->
+            <!--<artifactItems>-->
+            <!--<artifactItem>-->
+            <!--<groupId>com.github.jsimone</groupId>-->
+            <!--<artifactId>webapp-runner</artifactId>-->
+            <!--<version>${webapp-runner.version</version>-->
+            <!--<destFileName>webapp-runner.jar</destFileName>-->
+            <!--</artifactItem>-->
+            <!--</artifactItems>-->
+            <!--</configuration>-->
+            <!--</execution>-->
+            <!--</executions>-->
+            <!--</plugin>-->
 
         </plugins>
 
