@@ -102,6 +102,24 @@ public class MainController {
         return "welcome";
     }
 
+    @RequestMapping("/uCoin")
+    public String updateCoin(){
+        coinService.updateCoins();
+        return  "redirect:/welcome ";
+    }
+
+    @RequestMapping("/uItem")
+    public String updateItem(){
+        itemService.updateItems();
+        return  "redirect:/welcome ";
+    }
+
+    @RequestMapping("/uIco")
+    public String updateAll(){
+        icoService.updateIcos();
+        return  "redirect:/welcome ";
+    }
+
     @RequestMapping("/{name}")
     public String welcome2(@PathVariable String name) {
         System.out.println();

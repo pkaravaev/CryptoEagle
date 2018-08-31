@@ -53,6 +53,8 @@
     }
 </style>
 
+
+
 <ul class="nav justify-content-center font-weight-bold brown lighten-5 ">
 
     <c:forEach items="${sources}" var="s">
@@ -66,7 +68,7 @@
 <div class="container">
 
     <div class="col">
-
+        <h1>${home}</h1>
     </div>
 
     <div class="col-12">

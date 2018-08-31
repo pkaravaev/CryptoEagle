@@ -19,4 +19,6 @@ public interface ItemService {
 
     List<String> getSources();
 
+    void  updateItems();
+
 }

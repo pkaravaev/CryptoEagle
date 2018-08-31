@@ -80,11 +80,11 @@ public class IcoServiceImpl implements IcoService {
     @Override
 //    @Scheduled(fixedDelay = 1000000, initialDelay = 10000)
     public void updateIcos() {
-//        repository.deleteAll();
-//        for (int i = 1 ; i < 300; i++){
-//            List<Ico> page = service.getIcoWithDataByPage(i);
-//            saveIcos(page);
-//        }
+        repository.deleteAll();
+        for (int i = 1 ; i < 10; i++){
+            List<Ico> page = service.getIcoWithDataByPage(i);
+            saveIcos(page);
+        }
         log.info("UPDATE ICOS :" + LocalDateTime.now());
     }
 

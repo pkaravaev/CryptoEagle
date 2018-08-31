@@ -78,7 +78,7 @@ public class CryptoController {
 
     @RequestMapping("/coin-list")
     public String coinList(Model model) {
-        List<Coin> coins = coinService.getAllCoins();
+        List<Coin> coins = coinService.getAllCoins().stream().filter( e ->  !e.getSymbol().equals("ZEC")).collect(Collectors.toList());
         model.addAttribute("coins", coins);
         return "coin-list";
     }

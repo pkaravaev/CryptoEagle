@@ -49,8 +49,8 @@ public class RssServiceImpl implements RssService {
                 item.setLink(link);
                 String plain = Jsoup.parse(description).text();
 
-                if (plain.length() > 30){
-                    plain = plain.substring(0,30);
+                if (plain.length() > 150){
+                    plain = plain.substring(0,150);
                 }
 
                 item.setDescription(plain);
