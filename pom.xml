@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>crypto-blog</groupId>
-    <artifactId>CryptoEagle</artifactId>
+    <artifactId>cryptoeagle</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
@@ -18,7 +18,7 @@
     </properties>
 
 
-    <build>      <sourceDirectory>src/main/java</sourceDirectory>
+    <build>
         <plugins>
 
             <plugin>
@@ -29,9 +29,7 @@
                     <execution>
                         <id>copy-dependencies</id>
                         <phase>package</phase>
-                        <goals>
-                            <goal>copy-dependencies</goal>
-                        </goals>
+                        <goals><goal>copy-dependencies</goal></goals>
                     </execution>
                 </executions>
             </plugin>
