@@ -39,7 +39,7 @@
 </head>
 
 
-<h1>${home}</h1>
+<h1>${pageContext.request.contextPath}</h1>
 
 <script src="js/form-validation.js"></script>
 
@@ -72,7 +72,7 @@
                 <%--<a class="nav-link" href="/beginners">BEGINERS GUIDE</a>--%>
                 <%--</li>--%>
                 <li class="nav-item">
-                    <a class="nav-link" href="/news">CRYPTO NEWS</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/news">CRYPTO NEWS</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/coin-list">COINS</a>
