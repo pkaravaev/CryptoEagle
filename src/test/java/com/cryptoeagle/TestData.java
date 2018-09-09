@@ -5,15 +5,15 @@ import com.cryptoeagle.entity.Blog;
 
 public class TestData {
     // Users test data
-    public static final User USER1 = new User(100, "username1", "user1@mail.ru", "user1password", true, false);
-    public static final User USER2 = new User(101, "username2", "user2@mail.ru", "user2password", true, false);
-    public static final User USER3 = new User(102, "username3", "user3@mail.ru", "user3password", true, true);
-    public static final User USER4 = new User(103, "username4", "user4@mail.ru", "user4password", true, false);
-    public static final User USER5 = new User(104, "username5", "user5@mail.ru", "user5password", true, false);
+    public static final User USER1 = new User(100, "username1", "user1@mail.ru", "user1password", true);
+    public static final User USER2 = new User(101, "username2", "user2@mail.ru", "user2password", true);
+    public static final User USER3 = new User(102, "username3", "user3@mail.ru", "user3password", true);
+    public static final User USER4 = new User(103, "username4", "user4@mail.ru", "user4password", true );
+    public static final User USER5 = new User(104, "username5", "user5@mail.ru", "user5password", true);
 
-    public static final User USER6 = new User(105, "username6", "user6@mail.ru", "user6password", true, false);
+    public static final User USER6 = new User(105, "username6", "user6@mail.ru", "user6password", true);
 
-    public static final User USER4_UPDATE = new User(103, "username4updated", "user4updated@mail.ru", "user4updatedpassword", false, false);
+    public static final User USER4_UPDATE = new User(103, "username4updated", "user4updated@mail.ru", "user4updatedpassword",true);
 
     public static final int USERS_COUNT = 5;
 

@@ -40,17 +40,6 @@
     </beans>
 
 
-    <!--<beans profile="PostgreSQL">-->
-
-    <!--<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
-    <!--<property name="driverClassName" value="org.postgresql.Driver"/>-->
-    <!--<property name="url" value="jdbc:postgresql://ec2-50-16-217-122.compute-1.amazonaws.com/dfqp5i7cmi3clp?ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory"/>-->
-    <!--<property name="username" value="quctlnsjqcquqk"/>-->
-    <!--<property name="password" value="617073e80f7b87d2faaf9f80d4d0d35d52293dde18d5f08e8d8151592c674578"/>-->
-    <!--</bean>-->
-    <!--</beans>-->
-
-
     <beans profile="Jdbc">
         <bean class="org.springframework.jdbc.core.JdbcTemplate">
             <property name="dataSource" ref="dataSource"/>
@@ -70,8 +59,8 @@
             <property name="persistenceProvider" ref="provider"/>
             <property name="jpaPropertyMap">
                 <map>
-                    <!--<entry key="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL9Dialect"/>-->
-                    <entry key="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
+                    <entry key="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL9Dialect"/>
+                    <!--<entry key="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>-->
                     <entry key="hibernate.hbm2ddl.auto" value="update"/>
                     <entry key="hibernate.format_sql" value="true"/>
                     <entry key="hibernate.show_sql" value="true"/>

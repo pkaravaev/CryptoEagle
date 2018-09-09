@@ -16,6 +16,12 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
+    <mvc:annotation-driven>
+        <mvc:argument-resolvers>
+            <bean class="org.springframework.security.web.method.annotation.AuthenticationPrincipalArgumentResolver" />
+        </mvc:argument-resolvers>
+    </mvc:annotation-driven>
+
     <mvc:resources cache-period="0" mapping="/resources/**" location="/resources/"/>
 
 </beans>

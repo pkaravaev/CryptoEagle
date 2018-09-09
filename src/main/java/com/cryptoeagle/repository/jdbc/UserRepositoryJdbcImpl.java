@@ -29,6 +29,11 @@ public class UserRepositoryJdbcImpl implements UserRepository {
     @Autowired
     DataSource dataSource;
 
+    @Override
+    public User getByName(String name) {
+        return null;
+    }
+
     @Autowired
     private NamedParameterJdbcTemplate namedTemplate;
 

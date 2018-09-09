@@ -4,7 +4,7 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
 <!-- Material Design Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.9/css/mdb.min.css" rel="stylesheet">
-<!-- MDBootstrap Datatables  -->
+<!-- MDBootstrap Datatables -->
 <link href="/resources/css/addons/datatables.min.css" rel="stylesheet">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
@@ -23,14 +23,16 @@
 <%--<!-- MDB core JavaScript -->--%>
 <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.9/js/mdb.min.js"></script>
-<!-- MDBootstrap Datatables  -->
+<!-- MDBootstrap Datatables -->
 <script type="text/javascript" src="/resources/js/addons/datatables.min.js"></script>
 
 
 <%--<script src="/resources/js/table.js"></script>--%>
 <script src="/resources/js/coins.js"></script>
 <style>
+    .card-group {
 
+    }
 </style>
 
 <script>
@@ -40,62 +42,68 @@
 
 
 <div class="container">
+    <div class="row">
+        <div class="card-group">
+            <div class="card">
 
-    <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header text-center">
-                    <h4 class="modal-title w-100 font-weight-bold">Sign in</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                <img class="card-img-top" src="https://source.unsplash.com/daily?nature" alt="Card image top">
+                <div class="card-img-overlay">
+                    <h3 class="card-title">Card 1</h3>
+                    <h4 class="card-subtitle">of the group</h4>
+                    <p class="card-text">You can use the cap image as an overlay for the body</p>
                 </div>
-                <div class="modal-body mx-3">
-                    <div class="md-form mb-5">
-                        <i class="fa fa-envelope prefix grey-text"></i>
-                        <input type="email" id="defaultForm-email" class="form-control validate">
-                        <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label>
-                    </div>
+            </div>
+            <div class="card text-primary">
 
-                    <div class="md-form mb-4">
-                        <i class="fa fa-lock prefix grey-text"></i>
-                        <input type="password" id="defaultForm-pass" class="form-control validate">
-                        <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>
-                    </div>
-
+                <img class="card-img-top" src="https://source.unsplash.com/daily?nature" alt="Card image top">
+                <div class="card-img-overlay">
+                    <h3 class="card-title">Card 2</h3>
+                    <h4 class="card-subtitle">Of the group</h4>
+                    <p class="card-text">
+                        Group Columns have the same width and height thanks to Flexbox
+                    </p>
                 </div>
-                <div class="modal-footer d-flex justify-content-center">
-                    <button class="btn btn-default">Login</button>
+            </div>
+            <div class="card">
+
+                <img class="card-img-top" src="https://source.unsplash.com/daily?nature" alt="Card image top">
+                <div class="card-img-overlay">
+                    <h3 class="card-title">Card 3</h3>
+                    <h4 class="card-subtitle">Of the group</h4>
+                    <p class="card-text">You can use the cap image as an overlay for the body</p>
                 </div>
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="card-deck">
+            <div class="card">
 
-    <div class="text-center">
-        <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalLoginForm">Launch Modal Login Form</a>
-    </div>
+                <img class="card-img-top" src="https://source.unsplash.com/daily?nature" alt="Card image top">
+                <div class="card-img-overlay">
+                    <h3 class="card-title">Card 1</h3>
+                    <h4 class="card-subtitle">of the deck</h4>
+                    <p class="card-text">You can use the cap image as an overlay for the body</p>
+                </div>
+            </div>
+            <div class="card text-primary">
 
-        <%--<!-- Trigger the modal with a button -->--%>
-        <%--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>--%>
+                <img class="card-img-top" src="https://source.unsplash.com/daily?nature" alt="Card image top">
+                <div class="card-img-overlay">
+                    <h3 class="card-title">Card 2</h3>
+                    <h4 class="card-subtitle">Of the deck</h4>
+                    <p class="card-text">
+                        Group Columns have the same width and height thanks to Flexbox
+                    </p>
+                </div>
+            </div>
+            <div class="card">
 
-        <%--<!-- Modal -->--%>
-        <%--<div id="myModal" class="modal fade" role="dialog">--%>
-            <%--<div class="modal-dialog">--%>
-
-                <%--<!-- Modal content-->--%>
-                <%--<div class="modal-content">--%>
-                    <%--<div class="modal-header">--%>
-                        <%--<button type="button" class="close" data-dismiss="modal">&times;</button>--%>
-                        <%--<h4 class="modal-title">Modal Header</h4>--%>
-                    <%--</div>--%>
-                    <%--<div class="modal-body">--%>
-                        <%--<p>Some text in the modal.</p>--%>
-                    <%--</div>--%>
-                    <%--<div class="modal-footer">--%>
-                        <%--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
-
-            <%--</div>--%>
-        <%--</div>--%>
-</div>
+                <img class="card-img-top" src="https://source.unsplash.com/daily?nature" alt="Card image top">
+                <div class="card-img-overlay">
+                    <h3 class="card-title">Card 3</h3>
+                    <h4 class="card-subtitle">Of the deck</h4>
+                    <p class="card-text">You can use the cap image as an overlay for the body</p>
+                </div>
+            </div>
+        </div>

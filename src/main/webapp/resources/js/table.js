@@ -5,6 +5,10 @@ $(document).ready(function () {
 
 function modal() {
 
+    $("#eagle").click(function () {
+        window.location.href = "/welcome";
+    })
+
     $(".coin").mouseenter(function () {
         $(this).css("cursor", "hand");
     })
@@ -71,6 +75,7 @@ function modal() {
     $("#blogButton").click(function () {
         var blogName = $("#defaultForm-name").val();
         var blogUrl = $("#defaultForm-url").val();
+
         $.ajax({
             url: "/blog/add",
             type: 'GET',
@@ -78,6 +83,7 @@ function modal() {
             success: function () {
             }
         })
+
         $('#modalLoginForm').modal('hide')
     })
 
@@ -89,6 +95,7 @@ function modal() {
         var x = $(this).parent().parent().find("input");
         var e = x[0].value;
         var p = x[1].value;
+
         var suc = function () {
             $("#modalLRForm").modal('hide');
         }
@@ -96,7 +103,7 @@ function modal() {
         $.ajax({
             url: "/login",
             type: 'POST',
-            data: {email: e, password: p},
+            data: {username: e, password: p},
             success: suc()
         })
 

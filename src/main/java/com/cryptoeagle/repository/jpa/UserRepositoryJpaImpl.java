@@ -43,12 +43,19 @@ public class UserRepositoryJpaImpl implements UserRepository {
             user = (User) em.createNamedQuery(User.GET_BY_ID)
                     .setParameter("id", id)
                     .getSingleResult();
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new UserNotFoundException("User with id : " + id + " not found!!!");
         }
 
 
         return user;
+    }
+
+    @Override
+    public User getByName(String name) {
+        return em.createNamedQuery(User.GET_BY_NAME, User.class)
+                .setParameter("name", name)
+                .getSingleResult();
     }
 
     @Override

@@ -3,9 +3,13 @@ package com.cryptoeagle.controller;
 
 import com.cryptoeagle.entity.*;
 import com.cryptoeagle.exception.UserNotFoundException;
+import com.cryptoeagle.service.UserServiceImpl;
 import com.cryptoeagle.service.abst.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +20,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
-@SessionAttributes("user")
 public class MainController {
 
     @Autowired
@@ -66,9 +69,8 @@ public class MainController {
         return "redirect:/";
     }
 
-    @RequestMapping("/")
-    public String welcome(Model model) {
-
+    @RequestMapping(value = { "/", "/welcome"})
+    public String welcome(@AuthenticationPrincipal User user, Model model) {
         List<Item> items = itemService.getAll().stream().limit(10).collect(Collectors.toList());
         List<Item> lowerItems = new ArrayList<>();
         List<Item> averageItems = new ArrayList<>();
@@ -119,12 +121,12 @@ public class MainController {
         icoService.updateIcos();
         return  "redirect:/welcome ";
     }
-
-    @RequestMapping("/{name}")
-    public String welcome2(@PathVariable String name) {
-        System.out.println();
-        return "welcome";
-    }
+//
+//    @RequestMapping("/{name}")
+//    public String welcome2(@PathVariable String name) {
+//        System.out.println();
+//        return "welcome";
+//    }
 
     @RequestMapping("/error")
     public String error() {
@@ -181,7 +183,6 @@ public class MainController {
 
     @RequestMapping("/admin")
     public String admin(Model model, Principal principal , Authentication authentication) {
-
         return "admin-page";
     }
 

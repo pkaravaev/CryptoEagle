@@ -272,7 +272,7 @@
     }
 </style>
 
-<div class="container bg-white animated shake">
+<div class="container bg-white">
 
     <div class="row">
         <div class="col-">
@@ -497,7 +497,7 @@
 
 </div>
 
-
+<%--timeline--%>
 <div class="container">
 
     <ul class="timeline">

@@ -1,13 +1,17 @@
 package com.cryptoeagle.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+
+import static com.cryptoeagle.entity.BaseEntity.START_SEQ;
 
 
 @Entity
@@ -15,16 +19,37 @@ import java.util.List;
         @NamedQuery(name = User.DELETE, query = "DELETE FROM User u WHERE u.id=:id"),
         @NamedQuery(name = User.GET_ALL, query = "SELECT user FROM User user"),
         @NamedQuery(name = User.GET_BY_EMAIL, query = "SELECT user FROM User  user WHERE user.email=:email"),
+        @NamedQuery(name = User.GET_BY_NAME, query = "SELECT user FROM User  user WHERE user.name=:name"),
         @NamedQuery(name = User.GET_BY_ID, query = "SELECT user FROM User user WHERE user.id=:id")
 })
 @Getter
 @Setter
-public class User extends BaseEntity {
+@Table(name = "appuser")
+public class User implements UserDetails {
 
     public static final String DELETE = "User.delete";
     public static final String GET_BY_ID = "User.get";
+    public static final String GET_BY_NAME = "User.getByName";
     public static final String GET_ALL = "User.getall";
     public static final String GET_BY_EMAIL = "User.getByEmail";
+
+    @Id
+    @SequenceGenerator(name = "global_seq", sequenceName = "global_seq", allocationSize = 1, initialValue = START_SEQ)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "global_seq")
+    protected int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @JsonIgnore
+    public boolean isNew(){
+        return id == 0;
+    }
 
     @Min(3)
     private String name;
@@ -36,31 +61,65 @@ public class User extends BaseEntity {
     private boolean enable;
     @NotNull
     private boolean admin;
+    @ElementCollection
+    @Enumerated(EnumType.STRING)
+    private Set<Role> roles = new HashSet<>();
     @NotNull
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Blog> blogs = new ArrayList<>();
 
-
-    public User(int id, String name, String email, String password, boolean enable, boolean admin) {
-        super(id);
+    public User( String name, String email, String password, boolean enable) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.enable = enable;
-        this.admin = admin;
     }
-
-    public User(String name, String email, String password, boolean enable, boolean admin) {
+    public User(int id, String name, String email, String password, boolean enable) {
+        this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
         this.enable = enable;
-        this.admin = admin;
     }
 
 
     public User() {
     }
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
 
+    @Override
+    public String getUsername() {
+        return name;
+    }
 
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Role role) {
+        this.roles.add(role);
+    }
 }

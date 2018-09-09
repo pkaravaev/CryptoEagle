@@ -7,12 +7,15 @@ import com.cryptoeagle.repository.UserRepository;
 import com.cryptoeagle.service.abst.UserService;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService, UserDetailsService {
 
     private static final org.slf4j.Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
 
@@ -47,8 +50,8 @@ public class UserServiceImpl implements UserService {
     public User getByEmail(String email) {
         log.info("get user id", email);
         User user = repository.getByEmail(email);
-        if (user == null){
-            throw  new UserNotFoundException("User with email " + email + " not found!!!");
+        if (user == null) {
+            throw new UserNotFoundException("User with email " + email + " not found!!!");
         }
         return repository.getByEmail(email);
     }
@@ -57,6 +60,12 @@ public class UserServiceImpl implements UserService {
     public void delete(int id) {
         log.info("delete user by id");
         repository.delete(id);
+    }
+
+    @Override
+    public User getByName(String name) {
+        log.info("get by name");
+        return repository.getByName(name);
     }
 
     @Override
@@ -71,4 +80,9 @@ public class UserServiceImpl implements UserService {
         return repository.getall().stream().filter(e -> e.isAdmin() == true).findFirst().get();
     }
 
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = this.getByName(username);
+        return user;
+    }
 }

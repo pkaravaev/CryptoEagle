@@ -5,10 +5,13 @@
          version="3.1">
 
 
+    <welcome-file-list>
+        <welcome-file>/welcome</welcome-file>
+    </welcome-file-list>
 
     <context-param>
         <param-name>spring.profiles.active</param-name>
-        <param-value>Jpa,HSQLDB</param-value>
+        <param-value>Jpa,PostgreSQL</param-value>
     </context-param>
 
     <filter>

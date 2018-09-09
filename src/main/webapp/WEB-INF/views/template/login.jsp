@@ -27,7 +27,7 @@
                         <!--Body-->
                         <div class="modal-body mb-1">
 
-                            <form id="loginForm">
+                            <form id="loginForm" action="/login" method="post">
 
                                 <div class="md-form form-sm mb-5">
                                     <i class="fa fa-envelope prefix"></i>
