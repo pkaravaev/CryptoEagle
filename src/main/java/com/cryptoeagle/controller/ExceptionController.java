@@ -1,6 +1,7 @@
 package com.cryptoeagle.controller;
 
 
+import com.cryptoeagle.exception.IcoNotFoundException;
 import com.cryptoeagle.exception.RssNewsNotFoundException;
 import com.cryptoeagle.exception.UserNotFoundException;
 import org.springframework.ui.Model;
@@ -20,13 +21,21 @@ public class ExceptionController {
 
     @ExceptionHandler(RssNewsNotFoundException.class)
     public String newsNotFound(Model model){
-        model.addAttribute("error", "News not found!!!");
+        model.addAttribute("error", "Rss not found!!!");
         return  "error-page";
     }
 
     @ExceptionHandler(EntityNotFoundException.class)
     public String itemsNotFound(Model model){
-        model.addAttribute("error", "News not found!!!");
+        model.addAttribute("error", "Entity not found!!!");
         return  "error-page";
     }
+
+
+    @ExceptionHandler(IcoNotFoundException.class)
+    public String icoNotFound(Model model){
+        model.addAttribute("error", "Ico data not found!!!");
+        return  "error-page";
+    }
+
 }

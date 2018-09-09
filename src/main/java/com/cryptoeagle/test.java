@@ -8,6 +8,7 @@ import org.openjdk.jmh.annotations.OutputTimeUnit;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.security.config.http.UserDetailsServiceFactoryBean;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -55,15 +56,13 @@ public class test {
 
     public static void main(String[] args) throws Exception {
 
-//        GenericXmlApplicationContext applicationContext = new GenericXmlApplicationContext();
-//        applicationContext.getEnvironment().setActiveProfiles("JPA","PostgreSQL");
-//        applicationContext.load("/spring/spring-mvc.xml","/spring/spring-app.xml","/spring/spring-db.xml","/spring/spring-security.xml");
-//        applicationContext.refresh();
 
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("/spring/spring-app.xml", "/spring/spring-mvc.xml", "/spring/spring-security.xml");
+
 
         System.out.println();
     }
+
+
 }
 
 

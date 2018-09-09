@@ -3,17 +3,16 @@
 
 <script>
 
-    $(document).ready(function () {
-        $(".card").dblclick(function () {
-            var href = $(this).find(".href").text();
-            $(location).attr("href", href);
-        })
-        $(".card").mouseenter(function () {
-            $(this).css('cursor', 'pointer');
-            $(this).addClass("animated shake")
-            $(".container").addClass("animated shake")
-        })
-    })
+    // $(document).ready(function () {
+    //     $(".card").dblclick(function () {
+    //         var href = $(this).find(".href").text();
+    //         $(location).attr("href", href);
+    //     })
+    //     $(".card").mouseenter(function () {
+    //         $(this).css('cursor', 'pointer');
+    //
+    //     })
+    // })
 
     $(document).ready(function () {
 
@@ -56,10 +55,10 @@
 
 <ul class="nav justify-content-center font-weight-bold brown lighten-5 ">
 
-    <c:forEach items="${sources}" var="s">
+    <c:forEach items="${sources}" var="source">
         <li class="nav-item">
-            <button value="/news/${s.toString()}" type="button"
-                    class="btn btn-brown btn-rounded">${s.toString()}</button>
+            <button  id="buttonNews" value="/news/${source.toString()}" type="button"
+                    class="btn btn-brown btn-rounded">${source.toString()}</button>
         </li>
     </c:forEach>
 
@@ -75,7 +74,7 @@
 
             <c:forEach items="${items}" var="item" varStatus="i">
 
-                <div style="height: 20rem;width: 22rem" class="card col  hoverable ">
+                <div style="height: 20rem;width: 22rem" class="card   hoverable ">
                     <img style="width: 22rem;height: 12rem" alt="Card  image cap" class="card-img-top img-fluid"
                          src="/resources/pic/m/m${item.getRandomPic(9)}.jpg">
                     <div class="card-block ">

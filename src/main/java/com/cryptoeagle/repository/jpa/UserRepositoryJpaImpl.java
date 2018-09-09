@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
@@ -53,9 +54,15 @@ public class UserRepositoryJpaImpl implements UserRepository {
 
     @Override
     public User getByName(String name) {
-        return em.createNamedQuery(User.GET_BY_NAME, User.class)
-                .setParameter("name", name)
-                .getSingleResult();
+        User user;
+        try {
+            user = em.createNamedQuery(User.GET_BY_NAME, User.class)
+                    .setParameter("name", name)
+                    .getSingleResult();
+        }catch (NoResultException ex){
+            user = null;
+        }
+        return user;
     }
 
     @Override

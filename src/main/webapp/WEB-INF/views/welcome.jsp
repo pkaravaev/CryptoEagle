@@ -18,62 +18,28 @@
 
         $(".card").mouseenter(function () {
             $(this).css('cursor', 'pointer');
-            $(this).addClass("animated shake")
-            $(".container").addClass("animated shake")
+
         })
 
         $(".card").mouseleave(function () {
             $(this).find(".card-img-overlay").removeClass("animated bounceInUp").removeClass("animated shake").addClass("animated fadeOutDown");
-            $(this).removeClass("animated shake");
         })
 
 
         $(".timeline-panel").mouseenter(function () {
             $(this).css('cursor', 'pointer');
-            $(this).addClass("animated shake")
-            $(".container").addClass("animated shake")
         })
 
         $(".timeline-panel").mouseleave(function () {
             $(this).find(".card-img-overlay").removeClass("animated bounceInUp").removeClass("animated shake").addClass("animated fadeOutDown");
-            $(this).removeClass("animated shake");
         })
 
         $("tr").click(function () {
             $(location).attr("href", "/coin-list");
         })
 
-
         $("tr").mouseenter(function () {
             $(this).css('cursor', 'pointer');
-            // $(this).addClass("animated shake")
-            $(".container").addClass("animated shake")
-        })
-
-        $("tr").mouseleave(function () {
-            $(this).find(".card-img-overlay").removeClass("animated bounceInUp").removeClass("animated shake").addClass("animated fadeOutDown");
-            // $(this).removeClass("animated shake");
-            $("div.card-img-overlay fadeOutDown fadeOutUp animated").remove();
-            $("div.card-img-overlay fadeOutUp fadeOutDown animated").remove();
-
-        })
-
-        $(".card").click(function () {
-            $(this).css('cursor', 'pointer');
-            var title = $(this).find(".title").text();
-            var description = $(this).find(".description").text();
-            var date = $(this).find(".date").text();
-
-            if ($(".card-img-overlay ").hasClass("animated bounceInUp")) {
-                $(".card-img-overlay ").removeClass("animated bounceInUp")
-                $(".card-img-overlay ").addClass("animated fadeOutUp")
-            } else {
-                $(this).append("<div class=\"card-img-overlay  animated bounceInUp\">\n" +
-                    // "                    <h4 class=\"card-title text-white brown darken-2\">" + title + " </h4>\n" +
-                    "                    <p class=\"card-text text-white brown darken-2\"> " + description + " </p>\n" +
-                    // "                    <p class=\"card-text text-white brown darken-2\">         " + date + " </p>\n" +
-                    "                </div>")
-            }
         })
 
     })
@@ -285,7 +251,7 @@
                      src="/resources/pic/l/l${topItem.getRandomPic(5)}.jpg">
                 <h4 class="card-title font-weight-bold ">${topItem.title}</h4>
                 <p class="href" hidden>${topItem.link}</p>
-                <p  style="margin-left: 1rem" class="description" hidden>${item.description}</p>
+                <p  style="margin-left: 1rem" class="description" hidden>${topItem.description}</p>
                 <div class="row">
                     <div class="col">
                         <p class="date text-left font-italic">by ${topItem.source}</p>

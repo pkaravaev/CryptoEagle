@@ -10,19 +10,6 @@
 
        $('#dtMaterialDesignExample').DataTable();
 
-       // $(".r").mouseenter(function () {
-       //     $(this).css("cursor", "hand");
-       // })
-       //
-       // $(".r").mouseleave(function () {
-       //     $(this).css("cursor", "point");
-       // })
-       //
-       // $(".r").dblclick(function () {
-       //     var name = $(this).find(".name").text();
-       //     alert(name);
-       //     window.location.href = "/ico-page/" + name;
-       // })
    });
 
 
@@ -107,7 +94,6 @@
                 </tr>
                 </tfoot>
             </table>
-
 
         </div>
 

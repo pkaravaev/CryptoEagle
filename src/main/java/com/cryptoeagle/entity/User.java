@@ -47,11 +47,12 @@ public class User implements UserDetails {
     }
 
     @JsonIgnore
-    public boolean isNew(){
+    public boolean isNew() {
         return id == 0;
     }
 
     @Min(3)
+    @Column(unique = true)
     private String name;
     @Column(unique = true)
     private String email;
@@ -62,18 +63,19 @@ public class User implements UserDetails {
     @NotNull
     private boolean admin;
     @ElementCollection
-    @Enumerated(EnumType.STRING)
-    private Set<Role> roles = new HashSet<>();
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    private Set<UserRole> userRole = new HashSet<>();
     @NotNull
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Blog> blogs = new ArrayList<>();
 
-    public User( String name, String email, String password, boolean enable) {
+    public User(String name, String email, String password, boolean enable) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.enable = enable;
     }
+
     public User(int id, String name, String email, String password, boolean enable) {
         this.id = id;
         this.name = name;
@@ -85,6 +87,7 @@ public class User implements UserDetails {
 
     public User() {
     }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
@@ -115,11 +118,11 @@ public class User implements UserDetails {
         return true;
     }
 
-    public Set<Role> getRoles() {
-        return roles;
+    public Set<UserRole> getUserRole() {
+        return userRole;
     }
 
-    public void setRoles(Role role) {
-        this.roles.add(role);
+    public void setUserRole(Set<UserRole> userRole) {
+        this.userRole = userRole;
     }
 }

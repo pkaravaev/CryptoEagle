@@ -8,6 +8,7 @@ import com.cryptoeagle.exception.RssNewsNotFoundException;
 import com.cryptoeagle.service.abst.BlogService;
 import com.cryptoeagle.service.abst.RssService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,7 +30,7 @@ public class BlogController {
     }
 
     @RequestMapping("/blog/add")
-    public String add(@RequestParam String name, @RequestParam String url, @SessionAttribute("user") User user) {
+    public String add(@RequestParam String name, @RequestParam String url, @AuthenticationPrincipal User user) {
 
         Blog blog = new Blog();
         blog.setName(name);

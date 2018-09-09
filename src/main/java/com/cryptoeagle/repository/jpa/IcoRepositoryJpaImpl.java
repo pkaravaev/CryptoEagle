@@ -21,7 +21,6 @@ public class IcoRepositoryJpaImpl implements IcoRepository {
     @PersistenceContext
     EntityManager em;
 
-
     @Override
     public List<Ico> getAllico() {
         return em.createNamedQuery(Ico.GET_ALL, Ico.class)
@@ -79,9 +78,15 @@ public class IcoRepositoryJpaImpl implements IcoRepository {
 
     @Override
     public Ico getByName(String name) {
-        return em.createNamedQuery(Ico.GET_BY_NAME, Ico.class)
-                .setParameter("name", name)
-                .getSingleResult();
+        Ico ico;
+        try {
+            ico = em.createNamedQuery(Ico.GET_BY_NAME, Ico.class)
+                    .setParameter("name", name)
+                    .getSingleResult();
+        } catch (Exception ex) {
+            ico = null;
+        }
+        return ico;
     }
 
     @Override

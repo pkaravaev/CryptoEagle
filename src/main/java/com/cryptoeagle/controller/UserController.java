@@ -2,8 +2,8 @@ package com.cryptoeagle.controller;
 
 
 import com.cryptoeagle.entity.Blog;
-import com.cryptoeagle.entity.Role;
 import com.cryptoeagle.entity.User;
+import com.cryptoeagle.entity.UserRole;
 import com.cryptoeagle.service.abst.BlogService;
 import com.cryptoeagle.service.abst.ItemService;
 import com.cryptoeagle.service.abst.UserService;
@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class UserController {
@@ -68,7 +70,6 @@ public class UserController {
         model.addAttribute("blogs", blogs);
         model.addAttribute("name", user.getUsername());
         return "user-profile";
-
     }
 
     @RequestMapping("/users")
@@ -102,7 +103,11 @@ public class UserController {
                              @RequestParam String password,
                              @RequestParam String password_again, Model model) {
         User user = new User(name, email, passwordEncoder.encode(password), true);
-        user.setRoles(Role.USER);
+        Set<UserRole> roles = new HashSet<>();
+        UserRole role = new UserRole();
+        role.setRole("ROLE_USER");
+        roles.add(role);
+        user.setUserRole(roles);
 
         model.addAttribute("register", true);
         model.addAttribute("name", name);

@@ -2,9 +2,6 @@
 
 <jsp:include page="template/header.jsp"/>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
 <style>
     .timeline {
         list-style: none;

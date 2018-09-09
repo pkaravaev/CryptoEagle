@@ -2,6 +2,7 @@ package com.cryptoeagle.service;
 
 import com.cryptoeagle.entity.Ico;
 import com.cryptoeagle.entity.crypto.Chart;
+import com.cryptoeagle.exception.IcoNotFoundException;
 import com.cryptoeagle.repository.IcoRepository;
 import com.cryptoeagle.service.abst.IcoService;
 import com.cryptoeagle.service.abst.RestService;
@@ -74,6 +75,11 @@ public class IcoServiceImpl implements IcoService {
 
     @Override
     public Ico getByName(String name) {
+        Ico ico = repository.getByName(name);
+
+        if (ico == null)
+            throw  new IcoNotFoundException();
+
         return repository.getByName(name);
     }
 
