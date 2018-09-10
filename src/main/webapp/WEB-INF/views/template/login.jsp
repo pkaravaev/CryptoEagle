@@ -31,7 +31,7 @@
 
                                 <div class="md-form form-sm mb-5">
                                     <i class="fa fa-envelope prefix"></i>
-                                    <input name="email" type="email" id="modalLRInput10"
+                                    <input name="email" type="text" id="modalLRInput10"
                                            class="form-control form-control-sm validate">
                                     <label data-error="wrong" data-success="right" for="modalLRInput10">Your
                                     login</label>

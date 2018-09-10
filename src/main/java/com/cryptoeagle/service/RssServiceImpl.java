@@ -25,7 +25,7 @@ import static org.jsoup.nodes.Document.OutputSettings.Syntax.html;
 @Service
 public class RssServiceImpl implements RssService {
 
-    public List<Item> getItems(String url) {
+    public List<Item> getItems(String url,String source) {
         SyndFeedInput input = new SyndFeedInput();
         SyndFeed feed = null;
         List<Item> itemList = null;
@@ -44,7 +44,7 @@ public class RssServiceImpl implements RssService {
                 String title = entry.getTitle();
 
                 Item item = new Item();
-                item.setSource(Utils.cut(url));
+                item.setSource(source);
                 item.setTitle(Utils.clearString(title));
                 item.setLink(link);
                 String plain = Jsoup.parse(description).text();

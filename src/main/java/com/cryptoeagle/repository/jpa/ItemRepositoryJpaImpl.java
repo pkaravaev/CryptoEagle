@@ -26,7 +26,6 @@ public class ItemRepositoryJpaImpl implements ItemRepository {
             }
         }
         catch (Exception e){
-
             System.out.println("Error : "  + e.getMessage());
         }
 

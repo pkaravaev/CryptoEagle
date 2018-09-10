@@ -6,16 +6,6 @@
 
     $(document).ready(function () {
 
-        $(".card").mouseenter(function () {
-            $(this).css('cursor', 'pointer');
-            $(this).addClass("animated shake")
-            $(".container").addClass("animated shake")
-        })
-
-        $(".card").mouseleave(function () {
-            $(this).find(".card-img-overlay").removeClass("animated bounceInUp").removeClass("animated shake").addClass("animated fadeOutDown");
-            $(this).removeClass("animated shake");
-        })
 
         $("#exampleModalCenter").show();
 
@@ -30,16 +20,30 @@
 
     <div class="row">
 
-        <div class="col">
-            <h1 class="text-right font-weight-normal"> Welcome ${name}</h1>
+        <div style="margin-left: 27rem">
+
+
+            <div class="col">
+
+                <h1 class="text-right font-weight-normal">Welcome ${name} <i class="fas fa-user-circle fa-2x"></i>
+                </h1>
+            </div>
+
+            <div class="col">
+
+                <a id="addBlogButton" class="btn del btn-brown btn-rounded mb-4 hoverable" data-toggle="modal"
+                   data-target="#modalLoginForm">Add
+                    Blog</a>
+
+            </div>
+
+
+            <div class="text-left">
+
+            </div>
+
         </div>
 
-        <div class="col">
-            <div class="text-left">
-                <a id="addBlogButton"  class="btn del btn-brown btn-rounded mb-4 hoverable" data-toggle="modal" data-target="#modalLoginForm">Add
-                    Blog</a>
-            </div>
-        </div>
     </div>
 
     <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -78,36 +82,73 @@
 
     <c:forEach items="${blogs}" var="blog">
 
-        <div class="card hoverable">
+        <div class="row">
 
-            <div class="card-body">
+            <div class="col-11">
 
-                <div class="row">
+                <div class="card hoverable">
 
-                    <div class="col-lg-1">
-                        <i style="color: #6f42c1" class="fas fa-rss fa-2x"></i>
-                    </div>
+                    <div class="card-body">
 
-                    <div class="col">
-                        <p id="blogName" class="text-center font-weight-bold">${blog.name}</p>
-                    </div>
+                        <div class="row">
 
-                    <div class="col">
-                        <h6 class="text-left font-weight-bold"> ${blog.url}</h6>
-                    </div>
+                            <div class="col-lg-1">
+                                <i style="color: #6f42c1" class="fas fa-rss fa-2x"></i>
+                            </div>
 
-                    <div class="col">
-                        <div class="float-right">
-                            <button id="blogDelete" type="button-right" class="btn btn-brown">Delete</button>
+                            <div class="col-2">
+                                <p id="blogName" class="text-center font-weight-bold">${blog.name}</p>
+                            </div>
+
+                            <div class="col-8">
+                                <h6 class="text-left font-weight-bold"> ${blog.url}</h6>
+                            </div>
+
                         </div>
                     </div>
 
                 </div>
 
             </div>
+
+            <div class="col-1">
+                <div>
+                    <button id="blogDelete" type="button-right" class="btn btn-brown">Delete</button>
+                </div>
+            </div>
+
+
         </div>
 
         <br/>
+
+        <%--<c:forEach items="${blog.getItems()}" var="item">--%>
+
+            <%--<br/>--%>
+
+            <%--<div style="margin-left: 10rem" class="card hoverable">--%>
+
+                <%--<div class="card-body">--%>
+
+                    <%--<div class="row">--%>
+
+                        <%--<div class="col-lg-1">--%>
+                            <%--<i style="color: #6f42c1" class="fas fa-newspaper fa-2x"></i>--%>
+                        <%--</div>--%>
+
+                        <%--<div class="col">--%>
+                            <%--<h6 class="text-left font-weight-bold"> ${item.title}</h6>--%>
+                        <%--</div>--%>
+
+                    <%--</div>--%>
+
+                <%--</div>--%>
+            <%--</div>--%>
+
+            <%--<br/>--%>
+
+        <%--</c:forEach>--%>
+
 
     </c:forEach>
 

@@ -85,7 +85,6 @@ public class RestServiceImpl implements RestService {
                 }
             }
 
-
         } catch (Exception e) {
             System.out.println("Ошибка" + e.getMessage());
         }

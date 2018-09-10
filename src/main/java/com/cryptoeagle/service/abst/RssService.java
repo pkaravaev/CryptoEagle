@@ -9,7 +9,7 @@ import java.util.List;
 public interface RssService {
 
 
-    List<Item> getItems(String url);
+    List<Item> getItems(String url,String source);
 
 
 }

@@ -78,17 +78,17 @@ public class ItemServiceImpl implements ItemService {
 
         repository.deleteAll();
 
-        List<Item> items = service.getItems("https://www.coindesk.com/feed/");
-        List<Item> items2 = service.getItems("https://www.ccn.com/feed/");
-        List<Item> items3 = service.getItems("https://blog.blockchain.com/feed");
-        List<Item> items4 = service.getItems("https://www.newsbtc.com/feed ");
-        List<Item> items5 = service.getItems("https://blog.spectrocoin.com/en/feed");
-
-        repository.saveAll(items5);
-        repository.saveAll(items4);
-        repository.saveAll(items3);
-        repository.saveAll(items2);
-        repository.saveAll(items);
+//        List<Item> items = service.getItems("https://www.coindesk.com/feed/");
+//        List<Item> items2 = service.getItems("https://www.ccn.com/feed/");
+//        List<Item> items3 = service.getItems("https://blog.blockchain.com/feed");
+//        List<Item> items4 = service.getItems("https://www.newsbtc.com/feed ");
+//        List<Item> items5 = service.getItems("https://blog.spectrocoin.com/en/feed");
+//
+//        repository.saveAll(items5);
+//        repository.saveAll(items4);
+//        repository.saveAll(items3);
+//        repository.saveAll(items2);
+//        repository.saveAll(items);
 
         log.info("UPDATE ITEMS :" + LocalDateTime.now());
 

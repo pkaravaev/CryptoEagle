@@ -12,16 +12,11 @@ function modal() {
         var description = $(this).find(".description").text();
         var date = $(this).find(".date").text();
 
-        // if ($(".card-img-overlay ").hasClass("animated bounceInUp")) {
-        //     $(".card-img-overlay ").removeClass("animated bounceInUp")
-        //     $(".card-img-overlay ").addClass("animated fadeOutUp")
-        // } else
-        //
-        //     {
-        $(this).append("<div class=\"card-img-overlay  animated bounceInUp\">\n" +
-            "                    <p class=\"card-text text-white brown darken-2\"> " + description + " </p>\n" +
-            "                </div>")
-        // }
+        {
+            $(this).append("<div class=\"card-img-overlay  animated bounceInUp\">\n" +
+                "                    <p class=\"card-text text-white brown darken-2\"> " + description + " </p>\n" +
+                "                </div>")
+        }
     })
 
     $(".card").mouseenter(function () {
@@ -32,7 +27,6 @@ function modal() {
     $(".card").mouseleave(function () {
         $(this).find(".card-img-overlay").removeClass("animated bounceInUp").removeClass("animated shake").addClass("animated fadeOutDown");
     })
-
 
     $(".coin").mouseenter(function () {
         $(this).css("cursor", "hand");
@@ -93,6 +87,8 @@ function modal() {
             type: 'GET',
             data: {name: blogName}
         })
+
+        window.location.href = "/user-profile";
     })
 
     $("#blogButton").click(function () {
@@ -107,7 +103,9 @@ function modal() {
             }
         })
 
-        $('#modalLoginForm').modal('hide')
+        window.location.href = "/user-profile";
+
+        // $('#modalLoginForm').modal('hide')
     })
 
     $("#modal").click(function () {
@@ -126,8 +124,7 @@ function modal() {
         $.ajax({
             url: "/login",
             type: 'POST',
-            data: {username: e, password: p},
-            success: suc()
+            data: {username: e, password: p}
         })
 
     })
@@ -154,7 +151,7 @@ function modal() {
         var href = $(this).attr("value");
 
         if (href != null)
-         window.location = href;
+            window.location = href;
 
     })
 

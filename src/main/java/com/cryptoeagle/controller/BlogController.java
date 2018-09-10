@@ -37,7 +37,7 @@ public class BlogController {
         blog.setUrl(url);
         blog.setUser(user);
 
-        List<Item> items = rssService.getItems(url);
+        List<Item> items = rssService.getItems(url,name);
         if (items != null) {
             blog.setItems(items);
             blog.setUser(user);

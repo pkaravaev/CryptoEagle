@@ -68,7 +68,7 @@ public class BlogServiceImpl implements BlogService {
     public void updateFromRss() {
         List<Blog> all = blogRepository.getAll();
         for (Blog blog : all){
-            List<Item> items = rssService.getItems(blog.getUrl());
+            List<Item> items = rssService.getItems(blog.getUrl(), blog.getName());
             if (items != null) {
                 blog.setItems(items);
                 blogRepository.save(blog, blog.getUser().getId());

@@ -10,16 +10,19 @@
         <intercept-url pattern="/login" access="permitAll()"/>
         <intercept-url pattern="/ico-list" access="hasRole('ROLE_USER')"/>
         <intercept-url pattern="/welcome" access="permitAll()"/>
-        <form-login login-page="/log" default-target-url="/welcome" always-use-default-target="true"/>
+        <form-login login-page="/login" authentication-success-forward-url="/welcome"/>
         <csrf disabled="true"/>
         <logout logout-url="/logout" logout-success-url="/welcome"/>
     </http>
 
     <authentication-manager>
+
         <authentication-provider user-service-ref="userServiceImpl">
             <password-encoder ref="bCryptPasswordEncoder"/>
         </authentication-provider>
+
     </authentication-manager>
+
 
     <beans:bean id="bCryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 

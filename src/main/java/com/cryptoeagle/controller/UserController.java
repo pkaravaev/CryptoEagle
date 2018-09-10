@@ -35,7 +35,7 @@ public class UserController {
     @Autowired
     PasswordEncoder passwordEncoder;
 
-    @RequestMapping(value = "/log", method = RequestMethod.GET)
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login() {
         return "login-page";
     }
@@ -59,10 +59,10 @@ public class UserController {
 //        return "redirect:/user-profile";
 //    }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String doLogin(){
-        return "redirect:/user-profile";
-    }
+//    @RequestMapping(value = "/login", method = RequestMethod.POST)
+//    public String doLogin(){
+//        return "redirect:/user-profile";
+//    }
 
     @RequestMapping("/user-profile")
     public String userProfile(@AuthenticationPrincipal User user, Model model) {
