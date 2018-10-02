@@ -48,8 +48,7 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Iterator;
 import java.util.List;
-
-import static com.cryptoeagle.test.converter;
+;
 
 @Service
 public class RestServiceImpl implements RestService {
@@ -62,6 +61,7 @@ public class RestServiceImpl implements RestService {
 
     private static final String REST_GET_ALL = "https://icobench.com/api/v1/icos/all";
     private static final String REST_GET_DATA = "https://icobench.com/api/v1/ico/";
+
     private static final String REST_GET_EVENTS = "https://api.coinmarketcal.com/v1/events";
     private static final String REST_GET_TOKEN = "https://api.coinmarketcal.com/oauth/v2/token";
 
@@ -70,7 +70,6 @@ public class RestServiceImpl implements RestService {
         int pagesCount = 1;
         List<Ico> icoList = new ArrayList<>();
         try {
-
             ObjectMapper objectMapper = new ObjectMapper();
             System.out.println("!");
             for (int i = 0; i < 2; i++) {
@@ -94,7 +93,6 @@ public class RestServiceImpl implements RestService {
     @Override
     public Idata getDataForIco(int id) {
         Idata idata = new Idata();
-
         try {
             ObjectMapper objectMapper = new ObjectMapper();
             String sign = HMAC384sign(PRIVATE_KEY, "");
@@ -105,7 +103,6 @@ public class RestServiceImpl implements RestService {
         } catch (Exception e) {
 
         }
-
 
         return idata;
     }
@@ -257,6 +254,8 @@ public class RestServiceImpl implements RestService {
         return coins;
     }
 
+
+
     public List<PictureCoin> getPicCoins() {
 
         List<PictureCoin> coins = new ArrayList<>();
@@ -320,8 +319,6 @@ public class RestServiceImpl implements RestService {
 
         return chartList;
     }
-
-
 
     private static Chart converter(Candlestick candlestick) {
 
@@ -553,9 +550,6 @@ public class RestServiceImpl implements RestService {
         else
             return old;
     }
-
-
-
 
     private String HMAC384sign(String private_key, String data) {
         try {

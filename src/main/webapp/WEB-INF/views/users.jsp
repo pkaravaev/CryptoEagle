@@ -31,8 +31,8 @@
                         <td>${user.blogs.size()}</td>
                         <td>${user.admin}</td>
                         <td>${user.enable}</td>
-                        <td><a class="btn btn-primary btn-warning" href="/users/edit/${user.id}" role="button">edit</a></td>
-                        <td><a class="btn btn-primary btn-danger" href="/users/delete/${user.id}" role="button">delete</a></td>
+                        <td><a class="btn btn-primary btn-warning" href="${context}/users/edit/${user.id}" role="button">edit</a></td>
+                        <td><a class="btn btn-primary btn-danger" href="${context}/users/delete/${user.id}" role="button">delete</a></td>
                     </tr>
                 </c:forEach>
                 </tbody>

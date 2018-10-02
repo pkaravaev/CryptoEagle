@@ -5,35 +5,16 @@
 
     $(document).ready(function () {
 
-        $(".card").mouseenter(function () {
-            $(this).css("cursor", "hand");
-        })
-
-        $(".card").mouseleave(function () {
-            $(this).css("cursor", "point");
-        })
-
-        $(".card").dblclick(function () {
-
-            var name = $(this).find(".href").text();
-            window.location.href = "/ico-page/" + name;
-
-        })
-
-        $(".card").contextmenu(function () {
-
-        })
-
         $("#buttonActive").click(function () {
-            window.location.href = "/ico-list/active";
+            window.location.href = "${context}/ico-list/active";
         })
 
         $("#buttonUpcoming").click(function () {
-            window.location.href = "/ico-list/upcoming";
+            window.location.href = "${context}/ico-list/upcoming";
         })
 
         $("#buttonFinished").click(function () {
-            window.location.href = "/ico-list/finished";
+            window.location.href = "${context}/ico-list/finished";
         })
     })
 
@@ -58,7 +39,6 @@
                                 <br/>
                                 <p class="text-left">
                                     <c:choose>
-
                                         <c:when test="${ico.rating < 4}">
                                             <small class="font-weight-bold" style="color: #bd2130">rating ${ico.rating}</small>
                                         </c:when>
@@ -84,7 +64,7 @@
                                 </p>
                             </div>
                         </div>
-                        <p class="href" hidden>${ico.name}</p>
+                        <p class="href" hidden>${context}/ico-page/${ico.name}</p>
                     </div>
                 </div>
                 <!--/.Panel-->
@@ -136,7 +116,7 @@
                                 </p>
                             </div>
                             <p hidden>${ico.website_link}</p>
-                            <p class="href" hidden>${ico.name}</p>
+                            <p class="href" hidden>${context}/ico-page/${ico.name}</p>
                         </div>
                     </div>
                 </div>
@@ -187,7 +167,7 @@
                             </div>
                         </div>
 
-                        <p class="href" hidden>${ico.name}</p>
+                        <p class="href" hidden>${context}/ico-page/${ico.name}</p>
 
                     </div>
                 </div>

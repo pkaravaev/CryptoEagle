@@ -45,7 +45,6 @@ public class CoinRestController {
         return entity;
     }
 
-
     @GetMapping(value = "/rest/news", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Item> retrieveAllItems() {
         return itemRepository.getall();

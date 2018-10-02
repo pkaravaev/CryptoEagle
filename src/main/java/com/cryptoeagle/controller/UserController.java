@@ -35,34 +35,11 @@ public class UserController {
     @Autowired
     PasswordEncoder passwordEncoder;
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login() {
-        return "login-page";
-    }
-
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logout(HttpSession session, SessionStatus status) {
         session.invalidate();
         return "redirect:/";
     }
-
-//    @RequestMapping(value = "/login", method = RequestMethod.POST)
-//    public String logining(@RequestParam("email") String email, @RequestParam("password") String password, Model model) {
-//        User user = userService.getByEmail(email);
-//        if (user == null) {
-//            model.addAttribute("error", "User not found!!!");
-//            return "error-page";
-//        }
-//        List<Item> list = blogService.itemsFromBlogs(user.getId());
-//        model.addAttribute("blogs", list);
-//        model.addAttribute("user", user);
-//        return "redirect:/user-profile";
-//    }
-
-//    @RequestMapping(value = "/login", method = RequestMethod.POST)
-//    public String doLogin(){
-//        return "redirect:/user-profile";
-//    }
 
     @RequestMapping("/user-profile")
     public String userProfile(@AuthenticationPrincipal User user, Model model) {

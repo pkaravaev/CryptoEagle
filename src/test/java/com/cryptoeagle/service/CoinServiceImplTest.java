@@ -4,11 +4,14 @@ import com.cryptoeagle.entity.Coin;
 import com.cryptoeagle.service.abst.CoinService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.EnableCaching;
 
 import java.util.List;
 
 import static org.junit.Assert.*;
 
+@EnableCaching
 public class CoinServiceImplTest extends AbstractTest{
 
     @Autowired
@@ -38,6 +41,9 @@ public class CoinServiceImplTest extends AbstractTest{
     @Test
     public void getCoin() {
         Coin eth = service.getCoin("ETH");
+        Coin eth1 = service.getCoin("ETH");
+        Coin eth2 = service.getCoin("ETH");
+        Coin eth3 = service.getCoin("ETH");
         assertTrue(eth.getSymbol().equals("ETH"));
     }
 

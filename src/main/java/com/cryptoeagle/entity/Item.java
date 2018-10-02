@@ -26,6 +26,7 @@ public class Item extends BaseEntity implements EntityWithPic {
     public final static String GET_BY_SOURCE = "Item.GetBySource";
     public final static String GET_ALL_SOURCE = "Item.GetAllSource";
 
+    @NotNull
     @Column(unique = true)
     private String title;
     @NotNull
@@ -70,7 +71,5 @@ public class Item extends BaseEntity implements EntityWithPic {
 
     public Item() {
     }
-
-
 
 }

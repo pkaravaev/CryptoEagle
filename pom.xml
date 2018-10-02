@@ -21,11 +21,11 @@
     <build>
         <plugins>
 
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.3-SNAPSHOT</version>
-            </plugin>
+            <!--<plugin>-->
+                <!--<groupId>org.jacoco</groupId>-->
+                <!--<artifactId>jacoco-maven-plugin</artifactId>-->
+                <!--<version>0.8.3-SNAPSHOT</version>-->
+            <!--</plugin>-->
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -62,24 +62,24 @@
         </plugins>
     </build>
 
-    <project>
-        <reporting>
-            <plugins>
-                <plugin>
-                    <groupId>org.jacoco</groupId>
-                    <artifactId>jacoco-maven-plugin</artifactId>
-                    <reportSets>
-                        <reportSet>
-                            <reports>
-                                <!-- select non-aggregate reports -->
-                                <report>report</report>
-                            </reports>
-                        </reportSet>
-                    </reportSets>
-                </plugin>
-            </plugins>
-        </reporting>
-    </project>
+
+        <!--<reporting>-->
+            <!--<plugins>-->
+                <!--<plugin>-->
+                    <!--<groupId>org.jacoco</groupId>-->
+                    <!--<artifactId>jacoco-maven-plugin</artifactId>-->
+                    <!--<reportSets>-->
+                        <!--<reportSet>-->
+                            <!--<reports>-->
+                                <!--&lt;!&ndash; select non-aggregate reports &ndash;&gt;-->
+                                <!--<report>report</report>-->
+                            <!--</reports>-->
+                        <!--</reportSet>-->
+                    <!--</reportSets>-->
+                <!--</plugin>-->
+            <!--</plugins>-->
+        <!--</reporting>-->
+
 
 
     <dependencies>

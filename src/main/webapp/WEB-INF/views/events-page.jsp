@@ -222,86 +222,76 @@
 
             <div class="timeline-panel ">
 
-                <div class="timeline-heading ">
-
                     <div class="row">
 
                         <div class="col">
-
-                            <div class="row">
-
-                                <div class="col">
-                                    <h6 class="timeline-title text-center">company</h6>
-                                    <h6 class="timeline-title text-center font-weight-bold">${event.name}</h6>
-
-                                </div>
-
-                                <div class="col">
-                                    <c:choose>
-                                        <c:when test="${event.isHot()}">
-                                            <i style="color: red" class="fas fa-fire fa-2x"></i>
-                                        </c:when>
-                                    </c:choose>
-                                </div>
-
-                                <div class="col">
-                                    <h6 class="timeline-title text-right">symbol</h6>
-                                    <h3 class="timeline-title font-weight-bold text-right">${event.coinName}</h3>
-                                </div>
-
-                            </div>
-
-                            <div class="col">
-                                <div class="col">
-                                    <h5 class="timeline-title text-center font-weight-bold">${event.title}</h5>
-                                        <%--<h5 class="timeline-title text-center font-weight-bold">left ${event.diffNowBeetweenDataEventDay()} d ${event.diffNowBeetweenDataEventMinute()}m </h5>--%>
-                                </div>
-                            </div>
-
+                            <h6 class="timeline-title text-center font-weight-bold">${event.name}</h6>
                         </div>
 
-                    </div>
-
-                </div>
-
-                <div class="timeline-body ">
-                    <p>${event.description}</p>
-
-                    <div class="row">
                         <div class="col">
-
-                            <button value="${event.proof}" type="button" class="btn btn-brown btn-rounded">Proof</button>
-                            <button value="${event.source}" type="button" class="btn btn-brown btn-rounded">Source</button>
-
-                        </div>
-                        <br/>
-                        <h6 class="timeline-title text-center font-weight-bold">
-                            left ${event.diffNowBeetweenDataEventDay()}
-                            d ${event.diffNowBeetweenDataEventMinute()}m </h6>
-
-                        <div style="margin-top: 2rem; margin-left: 2rem" class="col">
                             <c:choose>
-                                <c:when test="${event.diffNowBeetweenDataEventDay() == 0}">
-                                    <div class="col">
-                                        <i style="color: red" class="fas fa-clock fa-5x"></i>
-                                    </div>
-                                </c:when>
-                                <c:when test="${event.diffNowBeetweenDataEventDay() > 0}">
-                                    <div class="col">
-                                        <i style="color: orange" class="fas fa-clock fa-5x"></i>
-                                    </div
-                                </c:when>
-                                <c:when test="${event.diffNowBeetweenDataEventDay() > 2}">
-                                    <div class="col">
-                                        <i style="color: green" class="fas fa-clock fa-5x"></i>
-                                    </div
+                                <c:when test="${event.isHot()}">
+                                    <i style="color: red" class="fas fa-fire fa-2x"></i>
                                 </c:when>
                             </c:choose>
                         </div>
 
+                        <div class="col">
+                            <h3 class="timeline-title font-weight-bold ">${event.coinName}</h3>
+                        </div>
+
+                        <div class="col">
+                            <div class="col">
+                                <div class="col">
+                                    <c:choose>
+                                        <c:when test="${event.diffNowBeetweenDataEventDay() == 0}">
+                                            <div class="col">
+                                                <i style="color: red" class="fas fa-clock fa-3x"></i>
+                                            </div>
+                                        </c:when>
+                                        <c:when test="${event.diffNowBeetweenDataEventDay() > 0}">
+                                            <div class="col">
+                                                <i style="color: orange" class="fas fa-clock fa-3x"></i>
+                                            </div
+                                        </c:when>
+                                        <c:when test="${event.diffNowBeetweenDataEventDay() > 2}">
+                                            <div class="col">
+                                                <i style="color: green" class="fas fa-clock fa-3x"></i>
+                                            </div
+                                        </c:when>
+                                    </c:choose>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
+
+                    <div class="col">
+                        <div class="col">
+                            <h5 class="timeline-title text-center font-weight-bold">${event.title}</h5>
+                        </div>
+                    </div>
+
+                <p class="text-center font-weight-bold">${event.description}</p>
+
+                <div class="row">
+                    <div class="col">
+                        <button value="${event.proof}" type="button" class="btn btn-brown btn-rounded">Proof
+                        </button>
+                    </div>
+                    <div class="col">
+                        <button value="${event.source}" type="button" class="btn btn-brown btn-rounded">Source
+                        </button>
+                    </div>
+                    <div class="col">
+                        <h6 class="timeline-title text-center font-weight-bold">
+                            left ${event.diffNowBeetweenDataEventDay()}
+                            d ${event.diffNowBeetweenDataEventMinute()}m </h6>
+                    </div>
+
                 </div>
             </div>
+
             </li>
 
         </c:forEach>

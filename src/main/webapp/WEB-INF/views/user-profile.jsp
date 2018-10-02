@@ -6,8 +6,34 @@
 
     $(document).ready(function () {
 
+        var ctx = "${context}";
 
         $("#exampleModalCenter").show();
+
+        $("#blogDelete ").click(function () {
+            var blogName = $("#blogName").text();
+            $.ajax({
+                url: ctx + "/blog/remove",
+                type: 'GET',
+                data: {name: blogName}
+            })
+
+            window.location.href = ctx + "/user-profile";
+        })
+
+        $("#blogButton").click(function () {
+            var blogName = $("#defaultForm-name").val();
+            var blogUrl = $("#defaultForm-url").val();
+
+            $.ajax({
+                url: ctx + "/blog/add",
+                type: 'GET',
+                data: {name: blogName, url: blogUrl},
+                success: function () {
+                }
+            })
+            window.location.href = ctx + "/user-profile";
+        })
 
     })
 </script>
@@ -18,18 +44,20 @@
 
 <div class="container">
 
-    <div class="row">
+    <div class="col">
 
-        <div style="margin-left: 27rem">
+    </div>
 
+    <div class="col">
+        <div class="row">
 
-            <div class="col">
+            <div class="col text-center">
 
-                <h1 class="text-right font-weight-normal">Welcome ${name} <i class="fas fa-user-circle fa-2x"></i>
+                <h1 class="text font-weight-normal ml-5">Welcome ${name} <i class="fas fa-user-circle fa-2x"></i>
                 </h1>
             </div>
 
-            <div class="col">
+            <div class="col text-left">
 
                 <a id="addBlogButton" class="btn del btn-brown btn-rounded mb-4 hoverable" data-toggle="modal"
                    data-target="#modalLoginForm">Add
@@ -38,11 +66,10 @@
             </div>
 
 
-            <div class="text-left">
-
-            </div>
-
         </div>
+    </div>
+
+    <div class="col">
 
     </div>
 
@@ -121,34 +148,6 @@
         </div>
 
         <br/>
-
-        <%--<c:forEach items="${blog.getItems()}" var="item">--%>
-
-            <%--<br/>--%>
-
-            <%--<div style="margin-left: 10rem" class="card hoverable">--%>
-
-                <%--<div class="card-body">--%>
-
-                    <%--<div class="row">--%>
-
-                        <%--<div class="col-lg-1">--%>
-                            <%--<i style="color: #6f42c1" class="fas fa-newspaper fa-2x"></i>--%>
-                        <%--</div>--%>
-
-                        <%--<div class="col">--%>
-                            <%--<h6 class="text-left font-weight-bold"> ${item.title}</h6>--%>
-                        <%--</div>--%>
-
-                    <%--</div>--%>
-
-                <%--</div>--%>
-            <%--</div>--%>
-
-            <%--<br/>--%>
-
-        <%--</c:forEach>--%>
-
 
     </c:forEach>
 

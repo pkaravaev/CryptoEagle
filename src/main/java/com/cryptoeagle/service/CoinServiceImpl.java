@@ -19,7 +19,6 @@ import java.util.List;
 import java.util.logging.Logger;
 
 @Service
-@EnableScheduling
 public class CoinServiceImpl implements CoinService {
 
     private static final Logger log = Logger.getLogger(CoinServiceImpl.class.getName());

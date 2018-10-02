@@ -1,3 +1,35 @@
+
+<script>
+
+    $(document).ready(function () {
+
+        var ctx = "${context}";
+
+        $("#reg").click(function () {
+            var x = $(this).parent().parent().find("input");
+
+            var n = x[0].value;
+            var e = x[1].value;
+            var p = x[2].value;
+            var r = x[3].value;
+
+            $.ajax({
+                url: ctx +"/register",
+                type: 'POST',
+                data: {name: n, email: e, password: p, password_again: r}
+            })
+
+            $("#modalLRForm").modal('hide');
+
+        });
+
+    })
+
+
+
+
+</script>
+
 <!--Modal: Login / Register Form-->
 <div class="modal fade" id="modalLRForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog cascading-modal" role="document">
@@ -27,11 +59,11 @@
                         <!--Body-->
                         <div class="modal-body mb-1">
 
-                            <form id="loginForm" action="/login" method="post">
+                            <form id="loginForm" action="${context}/login" method="post">
 
                                 <div class="md-form form-sm mb-5">
                                     <i class="fa fa-envelope prefix"></i>
-                                    <input name="email" type="text" id="modalLRInput10"
+                                    <input name="username" type="text" id="modalLRInput10"
                                            class="form-control form-control-sm validate">
                                     <label data-error="wrong" data-success="right" for="modalLRInput10">Your
                                     login</label>
@@ -48,7 +80,7 @@
 
 
                                 <div class="text-center mt-2">
-                                    <button type="submit" id="log" formaction="/login" formmethod="post"
+                                    <button type="submit"
                                             class="btn  btn-brown">Log in <i class="fa fa-sign-in ml-1"></i></button>
                                 </div>
                                 <!--Footer-->

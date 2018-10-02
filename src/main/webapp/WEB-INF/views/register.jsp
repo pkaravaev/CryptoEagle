@@ -8,7 +8,7 @@
         </div>
         <div class="col-md-8">
 
-            <form class="form-horizontal registrationForm" action="/register" method="post" >
+            <form class="form-horizontal registrationForm" action="${context}/register" method="post" >
 
                 <div class="alert alert-info">
                     Register.

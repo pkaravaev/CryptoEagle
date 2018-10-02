@@ -8,9 +8,9 @@
 
     <http use-expressions="true">
         <intercept-url pattern="/login" access="permitAll()"/>
-        <intercept-url pattern="/ico-list" access="hasRole('ROLE_USER')"/>
+
         <intercept-url pattern="/welcome" access="permitAll()"/>
-        <form-login login-page="/login" authentication-success-forward-url="/welcome"/>
+        <form-login login-page="/login" authentication-success-forward-url="/welcome" authentication-failure-url="/loginerror" />
         <csrf disabled="true"/>
         <logout logout-url="/logout" logout-success-url="/welcome"/>
     </http>

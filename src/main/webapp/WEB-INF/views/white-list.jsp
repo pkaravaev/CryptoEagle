@@ -3,15 +3,6 @@
 
 
 
-<script>
-
-    $(".table").click(function () {
-        alert("xxxxx");
-    })
-
-</script>
-
-
 <div class="container">
     <br/>
 
@@ -23,7 +14,7 @@
         </div>
         <div class="col-lg-8">
             <h2 class="font-weight-bold text-center">WHITELIST</h2>
-            <h6 class="font-weight-bold text-center">Current list of ICOs where Whitelist is active. Registration is required for participation.</h6>
+            <h6 class="font-weight-bold text-center">Current list of ICOs where Whitelist is active. Registration is required for participation.</h6><br/>
             <!--Table-->
             <table class="table table-striped">
                 <!--Table body-->

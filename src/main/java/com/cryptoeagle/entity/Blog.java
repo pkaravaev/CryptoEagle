@@ -30,14 +30,14 @@ public class Blog extends BaseEntity {
     public static final String GET = "Blog.getById";
 
     @NotNull
+    @Column(unique = true)
     private String name;
 
+    @NotNull
     @Column(unique = true)
     private String url;
 
     @NotNull
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn
     @OneToMany(cascade = CascadeType.ALL,  orphanRemoval = true)
     private List<Item> items = new ArrayList<>();
 
@@ -53,7 +53,6 @@ public class Blog extends BaseEntity {
         this.user = user;
     }
 
-
     public Blog(int id_blog, String name, String URL) {
         super(id_blog);
         this.name = name;
@@ -63,6 +62,38 @@ public class Blog extends BaseEntity {
     public Blog(String name, String URL) {
         this.name = name;
         this.url = URL;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Blog() {

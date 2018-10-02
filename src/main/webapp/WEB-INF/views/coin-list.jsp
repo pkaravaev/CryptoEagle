@@ -8,18 +8,13 @@
 
        $('#dtMaterialDesignExample').DataTable();
 
-       // $(".coin").mouseenter(function () {
-       //     $(this).css("cursor", "hand");
-       // })
-       //
-       // $(".coin").mouseleave(function () {
-       //     $(this).css("cursor", "point");
-       // })
-       //
-       // $(".coin").dblclick(function () {
-       //     var symbol = $(this).find(".symbol").text();
-       //     window.location.href = "/coin-page/" + symbol;
-       // })
+       var ctx = "${context}";
+
+       $(".coin").click(function () {
+           var symbol = $(this).find("td")[1].innerText;
+           window.location.href = ctx +  "/coin-page/" + symbol;
+       })
+
    });
 
 </script>
@@ -84,11 +79,9 @@
                         <c:choose>
                             <c:when test="${coin.dataAvailable}">
                                 <td style="color: green" class="font-weight-bold">Yes</td>
-
                             </c:when>
 
                             <c:when test="${!coin.dataAvailable}">
-
                                 <td style="color: red" class="font-weight-bold">No</td>
                             </c:when>
                         </c:choose>

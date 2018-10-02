@@ -31,7 +31,6 @@ public class ExceptionController {
         return  "error-page";
     }
 
-
     @ExceptionHandler(IcoNotFoundException.class)
     public String icoNotFound(Model model){
         model.addAttribute("error", "Ico data not found!!!");

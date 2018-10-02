@@ -1,53 +1,31 @@
-
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="template/header.jsp"/>
 
+<body>
 
-<div class="container-fluid">
+<div class="container">
 
-    <div class="row">
-        <div class="col">
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
-                </div>
-            </div>
-        </div>
-        <div class="col">
+ <table>
+     <thead>
+     <tr>
+         <th>Symbol</th>
+         <th>Price</th>
+         <th>Change</th>
+     </tr>
+     </thead>
 
-            <div class="row">
+     <tbody ">
+     <tr>
+         <td>ETH</td>
+         <td>45</td>
+         <td>235325</td>
+     </tr>
+     </tbody>
 
-                <div class="col-1">
-                  column1
-                </div>
-
-                <div class="col-8">
-                    column3
-                </div>
-                <div class="col-2">
-                    column2
-                </div>
-
-            </div>
-
-        </div>
-        <div class="col">
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
-                </div>
-            </div>
-        </div>
+ </table>
 
 
 
-    </div>
 </div>
+
+</body>

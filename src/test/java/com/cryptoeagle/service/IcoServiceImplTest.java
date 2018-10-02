@@ -21,7 +21,7 @@ public class IcoServiceImplTest extends AbstractTest {
     @Test
     public void getAll() {
         List<Ico> all = service.getAll();
-
+        assertTrue(all.size() > 10);
     }
 
     @Test
@@ -32,15 +32,10 @@ public class IcoServiceImplTest extends AbstractTest {
 
     @Test
     public void getUpcoming() {
-
         List<Ico> upcoming = service.getUpcoming();
-        List<Ico> finished = service.getFinished();
-        List<Ico> active = service.getActiveIco();
-
-      for (Ico ico : upcoming) {
-        assertTrue(ico.getIcoStart().isAfter(LocalDateTime.now()));
-      }
-
+        for (Ico ico : upcoming) {
+            assertTrue(ico.getIcoStart().isAfter(LocalDateTime.now()));
+        }
     }
 
     @Test
@@ -57,7 +52,6 @@ public class IcoServiceImplTest extends AbstractTest {
         for (Ico ico : active) {
             assertTrue(ico.getIcoEnd().isAfter(LocalDateTime.now()));
         }
-
         List<Ico> collect = service.getActiveIco().stream().limit(6).collect(Collectors.toList());
     }
 
@@ -65,7 +59,7 @@ public class IcoServiceImplTest extends AbstractTest {
     public void getByName() {
         Ico name = service.getByName("Fanfare");
         Ico ico = service.getByName("Digital Credit");
-        assertEquals(name.getName(),"Fanfare");
+        assertEquals(name.getName(), "Fanfare");
     }
 
     @Test

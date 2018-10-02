@@ -44,12 +44,9 @@ public class CoinRepositoryJpaImpl implements CoinRepository {
     @Override
     @Transactional
     public void saveCoins(List<Coin> list) {
-
-
         for (Coin c : list) {
             entityManager.merge(c);
         }
-
     }
 
     @Override

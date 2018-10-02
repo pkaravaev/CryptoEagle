@@ -2,46 +2,44 @@
 
 <jsp:include page="template/header.jsp"/>
 
-
-<br/>
-
 <script>
 
     $(document).ready(function () {
-
         new WOW().init();
 
-        // $(".card").dblclick(function () {
-        //     var href = $(this).find(".href").text();
-        //     $(location).attr("href", href);
-        // })
+        var ctx = "${context}";
 
-        $(".card").mouseenter(function () {
-            $(this).css('cursor', 'pointer');
+        //get top coins by ajax
+        $.get(
+            // "http://localhost:8080/" +
+            ctx + "/ajax/topcoins",
+            function (data) {
+                $("#topCoins").empty();
+                data.forEach(function (element) {
+                    $("#topCoins").append('<tr class="coin hoverable">' +
+                        '<td><p class="font-weight-bold">' + element.symbol + '</p></td>' +
+                        '<td><p class="font-weight-bold">' + element.price.toFixed(2) + '$</p></td>' +
+                        '<td><p style="color: green" class="font-weight-bold">' + element.percent_change_7d + '%</p></td>' +
+                        '</tr>');
+                })
+            }
+        );
+        //get loose coins by ajax
+        $.get(
+            // "http://localhost:8080/" +
+            ctx + "/ajax/loosercoins",
+            function (data) {
+                $("#looseCoins").empty();
+                data.forEach(function (element) {
+                    $("#looseCoins").append('<tr class="coin hoverable">' +
+                        '<td><p class="font-weight-bold">' + element.symbol + '</p></td>' +
+                        '<td><p class="font-weight-bold">' + element.price.toFixed(2) + '$</p></td>' +
+                        '<td><p style="color: red" class="font-weight-bold">' + element.percent_change_7d + '%</p></td>' +
+                        '</tr>');
+                })
 
-        })
-
-        $(".card").mouseleave(function () {
-            $(this).find(".card-img-overlay").removeClass("animated bounceInUp").removeClass("animated shake").addClass("animated fadeOutDown");
-        })
-
-
-        $(".timeline-panel").mouseenter(function () {
-            $(this).css('cursor', 'pointer');
-        })
-
-        $(".timeline-panel").mouseleave(function () {
-            $(this).find(".card-img-overlay").removeClass("animated bounceInUp").removeClass("animated shake").addClass("animated fadeOutDown");
-        })
-
-        $("tr").click(function () {
-            $(location).attr("href", "/coin-list");
-        })
-
-        $("tr").mouseenter(function () {
-            $(this).css('cursor', 'pointer');
-        })
-
+            }
+        );
     })
 
 </script>
@@ -238,47 +236,57 @@
     }
 </style>
 
-<div class="container bg-white">
+
+<br/>
+
+<%--items--%>
+<div class="container">
 
     <div class="row">
-        <div class="col-">
-        </div>
+
         <div class="col">
             <h3 class="font-weight-bold">CRYPTO NEWS</h3>
-            <hr color="#795548"/>
-            <div style="height: 18rem" class="card hoverable rounded example job ">
+            <hr style="size: 4rem" color="#795548"/>
+
+            <div style="height: 18rem" class="card hoverable">
+
                 <img style="height: 13rem" alt="Card image cap" class="card-img-top img-fluid"
-                     src="/resources/pic/l/l${topItem.getRandomPic(5)}.jpg">
-                <h4 class="card-title font-weight-bold ">${topItem.title}</h4>
-                <p class="href" hidden>${topItem.link}</p>
-                <p  style="margin-left: 1rem" class="description" hidden>${topItem.description}</p>
+                     src="${context}/resources/pic/l/l${topItem.getRandomPic(5)}.jpg">
+
+                <h6 style="margin-left: 1rem" class="card-title font-weight-bold mt-1 ">${topItem.title}</h6>
+
                 <div class="row">
+
                     <div class="col">
-                        <p class="date text-left font-italic">by ${topItem.source}</p>
+                        <p class="date text-left font-italic ml-3 mb-5">by ${topItem.source}</p>
                     </div>
+
                     <div class="col">
-                        <p style="margin-right: 1rem" class="date text-right font-italic">${topItem.diffMinutes()} min
+                        <p class="date text-right font-italic mr-3 mb-5">${topItem.diffMinutes()} min
                             ago</p>
                     </div>
+
                 </div>
-                <p class="title" hidden>${topItem.title}</p>
+
+                <p style="margin-left: 3rem" class="description" hidden>${topItem.description}</p>
+                <p class="href" hidden>${topItem.link}</p>
             </div>
+
             <br/>
+
             <div class="card-deck">
                 <c:forEach items="${averageItems}" var="item" varStatus="i">
-                    <!--Panel-->
-                    <div id="bigCard" style="height: 20rem;width: 22rem" class="card hoverable ">
+
+                    <div style="height: 20rem;width: 22rem" class="card hoverable">
+
                         <img style="width: 22rem;height: 12rem" alt="Card  image cap" class="card-img-top img-fluid"
-                             src="/resources/pic/m/m${i.count}.jpg">
-                        <div class="card-block ">
-                            <h4 class="card-title font-weight-bold ">${item.title}</h4>
-                        </div>
-                        <p class="title text-center" hidden>${item.title}</p>
-                        <p class="href" hidden>${item.link}</p>
-                        <p class="description" hidden>${item.description}</p>
+                             src="${context}/resources/pic/m/m${i.count}.jpg">
+
+                        <h6 class="card-title font-weight-bold ml-3 mt-2">${item.title}</h6>
+
                         <div class="row">
                             <div class="col">
-                                <p style="margin-left: 1rem" class="date text-left font-italic">by ${item.source}</p>
+                                <p class="date text-left font-italic ml-3 ">by ${item.source}</p>
                             </div>
                             <div class="col">
                                 <c:choose>
@@ -294,13 +302,18 @@
                                 </c:choose>
                             </div>
                         </div>
+
+                        <p class="description" hidden>${item.description}</p>
+                        <p class="href" hidden>${item.link}</p>
+
                     </div>
-                    <!--Panel-->
+
+
                 </c:forEach>
             </div>
         </div>
-        <%--<br/>--%>
-        <%--<br/>--%>
+
+
         <div class="col-4 ">
             <!-- Nav tabs -->
             <ul class="nav nav-tabs nav-justified " role="tablist">
@@ -319,21 +332,7 @@
                 <!--Panel 1-->
                 <div class="tab-pane fade  in show active" id="panel5" role="tabpanel">
                     <table class="table h-50">
-                        <tbody>
-                        <c:forEach items="${topcoins}" var="coin">
-                            <tr class="hoverable">
-                                <th><p class="font-weight-bold">${coin.symbol}</p></th>
-                                <td><p class="font-weight-bold">${coin.price} $</p></td>
-                                <c:if test="${coin.percent_change_7d > 0}">
-                                    <td><p style="color: green" class="font-weight-bold">${coin.percent_change_7d}%</p>
-                                    </td>
-                                </c:if>
-                                <c:if test="${coin.percent_change_7d < 0}">
-                                    <td><p style="color: red" class="font-weight-bold">${coin.percent_change_7d}%</p>
-                                    </td>
-                                </c:if>
-                            </tr>
-                        </c:forEach>
+                        <tbody id="topCoins">
                         </tbody>
                     </table>
                 </div>
@@ -342,21 +341,7 @@
                 <div class="tab-pane fade " id="panel6" role="tabpanel">
                     <div class="tab-pane fade in show " id="panel" role="tabpanel">
                         <table class="table ">
-                            <tbody>
-                            <c:forEach items="${losercoins}" var="coin">
-                                <tr>
-                                    <th><p class="font-weight-bold">${coin.symbol}</p></th>
-                                    <td><p class="font-weight-bold">${coin.price} $</p></td>
-                                    <c:if test="${coin.percent_change_7d > 0}">
-                                        <td><p style="color: green"
-                                               class="font-weight-bold">${coin.percent_change_7d}%</p></td>
-                                    </c:if>
-                                    <c:if test="${coin.percent_change_7d < 0}">
-                                        <td><p style="color: red"
-                                               class="font-weight-bold">${coin.percent_change_7d}%</p></td>
-                                    </c:if>
-                                </tr>
-                            </c:forEach>
+                            <tbody id="looseCoins">
                             </tbody>
                         </table>
                     </div>
@@ -365,26 +350,31 @@
             </div>
             <!-- Tab panels -->
         </div>
+
     </div>
 
+</div>
+
+<%--items--%>
+<div class="container">
     <div class="row">
         <div class="col">
             <br/>
-            <div class="card-columns">
+
+            <div class="card-deck">
+
                 <c:forEach items="${lowerItems}" var="item" varStatus="i">
-                    <!--Panel-->
-                    <div style="height: 20rem;width: 22rem" class="card hoverable ">
+
+                    <div style="height: 20rem;width: 22rem" class="card hoverable">
+
                         <img style="width: 22rem;height: 12rem" alt="Card  image cap" class="card-img-top img-fluid"
-                             src="/resources/pic/m/m${i.count}.jpg">
-                        <div class="card-block ">
-                            <h4 class="card-title font-weight-bold ">${item.title}</h4>
-                        </div>
-                        <p class="title" hidden>${item.title}</p>
-                        <p class="href" hidden>${item.link}</p>
-                        <p class="description" hidden>${item.description}</p>
+                             src="${context}/resources/pic/m/m${i.count}.jpg">
+
+                        <h6 class="card-title font-weight-bold ml-3 mt-2">${item.title}</h6>
+
                         <div class="row">
                             <div class="col">
-                                <p style="margin-left: 1rem" class="date text-left font-italic">by ${item.source}</p>
+                                <p class="date text-left font-italic ml-3 ">by ${item.source}</p>
                             </div>
                             <div class="col">
                                 <c:choose>
@@ -400,72 +390,85 @@
                                 </c:choose>
                             </div>
                         </div>
+
+                        <p class="description" hidden>${item.description}</p>
+                        <p class="href" hidden>${item.link}</p>
+
                     </div>
-                    <!--Panel-->
+
                 </c:forEach>
+
             </div>
-            <h3 class="font-weight-bold wow fadeInUp hoverable">HOT ICO</h3>
-            <hr style="size: 4rem" color="#795548"/>
-            <div class="card-columns">
+            <br/>
 
-                <c:forEach items="${icos}" var="ico">
-
-                    <!--Panel-->
-                    <div id="icoCard" class="card  hoverable">
-                        <div class="card-body">
-                            <div class="row">
-
-                                <div class="col">
-                                    <br/>
-                                    <img class="rounded-circle" src="${ico.logolink}" width="60" height="60">
-                                    <br/>
-                                    <br/>
-                                    <p class="text-left">
-                                        <c:choose>
-                                            <c:when test="${ico.rating < 4}">
-                                                <small class="font-weight-bold" style="color: #bd2130">rating ${ico.rating}</small>
-                                            </c:when>
-
-                                            <c:when test="${ico.rating >= 4 && ico.rating < 4.5}">
-                                                <small class="font-weight-bold" style="color: orange">rating ${ico.rating}</small>
-                                            </c:when>
-
-                                            <c:when test="${ico.rating >= 4.5}">
-                                                <small class="font-weight-bold" style="color: green">rating ${ico.rating}</small>
-                                            </c:when>
-                                        </c:choose>
-                                    </p>
-                                </div>
-
-                                <div class="col">
-                                    <h5 style="margin-top: 2rem" class="card-title text-center font-weight-bold">${ico.name}</h5>
-                                    <p  hidden class="href" >/ico-page/${ico.name}/</p>
-                                </div>
-
-                                <p class="description" hidden>${ico.description}</p>
-
-                                <div class="col">
-                                    <p class="text-right">
-                                        <small class="font-weight-bold">${ Math.abs(ico.todayMinusIcoEnd())}d left</small>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--/.Panel-->
-                    <br/>
-                </c:forEach>
-            </div>
-            <h3 class="font-weight-bold wow fadeInUp hoverable">UPCOMING EVENTS</h3>
-            <hr style="size: 4rem" color="#795548"/>
         </div>
     </div>
-
 </div>
 
-<%--timeline--%>
+<%--ICO--%>
 <div class="container">
 
+    <h3 class="font-weight-bold wow fadeInUp  hoverable">HOT ICO</h3>
+    <hr style="size: 4rem" color="#795548"/>
+
+    <div class="card-deck">
+
+        <c:forEach items="${icos}" var="ico">
+
+            <div id="icoCard" class="card  hoverable">
+
+                <div class="card-body">
+                    <div class="text-center">
+                        <img class="rounded-circle" src="${ico.logolink}" width="60" height="60">
+                    </div>
+                    <h5 style="margin-top: 2rem"
+                        class="card-title text-center font-weight-bold">${ico.name}</h5>
+                    <p hidden class="href">${ctx}/ico-page/${ico.name}/</p>
+
+                    <div class="row">
+                        <div class="col">
+                            <p class="text-left">
+                                <c:choose>
+                                    <c:when test="${ico.rating < 4}">
+                                        <small class="font-weight-bold" style="color: #bd2130">
+                                            rating ${ico.rating}</small>
+                                    </c:when>
+
+                                    <c:when test="${ico.rating >= 4 && ico.rating < 4.5}">
+                                        <small class="font-weight-bold" style="color: orange">
+                                            rating ${ico.rating}</small>
+                                    </c:when>
+
+                                    <c:when test="${ico.rating >= 4.5}">
+                                        <small class="font-weight-bold" style="color: green">
+                                            rating ${ico.rating}</small>
+                                    </c:when>
+                                </c:choose>
+                            </p>
+                        </div>
+
+                        <div class="col">
+                            <p class="text-right">
+                                <small class="font-weight-bold">${Math.abs(ico.todayMinusIcoEnd())}d left
+                                </small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="description" hidden>${ico.description}</p>
+            </div>
+
+            <br/>
+        </c:forEach>
+    </div>
+</div>
+
+ <%--upcoming events--%>
+<div class="container">
+    <br/>
+    <h3 class="font-weight-bold wow fadeInUp hoverable">UPCOMING EVENTS</h3>
+    <hr style="size: 4rem" color="#795548"/>
     <ul class="timeline">
 
         <c:forEach items="${events}" var="event" varStatus="i">
@@ -492,15 +495,16 @@
 
                             <div class="row">
 
-                                <div class="col">
+                                <div class="col text-center">
                                     <h6 class="timeline-title text-center font-weight-bold">${event.name}</h6>
                                 </div>
 
-                                <div class="col">
-                                    <h3 class="timeline-title font-weight-bold text-right">${event.coinName}</h3>
+                                <div class="col text-center">
+                                    <h3 class="font-weight-bold">${event.coinName}</h3>
                                 </div>
 
-                                <div class="col">
+
+                                <div class="col text-center">
                                     <c:choose>
                                         <c:when test="${event.isHot()}">
                                             <i style="color: red" class="fas fa-fire fa-2x"></i>
@@ -512,7 +516,7 @@
 
                             <div class="col">
                                 <div class="col">
-                                    <h5 class="timeline-title text-center font-weight-bold">${event.title}</h5>
+                                    <h5 class=" text-center font-weight-bold">${event.title}</h5>
                                 </div>
                             </div>
 
@@ -522,43 +526,24 @@
 
                 </div>
 
-                <div class="timeline-body ">
-                    <p>${event.description}</p>
+                <p class="font-weight-normal text-center">${event.description}</p>
 
-                    <div class="row">
-                        <div class="col">
-                            <button value="${event.source}" type="button" class="btn btn-brown btn-rounded">Source
-                            </button>
-                        </div>
-                        <br/>
-                        <h6 class="timeline-title text-center font-weight-bold">
-                            left ${event.diffNowBeetweenDataEventDay()}
-                            d ${event.diffNowBeetweenDataEventMinute()}</h6>
+                <div class="row">
 
-                        <div style="margin-top: 2rem; margin-left: 2rem" class="col">
-                            <c:choose>
-                                <c:when test="${event.diffNowBeetweenDataEventDay() == 0}">
-                                    <div class="col">
-                                        <i style="color: red" class="fas fa-clock fa-5x"></i>
-                                    </div>
-                                </c:when>
-                                <c:when test="${event.diffNowBeetweenDataEventDay() > 0}">
-                                    <div class="col">
-                                        <i style="color: orange" class="fas fa-clock fa-5x"></i>
-                                    </div
-                                </c:when>
-                                <c:when test="${event.diffNowBeetweenDataEventDay() > 2}">
-                                    <div class="col">
-                                        <i style="color: green" class="fas fa-clock fa-5x"></i>
-                                    </div
-                                </c:when>
-                            </c:choose>
-                        </div>
-
+                    <div class="col text-right">
+                        <button value="${event.source}" type="button" class="btn btn-brown btn-rounded">Source
+                        </button>
                     </div>
-                </div>
-            </div>
+                    <br/>
 
+                    <div class="col text-left">
+                        <button value="${event.proof}" type="button" class="btn btn-brown btn-rounded">Proof
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
 
             </li>
 

@@ -39,6 +39,8 @@ public class BlogServiceImplTest extends AbstractTest {
 
     @Test
     public void findall() {
+
+        List<Blog> all = service.getAll();
         List<Blog> blogs = service.findall(100);
         assertTrue(blogs.size() == 2);
         List<Blog> blogs2 = service.findall(104);

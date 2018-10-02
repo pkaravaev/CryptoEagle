@@ -1,6 +1,5 @@
 package com.cryptoeagle.controller;
 
-
 import com.cryptoeagle.entity.*;
 import com.cryptoeagle.exception.UserNotFoundException;
 import com.cryptoeagle.service.UserServiceImpl;
@@ -51,6 +50,11 @@ public class MainController {
         return new Blog();
     }
 
+    @RequestMapping("/loginerror")
+    public String loginError() {
+        return "404";
+    }
+
     @RequestMapping("/analitics")
     public String analitics() {
         return "analitics";
@@ -71,9 +75,11 @@ public class MainController {
 
     @RequestMapping(value = { "/", "/welcome"})
     public String welcome(@AuthenticationPrincipal User user, Model model) {
+
         List<Item> items = itemService.getAll().stream().limit(10).collect(Collectors.toList());
         List<Item> lowerItems = new ArrayList<>();
         List<Item> averageItems = new ArrayList<>();
+
         Item topItem = null;
         if (items.size() > 0) {
             topItem = items.get(0);
@@ -85,22 +91,19 @@ public class MainController {
             lowerItems.add(items.get(5));
         }
 
-        List<Coin> topcoins = coinService.getTopGainCoins();
-        List<Coin> losercoins = coinService.getTopLoserCoins();
-        List<Event> events = eventService.getEvents(6);
-        List<Ico> icos2 = icoService.getActiveIco().stream().limit(6).collect(Collectors.toList());
+        List<Event> events = eventService.getEvents(5);
 
+        List<Ico> icos = icoService.getActiveIco().stream().limit(4).collect(Collectors.toList());
 
-        model.addAttribute("losercoins", losercoins);
-        model.addAttribute("topcoins", topcoins);
 
         model.addAttribute("topItem", topItem);
         model.addAttribute("lowerItems", lowerItems);
         model.addAttribute("averageItems", averageItems);
 
 
-        model.addAttribute("icos", icos2);
+        model.addAttribute("icos", icos);
         model.addAttribute("events", events);
+
         return "welcome";
     }
 
@@ -121,12 +124,6 @@ public class MainController {
         icoService.updateIcos();
         return  "redirect:/welcome ";
     }
-//
-//    @RequestMapping("/{name}")
-//    public String welcome2(@PathVariable String name) {
-//        System.out.println();
-//        return "welcome";
-//    }
 
     @RequestMapping("/error")
     public String error() {
@@ -173,6 +170,8 @@ public class MainController {
 
     @RequestMapping("/test")
     public String test(Model model) {
+        List<Item> items = itemService.getAll();
+        model.addAttribute("items",items);
         return "test";
     }
 

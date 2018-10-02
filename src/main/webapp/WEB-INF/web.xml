@@ -30,7 +30,7 @@
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:/spring/spring-app.xml
+        <param-value> classpath:/spring/spring-app.xml
                       classpath:/spring/spring-db.xml
                       classpath:/spring/spring-security.xml
         </param-value>
@@ -55,6 +55,11 @@
     <error-page>
         <error-code>403</error-code>
         <location>/WEB-INF/views/accessDenied.jsp</location>
+    </error-page>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/WEB-INF/views/404.jsp</location>
     </error-page>
 
 
