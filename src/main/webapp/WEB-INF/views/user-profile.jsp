@@ -44,34 +44,20 @@
 
 <div class="container">
 
-    <div class="col">
 
-    </div>
+    <div class="row text-center">
 
-    <div class="col">
-        <div class="row">
+        <div class="col">
 
-            <div class="col text-center">
-
-                <h1 class="text font-weight-normal ml-5">Welcome ${name} <i class="fas fa-user-circle fa-2x"></i>
-                </h1>
-            </div>
-
-            <div class="col text-left">
-
-                <a id="addBlogButton" class="btn del btn-brown btn-rounded mb-4 hoverable" data-toggle="modal"
-                   data-target="#modalLoginForm">Add
-                    Blog</a>
-
-            </div>
-
-
+            <h1 class="text font-weight-normal ml-5">Welcome ${name} <i class="fas fa-user-circle fa-2x"></i>
+            </h1>
+            <a id="addBlogButton" class="btn del btn-brown btn-rounded mb-4 hoverable" data-toggle="modal"
+               data-target="#modalLoginForm">Add
+                Blog</a>
         </div>
-    </div>
-
-    <div class="col">
 
     </div>
+
 
     <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
          aria-hidden="true">
@@ -127,7 +113,7 @@
                                 <p id="blogName" class="text-center font-weight-bold">${blog.name}</p>
                             </div>
 
-                            <div class="col-8">
+                            <div class="col-8 text-right">
                                 <h6 class="text-left font-weight-bold"> ${blog.url}</h6>
                             </div>
 
@@ -138,7 +124,7 @@
 
             </div>
 
-            <div class="col-1">
+            <div class="col-1 mt-2">
                 <div>
                     <button id="blogDelete" type="button-right" class="btn btn-brown">Delete</button>
                 </div>

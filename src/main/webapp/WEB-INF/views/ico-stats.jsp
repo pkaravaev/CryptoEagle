@@ -10,6 +10,13 @@
 
        $('#dtMaterialDesignExample').DataTable();
 
+       var ctx = "${context}";
+       $(".icoStats").click(function () {
+           var symbol = $(this).find("td")[1].innerText;
+           window.location.href = ctx +  "/ico-page/" + symbol;
+       })
+
+
    });
 
 
@@ -49,7 +56,9 @@
                 </thead>
                 <tbody>
                 <c:forEach items="${icos}" var="ico">
-                    <tr class="r">
+                    <tr class="icoStats" >
+
+
                         <td><img class="rounded-circle" src="${ico.logolink} "></td>
                         <td  class="name font-weight-bold">${ico.name}</td>
                         <td style="margin-top: 5rem" class="font-weight-bold text-center">${ico.description}</td>
@@ -74,6 +83,9 @@
                                 <td  style="color: #00695c" class="font-weight-bold">${ico.rating}</td>
                             </c:when>
                         </c:choose>
+
+
+
                     </tr>
                 </c:forEach>
                 </tbody>

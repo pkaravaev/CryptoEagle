@@ -78,6 +78,13 @@
                     var dataJSON = JSON.stringify([1, 'false', false]);
                 }
             });
+
+        $("#modal").click(function () {
+            $("#modalLRForm").modal('show');
+        })
+
+
+
     })
 
 
@@ -128,9 +135,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="${context}/events">EVENTS</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="${context}/analitics">ANALITICS</a>
-                </li>
+                <%--<li class="nav-item">--%>
+                    <%--<a class="nav-link" href="${context}/analitics">ANALITICS</a>--%>
+                <%--</li>--%>
 
                 <security:authorize access="isAuthenticated()">
 

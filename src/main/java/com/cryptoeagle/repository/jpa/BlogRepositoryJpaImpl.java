@@ -14,12 +14,8 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class BlogRepositoryJpaImpl implements BlogRepository {
 
-
     @PersistenceContext
     EntityManager em;
-
-
-
 
     @Override
     public List<Blog> getallByUser(int user_Id) {

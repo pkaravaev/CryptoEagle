@@ -5,6 +5,7 @@
 
     $(document).ready(function () {
 
+
         $("#buttonActive").click(function () {
             window.location.href = "${context}/ico-list/active";
         })
@@ -16,6 +17,7 @@
         $("#buttonFinished").click(function () {
             window.location.href = "${context}/ico-list/finished";
         })
+
     })
 
 </script>
@@ -40,15 +42,18 @@
                                 <p class="text-left">
                                     <c:choose>
                                         <c:when test="${ico.rating < 4}">
-                                            <small class="font-weight-bold" style="color: #bd2130">rating ${ico.rating}</small>
+                                            <small class="font-weight-bold" style="color: #bd2130">
+                                                rating ${ico.rating}</small>
                                         </c:when>
 
                                         <c:when test="${ico.rating >= 4 && ico.rating < 4.5}">
-                                            <small class="font-weight-bold" style="color: orange">rating ${ico.rating}</small>
+                                            <small class="font-weight-bold" style="color: orange">
+                                                rating ${ico.rating}</small>
                                         </c:when>
 
                                         <c:when test="${ico.rating >= 4.5}">
-                                            <small class="font-weight-bold" style="color: green">rating ${ico.rating}</small>
+                                            <small class="font-weight-bold" style="color: green">
+                                                rating ${ico.rating}</small>
                                         </c:when>
 
                                     </c:choose>
@@ -56,7 +61,6 @@
                             </div>
                             <div class="col">
                                 <h5 class="card-title text-center font-weight-bold">${ico.name}</h5>
-                                <%--<h6 class="card-title text-center font-weight-normal">${ico.data.getCategories("name")}</h6>--%>
                             </div>
                             <div class="col">
                                 <p class="text-right">
@@ -69,9 +73,14 @@
                 </div>
                 <!--/.Panel-->
                 <br/>
+
             </c:forEach>
 
-            <button id="buttonActive" style="width: 22rem" type="button" class="btn btn-brown btn-lg btn-block">GO MORE ACTIVE ICO</button>
+
+            <button id="buttonActive" style="width: 22rem" type="button" class="btn btn-brown btn-lg btn-block">GO
+                MORE ACTIVE ICO
+            </button>
+
 
         </div>
 
@@ -92,15 +101,18 @@
                                     <c:choose>
 
                                         <c:when test="${ico.rating < 4}">
-                                            <small class="font-weight-bold" style="color: #bd2130">rating ${ico.rating}</small>
+                                            <small class="font-weight-bold" style="color: #bd2130">
+                                                rating ${ico.rating}</small>
                                         </c:when>
 
                                         <c:when test="${ico.rating >= 4 && ico.rating < 4.5}">
-                                            <small class="font-weight-bold" style="color: orange">rating ${ico.rating}</small>
+                                            <small class="font-weight-bold" style="color: orange">
+                                                rating ${ico.rating}</small>
                                         </c:when>
 
                                         <c:when test="${ico.rating >= 4.5}">
-                                            <small class="font-weight-bold" style="color: green">rating ${ico.rating}</small>
+                                            <small class="font-weight-bold" style="color: green">
+                                                rating ${ico.rating}</small>
                                         </c:when>
 
                                     </c:choose>
@@ -108,7 +120,6 @@
                             </div>
                             <div class="col">
                                 <h5 class="card-title text-center font-weight-bold">${ico.name}</h5>
-                                <%--<h6 class="card-title text-center font-weight-normal">${ico.data.getCategories("name")}</h6>--%>
                             </div>
                             <div class="col">
                                 <p class="text-right">
@@ -124,7 +135,12 @@
                 <br/>
             </c:forEach>
 
-            <button id="buttonUpcoming" style="width: 22rem" type="button" class="btn btn-brown btn-lg btn-block">GO MORE UPCOMING ICO</button>
+
+            <button id="buttonUpcoming" style=" width: 22rem" type="button" class="btn btn-brown btn-lg btn-block">
+                GO MORE UPCOMING ICO
+            </button>
+
+
         </div>
 
         <div class="col-md-4">
@@ -143,22 +159,24 @@
                                 <p class="text-left">
                                     <c:choose>
                                         <c:when test="${ico.rating < 4}">
-                                            <small class="font-weight-bold" style="color: #bd2130">rating ${ico.rating}</small>
+                                            <small class="font-weight-bold" style="color: #bd2130">
+                                                rating ${ico.rating}</small>
                                         </c:when>
 
                                         <c:when test="${ico.rating >= 4 && ico.rating < 4.5}">
-                                            <small class="font-weight-bold" style="color: orange">rating ${ico.rating}</small>
+                                            <small class="font-weight-bold" style="color: orange">
+                                                rating ${ico.rating}</small>
                                         </c:when>
 
                                         <c:when test="${ico.rating >= 4.5}">
-                                            <small class="font-weight-bold" style="color: green">rating ${ico.rating}</small>
+                                            <small class="font-weight-bold" style="color: green">
+                                                rating ${ico.rating}</small>
                                         </c:when>
                                     </c:choose>
                                 </p>
                             </div>
                             <div class="col">
                                 <h5 class="card-title text-center font-weight-bold">${ico.name}</h5>
-                                <%--<h6 class="card-title text-center font-weight-normal">${ico.data.getCategories("name")}</h6>--%>
                             </div>
                             <div class="col">
                                 <p class="text-right">
@@ -175,7 +193,11 @@
                 <br/>
             </c:forEach>
 
-            <button id="buttonFinished" style="width: 22rem" type="button" class="btn btn-brown btn-lg btn-block">GO MORE FINISHED ICO</button>
+
+            <button id="buttonFinished" style="width: 22rem" type="button" class="btn btn-brown btn-lg btn-block">GO
+                MORE FINISHED ICO
+            </button>
+
 
         </div>
 

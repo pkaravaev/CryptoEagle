@@ -38,13 +38,12 @@ public class Blog extends BaseEntity {
     private String url;
 
     @NotNull
-    @OneToMany(cascade = CascadeType.ALL,  orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Item> items = new ArrayList<>();
 
     @NotNull
     @ManyToOne(cascade = CascadeType.ALL)
     private User user;
-
 
     public Blog(int id_blog, String name, String URL, User user) {
         super(id_blog);

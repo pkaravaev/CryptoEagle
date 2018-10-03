@@ -43,7 +43,7 @@ public class MainController {
     EventService eventService;
 
     @Autowired
-    ParserService parserService;
+    WhiteListService whiteListService;
 
     @ModelAttribute("blog")
     public Blog contructBlog() {
@@ -62,7 +62,7 @@ public class MainController {
 
     @RequestMapping("/whitelist")
     public String whitelist(Model model) {
-        List<WhiteList> whiteLists = parserService.getWhiteList();
+        List<WhiteList> whiteLists = whiteListService.getWhiteList();
         model.addAttribute("whiteLists", whiteLists);
         return "white-list";
     }

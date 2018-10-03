@@ -27,40 +27,12 @@
 
 
 <script>
+
     $(document).ready(function () {
-        $(".card").mouseenter(function () {
-            $(this).css('cursor', 'pointer');
-            $(this).removeClass("bg-white");
-            $(this).addClass("bg-light")
-        })
-
-        $(".card").mouseleave(function () {
-            $(this).removeClass("bg-light");
-            $(this).addClass("bg-white")
-        })
-
         $(".team").click(function () {
-
-            var url = $(this).find("a").href();
-            window.location = url;
+            var url = $(this).find("a").attr('href');
+            window.open(url);
         })
-
-        $(".team").mouseenter(function () {
-            $(this).css('cursor', 'pointer');
-            $(this).removeClass("bg-white");
-            $(this).addClass("bg-light")
-        })
-
-        $(".team").mouseleave(function () {
-            $(this).removeClass("bg-light");
-            $(this).addClass("bg-white")
-        })
-
-        $(".btn").click(function () {
-            var url = $(this).val();
-            window.location = url;
-        })
-
     })
 </script>
 
@@ -100,13 +72,13 @@
                     </div>
                 </div>
 
-                <div class="col-md">
+                <div class="col-md ml-5">
 
                     <div class="card border-white text-center" style="width: 18rem;">
 
                         <ul class="list-group list-group-flush">
 
-                            <li class="list-group-item">
+                            <li class="list-group-item ">
 
                                 <fmt:parseDate value="${ico.icoStart}" pattern="yyyy-MM-dd'T'HH:mm"
                                                var="parsIcoStart"
@@ -132,12 +104,16 @@
                                 <fmt:formatDate pattern="dd.MM.yyyy " value="${parsPreIcoEnd}"
                                                 var="preIcoEnd"/>
 
-                                <h6 class="text-left font-weight-normal">Token status : <span class="font-weight-bold"> ${ico.status()}</span></h6>
+                                <h6 class="text-left font-weight-normal">Token status : <span
+                                        class="font-weight-bold"> ${ico.status()}</span></h6>
 
-                                <h6 class="text-left font-weight-normal"> Pre sale : <strong> ${preIcoStart}</strong></h6>
-                                <h6 class="text-left font-weight-normal"> End pre sale : <strong>${preIcoEnd}</strong></h6>
+                                <h6 class="text-left font-weight-normal"> Pre sale : <strong> ${preIcoStart}</strong>
+                                </h6>
+                                <h6 class="text-left font-weight-normal"> End pre sale : <strong>${preIcoEnd}</strong>
+                                </h6>
                                 <h6 class="text-left font-weight-normal"> Start sale : <strong>${icoStart}</strong></h6>
-                                <h6 class="text-left font-weight-normal"> End sale : <strong class="text-center">${icoEnd}</strong></h6>
+                                <h6 class="text-left font-weight-normal"> End sale : <strong
+                                        class="text-center">${icoEnd}</strong></h6>
                             </li>
 
                             <li class="list-group-item">
@@ -161,13 +137,13 @@
                                     <i style="color: #795548" class="fab fa-slack fa-lg"></i>
                                 </a>
                                 <a href="${ico.data.getLink("facebook")}" class="icon-block">
-                                    <i  style="color: #795548" class="fab fa-facebook fa-lg"></i>
+                                    <i style="color: #795548" class="fab fa-facebook fa-lg"></i>
                                 </a>
                                 <a href="${ico.data.getLink("youtube")}" class="icon-block">
                                     <i style="color: #795548" class="fab fa-youtube fa-lg "></i>
                                 </a>
                                 <a href="${ico.data.getLink("telegram")}" class="icon-block">
-                                    <i  style="color: #795548"class="fab fa-telegram fa-lg"></i>
+                                    <i style="color: #795548" class="fab fa-telegram fa-lg"></i>
                                 </a>
                                 <a href="${ico.data.getLink("github")}" class="icon-block">
                                     <i style="color: #795548" class="fab fa-github fa-lg"></i>
@@ -185,79 +161,64 @@
                     </div>
                 </div>
             </div>
-
             <br/>
-            <ul  class="nav nav-pills  justify-content-center mb-3" id="pills-tab" role="tablist">
-                <li  class="nav-item">
-                    <a class="nav-link active brown-text font-weight-bold" id="pills-finance-tab" data-toggle="pill" href="#pills-finance" role="tab"
-                       aria-controls="pills-home" aria-selected="true">Finance</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link brown-text font-weight-bold " id="pills-team-tab" data-toggle="pill" href="#pills-team" role="tab"
-                       aria-controls="pills-team" aria-selected="false">Teams</a>
-                </li>
-            </ul>
+            <h3 class="font-weight-bold">Finance</h3>
 
-            <div class="tab-content" id="pills-tabContent">
-                <div class="tab-pane fade show active" id="pills-finance" role="tabpanel"
-                     aria-labelledby="pills-finance-tab">
-                    <div class="row">
+            <hr/>
 
-                        <div class="col info">
-                            <p class="font-weight-normal">Token : <strong> ${ico.data.getFinance("token") } </strong></p>
-                            <p class="font-weight-normal">Price :<strong> ${ico.data.getFinance("price")}</strong></p>
-                            <p class="font-weight-normal">Tokens:<strong> ${ico.data.getFinance("tokens")}</strong></p>
-                            <p class="font-weight-normal">Hard cap :<strong> ${ico.data.getFinance("hardcap")}</strong></p>
-                            <p class="font-weight-normal">Soft cap :<strong> ${ico.data.getFinance("softcap")}</strong></p>
-                            <p class="font-weight-normal">raised: <strong> ${ico.data.getFinance("raised")}</strong></p>
-                        </div>
+            <div class="row">
 
-                        <div class="col info">
-                            <p class="font-weight-normal">Platform: <strong>${ico.data.getFinance("platform")} </strong></p>
-                            <p class="font-weight-normal">Accepting: <strong> ${ico.data.getFinance("accepting")} </strong></p>
-                            <p class="font-weight-normal">Token type: <strong> ${ico.data.getFinance("tokentype")}</strong></p>
-                        </div>
-                    </div>
-
+                <div class="col info">
+                    <p class="font-weight-normal">Token : <strong> ${ico.data.getFinance("token") } </strong></p>
+                    <p class="font-weight-normal">Price :<strong> ${ico.data.getFinance("price")}</strong></p>
+                    <p class="font-weight-normal">Tokens:<strong> ${ico.data.getFinance("tokens")}</strong></p>
+                    <p class="font-weight-normal">Hard cap :<strong> ${ico.data.getFinance("hardcap")}</strong></p>
+                    <p class="font-weight-normal">Soft cap :<strong> ${ico.data.getFinance("softcap")}</strong></p>
+                    <p class="font-weight-normal">raised: <strong> ${ico.data.getFinance("raised")}</strong></p>
                 </div>
 
-                <div class="tab-pane " id="pills-team" role="tabpanel" aria-labelledby="pills-team-tab">
-                    <%--<!-- Section: Team v.1 -->--%>
-                    <section class="team-section text-center my-5">
-                        <!-- Grid row -->
-                            <div class="row">
-                            <c:forEach items="${ico.data.getCrew()}" var="team">
-                                <!-- Grid column -->
-                                <div class="team col-lg-3 col-md-6 mb-lg-0 mb-5 hoverable ">
-                                    <div class="avatar mx-auto">
-                                        <img style="margin-top: 1rem" src="${team.photo}"
-                                             class="rounded-circle z-depth-1" alt="Sample avatar">
-                                    </div>
-                                    <br/>
-                                    <p class="font-weight-bold">${team.name}</p>
-                                    <p class="text brown-text">${team.title} <a href="${team.links}"
-                                                                                class="icon-linkedin">
-                                        <i  style="color: #795548" class="fab fa-linkedin fa-lg"></i>
-                                    </a></p>
-                                <!-- Grid column -->
-                                </div>
-                            </c:forEach>
-                            </div>
-                        <!-- Grid row -->
-                    </section>
-
+                <div class="col info">
+                    <p class="font-weight-normal">Platform: <strong>${ico.data.getFinance("platform")} </strong></p>
+                    <p class="font-weight-normal">Accepting: <strong> ${ico.data.getFinance("accepting")} </strong></p>
+                    <p class="font-weight-normal">Token type: <strong> ${ico.data.getFinance("tokentype")}</strong></p>
                 </div>
             </div>
+            <br/>
+            <h3 class="font-weight-bold">Teams</h3>
 
-        </div>
+            <hr/>
+            <div class="row text-center">
+                <c:forEach items="${ico.data.getCrew()}" var="team">
+                    <!-- Grid column -->
+                    <div class="team col-lg-3 col-md-6 mb-lg-0 mb-5 hoverable ">
+                        <div class="avatar mx-auto">
+                            <img style="margin-top: 1rem" src="${team.photo}"
+                                 class="rounded-circle z-depth-1" alt="Sample avatar">
+                        </div>
+                        <br/>
+                        <p class="font-weight-bold">${team.name}</p>
+                        <p class="text brown-text">${team.title} <a href="${team.links}"
+                                                                    class="icon-linkedin">
+                            <i style="color: #795548" class="fab fa-linkedin fa-lg"></i>
+                        </a></p>
+                        <!-- Grid column -->
+                    </div>
+                </c:forEach>
+            </div>
 
-        <div class="col-md">
+            </section>
 
         </div>
 
     </div>
 
-    <br/>
+    <div class="col-md">
+
+    </div>
+
+</div>
+
+<br/>
 
 </div>
 <br/>

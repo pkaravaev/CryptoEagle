@@ -18,5 +18,4 @@ public class Exchange extends BaseEntity {
     private String currency;
     private  String roi;
 
-
 }

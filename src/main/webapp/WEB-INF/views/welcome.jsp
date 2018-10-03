@@ -2,17 +2,15 @@
 
 <jsp:include page="template/header.jsp"/>
 
+<c:set var="context" scope="session" value="${pageContext.request.contextPath}"/>
+
 <script>
 
     $(document).ready(function () {
-        new WOW().init();
 
-        var ctx = "${context}";
-
-        //get top coins by ajax
+        //get Top coins by ajax
         $.get(
-            // "http://localhost:8080/" +
-            ctx + "/ajax/topcoins",
+            "${context}"  + "/ajax/topcoins",
             function (data) {
                 $("#topCoins").empty();
                 data.forEach(function (element) {
@@ -24,10 +22,11 @@
                 })
             }
         );
+
+
         //get loose coins by ajax
         $.get(
-            // "http://localhost:8080/" +
-            ctx + "/ajax/loosercoins",
+           "${context}" + "/ajax/loosercoins",
             function (data) {
                 $("#looseCoins").empty();
                 data.forEach(function (element) {
@@ -41,6 +40,7 @@
             }
         );
     })
+
 
 </script>
 
@@ -411,11 +411,13 @@
     <h3 class="font-weight-bold wow fadeInUp  hoverable">HOT ICO</h3>
     <hr style="size: 4rem" color="#795548"/>
 
+
+
     <div class="card-deck">
 
         <c:forEach items="${icos}" var="ico">
 
-            <div id="icoCard" class="card  hoverable">
+            <div class="card  hoverable">
 
                 <div class="card-body">
                     <div class="text-center">
@@ -423,7 +425,6 @@
                     </div>
                     <h5 style="margin-top: 2rem"
                         class="card-title text-center font-weight-bold">${ico.name}</h5>
-                    <p hidden class="href">${ctx}/ico-page/${ico.name}/</p>
 
                     <div class="row">
                         <div class="col">
@@ -456,7 +457,9 @@
                     </div>
                 </div>
 
+                <p hidden class="href">${context}/ico-page/${ico.name}/</p>
                 <p class="description" hidden>${ico.description}</p>
+
             </div>
 
             <br/>
@@ -464,7 +467,7 @@
     </div>
 </div>
 
- <%--upcoming events--%>
+<%--upcoming events--%>
 <div class="container">
     <br/>
     <h3 class="font-weight-bold wow fadeInUp hoverable">UPCOMING EVENTS</h3>

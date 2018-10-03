@@ -58,5 +58,4 @@ public class Coin extends BaseEntity {
     @NotNull
     private boolean dataAvailable;
 
-
 }

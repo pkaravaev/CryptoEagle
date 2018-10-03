@@ -3,6 +3,9 @@
 
 
 <script type="text/javascript">
+
+    var ctx = "${context}";
+
     window.onload = function () {
 
         var dataPoints = [];
@@ -28,8 +31,7 @@
             }]
         });
 
-        // $.getJSON("http://localhost:8080/restfull-service/starbucks-corporation-stock-price.json", parseData);
-        $.getJSON("http://localhost:8080/ajax/coins/${symbol}", parseData);
+        $.getJSON(ctx +"/ajax/coins/${symbol}", parseData);
 
         function parseData(result) {
             for (var i = 0; i < result.length; i++) {
@@ -54,8 +56,7 @@
 
         </div>
 
-
-        <div class="col-8">
+        <div class="col-8 ml-5">
             <br/>
             <div class="row">
                 <div class="col">

@@ -1,22 +1,26 @@
 package com.cryptoeagle.service;
 
 import com.cryptoeagle.entity.WhiteList;
-import com.cryptoeagle.service.abst.ParserService;
+import com.cryptoeagle.repository.WhiteListRepository;
+import com.cryptoeagle.service.abst.WhiteListService;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 @Service
-public class ParserServiceImpl implements ParserService {
+public class WhiteListServiceImpl implements WhiteListService {
 
-    @Override
-    public List<WhiteList> getWhiteList() {
+    @Autowired
+    WhiteListRepository repository;
 
+    List<WhiteList> parseFromWeb() {
         List<WhiteList> whiteLists = null;
 
         try {
@@ -50,5 +54,16 @@ public class ParserServiceImpl implements ParserService {
             return whiteLists;
         }
         return whiteLists;
+    }
+
+    @Override
+    public List<WhiteList> getWhiteList() {
+       return repository.getAll();
+    }
+
+
+    @Override
+    public void updateWhitelist() {
+        repository.save(parseFromWeb());
     }
 }

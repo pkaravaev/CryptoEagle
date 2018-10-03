@@ -84,7 +84,6 @@ public class User implements UserDetails {
         this.enable = enable;
     }
 
-
     public User() {
     }
 

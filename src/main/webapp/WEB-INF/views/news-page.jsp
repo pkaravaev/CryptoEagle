@@ -19,6 +19,21 @@
     }
 </style>
 
+<script>
+
+
+    $(document).ready(function () {
+
+        $("button").click(function () {
+            var href = $(this).attr("value");
+
+            if (href != null)
+                window.location = href;
+
+        })
+    })
+</script>
+
 
 <ul class="nav justify-content-center font-weight-bold brown lighten-5 ">
 
