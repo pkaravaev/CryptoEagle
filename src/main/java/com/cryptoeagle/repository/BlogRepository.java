@@ -15,6 +15,8 @@ public interface BlogRepository {
 
     Blog get(int id, int user);
 
+    Blog getByName(String name);
+
     List<Blog> getallByUser( int user);
 
     List<Blog> getAll();

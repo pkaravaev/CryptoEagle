@@ -59,7 +59,7 @@ public class RssServiceImpl implements RssService {
                 itemList.add(item);
             }
         } catch (Exception e) {
-            System.out.println("Error :" + e.getMessage());
+            System.out.println("Error------------------ :" + e.getMessage());
         }
 
         return itemList;

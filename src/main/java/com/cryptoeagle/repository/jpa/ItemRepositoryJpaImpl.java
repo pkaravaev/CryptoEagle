@@ -58,6 +58,7 @@ public class ItemRepositoryJpaImpl implements ItemRepository {
         return em.createNamedQuery(Item.GET_BY_SOURCE, Item.class)
                 .setParameter("source", source)
                 .getResultList();
+
     }
 
     @Override

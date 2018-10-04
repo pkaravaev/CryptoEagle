@@ -155,8 +155,7 @@ public class MainController {
 
     @RequestMapping("/blogs")
     public String blogs(Model model) {
-        User user = (User) model.asMap().get("user");
-        List<Blog> blogs = blogService.findall(user.getId());
+        List<Blog> blogs = blogService.getAll().stream().limit(10).collect(Collectors.toList());
         model.addAttribute("blogs", blogs);
         return "blogs";
     }

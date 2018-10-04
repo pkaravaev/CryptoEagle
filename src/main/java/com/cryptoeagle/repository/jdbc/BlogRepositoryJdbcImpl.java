@@ -20,6 +20,11 @@ public class BlogRepositoryJdbcImpl implements BlogRepository {
 
     }
 
+    @Override
+    public Blog getByName(String name) {
+        return null;
+    }
+
     @Autowired
     private JdbcTemplate jdbcTemplate;
 

@@ -37,12 +37,16 @@ public class BlogController {
         blog.setUrl(url);
         blog.setUser(user);
 
-        List<Item> items = rssService.getItems(url,name);
+        System.out.println(user.getUsername());
+
+
+        List<Item> items = rssService.getItems(url, name);
+
+
         if (items != null) {
             blog.setItems(items);
             blog.setUser(user);
-        }
-        else
+        } else
             throw new RssNewsNotFoundException(url);
 
         blogService.save(blog, user.getId());

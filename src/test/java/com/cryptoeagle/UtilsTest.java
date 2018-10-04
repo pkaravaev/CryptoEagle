@@ -12,7 +12,6 @@ public class UtilsTest {
         String test ="https://stackoverflow.com/questions/";
 
         String end =  Utils.cut(test);
-
     }
 
 

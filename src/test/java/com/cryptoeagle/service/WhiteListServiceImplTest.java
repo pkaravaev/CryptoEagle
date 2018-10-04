@@ -17,14 +17,11 @@ public class WhiteListServiceImplTest extends AbstractTest  {
 
     @Test
     public void getWhiteList() {
-
         List<WhiteList> whiteList = service.getWhiteList();
-
     }
 
     @Test
     public void update() {
-
         service.updateWhitelist();
     }
 }

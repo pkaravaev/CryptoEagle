@@ -4,6 +4,8 @@ package com.cryptoeagle.controller;
 import com.cryptoeagle.entity.Blog;
 import com.cryptoeagle.entity.User;
 import com.cryptoeagle.entity.UserRole;
+import com.cryptoeagle.exception.UserAlreadyExistException;
+import com.cryptoeagle.exception.UserValidationException;
 import com.cryptoeagle.service.abst.BlogService;
 import com.cryptoeagle.service.abst.ItemService;
 import com.cryptoeagle.service.abst.UserService;
@@ -12,13 +14,17 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 @Controller
 public class UserController {
@@ -74,21 +80,43 @@ public class UserController {
         return "register";
     }
 
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String createUser(@RequestParam String name,
-                             @RequestParam String email,
-                             @RequestParam String password,
-                             @RequestParam String password_again, Model model) {
-        User user = new User(name, email, passwordEncoder.encode(password), true);
-        Set<UserRole> roles = new HashSet<>();
-        UserRole role = new UserRole();
-        role.setRole("ROLE_USER");
-        roles.add(role);
-        user.setUserRole(roles);
+//    @RequestMapping(value = "/register", method = RequestMethod.POST)
+//    public String createUser(@RequestParam String name,
+//                             @RequestParam String email,
+//                             @RequestParam String password,
+//                             @RequestParam String password_again, Model model) {
+//        User user = new User(name, email, passwordEncoder.encode(password), true);
+//        Set<UserRole> roles = new HashSet<>();
+//        UserRole role = new UserRole();
+//        role.setRole("ROLE_USER");
+//        roles.add(role);
+//        user.setUserRole(roles);
+//
+//        model.addAttribute("register", true);
+//        model.addAttribute("name", name);
+//        userService.saveAndUpdate(user);
+//        return "redirect:/";
+//    }
 
-        model.addAttribute("register", true);
-        model.addAttribute("name", name);
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public String createUser(@ModelAttribute("user")@Valid User user, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()){
+            throw  new UserValidationException(bindingResult.getFieldError().getDefaultMessage());
+        }
+
+        User byEmail = userService.getByEmail(user.getUsername());
+
+        if (byEmail != null){
+            throw  new UserAlreadyExistException();
+        }
+
+        Set<UserRole> userRoles = new TreeSet<>();
+        userRoles.add(new UserRole());
+        user.setUserRole(userRoles);
+
         userService.saveAndUpdate(user);
+
         return "redirect:/";
     }
 }

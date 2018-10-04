@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.*;
 
 import static com.cryptoeagle.entity.BaseEntity.START_SEQ;
@@ -51,12 +52,12 @@ public class User implements UserDetails {
         return id == 0;
     }
 
-    @Min(3)
+    @Size(min = 3, max = 5)
     @Column(unique = true)
     private String name;
     @Column(unique = true)
     private String email;
-    @Min(5)
+    @Size(min = 7)
     private String password;
     @NotNull
     private boolean enable;

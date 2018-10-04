@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <jsp:include page="taglib.jsp"/>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
@@ -20,7 +21,6 @@
     <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Work+Sans:400,700" rel="stylesheet">
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <!-- JQuery -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" ></script>
     <!-- Bootstrap tooltips -->
@@ -38,6 +38,7 @@
 
     <script src="${context}/resources/js/table.js"></script>
     <script src="${context}/resources/js/coins.js"></script>
+
 
     <title>Welcome</title>
 
@@ -92,6 +93,7 @@
 
 <!--Navbar-->
 <nav class="navbar navbar-expand-lg navbar-dark brown ">
+
 
     <div class="container ">
         <!-- Collapse button -->

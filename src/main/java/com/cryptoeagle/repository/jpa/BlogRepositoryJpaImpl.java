@@ -48,10 +48,20 @@ public class BlogRepositoryJpaImpl implements BlogRepository {
 
 
     @Override
+    public Blog getByName(String name) {
+        return em.createNamedQuery(Blog.GET_BY_NAME,Blog.class)
+                .setParameter("name",name)
+                .getSingleResult();
+    }
+
+    @Override
     public void deleteByName(String name) {
-      em.createNamedQuery(Blog.DELETE_BY_NAME)
-              .setParameter("blogName",name)
-              .executeUpdate();
+        Blog blog = getByName(name);
+        em.remove(blog);
+
+//      em.createNamedQuery(Blog.DELETE_BY_NAME)
+//              .setParameter("blogName",name)
+//              .executeUpdate();
     }
 
     @Override
