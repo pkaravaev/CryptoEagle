@@ -1,32 +1,57 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
+
+<script>
+
+    // jQuery.validator.setDefaults({
+    //     debug: true,
+    //     success: "valid"
+    // });
+    // $("#registerForm").validate({
+    //     debug: true,
+    //     rules: {
+    //         password: "required",
+    //         password_again: {
+    //             equalTo: "#password"
+    //         }
+    //     }
+    //
+    // });
+
+
+</script>
+
+
 <script>
 
     $(document).ready(function () {
+        $('#identicalForm').bootstrapValidator({
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
 
-        var ctx = "${context}";
-        //
-        // $("#reg").click(function () {
-        //     var x = $(this).parent().parent().find("input");
-        //
-        //     var n = x[0].value;
-        //     var e = x[1].value;
-        //     var p = x[2].value;
-        //     var r = x[3].value;
-        //
-        //     $.ajax({
-        //         url: ctx + "/register",
-        //         type: 'POST',
-        //         data: {name: n, email: e, password: p, password_again: r}
-        //     })
-        //
-        //     $("#modalLRForm").modal('hide');
-        //
-        // });
-
-    })
-
-
+            fields: {
+                password: {
+                    validators: {
+                        identical: {
+                            field: 'confirmPassword',
+                            message: 'The password and its confirm are not the same'
+                        }
+                    }
+                },
+                confirmPassword: {
+                    validators: {
+                        identical: {
+                            field: 'password',
+                            message: 'The password and its confirm are not the same'
+                        }
+                    }
+                }
+            }
+        });
+    });
 </script>
 
 <!--Modal: Login / Register Form-->
@@ -80,7 +105,7 @@
 
                                 <div class="text-center mt-2">
                                     <button type="submit"
-                                            class="btn  btn-brown">Log in <i class="fa fa-sign-in ml-1"></i></button>
+                                            class="btn  btn-brown">Log in </button>
                                 </div>
                                 <!--Footer-->
                                 <div class="modal-footer">
@@ -97,45 +122,6 @@
 
                     <!--Panel 8-->
                     <div class="tab-pane fade" id="panel8" role="tabpanel">
-
-                        <%--<!--Body-->--%>
-                        <%--<div class="modal-body">--%>
-
-                        <%--<div class="md-form form-sm mb-5">--%>
-                        <%--<i class="fa fa-user prefix"></i>--%>
-                        <%--<input name="name" type="text" id="modalLRInput16"--%>
-                        <%--class="form-control form-control-sm validate">--%>
-                        <%--<label data-error="wrong" data-success="right" for="modalLRInput12">Your name</label>--%>
-                        <%--</div>--%>
-                        <%--<div class="md-form form-sm mb-5">--%>
-                        <%--<i class="fa fa-envelope prefix"></i>--%>
-                        <%--<input name="email" type="email" id="modalLRInput12"--%>
-                        <%--class="form-control form-control-sm validate">--%>
-                        <%--<label data-error="wrong" data-success="right" for="modalLRInput12">Your email</label>--%>
-                        <%--</div>--%>
-
-                        <%--<div class="md-form form-sm mb-5">--%>
-                        <%--<i class="fa fa-lock prefix"></i>--%>
-                        <%--<input name="password" type="password" id="modalLRInput13"--%>
-                        <%--class="form-control form-control-sm validate">--%>
-                        <%--<label data-error="wrong" data-success="right" for="modalLRInput13">Your--%>
-                        <%--password</label>--%>
-                        <%--</div>--%>
-
-                        <%--<div class="md-form form-sm mb-4">--%>
-                        <%--<i class="fa fa-lock prefix"></i>--%>
-                        <%--<input name="repeatpassword" type="password" id="modalLRInput14"--%>
-                        <%--class="form-control form-control-sm validate">--%>
-                        <%--<label data-error="wrong" data-success="right" for="modalLRInput14">Repeat--%>
-                        <%--password</label>--%>
-                        <%--</div>--%>
-
-                        <%--<div class="text-center form-sm mt-2">--%>
-                        <%--<button id="reg" class="btn btn-brown">Sign up <i class="fa fa-sign-in ml-1"></i>--%>
-                        <%--</button>--%>
-                        <%--</div>--%>
-
-                        <%--</div>--%>
 
                         <form:form modelAttribute="user" action="${context}/register" method="post">
                             <!--Body-->
@@ -188,6 +174,7 @@
                                     data-dismiss="modal">Close
                             </button>
                         </div>
+
                     </div>
                     <!--/.Panel 8-->
                 </div>
@@ -196,3 +183,8 @@
         </div>
         <!--/.Content-->
     </div>
+
+</div>
+
+
+

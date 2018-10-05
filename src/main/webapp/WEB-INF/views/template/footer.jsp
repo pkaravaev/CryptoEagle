@@ -14,9 +14,14 @@
 <!-- MDBootstrap Datatables  -->
 <script type="text/javascript" src="${context}/resources/js/addons/datatables.min.js" ></script>
 
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
+
 
 <script src="${context}/resources/js/table.js"></script>
 <script src="${context}/resources/js/coins.js"></script>
+
+<%--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>--%>
+<%--<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>--%>
 
 </body>
 

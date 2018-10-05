@@ -5,6 +5,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <c:set var = "context" scope = "session" value = "${pageContext.request.contextPath}"/>
+
 <head>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -19,6 +20,8 @@
           integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
     <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Work+Sans:400,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- JQuery -->
@@ -35,19 +38,16 @@
     <!-- MDBootstrap Datatables  -->
     <script type="text/javascript" src="${context}/resources/js/addons/datatables.min.js" ></script>
 
-
     <script src="${context}/resources/js/table.js"></script>
     <script src="${context}/resources/js/coins.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
 
     <title>Welcome</title>
 
 </head>
 
-
-
-
-<script src="${context}/js/form-validation.js"></script>
 
 <script>
 
@@ -83,11 +83,7 @@
         $("#modal").click(function () {
             $("#modalLRForm").modal('show');
         })
-
-
-
     })
-
 
 </script>
 
@@ -137,23 +133,23 @@
                 <li class="nav-item">
                     <a class="nav-link" href="${context}/events">EVENTS</a>
                 </li>
-                <%--<li class="nav-item">--%>
-                    <%--<a class="nav-link" href="${context}/analitics">ANALITICS</a>--%>
-                <%--</li>--%>
 
                 <security:authorize access="isAuthenticated()">
 
                     <li class="nav-item">
+
                     <li class="nav-item">
                         <a id="account" class="nav-link" href="${context}/user-profile"><security:authentication
                                 property="principal.username"/>: <i class="fas fa-user"></i> </a>
                     </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="${pageContext.request.contextPath}/logout">Logout</a>
                     </li>
-                    </li>
-                </security:authorize>
 
+                    </li>
+
+                </security:authorize>
 
                 <security:authorize access="isAnonymous()">
                     <li class="nav-item">
@@ -162,7 +158,6 @@
                 </security:authorize>
 
             </ul>
-            <!-- Links -->
         </div>
     </div>
 

@@ -33,47 +33,21 @@ public class CoinRestController {
     @Autowired
     private IcoRepository icoRepository;
 
-    @GetMapping(value = "/rest/coins", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/rest/coins")
     public List<Coin> retrieveAllCoins() {
         return coinRepository.getAllCoins();
     }
 
-    @GetMapping(value = "/rest/coins/{symbol}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/rest/coins/{symbol}")
     public ResponseEntity<Coin> retrieveCoin(@PathVariable("symbol") String symbol) {
         Coin coin = coinRepository.getBySymbol(symbol);
         ResponseEntity<Coin> entity = new ResponseEntity<>(coin, HttpStatus.OK);
         return entity;
     }
 
-    @GetMapping(value = "/rest/news", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/rest/news")
     public List<Item> retrieveAllItems() {
         return itemRepository.getall();
     }
-
-    @GetMapping(value = "/rest/events", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Event> retrieveAllEvents() {
-        return eventRepository.getAll();
-    }
-
-    @GetMapping(value = "/rest/icos", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Ico> retrieveAllIcos() {
-        return icoRepository.getAllico();
-    }
-
-    @GetMapping(value = "/rest/icos/upcoming", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Ico> retrieveUpcoming() {
-        return icoRepository.getUpcomingIco();
-    }
-
-    @GetMapping(value = "/rest/icos/finishied", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Ico> retrieveFinished() {
-        return icoRepository.getFinishedIco();
-    }
-
-    @GetMapping(value = "/rest/icos/active", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Ico> retrieveActice() {
-        return icoRepository.getActiveIco();
-    }
-
 
 }

@@ -10,9 +10,12 @@
         <intercept-url pattern="/login" access="permitAll()"/>
 
         <intercept-url pattern="/welcome" access="permitAll()"/>
+
+
         <form-login login-page="/login" authentication-success-forward-url="/welcome" authentication-failure-url="/loginerror" />
         <csrf disabled="true"/>
         <logout logout-url="/logout" logout-success-url="/welcome"/>
+
     </http>
 
     <authentication-manager>
