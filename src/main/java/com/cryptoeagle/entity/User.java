@@ -23,8 +23,6 @@ import static com.cryptoeagle.entity.BaseEntity.START_SEQ;
         @NamedQuery(name = User.GET_BY_NAME, query = "SELECT user FROM User  user WHERE user.name=:name"),
         @NamedQuery(name = User.GET_BY_ID, query = "SELECT user FROM User user WHERE user.id=:id")
 })
-@Getter
-@Setter
 @Table(name = "appuser")
 public class User implements UserDetails {
 
@@ -127,4 +125,31 @@ public class User implements UserDetails {
         return password;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public List<Blog> getBlogs() {
+        return blogs;
+    }
+
+    public void setBlogs(List<Blog> blogs) {
+        this.blogs = blogs;
+    }
 }

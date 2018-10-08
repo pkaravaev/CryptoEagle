@@ -2,22 +2,19 @@ package com.cryptoeagle.controller;
 
 import com.cryptoeagle.entity.*;
 import com.cryptoeagle.exception.UserNotFoundException;
-import com.cryptoeagle.service.UserServiceImpl;
 import com.cryptoeagle.service.abst.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
-import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -48,6 +45,7 @@ public class MainController {
 
     @Autowired
     WhiteListService whiteListService;
+
 
     @ModelAttribute("blog")
     public Blog contructBlog() {
@@ -116,23 +114,18 @@ public class MainController {
         return "welcome";
     }
 
-    @RequestMapping("/uCoin")
-    public String updateCoin() {
-        coinService.updateCoins();
-        return "redirect:/welcome ";
-    }
 
-    @RequestMapping("/uItem")
-    public String updateItem() {
-        itemService.updateItems();
-        return "redirect:/welcome ";
-    }
+    @RequestMapping("/populate")
+    public String populateAll() {
 
-    @RequestMapping("/uIco")
-    public String updateAll() {
         icoService.updateIcos();
+        coinService.updateCoins();
+        eventService.update();
+        whiteListService.updateWhitelist();
+
         return "redirect:/welcome ";
     }
+
 
     @RequestMapping("/error")
     public String error() {

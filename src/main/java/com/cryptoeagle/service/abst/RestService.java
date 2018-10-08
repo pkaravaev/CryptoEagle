@@ -4,7 +4,7 @@ import com.cryptoeagle.entity.Coin;
 import com.cryptoeagle.entity.Event;
 import com.cryptoeagle.entity.Ico;
 import com.cryptoeagle.entity.crypto.Chart;
-import com.cryptoeagle.entity.crypto.Idata;
+import com.cryptoeagle.entity.crypto.IcoData;
 
 import java.util.List;
 
@@ -22,5 +22,5 @@ public interface RestService {
 
     List<Ico> getIcoWithDataByPage(int page);
 
-    Idata getDataForIco(int id);
+    IcoData getDataForIco(int id);
 }

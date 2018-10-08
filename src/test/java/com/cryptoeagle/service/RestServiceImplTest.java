@@ -5,15 +5,9 @@ import com.cryptoeagle.entity.Event;
 import com.cryptoeagle.entity.Ico;
 import com.cryptoeagle.entity.PictureCoin;
 import com.cryptoeagle.entity.crypto.Chart;
-import com.cryptoeagle.entity.crypto.Idata;
-import com.cryptoeagle.service.abst.RestService;
-import com.cryptoeagle.service.abst.RssService;
+import com.cryptoeagle.entity.crypto.IcoData;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
@@ -59,7 +53,7 @@ public class RestServiceImplTest extends AbstractTest {
 
     @Test
     public void getDataForIco() {
-        Idata data = service.getDataForIco(36262);
+        IcoData data = service.getDataForIco(36262);
         assertTrue(data != null);
     }
 

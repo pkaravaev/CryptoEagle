@@ -1,320 +1,232 @@
-DROP sequence IF EXISTS global_seq;
 
-DROP table IF EXISTS appuser CASCADE ;
-DROP table IF EXISTS appuser_UserRole CASCADE;
-DROP table IF EXISTS Blog_Item CASCADE;
-DROP table IF EXISTS Blog CASCADE;
-DROP table IF EXISTS Coin CASCADE;
-DROP table IF EXISTS Event CASCADE;
-DROP table IF EXISTS Exchange CASCADE;
-DROP table IF EXISTS Ico CASCADE;
-DROP table IF EXISTS Idata CASCADE;
-DROP table IF EXISTS Idata_categories CASCADE;
-DROP table IF EXISTS Idata_Exchange CASCADE;
-DROP table IF EXISTS Idata_finance CASCADE;
-DROP table IF EXISTS Idata_links CASCADE;
-DROP table IF EXISTS Idata_Team CASCADE;
-DROP table IF EXISTS Idata_links CASCADE;
-DROP table IF EXISTS Item CASCADE;
-DROP table IF EXISTS Team CASCADE;
-DROP table IF EXISTS UserRole CASCADE;
-DROP table IF EXISTS WhiteList CASCADE;
+drop sequence  if exists global_seq CASCADE ;
+drop table if exists appuser CASCADE ;
+drop table if exists blog CASCADE ;
+drop table if exists coin CASCADE;
+drop table if exists event CASCADE;
+drop table if exists ico CASCADE;
+drop table if exists ico_categories CASCADE;
+drop table if exists ico_crew CASCADE;
+drop table if exists ico_exchanges CASCADE;
+drop table if exists ico_finance CASCADE;
+drop table if exists ico_links CASCADE;
+drop table if exists item CASCADE;
+drop table if exists blog_item CASCADE;
+drop table if exists role CASCADE;
+drop table if exists appuser_role CASCADE;
+drop table if exists whitelist CASCADE;
 
-create sequence global_seq
-  start 100000
-  increment 1;
+create sequence global_seq;
 
-create table appuser (
-  id       int4    not null,
-  admin    boolean not null,
-  email    varchar(255),
-  enable   boolean not null,
-  name     varchar(5),
-  password varchar(255),
-  primary key (id)
+create table appuser
+(
+  id       integer not null
+    constraint appuser_pkey
+    primary key,
+  email    varchar(255)
+    constraint uk_hcij6hlq32eras7xlmvbx2sbm
+    unique,
+  name     varchar(5)
+    constraint uk_ee3cmxp6jvhe7rqksp12a80w5
+    unique,
+  password varchar(255)
 );
 
-create table appuser_UserRole (
-  User_id     int4 not null,
-  userRole_id int4 not null,
-  primary key (User_id, userRole_id)
+create table blog
+(
+  id      integer      not null
+    constraint blog_pkey
+    primary key,
+  name    varchar(255) not null
+    constraint uk_40tvjgj9hcufyefk7w0x4edmg
+    unique,
+  url     varchar(255) not null
+    constraint uk_sbwxdwftwe78l1cqba42g73a7
+    unique,
+  user_id integer      not null
+    constraint fksuo4b2bvbco37ao6ynjiovnqp
+    references appuser
 );
 
-create table Blog (
-  id      int4         not null,
-  name    varchar(255) not null,
-  url     varchar(255) not null,
-  user_id int4         not null,
-  primary key (id)
-);
-
-create table Blog_Item (
-  Blog_id  int4 not null,
-  items_id int4 not null
-);
-
-create table Coin (
-  id                 int4           not null,
-  circulating_supply numeric(19, 2) not null,
-  dataAvailable      boolean        not null,
+create table coin
+(
+  id                 integer          not null
+    constraint coin_pkey
+    primary key,
+  circulating_supply numeric(19, 2)   not null,
+  dataavailable      boolean          not null,
   image              varchar(255),
-  market_cap         numeric(19, 2) not null,
-  name               varchar(255),
-  percent_change_1h  float8         not null,
-  percent_change_24h float8         not null,
-  percent_change_7d  float8         not null,
-  price              float8         not null,
-  rank               int4           not null,
-  symbol             varchar(255),
-  volume_24h         numeric(19, 2) not null,
-  primary key (id)
+  market_cap         numeric(19, 2)   not null,
+  name               varchar(255)
+    constraint uk_t5dk6mtph8m328rejpscb0jym
+    unique,
+  percent_change_1h  double precision not null,
+  percent_change_24h double precision not null,
+  percent_change_7d  double precision not null,
+  price              double precision not null,
+  rank               integer          not null,
+  symbol             varchar(255)
+    constraint uk_okchk4xbrpoc9nh4k7tn0pk85
+    unique,
+  volume_24h         numeric(19, 2)   not null
 );
 
-create table Event (
-  id          int4         not null,
-  coinName    varchar(255) not null,
+create table event
+(
+  id          integer      not null
+    constraint event_pkey
+    primary key,
+  coinname    varchar(255) not null,
   date_event  timestamp    not null,
   description varchar(255) not null,
-  isHot       boolean      not null,
+  ishot       boolean      not null,
   name        varchar(255) not null,
   proof       varchar(255) not null,
   source      varchar(255) not null,
-  title       varchar(255),
-  twitter     varchar(255) not null,
-  primary key (id)
+  title       varchar(255)
+    constraint uk_p5m91ptppqxy57n6m7epv617a
+    unique,
+  twitter     varchar(255) not null
 );
 
-create table Exchange (
-  id       int4 not null,
+create table ico
+(
+  id           integer          not null
+    constraint ico_pkey
+    primary key,
+  intro        varchar(1024),
+  description  varchar(255)     not null,
+  icoend       timestamp,
+  icostart     timestamp,
+  logolink     varchar(255)
+    constraint uk_od5gb62vqnwpmfr3p9auog8ty
+    unique,
+  name         varchar(255)
+    constraint uk_qjrh8xnyqfghcn8fht7xayq7a
+    unique,
+  page         integer          not null,
+  preicoend    timestamp,
+  preicostart  timestamp,
+  rating       double precision not null,
+  website_link varchar(255)     not null
+);
+
+create table ico_categories
+(
+  ico_id         integer      not null
+    constraint fknm7w94kinfp2tnt7eot6dbpoq
+    references ico,
+  categories     varchar(255),
+  categories_key varchar(255) not null,
+  constraint ico_categories_pkey
+  primary key (ico_id, categories_key)
+);
+
+create table ico_crew
+(
+  ico_id integer not null
+    constraint fkncs0em6gmvmt00bla6kt2ctaq
+    references ico,
+  links  varchar(255),
+  name   varchar(255),
+  photo  varchar(255),
+  title  varchar(255),
+  url    varchar(255)
+);
+
+create table ico_exchanges
+(
+  ico_id   integer not null
+    constraint fkdp0d7sghmmwdjg6h91ukvj0bs
+    references ico,
   currency varchar(255),
   logo     varchar(255),
   name     varchar(255),
   price    varchar(255),
-  roi      varchar(255),
-  primary key (id)
+  roi      varchar(255)
 );
 
-create table Ico (
-  id           int4         not null,
-  description  varchar(255) not null,
-  icoEnd       timestamp,
-  icoStart     timestamp,
-  logolink     varchar(255),
-  name         varchar(255),
-  page         int4         not null,
-  preIcoEnd    timestamp,
-  preIcoStart  timestamp,
-  rating       float8       not null,
-  website_link varchar(255) not null,
-  data_id      int4,
-  primary key (id)
-);
-
-create table Idata (
-  id    int4 not null,
-  intro varchar(1024),
-  primary key (id)
-);
-
-create table Idata_categories (
-  Idata_id       int4         not null,
-  categories     varchar(255),
-  categories_KEY varchar(255) not null,
-  primary key (Idata_id, categories_KEY)
-);
-
-create table Idata_Exchange (
-  Idata_id     int4 not null,
-  exchanges_id int4 not null,
-  primary key (Idata_id, exchanges_id)
-);
-
-create table Idata_finance (
-  Idata_id    int4         not null,
+create table ico_finance
+(
+  ico_id      integer      not null
+    constraint fki2ou37yw2e9y6srnyamo4yinu
+    references ico,
   finance     varchar(255),
-  finance_KEY varchar(255) not null,
-  primary key (Idata_id, finance_KEY)
+  finance_key varchar(255) not null,
+  constraint ico_finance_pkey
+  primary key (ico_id, finance_key)
 );
 
-create table Idata_links (
-  Idata_id  int4         not null,
+
+create table ico_links
+(
+  ico_id    integer      not null
+    constraint fkqe31xfp793w2bjt3k3jkuvd23
+    references ico,
   links     varchar(255),
-  links_KEY varchar(255) not null,
-  primary key (Idata_id, links_KEY)
+  links_key varchar(255) not null,
+  constraint ico_links_pkey
+  primary key (ico_id, links_key)
 );
 
-create table Idata_Team (
-  Idata_id int4 not null,
-  crew_id  int4 not null,
-  primary key (Idata_id, crew_id)
-);
 
-create table Item (
-  id          int4         not null,
+create table item
+(
+  id          integer      not null
+    constraint item_pkey
+    primary key,
   description varchar(255) not null,
   link        varchar(255) not null,
-  publishDate timestamp    not null,
+  publishdate timestamp    not null,
   source      varchar(255) not null,
-  title       varchar(255) not null,
-  primary key (id)
+  title       varchar(255) not null
+    constraint uk_dp2x1lasb798ua1955wpae6ac
+    unique
 );
 
-create table Team (
-  id    int4 not null,
-  links varchar(255),
-  name  varchar(255),
-  photo varchar(255),
-  title varchar(255),
-  url   varchar(255),
-  primary key (id)
+
+create table blog_item
+(
+  blog_id  integer not null
+    constraint fk32f389j6v0x6d8xqljyq497i6
+    references blog,
+  items_id integer not null
+    constraint uk_g5hofsrmhtrnmv9uc3bvx8ouk
+    unique
+    constraint fkhvbfmnvy55b7ggk6999gcbi2a
+    references item
 );
 
-create table UserRole (
-  id   int4 not null,
-  role varchar(255),
-  primary key (id)
+
+create table role
+(
+  role varchar(255) not null,
+  id   integer      not null,
+  constraint role_pkey
+  primary key (role, id)
 );
 
-create table WhiteList (
-  id       int4 not null,
+create table appuser_role
+(
+  user_id    integer      not null
+    constraint fk8w10r99i8a1toidvjh1akl8nd
+    references appuser,
+  roles_role varchar(255) not null,
+  roles_id   integer      not null,
+  constraint uk_38drpe4jlvq9box4eaj39we46
+  unique (roles_role, roles_id),
+  constraint fk9sxd4lrxr61h7puctc7w1x58u
+  foreign key (roles_role, roles_id) references role
+);
+
+create table whitelist
+(
+  id       integer not null
+    constraint whitelist_pkey
+    primary key,
   category varchar(255),
   logo     varchar(255),
   name     varchar(255),
-  status   varchar(255),
-  primary key (id)
+  status   varchar(255)
 );
 
-
-
-
-alter table appuser
-  add constraint UK_hcij6hlq32eras7xlmvbx2sbm unique (email);
-
-
-alter table appuser
-  add constraint UK_ee3cmxp6jvhe7rqksp12a80w5 unique (name);
-
-
-alter table appuser_UserRole
-  add constraint UK_h2txosrj3piy8j483q9e59sci unique (userRole_id);
-
-
-alter table Blog
-  add constraint UK_40tvjgj9hcufyefk7w0x4edmg unique (name);
-
-
-alter table Blog
-  add constraint UK_sbwxdwftwe78l1cqba42g73a7 unique (url);
-
-
-alter table Blog_Item
-  add constraint UK_g5hofsrmhtrnmv9uc3bvx8ouk unique (items_id);
-
-
-alter table Coin
-  add constraint UK_t5dk6mtph8m328rejpscb0jym unique (name);
-
-
-alter table Coin
-  add constraint UK_okchk4xbrpoc9nh4k7tn0pk85 unique (symbol);
-
-
-alter table Event
-  add constraint UK_p5m91ptppqxy57n6m7epv617a unique (title);
-
-
-alter table Ico
-  add constraint UK_od5gb62vqnwpmfr3p9auog8ty unique (logolink);
-
-
-alter table Ico
-  add constraint UK_qjrh8xnyqfghcn8fht7xayq7a unique (name);
-
-alter table Idata_Exchange
-  add constraint UK_pr5jjq73wywkvl8hcm4x4kgc7 unique (exchanges_id);
-
-
-alter table Idata_Team
-  add constraint UK_m54pmpoi5i5xq9ib3w2orqpjo unique (crew_id);
-
-
-alter table Item
-  add constraint UK_dp2x1lasb798ua1955wpae6ac unique (title);
-
-
-alter table appuser_UserRole
-  add constraint FKjtqofmmuhcs4ctgdyswjcqteg
-foreign key (userRole_id)
-references UserRole;
-
-
-alter table appuser_UserRole
-  add constraint FK8bkw3m2bwgc098ntcfo2drr3g
-foreign key (User_id)
-references appuser;
-
-
-alter table Blog
-  add constraint FKsuo4b2bvbco37ao6ynjiovnqp
-foreign key (user_id)
-references appuser;
-
-
-alter table Blog_Item
-  add constraint FKhvbfmnvy55b7ggk6999gcbi2a
-foreign key (items_id)
-references Item;
-
-
-alter table Blog_Item
-  add constraint FK32f389j6v0x6d8xqljyq497i6
-foreign key (Blog_id)
-references Blog;
-
-
-alter table Ico
-  add constraint FKn3q5g8467sfgpxcp8oefkhjci
-foreign key (data_id)
-references Idata;
-
-
-alter table Idata_categories
-  add constraint FK4amyxd29o6yxcglwmqadiand1
-foreign key (Idata_id)
-references Idata;
-
-
-alter table Idata_Exchange
-  add constraint FKqxi2pb5ni8nc4h43dgd0pd5wb
-foreign key (exchanges_id)
-references Exchange;
-
-
-alter table Idata_Exchange
-  add constraint FKas333s7xfmjti190sdwu4vmbh
-foreign key (Idata_id)
-references Idata;
-
-
-alter table Idata_finance
-  add constraint FKje5voghrihjjg2ty1gcr3gnul
-foreign key (Idata_id)
-references Idata;
-
-
-alter table Idata_links
-  add constraint FKr2xumhindlpg5sn0cw9uuomry
-foreign key (Idata_id)
-references Idata;
-
-
-alter table Idata_Team
-  add constraint FKmnvxpqq81vwdvhb6ttyujepx6
-foreign key (crew_id)
-references Team;
-
-
-alter table Idata_Team
-  add constraint FKbfv0cfxpnk026vevjmj7fha1t
-foreign key (Idata_id)
-references Idata;

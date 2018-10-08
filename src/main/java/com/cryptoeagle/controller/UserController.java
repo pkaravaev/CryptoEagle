@@ -84,7 +84,6 @@ public class UserController {
         return "register";
     }
 
-
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String createUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {

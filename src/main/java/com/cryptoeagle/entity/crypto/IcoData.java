@@ -14,8 +14,8 @@ import java.util.Set;
 
 @Getter
 @Setter
-@Entity
-public class Idata extends BaseEntity {
+@Embeddable
+public class IcoData {
 
     @Column(length = 1024)
     private String intro;
@@ -27,10 +27,12 @@ public class Idata extends BaseEntity {
     @ElementCollection(fetch = FetchType.EAGER)
     private Map<String, String> categories = new HashMap<>();
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    //    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ElementCollection(fetch = FetchType.EAGER)
     private Set<Team> crew = new HashSet<>();
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    //    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ElementCollection(fetch = FetchType.EAGER)
     private Set<Exchange> exchanges = new HashSet<>();
 
     public void setCrew(Team team) {
@@ -71,5 +73,13 @@ public class Idata extends BaseEntity {
 
     public Set<Exchange> getEchanges() {
         return exchanges;
+    }
+
+    public String getIntro() {
+        return intro;
+    }
+
+    public void setIntro(String intro) {
+        this.intro = intro;
     }
 }

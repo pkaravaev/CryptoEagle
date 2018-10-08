@@ -4,7 +4,7 @@ import com.cryptoeagle.entity.*;
 import com.cryptoeagle.entity.Ico;
 import com.cryptoeagle.entity.crypto.Chart;
 import com.cryptoeagle.entity.crypto.Exchange;
-import com.cryptoeagle.entity.crypto.Idata;
+import com.cryptoeagle.entity.crypto.IcoData;
 import com.cryptoeagle.entity.crypto.Team;
 import com.cryptoeagle.service.abst.RestService;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -91,8 +91,8 @@ public class RestServiceImpl implements RestService {
     }
 
     @Override
-    public Idata getDataForIco(int id) {
-        Idata idata = new Idata();
+    public IcoData getDataForIco(int id) {
+        IcoData idata = new IcoData();
         try {
             ObjectMapper objectMapper = new ObjectMapper();
             String sign = HMAC384sign(PRIVATE_KEY, "");
@@ -131,15 +131,15 @@ public class RestServiceImpl implements RestService {
     @Override
     public List<Ico> getIcoWithDataByPage(int page) {
         List<Ico> icos = getIcoByPage(page);
-        List<Ico> icoswithdata = new ArrayList<>();
+        List<Ico> icosWithdata = new ArrayList<>();
         for (Ico ico : icos) {
-            Idata data = getDataForIco(ico.getId());
+            IcoData data = getDataForIco(ico.getId());
             if (data.getIntro() == null)
                 continue;
             ico.setData(data);
-            icoswithdata.add(ico);
+            icosWithdata.add(ico);
         }
-        return icoswithdata;
+        return icosWithdata;
     }
 
     public List<Event> getEvents(int count) {
@@ -442,8 +442,8 @@ public class RestServiceImpl implements RestService {
         return ico;
     }
 
-    private Idata convertJsonToIcoData(JsonNode jsonNode) {
-        Idata idata = new Idata();
+    private IcoData convertJsonToIcoData(JsonNode jsonNode) {
+        IcoData idata = new IcoData();
 
         try {
             JsonNode links = jsonNode.get("links");

@@ -18,8 +18,6 @@ import java.util.Objects;
         @NamedQuery(name = Item.GET_BY_SOURCE, query = "SELECT item FROM Item item WHERE item.source =:source order by item.publishDate desc "),
         @NamedQuery(name = Item.GET_ALL_SOURCE, query = "SELECT DISTINCT item.source FROM Item item")
 })
-@Getter
-@Setter
 public class Item extends BaseEntity implements EntityWithPic {
 
     public final static String GET_ALL = "Item.GetAll";
@@ -72,4 +70,43 @@ public class Item extends BaseEntity implements EntityWithPic {
     public Item() {
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public LocalDateTime getPublishDate() {
+        return publishDate;
+    }
+
+    public void setPublishDate(LocalDateTime publishDate) {
+        this.publishDate = publishDate;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
+    }
 }

@@ -20,8 +20,6 @@ import java.util.List;
         @NamedQuery(name = Blog.DELETE_BY_NAME, query = "DELETE FROM Blog blog WHERE blog.name = :blogName"),
         @NamedQuery(name = Blog.GET, query = "SELECT blog FROM Blog blog WHERE blog.id =:blog_id AND blog.user.id = :user_id")
 })
-@Getter
-@Setter
 public class Blog extends BaseEntity {
 
     public static final String GET_ALL_BY_USER = "Blog.getByUser";
@@ -104,4 +102,6 @@ public class Blog extends BaseEntity {
     public String toString() {
         return  name ;
     }
+
+
 }
