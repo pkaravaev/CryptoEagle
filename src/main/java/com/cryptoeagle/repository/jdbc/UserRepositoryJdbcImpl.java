@@ -44,14 +44,7 @@ public class UserRepositoryJdbcImpl implements UserRepository {
     @Override
     public User saveAndUpdate(User user) {
 
-        if (user.isNew()) {
-            jdbcTemplate.update("INSERT INTO appuser (id, name, email, password, enable, admin) values (?,?,?,?,?,?)", id++, user.getName(), user.getEmail()
-                    , user.getPassword(), user.isEnable(), user.isAdmin());
-        } else {
-            jdbcTemplate.update("UPDATE appuser SET id = ?, name =?, email = ?, password=?, enable=?,admin = ? WHERE id =?", user.getId(), user.getName(), user.getEmail()
-                    , user.getPassword(), user.isEnable(), user.isAdmin(), user.getId());
-        }
-        return user;
+        return null;
     }
 
     @Override
@@ -109,11 +102,6 @@ public class UserRepositoryJdbcImpl implements UserRepository {
                 String blog_url = rs.getString(9);
 
                 user.setId(user_id);
-                user.setName(user_name);
-                user.setEmail(user_email);
-                user.setPassword(user_password);
-                user.setEnable(user_enable);
-                user.setAdmin(user_admin);
 
                 Blog blog = new Blog();
                 blog.setId(blog_id);
@@ -162,12 +150,7 @@ public class UserRepositoryJdbcImpl implements UserRepository {
             boolean enable = rs.getBoolean("enable");
             boolean admin = rs.getBoolean("admin");
 
-            user.setId(id_user);
-            user.setName(name);
-            user.setEmail(email);
-            user.setPassword(password);
-            user.setEnable(enable);
-            user.setAdmin(admin);
+
 
             return user;
 

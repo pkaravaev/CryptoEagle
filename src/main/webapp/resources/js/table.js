@@ -2,10 +2,7 @@ $(document).ready(function () {
     modal();
 })
 
-
 function modal() {
-
-
     //coins redirect
     $("#topCoins,#looseCoins,.coin").click(function () {
         window.location.href = "coin-list";
@@ -22,16 +19,17 @@ function modal() {
         var description = $(this).find(".description").text();
         var date = $(this).find(".date").text();
 
-        {
-            $(this).append("<div class=\"card-img-overlay   animated bounceInUp delay-2s\">\n" +
-                "                    <p class=\"card-text text-white brown darken-2\"> " + description + " </p>\n" +
-                "                </div>")
-        }
+        var th = $(this);
+
+        $(this).append("<div class=\"card-img-overlay   animated zoomin faster\">\n" +
+            "                    <p class=\"card-text text-white brown darken-2\"> " + description + " </p>\n" +
+            "                </div>")
+
+
     })
 
-
     $(".card").mouseleave(function () {
-        $(this).find(".card-img-overlay").removeClass("animated bounceInUp").removeClass("animated shake").addClass("animated fadeOutDown");
+        $(this).find(".card-img-overlay").removeClass("animated zoomin").removeClass("animated shake").addClass("animated zoomout");
     })
 
 
@@ -47,5 +45,7 @@ function modal() {
             window.location = href;
 
     })
+
+
 
 }

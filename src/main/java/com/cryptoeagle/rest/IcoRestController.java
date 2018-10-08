@@ -15,7 +15,6 @@ public class IcoRestController {
     @Autowired
     private IcoRepository icoRepository;
 
-
     @GetMapping(value = "/rest/icos")
     public List<Ico> retrieveAllIcos() {
         return icoRepository.getAllico();

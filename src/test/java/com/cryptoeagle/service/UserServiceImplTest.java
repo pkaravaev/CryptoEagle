@@ -83,9 +83,5 @@ public class UserServiceImplTest  extends AbstractTest{
         assertTrue(users.size() == 4);
     }
 
-    @Test
-    public void findAmin() {
-        User admin = service.findAmin();
-        assertTrue(admin.isAdmin() == true);
-    }
+
 }

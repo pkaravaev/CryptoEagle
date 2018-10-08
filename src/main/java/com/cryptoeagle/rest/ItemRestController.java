@@ -1,11 +1,12 @@
 package com.cryptoeagle.rest;
 
-
 import com.cryptoeagle.entity.Item;
 import com.cryptoeagle.service.ItemServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class ItemRestController {
         return itemService.getAll();
     }
 
-    @RequestMapping(value = "/rest/items/${name}")
+    @RequestMapping(value = "/rest/items/{name}")
     public List<Item> getItemsBySource(@PathVariable String name) {
         return itemService.getBySource(name);
     }

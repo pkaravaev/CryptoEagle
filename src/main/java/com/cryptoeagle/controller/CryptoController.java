@@ -1,6 +1,5 @@
 package com.cryptoeagle.controller;
 
-
 import com.cryptoeagle.entity.Coin;
 import com.cryptoeagle.entity.Ico;
 import com.cryptoeagle.entity.crypto.Chart;

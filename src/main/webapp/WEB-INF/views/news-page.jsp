@@ -50,11 +50,9 @@
 
         <br/>
         <br/>
-        <div class="card-columns ">
+        <div class="card-columns">
 
             <c:forEach items="${items}" var="item" varStatus="i">
-
-
 
                 <div style="height: 20rem;width: 22rem" class="card hoverable">
 

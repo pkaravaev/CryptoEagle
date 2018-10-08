@@ -6,10 +6,12 @@
 		http://www.springframework.org/schema/security
 		http://www.springframework.org/schema/security/spring-security.xsd">
 
-    <http use-expressions="true">
+    <http use-expressions="true" >
         <intercept-url pattern="/login" access="permitAll()"/>
 
         <intercept-url pattern="/welcome" access="permitAll()"/>
+
+        <!--<intercept-url pattern="/coin-list" access="hasAnyAuthority('USER')"/>-->
 
 
         <form-login login-page="/login" authentication-success-forward-url="/welcome" authentication-failure-url="/loginerror" />

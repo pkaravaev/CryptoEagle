@@ -159,9 +159,12 @@
                                 </div>
 
                                 <div class="text-center form-sm mt-2">
-                                    <input type="submit" class="btn btn-brown">Sign up <i
-                                        class="fa fa-sign-in ml-1"></i>
-                                    </input>
+                                    <%--<input type="submit" class="btn btn-brown">Sign up <i--%>
+                                        <%--class="fa fa-sign-in ml-1"></i>--%>
+                                    <%--</input>--%>
+
+                                        <button type="submit"
+                                                class="btn  btn-brown">Sign in </button>
 
                                 </div>
 

@@ -134,9 +134,12 @@
                     <a class="nav-link" href="${context}/events">EVENTS</a>
                 </li>
 
-                <security:authorize access="isAuthenticated()">
 
-                    <li class="nav-item">
+
+
+                <security:authorize  access="hasAuthority('USER')">
+
+                <li class="nav-item">
 
                     <li class="nav-item">
                         <a id="account" class="nav-link" href="${context}/user-profile"><security:authentication
@@ -151,11 +154,30 @@
 
                 </security:authorize>
 
-                <security:authorize access="isAnonymous()">
+
+                <security:authorize  access="hasAuthority('ADMIN')">
+
+                    <li class="nav-item">
+
+                    <li class="nav-item">
+                        <a id="adminPanel" class="nav-link" href="${context}/admin-page"><security:authentication
+                                property="principal.username"/>: <i class="fas fa-user"></i> </a>
+                    </li>
+
+
+                    </li>
+
+                </security:authorize>
+
+
+
+                <security:authorize  access="isAnonymous()">
                     <li class="nav-item">
                         <a id="modal" class="nav-link">Login / Register</a>
                     </li>
                 </security:authorize>
+
+
 
             </ul>
         </div>

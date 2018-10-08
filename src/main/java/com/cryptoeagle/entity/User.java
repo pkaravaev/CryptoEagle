@@ -28,6 +28,7 @@ import static com.cryptoeagle.entity.BaseEntity.START_SEQ;
 @Table(name = "appuser")
 public class User implements UserDetails {
 
+
     public static final String DELETE = "User.delete";
     public static final String GET_BY_ID = "User.get";
     public static final String GET_BY_NAME = "User.getByName";
@@ -59,13 +60,18 @@ public class User implements UserDetails {
     private String email;
     @Size(min = 7)
     private String password;
-    @NotNull
-    private boolean enable;
-    @NotNull
-    private boolean admin;
-    @ElementCollection
-    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    private Set<UserRole> userRole = new HashSet<>();
+
+    @OneToMany(cascade = CascadeType.ALL)
+    Collection<Role> roles = new HashSet<>();
+
+    public Collection<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Collection<Role> roles) {
+        this.roles = roles;
+    }
+
     @NotNull
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Blog> blogs = new ArrayList<>();
@@ -74,7 +80,6 @@ public class User implements UserDetails {
         this.name = name;
         this.email = email;
         this.password = password;
-        this.enable = enable;
     }
 
     public User(int id, String name, String email, String password, boolean enable) {
@@ -82,7 +87,6 @@ public class User implements UserDetails {
         this.name = name;
         this.email = email;
         this.password = password;
-        this.enable = enable;
     }
 
     public User() {
@@ -90,7 +94,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return roles;
     }
 
     @Override
@@ -118,11 +122,9 @@ public class User implements UserDetails {
         return true;
     }
 
-    public Set<UserRole> getUserRole() {
-        return userRole;
+    @Override
+    public String getPassword() {
+        return password;
     }
 
-    public void setUserRole(Set<UserRole> userRole) {
-        this.userRole = userRole;
-    }
 }

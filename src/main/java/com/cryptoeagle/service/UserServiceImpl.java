@@ -49,10 +49,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public User getByEmail(String email) {
         log.info("get user id", email);
-        User user = repository.getByEmail(email);
-        if (user == null) {
-            throw new UserNotFoundException("User with email " + email + " not found!!!");
-        }
         return repository.getByEmail(email);
     }
 
@@ -74,11 +70,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         repository.delete(user.getId());
     }
 
-    @Override
-    public User findAmin() {
-        log.info("find admin user");
-        return repository.getall().stream().filter(e -> e.isAdmin() == true).findFirst().get();
-    }
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

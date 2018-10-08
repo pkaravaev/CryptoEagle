@@ -7,12 +7,16 @@ import com.cryptoeagle.service.abst.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
@@ -73,8 +77,13 @@ public class MainController {
         return "redirect:/";
     }
 
-    @RequestMapping(value = { "/", "/welcome"})
-    public String welcome(@AuthenticationPrincipal User user, Model model) {
+    @RequestMapping(value = {"/", "/welcome"})
+    public String welcome(@AuthenticationPrincipal User user, Model model, HttpServletRequest request) {
+
+
+        SecurityContext context = SecurityContextHolder.getContext();
+
+        boolean someAuthority = request.isUserInRole("someAuthority");
 
         List<Item> items = itemService.getAll().stream().limit(10).collect(Collectors.toList());
         List<Item> lowerItems = new ArrayList<>();
@@ -108,21 +117,21 @@ public class MainController {
     }
 
     @RequestMapping("/uCoin")
-    public String updateCoin(){
+    public String updateCoin() {
         coinService.updateCoins();
-        return  "redirect:/welcome ";
+        return "redirect:/welcome ";
     }
 
     @RequestMapping("/uItem")
-    public String updateItem(){
+    public String updateItem() {
         itemService.updateItems();
-        return  "redirect:/welcome ";
+        return "redirect:/welcome ";
     }
 
     @RequestMapping("/uIco")
-    public String updateAll(){
+    public String updateAll() {
         icoService.updateIcos();
-        return  "redirect:/welcome ";
+        return "redirect:/welcome ";
     }
 
     @RequestMapping("/error")
@@ -137,7 +146,7 @@ public class MainController {
 
     @RequestMapping("/news")
     public String news(Model model) {
-        List<Item> items = itemService.getAll();
+        List<Item> items = itemService.getAll().stream().limit(10).collect(Collectors.toList());
         List<String> sources = itemService.getSources();
         model.addAttribute("items", items);
         model.addAttribute("sources", sources);
@@ -170,7 +179,7 @@ public class MainController {
     @RequestMapping("/test")
     public String test(Model model) {
         List<Item> items = itemService.getAll();
-        model.addAttribute("items",items);
+        model.addAttribute("items", items);
         return "test";
     }
 
@@ -179,14 +188,19 @@ public class MainController {
         return "test2";
     }
 
-    @RequestMapping("/admin")
-    public String admin(Model model, Principal principal , Authentication authentication) {
+    @RequestMapping("/admin-page")
+    public String admin(@AuthenticationPrincipal User user, Model model) {
+
+        List<User> users = userService.findAll();
+        model.addAttribute("users", users);
+        model.addAttribute("test", "test");
+
         return "admin-page";
     }
 
     @ExceptionHandler({UserNotFoundException.class})
     public String handle(Model model) {
-         model.addAttribute("error", "User not found");
+        model.addAttribute("error", "User not found");
         return "error-page";
     }
 

@@ -1,9 +1,8 @@
 package com.cryptoeagle.controller;
 
-
 import com.cryptoeagle.entity.Blog;
+import com.cryptoeagle.entity.Role;
 import com.cryptoeagle.entity.User;
-import com.cryptoeagle.entity.UserRole;
 import com.cryptoeagle.exception.UserAlreadyExistException;
 import com.cryptoeagle.exception.UserValidationException;
 import com.cryptoeagle.service.abst.BlogService;
@@ -63,9 +62,14 @@ public class UserController {
     }
 
     @RequestMapping("/users/delete/{id}")
-    public String deleteUsers(@PathVariable int id) {
+    public String deleteUsers(@AuthenticationPrincipal User user, @PathVariable int id, Model model) {
+        if (user.getId() == id){
+            model.addAttribute("error","This is current user!!");
+            return "test";
+        }
         userService.delete(id);
-        return "redirect:/users";
+        model.addAttribute("success","Success!!");
+        return "test";
     }
 
     @RequestMapping("/users/edit/{id}")
@@ -80,41 +84,26 @@ public class UserController {
         return "register";
     }
 
-//    @RequestMapping(value = "/register", method = RequestMethod.POST)
-//    public String createUser(@RequestParam String name,
-//                             @RequestParam String email,
-//                             @RequestParam String password,
-//                             @RequestParam String password_again, Model model) {
-//        User user = new User(name, email, passwordEncoder.encode(password), true);
-//        Set<UserRole> roles = new HashSet<>();
-//        UserRole role = new UserRole();
-//        role.setRole("ROLE_USER");
-//        roles.add(role);
-//        user.setUserRole(roles);
-//
-//        model.addAttribute("register", true);
-//        model.addAttribute("name", name);
-//        userService.saveAndUpdate(user);
-//        return "redirect:/";
-//    }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String createUser(@ModelAttribute("user")@Valid User user, BindingResult bindingResult) {
-
-        if (bindingResult.hasErrors()){
-            throw  new UserValidationException(bindingResult.getFieldError().getDefaultMessage());
+    public String createUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            throw new UserValidationException(bindingResult.getFieldError().getDefaultMessage());
         }
-
         User byEmail = userService.getByEmail(user.getUsername());
-
-        if (byEmail != null){
-            throw  new UserAlreadyExistException();
+        if (byEmail != null) {
+            throw new UserAlreadyExistException();
         }
+        String password = user.getPassword();
+        user.setPassword(passwordEncoder.encode(password));
+        Role user1 = new Role("USER");
+        Role user2 = new Role("ADMIN");
 
-        Set<UserRole> userRoles = new TreeSet<>();
-        userRoles.add(new UserRole());
-        user.setUserRole(userRoles);
+        Set<Role> roleSet = new HashSet<>();
+        roleSet.add(user1);
+        roleSet.add(user2);
 
+        user.setRoles(roleSet);
         userService.saveAndUpdate(user);
 
         return "redirect:/";

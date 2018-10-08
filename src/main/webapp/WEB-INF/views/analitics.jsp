@@ -1,9 +1,7 @@
 <jsp:include page="template/header.jsp"/>
 
-
 <script>
     window.onload = function () {
-
         var chart = new CanvasJS.Chart("chartContainer1", {
             animationEnabled: true,
             title: {
@@ -21,9 +19,7 @@
             }]
         });
         chart.render();
-
     }
-
 
 </script>
 

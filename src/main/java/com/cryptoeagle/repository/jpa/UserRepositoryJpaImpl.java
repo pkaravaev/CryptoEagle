@@ -32,49 +32,46 @@ public class UserRepositoryJpaImpl implements UserRepository {
     @Override
     @Transactional
     public void delete(int id) {
-        em.createNamedQuery(User.DELETE)
-                .setParameter("id", id)
-                .executeUpdate();
+
+        User user = get(id);
+
+        em.remove(user);
+//        em.createNamedQuery(User.DELETE)
+//                .setParameter("id", id)
+//                .executeUpdate();
     }
 
     @Override
     public User get(int id) {
-        User user;
-        try {
-            user = (User) em.createNamedQuery(User.GET_BY_ID)
-                    .setParameter("id", id)
-                    .getSingleResult();
-        } catch (Exception e) {
-            throw new UserNotFoundException("User with id : " + id + " not found!!!");
-        }
 
+        return em.createNamedQuery(User.GET_BY_ID, User.class)
+                .setParameter("id", id)
+                .getSingleResult();
 
-        return user;
     }
 
     @Override
     public User getByName(String name) {
-        User user;
-        try {
-            user = em.createNamedQuery(User.GET_BY_NAME, User.class)
-                    .setParameter("name", name)
-                    .getSingleResult();
-        }catch (NoResultException ex){
-            user = null;
-        }
-        return user;
+        return em.createNamedQuery(User.GET_BY_NAME, User.class)
+                .setParameter("name", name)
+                .getSingleResult();
+
     }
 
     @Override
     public User getByEmail(String email) {
-        User user;
+
+        User user = null;
+
         try {
             user = em.createNamedQuery(User.GET_BY_EMAIL, User.class)
                     .setParameter("email", email)
                     .getSingleResult();
         } catch (Exception ex) {
-            throw new UserNotFoundException("User with email : " + email + " not found!!!");
+
+            return user;
         }
+
         return user;
     }
 

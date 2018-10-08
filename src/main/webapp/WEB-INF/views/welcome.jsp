@@ -39,6 +39,27 @@
 
             }
         );
+
+
+        // $(".card").mouseenter(function () {
+        //     $(this).css('cursor', 'pointer');
+        //     var title = $(this).find(".title").text();
+        //     var description = $(this).find(".description").text();
+        //     var date = $(this).find(".date").text();
+        //
+        //     var th = $(this);
+        //
+        //     $(this).append("<div class=\"card-img-overlay   animated zoomin\">\n" +
+        //         "                    <p class=\"card-text text-white brown darken-2\"> " + description + " </p>\n" +
+        //         "                </div>")
+        //
+        //
+        // })
+        //
+        // $(".card").mouseleave(function () {
+        //     $(this).find(".card-img-overlay").removeClass("animated zoomin").removeClass("animated shake").addClass("animated zoomout");
+        // })
+
     })
 
 

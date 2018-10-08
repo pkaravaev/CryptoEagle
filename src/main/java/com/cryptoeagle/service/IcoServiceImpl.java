@@ -87,7 +87,7 @@ public class IcoServiceImpl implements IcoService {
 //    @Scheduled(fixedDelay = 1000000, initialDelay = 10000)
     public void updateIcos() {
         repository.deleteAll();
-        for (int i = 1 ; i < 10; i++){
+        for (int i = 1 ; i < 2; i++){
             List<Ico> page = service.getIcoWithDataByPage(i);
             saveIcos(page);
         }

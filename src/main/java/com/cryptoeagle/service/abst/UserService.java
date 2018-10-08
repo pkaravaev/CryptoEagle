@@ -22,5 +22,4 @@ public interface UserService {
 
     void deleteAll();
 
-    User findAmin();
 }

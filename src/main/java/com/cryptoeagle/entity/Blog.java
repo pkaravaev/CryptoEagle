@@ -99,4 +99,9 @@ public class Blog extends BaseEntity {
 
     public Blog() {
     }
+
+    @Override
+    public String toString() {
+        return  name ;
+    }
 }

@@ -17,6 +17,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class CoinServiceImpl implements CoinService {
@@ -76,10 +78,10 @@ public class CoinServiceImpl implements CoinService {
     public void updateCoins() {
         log.info("UPDATE COINS :" + LocalDateTime.now().toString());
         repository.deleteAll();
-        Coin coin = new Coin();
         List<Coin> allCoinsFromProvider = restService.getCoins();
         allCoinsFromProvider.stream().forEach( e -> e.setDataAvailable(isAvailable(e.getSymbol())));
-        repository.saveCoins(allCoinsFromProvider);
+        List<Coin> collect = allCoinsFromProvider.stream().limit(10).collect(Collectors.toList());
+        repository.saveCoins(collect);
     }
 
 }

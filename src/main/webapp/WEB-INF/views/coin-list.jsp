@@ -10,9 +10,14 @@
 
        var ctx = "${context}";
 
+
        $(".coin").click(function () {
+
            var symbol = $(this).find("td")[1].innerText;
-           window.location.href = ctx +  "/coin-page/" + symbol;
+           // window.location.href = ctx + "/coin-page/" + symbol;
+           $(location).attr("href",ctx + "/coin-page/" + symbol);
+           // alert(ctx + "/coin-page/" + symbol);
+
        })
 
    });
