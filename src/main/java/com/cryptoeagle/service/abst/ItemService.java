@@ -7,16 +7,12 @@ import java.util.List;
 
 public interface ItemService {
 
-    void saveAndUpdate(Item item);
-
-    void delete(int item);
-
     List<Item> getBySource(String source);
 
     List<Item> getAll();
 
     List<String> getSources();
 
-    void  updateItems();
+    void updateItems();
 
 }

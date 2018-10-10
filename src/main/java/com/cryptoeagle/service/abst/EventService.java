@@ -8,5 +8,7 @@ public interface EventService {
 
     List<Event> getEvents(int count);
 
+    List<Event> getAll();
+
     void update();
 }

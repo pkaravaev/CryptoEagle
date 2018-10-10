@@ -54,7 +54,7 @@ public class MainController {
 
 
     @RequestMapping(value = {"/", "/welcome"})
-    public String welcome(@AuthenticationPrincipal User user, Model model, HttpServletRequest request) {
+    public String welcome(Model model, HttpServletRequest request) {
 
         List<Item> items = itemService.getAll().stream().limit(10).collect(Collectors.toList());
         List<Item> lowerItems = new ArrayList<>();
@@ -121,17 +121,16 @@ public class MainController {
 
     @RequestMapping("/events")
     public String events(Model model) {
-        List<Event> events = eventService.getEvents(50);
+        List<Event> events = eventService.getAll();
         model.addAttribute("events", events);
         return "events-page";
     }
 
 
     @RequestMapping("/admin-page")
-    public String admin(@AuthenticationPrincipal User user, Model model) {
+    public String admin(Model model) {
         List<User> users = userService.findAll();
         model.addAttribute("users", users);
-        model.addAttribute("test", "test");
         return "admin-page";
     }
 

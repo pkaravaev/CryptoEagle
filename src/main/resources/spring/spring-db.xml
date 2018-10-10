@@ -33,16 +33,6 @@
     </beans>
 
 
-    <beans profile="Jdbc">
-        <bean class="org.springframework.jdbc.core.JdbcTemplate">
-            <property name="dataSource" ref="dataSource"/>
-        </bean>
-        <bean class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
-            <constructor-arg ref="dataSource"/>
-        </bean>
-        <context:component-scan base-package="com.cryptoeagle.repository.jdbc"/>
-    </beans>
-
     <beans profile="Jpa">
 
         <bean id="provider" class="org.hibernate.jpa.HibernatePersistenceProvider"/>

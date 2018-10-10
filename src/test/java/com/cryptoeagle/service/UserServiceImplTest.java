@@ -15,7 +15,7 @@ import static org.junit.Assert.assertTrue;
 
 public class UserServiceImplTest  extends AbstractTest{
 
-    private static final int USERS_COUNT = 3;
+    private static final int USERS_COUNT = 4;
 
     private static final int USER1_ID = 100086;
     private static final int USER2_ID = 100089;
@@ -33,15 +33,15 @@ public class UserServiceImplTest  extends AbstractTest{
 //
 //    @Test
 //    public void save() {
-//        service.saveAndUpdate(USER6);
-//        List<User> all = service.findAll();
+//        restService.saveAndUpdate(USER6);
+//        List<User> all = restService.findAll();
 //        assertTrue(all.size() == 6);
 //    }
 //
 //    @Test
 //    public void update() {
-//        service.saveAndUpdate(USER4_UPDATE);
-//        User user = service.get(USER4_UPDATE.getId());
+//        restService.saveAndUpdate(USER4_UPDATE);
+//        User user = restService.get(USER4_UPDATE.getId());
 //        assertTrue(user.getEmail().equals(USER4_UPDATE.getEmail()));
 //        assertTrue(user.getName().equals(USER4_UPDATE.getName()));
 //        assertTrue(user.getPassword().equals(USER4_UPDATE.getPassword()));
@@ -49,7 +49,7 @@ public class UserServiceImplTest  extends AbstractTest{
 //
 //    @Test
 //    public void get() {
-//        User user = service.get(USER3.getId());
+//        User user = restService.get(USER3.getId());
 //
 //        assertTrue(USER3.getPassword().equals(user.getPassword()));
 //        assertTrue(USER3.getName().equals(user.getEmail()));
@@ -58,26 +58,26 @@ public class UserServiceImplTest  extends AbstractTest{
 //
 //    @Test(expected = UserNotFoundException.class)
 //    public void getNotFound() {
-//        User user = service.get(777);
+//        User user = restService.get(777);
 //    }
 //
 //    @Test
 //    public void getByEmail() {
-//        User user = service.getByEmail(USER2.getEmail());
+//        User user = restService.getByEmail(USER2.getEmail());
 //        assertEquals(USER2.getEmail(), user.getEmail());
 //    }
 //
 //    @Test(expected = UserNotFoundException.class)
 //    public void getByEmailNotFound() {
-//        User user = service.getByEmail("xxxx@mail.ru");
+//        User user = restService.getByEmail("xxxx@mail.ru");
 //    }
 //
 //    @Test
 //    public void delete() {
 //
-//        service.delete(USER3_ID);
+//        restService.delete(USER3_ID);
 //
-//        List<User> users = service.findAll();
+//        List<User> users = restService.findAll();
 //
 //        assertTrue.
 //

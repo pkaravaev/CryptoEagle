@@ -52,13 +52,13 @@ public class Item extends BaseEntity implements EntityWithPic {
         return  Math.abs(i);
     }
 
-    public Item(int id_item, String title, String description, LocalDateTime publishDate, String link) {
-        super(id_item);
-        this.title = title;
-        this.description = description;
-        this.publishDate = publishDate;
-        this.link = link;
-    }
+//    public Item(int id_item, String title, String description, LocalDateTime publishDate, String link) {
+//        super(id_item);
+//        this.title = title;
+//        this.description = description;
+//        this.publishDate = publishDate;
+//        this.link = link;
+//    }
 
     public Item(String title, String description, LocalDateTime publishDate, String link) {
         this.title = title;

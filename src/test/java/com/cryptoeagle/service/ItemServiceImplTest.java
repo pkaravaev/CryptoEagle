@@ -8,6 +8,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -19,6 +20,7 @@ public class ItemServiceImplTest extends AbstractTest {
     private static final int ITEM_SOURCE1_COUNT = 10;
     private static final int SOURCE_COUNT = 7;
 
+
     @Autowired
     ItemServiceImpl service;
 
@@ -28,9 +30,6 @@ public class ItemServiceImplTest extends AbstractTest {
         assertTrue(all.size() == ITEMS_COUNT );
     }
 
-    @Test
-    public void saveAndUpdate() {
-    }
 
     @Test
     public void delete() {

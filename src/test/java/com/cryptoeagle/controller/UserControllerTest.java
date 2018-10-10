@@ -1,5 +1,6 @@
 package com.cryptoeagle.controller;
 
+import com.cryptoeagle.AbstractWebController;
 import com.cryptoeagle.entity.User;
 import com.cryptoeagle.service.abst.UserService;
 import org.junit.Assert;
@@ -17,8 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
-public class UserControllerTest extends AbstractControllerTest {
-
+public class UserControllerTest extends AbstractWebController {
 
     private static final int USER1_ID = 100089;
 
@@ -33,7 +33,6 @@ public class UserControllerTest extends AbstractControllerTest {
                 .andDo(print())
                 .andExpect(redirectedUrl("/welcome"));
     }
-
 
     @Test
     @WithUserDetails("admin")

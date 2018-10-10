@@ -46,7 +46,6 @@ public class IcoServiceImpl implements IcoService {
             repository.saveIcos(icos);
         }
         catch (Exception e){
-
             System.out.println();
         }
 

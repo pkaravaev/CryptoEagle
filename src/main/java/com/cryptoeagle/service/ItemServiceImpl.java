@@ -64,16 +64,6 @@ public class ItemServiceImpl implements ItemService {
         return repository.getBySource(source);
     }
 
-    @Override
-    public void saveAndUpdate(Item item) {
-
-    }
-
-    @Override
-    public void delete(int item) {
-
-    }
-
 
 //    @Scheduled(fixedDelay = 600000, initialDelay = 15000)
     public void updateItems() {
@@ -81,11 +71,8 @@ public class ItemServiceImpl implements ItemService {
         repository.deleteAll();
 
         List<Blog> allBlogs = blogService.getAll();
-
         if (allBlogs.size() > 0){
-
             Map<String, String> collect = allBlogs.stream().collect(Collectors.toMap(e -> e.getName(), e -> e.getUrl()));
-
             for(Map.Entry<String, String> map : collect.entrySet()){
                 String name = map.getKey();
                 String url = map.getValue();
@@ -98,7 +85,6 @@ public class ItemServiceImpl implements ItemService {
             List<Item> items = service.getItems("https://cointelegraph.com/rss","cointelegraph");
             repository.saveAll(items);
         }
-
 
         log.info("UPDATE ITEMS :" + LocalDateTime.now());
 

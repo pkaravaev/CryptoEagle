@@ -1,13 +1,9 @@
-package com.cryptoeagle.controller;
+package com.cryptoeagle;
 
 
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.security.test.context.support.WithSecurityContext;
-import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
@@ -24,7 +20,7 @@ import static org.springframework.security.test.web.servlet.setup.SecurityMockMv
 @WebAppConfiguration
 @ActiveProfiles({"Jpa","HSQLDB"})
 @Sql({"classpath:/db/init.sql","classpath:/db/populate.sql"})
-public  abstract class AbstractControllerTest {
+public class AbstractWebController {
 
     @Autowired
     protected WebApplicationContext webApplicationContext;
