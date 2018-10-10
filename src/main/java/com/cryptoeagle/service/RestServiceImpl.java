@@ -65,7 +65,6 @@ public class RestServiceImpl implements RestService {
     private static final String REST_GET_EVENTS = "https://api.coinmarketcal.com/v1/events";
     private static final String REST_GET_TOKEN = "https://api.coinmarketcal.com/oauth/v2/token";
 
-
     public List<Ico> getAllIcosFromIcobench() {
         int pagesCount = 1;
         List<Ico> icoList = new ArrayList<>();
@@ -170,7 +169,6 @@ public class RestServiceImpl implements RestService {
         }
         return events;
     }
-
     @Override
     public List<Coin> getCoins() {
 
@@ -253,8 +251,6 @@ public class RestServiceImpl implements RestService {
 
         return coins;
     }
-
-
 
     public List<PictureCoin> getPicCoins() {
 
@@ -339,8 +335,6 @@ public class RestServiceImpl implements RestService {
         return chart;
 
     }
-
-
 
     private Event convertJsonToEvent(JsonNode jsonNode) {
         Event event = new Event();
@@ -520,8 +514,6 @@ public class RestServiceImpl implements RestService {
 
         return idata;
     }
-
-
 
     private String buildHttpRequest(String param, String url) {
 

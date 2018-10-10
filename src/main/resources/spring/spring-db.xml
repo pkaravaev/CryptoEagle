@@ -10,13 +10,6 @@
 
     <context:property-placeholder location="classpath:db/postgres.properties"/>
 
-    <!--<context:property-placeholder location="classpath:db/heroku.properties"/>-->
-
-    <!--<jdbc:initialize-database>-->
-        <!--<jdbc:script location="db/initdb.sql"/>-->
-        <!--<jdbc:script location="db/populate.sql"/>-->
-    <!--</jdbc:initialize-database>-->
-
 
     <beans profile="HSQLDB">
 

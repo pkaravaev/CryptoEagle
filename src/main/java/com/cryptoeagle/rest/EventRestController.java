@@ -17,7 +17,7 @@ public class EventRestController {
     @Autowired
     private EventRepository eventRepository;
 
-    @GetMapping(value = "/rest/events")
+    @GetMapping(value = "/api/events")
     public List<Event> retrieveAllEvents() {
         return eventRepository.getAll();
     }

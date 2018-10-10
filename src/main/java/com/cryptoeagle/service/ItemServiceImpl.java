@@ -55,7 +55,7 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public List<Item> getAll() {
-        List<Item> itemList = repository.getall();
+        List<Item> itemList = repository.getAll();
         return itemList;
     }
 
@@ -74,10 +74,6 @@ public class ItemServiceImpl implements ItemService {
 
     }
 
-    @Override
-    public Item getByBlog(Blog blog) {
-        return null;
-    }
 
 //    @Scheduled(fixedDelay = 600000, initialDelay = 15000)
     public void updateItems() {

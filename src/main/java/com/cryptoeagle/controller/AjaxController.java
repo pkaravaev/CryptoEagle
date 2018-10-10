@@ -2,10 +2,8 @@ package com.cryptoeagle.controller;
 
 import com.cryptoeagle.entity.Coin;
 import com.cryptoeagle.entity.crypto.Chart;
-import com.cryptoeagle.entity.dto.Quote;
 import com.cryptoeagle.service.abst.CoinService;
 import com.cryptoeagle.service.abst.RestService;
-import com.cryptoeagle.service.abst.WebSocketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,8 +17,7 @@ public class AjaxController {
 
     @Autowired
     CoinService coinService;
-    @Autowired
-    WebSocketService webSocketService;
+
     @Autowired
     RestService restService;
 
@@ -29,12 +26,6 @@ public class AjaxController {
         String[]  symbols = {"BTC","ETH","NEO","EOS","XRP"};
         List<Coin> coins = coinService.getCoins(symbols);
         return coins;
-    }
-
-    @RequestMapping(value = "/ajax/price" )
-    public Quote getRealTimePrice() {
-        Quote quote = webSocketService.getLasTraderPrice("ethusdt");
-        return quote;
     }
 
     @RequestMapping(value = "/ajax/coins/{symbol}")

@@ -57,12 +57,12 @@ public class ItemRepositoryJdbcImpl implements ItemRepository {
     }
 
     @Override
-    public List<Item> getall(int blog_id) {
+    public List<Item> getAll(int blog_id) {
         return jdbcTemplate.query("SELECT * FROM items WHERE id_blog=?", rowMapper, blog_id);
     }
 
     @Override
-    public List<Item> getall() {
+    public List<Item> getAll() {
         return jdbcTemplate.query("SELECT * FROM items", rowMapper);
     }
 }

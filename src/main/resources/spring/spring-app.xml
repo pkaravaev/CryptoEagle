@@ -18,5 +18,4 @@
     <bean id="ehcache" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean"
           p:config-location="classpath:ehcache.xml" p:shared="true"/>
 
-
 </beans>

@@ -26,12 +26,10 @@ public class AjaxControllerTest extends AbstractControllerTest {
     @Test
     public void getPriceCoins() throws Exception {
 
-        mvc
+        mockMvc
                 .perform(get("/ajax/coins"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON_VALUE));
-
-
     }
 
     @Test

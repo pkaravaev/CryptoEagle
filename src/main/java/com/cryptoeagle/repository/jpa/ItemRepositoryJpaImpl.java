@@ -67,13 +67,13 @@ public class ItemRepositoryJpaImpl implements ItemRepository {
     }
 
     @Override
-    public List<Item> getall(int blog_id) {
+    public List<Item> getAll(int blog_id) {
         return null;
     }
 
     @Override
     @Transactional
-    public List<Item> getall() {
+    public List<Item> getAll() {
         return em.createNamedQuery(Item.GET_ALL, Item.class)
                 .getResultList();
     }

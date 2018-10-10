@@ -82,7 +82,6 @@ public class RestServiceImplTest extends AbstractTest {
         assertTrue(icos.size() > 5);
         assertTrue(icos.get(0) != null);
         assertTrue(icos.get(3) != null);
-        assertTrue(icos.get(7) != null);
     }
 
     @Test

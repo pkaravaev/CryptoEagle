@@ -60,8 +60,7 @@ public class WhiteListServiceImpl implements WhiteListService {
     public List<WhiteList> getWhiteList() {
        return repository.getAll();
     }
-
-
+    
     @Override
     public void updateWhitelist() {
         repository.save(parseFromWeb());

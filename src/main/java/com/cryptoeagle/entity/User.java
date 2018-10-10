@@ -51,7 +51,7 @@ public class User implements UserDetails {
         return id == 0;
     }
 
-    @Size(min = 3, max = 5)
+    @Size(min = 3, max = 15)
     @Column(unique = true)
     private String name;
     @Column(unique = true)

@@ -11,31 +11,31 @@ public class CryptoControllerTest extends AbstractControllerTest {
 
     @Test
     public void icoStats()throws Exception {
-        mvc
+        mockMvc
                 .perform(get("/ico-stats"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("ico-stats"));
     }
 
     @Test
-    public void icoList()throws Exception {
-        mvc
+    public void icoList() throws Exception {
+        mockMvc
                 .perform(get("/ico-list"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("ico-list"));
     }
 
     @Test
-    public void coinList()throws Exception {
-        mvc
+    public void coinList() throws Exception {
+        mockMvc
                 .perform(get("/coin-list"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("coin-list"));
     }
 
     @Test
-    public void icoPage()throws Exception {
-        mvc
+    public void icoPage() throws Exception {
+        mockMvc
                 .perform(get("/ico-page/test"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("ico-page"));

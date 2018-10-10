@@ -52,36 +52,9 @@ public class MainController {
         return new Blog();
     }
 
-    @RequestMapping("/loginerror")
-    public String loginError() {
-        return "404";
-    }
-
-    @RequestMapping("/analitics")
-    public String analitics() {
-        return "analitics";
-    }
-
-    @RequestMapping("/whitelist")
-    public String whitelist(Model model) {
-        List<WhiteList> whiteLists = whiteListService.getWhiteList();
-        model.addAttribute("whiteLists", whiteLists);
-        return "white-list";
-    }
-
-    @RequestMapping("/update")
-    public String update(Model model) {
-        icoService.updateIcos();
-        return "redirect:/";
-    }
 
     @RequestMapping(value = {"/", "/welcome"})
     public String welcome(@AuthenticationPrincipal User user, Model model, HttpServletRequest request) {
-
-
-        SecurityContext context = SecurityContextHolder.getContext();
-
-        boolean someAuthority = request.isUserInRole("someAuthority");
 
         List<Item> items = itemService.getAll().stream().limit(10).collect(Collectors.toList());
         List<Item> lowerItems = new ArrayList<>();
@@ -107,7 +80,6 @@ public class MainController {
         model.addAttribute("lowerItems", lowerItems);
         model.addAttribute("averageItems", averageItems);
 
-
         model.addAttribute("icos", icos);
         model.addAttribute("events", events);
 
@@ -115,26 +87,11 @@ public class MainController {
     }
 
 
-    @RequestMapping("/populate")
-    public String populateAll() {
-
-        icoService.updateIcos();
-        coinService.updateCoins();
-        eventService.update();
-        whiteListService.updateWhitelist();
-
-        return "redirect:/welcome ";
-    }
-
-
-    @RequestMapping("/error")
-    public String error() {
-        return "error-page";
-    }
-
-    @RequestMapping("/beginners")
-    public String begginers() {
-        return "beginners";
+    @RequestMapping("/whitelist")
+    public String whitelist(Model model) {
+        List<WhiteList> whiteLists = whiteListService.getWhiteList();
+        model.addAttribute("whiteLists", whiteLists);
+        return "white-list";
     }
 
     @RequestMapping("/news")
@@ -169,32 +126,13 @@ public class MainController {
         return "events-page";
     }
 
-    @RequestMapping("/test")
-    public String test(Model model) {
-        List<Item> items = itemService.getAll();
-        model.addAttribute("items", items);
-        return "test";
-    }
-
-    @RequestMapping("/test2")
-    public String test2(Model model) {
-        return "test2";
-    }
 
     @RequestMapping("/admin-page")
     public String admin(@AuthenticationPrincipal User user, Model model) {
-
         List<User> users = userService.findAll();
         model.addAttribute("users", users);
         model.addAttribute("test", "test");
-
         return "admin-page";
-    }
-
-    @ExceptionHandler({UserNotFoundException.class})
-    public String handle(Model model) {
-        model.addAttribute("error", "User not found");
-        return "error-page";
     }
 
 }

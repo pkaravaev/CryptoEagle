@@ -33,21 +33,21 @@ public class CoinRestController {
     @Autowired
     private IcoRepository icoRepository;
 
-    @GetMapping(value = "/rest/coins")
+    @GetMapping(value = "/api/coins")
     public List<Coin> retrieveAllCoins() {
         return coinRepository.getAllCoins();
     }
 
-    @GetMapping(value = "/rest/coins/{symbol}")
+    @GetMapping(value = "/api/coins/{symbol}")
     public ResponseEntity<Coin> retrieveCoin(@PathVariable("symbol") String symbol) {
         Coin coin = coinRepository.getBySymbol(symbol);
         ResponseEntity<Coin> entity = new ResponseEntity<>(coin, HttpStatus.OK);
         return entity;
     }
 
-    @GetMapping(value = "/rest/news")
+    @GetMapping(value = "/api/news")
     public List<Item> retrieveAllItems() {
-        return itemRepository.getall();
+        return itemRepository.getAll();
     }
 
 }

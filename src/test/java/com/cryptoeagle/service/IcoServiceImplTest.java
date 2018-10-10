@@ -15,18 +15,29 @@ import static org.junit.Assert.*;
 
 public class IcoServiceImplTest extends AbstractTest {
 
+    private static final int ICO_COUNT = 8;
+
+    private static final LocalDateTime LOCAL_DATE_TIME = LocalDateTime.of(2018,10,8,10,00,00);
+    private static final String ICO_NAME = "Zichain";
+
     @Autowired
     IcoService service;
 
     @Test
     public void getAll() {
         List<Ico> all = service.getAll();
-        assertTrue(all.size() > 10);
+        assertTrue(all.size() == ICO_COUNT);
     }
 
     @Test
     public void saveIcos() {
 
+        Ico ico = new Ico();
+        ico.setDescription("ico_description");
+        ico.setIcoEnd( LocalDateTime.of(2019,10,8,10,00,00));
+        ico.setIcoStart( LocalDateTime.of(2018,10,8,10,00,00));
+        ico.setPreIcoEnd( LocalDateTime.of(2018,10,8,10,00,00));
+        ico.setPreIcoEnd( LocalDateTime.of(2018,10,8,10,00,00));
 
     }
 
@@ -34,7 +45,7 @@ public class IcoServiceImplTest extends AbstractTest {
     public void getUpcoming() {
         List<Ico> upcoming = service.getUpcoming();
         for (Ico ico : upcoming) {
-            assertTrue(ico.getIcoStart().isAfter(LocalDateTime.now()));
+            assertTrue(ico.getIcoStart().isAfter(LOCAL_DATE_TIME));
         }
     }
 
@@ -42,7 +53,7 @@ public class IcoServiceImplTest extends AbstractTest {
     public void getFinished() {
         List<Ico> finished = service.getFinished();
         for (Ico ico : finished) {
-            assertTrue(ico.getIcoEnd().isBefore(LocalDateTime.now()));
+            assertTrue(ico.getIcoEnd().isBefore(LOCAL_DATE_TIME));
         }
     }
 
@@ -57,9 +68,14 @@ public class IcoServiceImplTest extends AbstractTest {
 
     @Test
     public void getByName() {
-        Ico name = service.getByName("Fanfare");
-        Ico ico = service.getByName("Digital Credit");
-        assertEquals(name.getName(), "Fanfare");
+
+        Ico ico = service.getByName(ICO_NAME);
+
+        assertTrue(ico.getName().equals(ICO_NAME));
+        assertTrue(ico.getDescription() != null);
+        assertTrue(ico.getLogolink() != null);
+        assertTrue(ico.getWebsite_link() != null);
+        assertTrue(ico.getName() != null);
     }
 
     @Test

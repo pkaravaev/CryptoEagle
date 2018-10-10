@@ -15,22 +15,22 @@ public class IcoRestController {
     @Autowired
     private IcoRepository icoRepository;
 
-    @GetMapping(value = "/rest/icos")
+    @GetMapping(value = "/api/icos")
     public List<Ico> retrieveAllIcos() {
         return icoRepository.getAllico();
     }
 
-    @GetMapping(value = "/rest/icos/upcoming")
+    @GetMapping(value = "/api/icos/upcoming")
     public List<Ico> retrieveUpcoming() {
         return icoRepository.getUpcomingIco();
     }
 
-    @GetMapping(value = "/rest/icos/finishied")
+    @GetMapping(value = "/api/icos/finishied")
     public List<Ico> retrieveFinished() {
         return icoRepository.getFinishedIco();
     }
 
-    @GetMapping(value = "/rest/icos/active")
+    @GetMapping(value = "/api/icos/active")
     public List<Ico> retrieveActice() {
         return icoRepository.getActiveIco();
     }

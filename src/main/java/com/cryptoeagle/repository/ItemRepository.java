@@ -17,11 +17,11 @@ public interface ItemRepository {
 
     Item get(int id, int blog_id);
 
-    List<Item> getall(int blog_id);
+    List<Item> getAll(int blog_id);
 
     List<Item> getBySource(String source);
 
-    List<Item> getall();
+    List<Item> getAll();
 
     List<String> getSources();
 }

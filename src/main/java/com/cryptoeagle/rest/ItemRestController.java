@@ -17,12 +17,12 @@ public class ItemRestController {
     @Autowired
     private ItemServiceImpl itemService;
 
-    @RequestMapping(value = "/rest/items")
+    @RequestMapping(value = "/api/items")
     public List<Item> getItems() {
         return itemService.getAll();
     }
 
-    @RequestMapping(value = "/rest/items/{name}")
+    @RequestMapping(value = "/api/items/{name}")
     public List<Item> getItemsBySource(@PathVariable String name) {
         return itemService.getBySource(name);
     }

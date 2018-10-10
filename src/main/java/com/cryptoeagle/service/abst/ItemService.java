@@ -11,8 +11,6 @@ public interface ItemService {
 
     void delete(int item);
 
-    Item getByBlog(Blog blog);
-
     List<Item> getBySource(String source);
 
     List<Item> getAll();

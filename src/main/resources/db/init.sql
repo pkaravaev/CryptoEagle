@@ -26,7 +26,7 @@ create table appuser
   email    varchar(255)
     constraint uk_hcij6hlq32eras7xlmvbx2sbm
     unique,
-  name     varchar(5)
+  name     varchar(20)
     constraint uk_ee3cmxp6jvhe7rqksp12a80w5
     unique,
   password varchar(255)

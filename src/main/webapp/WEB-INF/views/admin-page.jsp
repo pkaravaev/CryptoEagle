@@ -6,19 +6,6 @@
 
     $(document).ready(function () {
 
-        var ctx = "${context}";
-
-        // $("#exampleModalCenter").show();
-        //
-        // $("#userDelete ").click(function () {
-        //     var userId = $("#userId").text();
-        //     $.ajax({
-        //         url: ctx + "/users/delete/"+userId,
-        //         type: 'GET'
-        //         // data: {name: userName}
-        //     })
-        //     // window.location.href = ctx+ "/admin-page";
-        // })
 
     })
 
