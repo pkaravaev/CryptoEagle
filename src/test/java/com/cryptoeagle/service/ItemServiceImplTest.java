@@ -1,14 +1,10 @@
 package com.cryptoeagle.service;
 
+import com.cryptoeagle.AbstractTest;
 import com.cryptoeagle.entity.Item;
-import com.cryptoeagle.repository.ItemRepository;
-import com.cryptoeagle.service.abst.ItemService;
-import com.cryptoeagle.service.abst.RestService;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -30,7 +26,6 @@ public class ItemServiceImplTest extends AbstractTest {
         assertTrue(all.size() == ITEMS_COUNT );
     }
 
-
     @Test
     public void delete() {
         List<Item> all = service.getAll();
@@ -51,7 +46,6 @@ public class ItemServiceImplTest extends AbstractTest {
 
     @Test
     public void update() {
-
         service.updateItems();
     }
 }

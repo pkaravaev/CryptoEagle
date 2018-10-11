@@ -1,5 +1,6 @@
 package com.cryptoeagle.service;
 
+import com.cryptoeagle.AbstractTest;
 import com.cryptoeagle.entity.Coin;
 import com.cryptoeagle.entity.Event;
 import com.cryptoeagle.entity.Ico;

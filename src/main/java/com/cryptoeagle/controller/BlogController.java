@@ -1,18 +1,16 @@
 package com.cryptoeagle.controller;
 
 
-import com.cryptoeagle.entity.User;
 import com.cryptoeagle.entity.Blog;
-import com.cryptoeagle.entity.Item;
-import com.cryptoeagle.exception.RssNewsNotFoundException;
+import com.cryptoeagle.entity.User;
 import com.cryptoeagle.service.abst.BlogService;
 import com.cryptoeagle.service.abst.RssService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class BlogController {
@@ -30,21 +28,7 @@ public class BlogController {
     }
 
     @RequestMapping("/blog/add")
-    public String add(@RequestParam String name, @RequestParam String url, @AuthenticationPrincipal User user) {
-
-        Blog blog = new Blog();
-        blog.setName(name);
-        blog.setUrl(url);
-        blog.setUser(user);
-
-        List<Item> items = rssService.getItems(url, name);
-
-        if (items != null) {
-            blog.setItems(items);
-            blog.setUser(user);
-        } else
-            throw new RssNewsNotFoundException(url);
-
+    public String add(@ModelAttribute Blog blog, @AuthenticationPrincipal User user) {
         blogService.save(blog, user.getId());
         return "redirect:/user-profile";
     }

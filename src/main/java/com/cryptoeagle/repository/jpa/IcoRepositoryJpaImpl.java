@@ -60,7 +60,7 @@ public class IcoRepositoryJpaImpl implements IcoRepository {
     @Override
     @Transactional
     public void deleteAll() {
-        em.createQuery("DELETE FROM Ico ").executeUpdate();
+        em.createNativeQuery("DELETE  FROM Ico ").executeUpdate();
     }
 
     @Override

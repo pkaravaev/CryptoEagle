@@ -1,15 +1,13 @@
 package com.cryptoeagle.service;
 
+import com.cryptoeagle.AbstractTest;
 import com.cryptoeagle.entity.WhiteList;
 import com.cryptoeagle.service.abst.WhiteListService;
 import org.junit.Assume;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.validation.constraints.AssertTrue;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 public class WhiteListServiceImplTest extends AbstractTest {
 
@@ -28,7 +26,6 @@ public class WhiteListServiceImplTest extends AbstractTest {
     public void checkWhiteList() {
         List<WhiteList> whiteLists = service.getWhiteList();
         WhiteList whitelist = whiteLists.stream().findFirst().get();
-
         Assume.assumeTrue(whitelist.getCategory() != null);
         Assume.assumeTrue(whitelist.getLogo() != null);
         Assume.assumeTrue(whitelist.getName() != null);
@@ -38,11 +35,8 @@ public class WhiteListServiceImplTest extends AbstractTest {
     @Test
     public void update() {
         service.updateWhitelist();
-    }
-
-    @Test
-    public void parseFromWeb() {
-        service.updateWhitelist();
+        List<WhiteList> whiteList = service.getWhiteList();
+        Assume.assumeTrue(whiteList.size() == WHITELIST_COUNT * 2);
     }
 
 

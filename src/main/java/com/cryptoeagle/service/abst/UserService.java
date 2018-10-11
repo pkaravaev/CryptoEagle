@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface UserService {
 
-    List<User> findAll();
+    List<User> getAll();
 
     void saveAndUpdate(User user);
 
@@ -20,6 +20,5 @@ public interface UserService {
 
     void delete(User user);
 
-    void deleteAll();
 
 }

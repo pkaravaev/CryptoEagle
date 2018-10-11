@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <jsp:include page="template/header.jsp"/>
 
@@ -44,7 +45,6 @@
 
 <div class="container">
 
-
     <div class="row text-center">
 
         <div class="col">
@@ -72,23 +72,33 @@
                     </button>
                 </div>
 
-                <div class="modal-body mx-3">
-                    <div class="md-form mb-5">
-                        <i class="fa fa-edit prefix grey-text"></i>
-                        <input type="text" id="defaultForm-name" class="form-control validate">
-                        <label data-error="wrong" data-success="right" for="defaultForm-name">Blog name</label>
+                <form:form modelAttribute="blog" action="${context}/blog/add" method="post">
+                    <div class="modal-body mx-3">
+                        <div class="md-form mb-5">
+                            <i class="fa fa-edit prefix grey-text"></i>
+                            <input type="text" id="defaultForm-name" name="name" class="form-control validate">
+                            <label data-error="wrong" data-success="right"  for="defaultForm-name">Blog name</label>
+                        </div>
+
+                        <div class="md-form mb-4">
+                            <i class="fa fa-rss prefix grey-text"></i>
+                            <input type="text" id="defaultForm-url"  name="url" class="form-control validate">
+                            <label data-error="wrong" data-success="right" for="defaultForm-url">Blog url</label>
+                        </div>
+
+                    </div>
+                    <%--<div class="modal-footer d-flex justify-content-center">--%>
+                    <%--<button id="blogButton" class="btn btn-brown">Save</button>--%>
+                    <%--</div>--%>
+                    <div class="text-center">
+                        <button type="submit"
+                                class="btn  btn-brown ">Save
+                        </button>
                     </div>
 
-                    <div class="md-form mb-4">
-                        <i class="fa fa-rss prefix grey-text"></i>
-                        <input type="text" id="defaultForm-url" class="form-control validate">
-                        <label data-error="wrong" data-success="right" for="defaultForm-url">Blog url</label>
-                    </div>
+                </form:form>
 
-                </div>
-                <div class="modal-footer d-flex justify-content-center">
-                    <button id="blogButton" class="btn btn-brown">Save</button>
-                </div>
+
             </div>
         </div>
     </div>
@@ -129,7 +139,6 @@
                     <button id="blogDelete" type="button-right" class="btn btn-brown">Delete</button>
                 </div>
             </div>
-
 
         </div>
 

@@ -91,7 +91,7 @@ public class CryptoController {
 
     @RequestMapping("/coin-page/{symbol}")
     public String coinPage(Model model, @PathVariable String symbol) {
-        Coin eth = coinService.getCoin(symbol);
+        Coin eth = coinService.getBySymbol(symbol);
         List<Chart> charts = restService.getChartCoin(symbol);
         model.addAttribute("coin", eth);
         model.addAttribute("chart", eth);

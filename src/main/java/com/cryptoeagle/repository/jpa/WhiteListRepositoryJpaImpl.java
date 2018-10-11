@@ -20,7 +20,6 @@ public class WhiteListRepositoryJpaImpl implements WhiteListRepository {
     public List<WhiteList> getAll() {
       return    em.createNamedQuery(WhiteList.GET_ALL, WhiteList.class)
               .getResultList();
-
     }
 
     @Override
@@ -29,6 +28,5 @@ public class WhiteListRepositoryJpaImpl implements WhiteListRepository {
         for (WhiteList whiteList : whiteLists){
             em.persist(whiteList);
         }
-
     }
 }

@@ -52,6 +52,7 @@ public class Event extends BaseEntity {
         return Math.abs(date_event.getMinute() - ZonedDateTime.now().getMinute());
     }
 
+
     public String getTitle() {
         return title;
     }

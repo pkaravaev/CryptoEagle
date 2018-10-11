@@ -48,6 +48,11 @@ public class Ico {
     private LocalDateTime icoStart;
     private LocalDateTime icoEnd;
 
+
+//    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private IcoData data;
+
+
     public boolean isEnd() {
         if (icoEnd != null)
             return icoEnd.isBefore(LocalDateTime.now());
@@ -85,6 +90,7 @@ public class Ico {
         return result;
     }
 
+
     public int todayMinusIcoStart() {
         return Math.abs(LocalDateTime.now().getDayOfMonth() - icoStart.getDayOfMonth());
     }
@@ -92,9 +98,6 @@ public class Ico {
     public int todayMinusIcoEnd() {
         return Math.abs(LocalDateTime.now().getDayOfMonth() - icoEnd.getDayOfMonth());
     }
-//
-//    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private IcoData data;
 
 
     public String getName() {

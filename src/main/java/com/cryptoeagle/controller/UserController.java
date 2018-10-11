@@ -10,22 +10,16 @@ import com.cryptoeagle.service.abst.ItemService;
 import com.cryptoeagle.service.abst.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.support.SessionStatus;
 
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.TreeSet;
 
 @Controller
 public class UserController {
@@ -45,27 +39,32 @@ public class UserController {
     @RequestMapping("/user-profile")
     public String userProfile(@AuthenticationPrincipal User user, Model model) {
 
-        List<Blog> blogs = blogService.findall(user.getId());
+        List<Blog> blogs = blogService.findAllByUser(user.getId());
         model.addAttribute("blogs", blogs);
         model.addAttribute("name", user.getUsername());
+
         return "user-profile";
     }
 
     @RequestMapping("/users")
     public String users(@AuthenticationPrincipal User user, Model model) {
-        List<User> users = userService.findAll();
+
+        List<User> users = userService.getAll();
         model.addAttribute("users", users);
+
         return "users";
     }
 
     @RequestMapping("/users/delete/{id}")
     public String deleteUsers(@AuthenticationPrincipal User user, @PathVariable int id, Model model) {
-        if (user.getId() == id){
-            model.addAttribute("error","This is current user!!");
+
+        if (user.getId() == id) {
+            model.addAttribute("error", "This is current user!!");
             return "admin-page";
         }
         userService.delete(id);
-        model.addAttribute("success","Success!!");
+        model.addAttribute("success", "Success!!");
+
         return "admin-page";
     }
 

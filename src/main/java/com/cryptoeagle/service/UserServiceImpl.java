@@ -23,15 +23,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private UserRepository repository;
 
     @Override
-    public void deleteAll() {
-        log.info("delete all");
-        repository.getall();
-    }
-
-    @Override
-    public List<User> findAll() {
+    public List<User> getAll() {
         log.info("get all users");
-        return repository.getall();
+        return repository.getAll();
     }
 
     @Override
@@ -43,38 +37,67 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public User get(int id) {
         log.info("get user id", id);
-        return repository.get(id);
+
+        User user;
+        try {
+            user = repository.get(id);
+        } catch (Exception ex) {
+            throw new UserNotFoundException(String.valueOf(id));
+        }
+
+        return user;
     }
 
     @Override
     public User getByEmail(String email) {
         log.info("get user id", email);
-        return repository.getByEmail(email);
+
+        User user;
+        try {
+            user = repository.getByEmail(email);
+        } catch (Exception ex) {
+            throw new UserNotFoundException(email);
+        }
+        return user;
     }
 
     @Override
     public void delete(int id) {
         log.info("delete user by id");
-        repository.delete(id);
+        try {
+            repository.delete(id);
+        } catch (Exception ex) {
+            throw new UserNotFoundException(String.valueOf(id));
+        }
     }
 
     @Override
     public User getByName(String name) {
         log.info("get by name");
-        return repository.getByName(name);
+
+        User user;
+        try {
+            user = repository.getByName(name);
+        } catch (Exception ex) {
+            throw new UserNotFoundException(name);
+        }
+        return user;
     }
 
     @Override
     public void delete(User user) {
         log.info("delete user");
-        repository.delete(user.getId());
+        try {
+            repository.delete(user.getId());
+        } catch (Exception ex) {
+            throw new UserNotFoundException(user.toString());
+        }
     }
 
-
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) {
         User user = this.getByName(username);
-        if(user == null)
+        if (user == null)
             throw new UsernameNotFoundException("User :" + username + " not found!");
         return user;
     }

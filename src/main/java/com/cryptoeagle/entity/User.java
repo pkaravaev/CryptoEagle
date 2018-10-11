@@ -30,7 +30,7 @@ public class User implements UserDetails {
     public static final String DELETE = "User.delete";
     public static final String GET_BY_ID = "User.get";
     public static final String GET_BY_NAME = "User.getByName";
-    public static final String GET_ALL = "User.getall";
+    public static final String GET_ALL = "User.getAll";
     public static final String GET_BY_EMAIL = "User.getByEmail";
 
     @Id
@@ -74,13 +74,14 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Blog> blogs = new ArrayList<>();
 
-    public User(String name, String email, String password, boolean enable) {
+
+    public User(String name, String email, String password) {
         this.name = name;
         this.email = email;
         this.password = password;
     }
 
-    public User(int id, String name, String email, String password, boolean enable) {
+    public User(int id, String name, String email, String password) {
         this.id = id;
         this.name = name;
         this.email = email;

@@ -1,9 +1,8 @@
 package com.cryptoeagle.service;
 
+import com.cryptoeagle.AbstractTest;
 import com.cryptoeagle.entity.Ico;
 import com.cryptoeagle.service.abst.IcoService;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -31,7 +30,6 @@ public class IcoServiceImplTest extends AbstractTest {
 
     @Test
     public void saveIcos() {
-
         Ico ico = new Ico();
         ico.setDescription("ico_description");
         ico.setIcoEnd( LocalDateTime.of(2019,10,8,10,00,00));
@@ -68,9 +66,7 @@ public class IcoServiceImplTest extends AbstractTest {
 
     @Test
     public void getByName() {
-
         Ico ico = service.getByName(ICO_NAME);
-
         assertTrue(ico.getName().equals(ICO_NAME));
         assertTrue(ico.getDescription() != null);
         assertTrue(ico.getLogolink() != null);

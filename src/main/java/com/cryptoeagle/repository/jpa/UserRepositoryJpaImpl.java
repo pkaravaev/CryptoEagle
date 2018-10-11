@@ -32,13 +32,8 @@ public class UserRepositoryJpaImpl implements UserRepository {
     @Override
     @Transactional
     public void delete(int id) {
-
         User user = get(id);
-
         em.remove(user);
-//        em.createNamedQuery(User.DELETE)
-//                .setParameter("id", id)
-//                .executeUpdate();
     }
 
     @Override
@@ -47,41 +42,27 @@ public class UserRepositoryJpaImpl implements UserRepository {
         return em.createNamedQuery(User.GET_BY_ID, User.class)
                 .setParameter("id", id)
                 .getSingleResult();
-
     }
 
     @Override
     public User getByName(String name) {
+
         return em.createNamedQuery(User.GET_BY_NAME, User.class)
                 .setParameter("name", name)
                 .getSingleResult();
-
     }
 
     @Override
     public User getByEmail(String email) {
 
-        User user = null;
-
-        try {
-            user = em.createNamedQuery(User.GET_BY_EMAIL, User.class)
-                    .setParameter("email", email)
-                    .getSingleResult();
-        } catch (Exception ex) {
-
-            return user;
-        }
-
-        return user;
+        return em.createNamedQuery(User.GET_BY_EMAIL, User.class)
+                .setParameter("email", email)
+                .getSingleResult();
     }
 
     @Override
-    public List<User> getall() {
+    public List<User> getAll() {
         return em.createNamedQuery(User.GET_ALL, User.class).getResultList();
     }
 
-    @Override
-    public List<User> getAllWithBlogs() {
-        return null;
-    }
 }

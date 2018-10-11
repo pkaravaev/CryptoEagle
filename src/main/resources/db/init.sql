@@ -1,7 +1,6 @@
-
-drop sequence  if exists global_seq CASCADE ;
-drop table if exists appuser CASCADE ;
-drop table if exists blog CASCADE ;
+drop sequence if exists global_seq CASCADE;
+drop table if exists appuser CASCADE;
+drop table if exists blog CASCADE;
 drop table if exists coin CASCADE;
 drop table if exists event CASCADE;
 drop table if exists ico CASCADE;

@@ -17,7 +17,6 @@ public class EventRepositoryImpl implements EventRepository {
 
     @Override
     public List<Event> getAll() {
-
         return manager
                 .createNamedQuery(Event.GET_ALL, Event.class)
                 .getResultList();

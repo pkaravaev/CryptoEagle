@@ -23,6 +23,8 @@ public class WhiteList  extends BaseEntity implements Comparable<WhiteList> {
     private String logo;
     private String category;
 
+
+
     @Override
     public int compareTo(WhiteList o) {
         return this.name.length() - o.name.length();

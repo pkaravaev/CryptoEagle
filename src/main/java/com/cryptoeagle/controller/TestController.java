@@ -28,18 +28,18 @@ public class TestController {
     @Autowired
     WhiteListService whiteListService;
 
-//    @RequestMapping("/test")
-//    public String test(Model model) {
-//
-//        return "test";
-//    }
-//
-//    @RequestMapping("/populate")
-//    public String populateAll() {
-//        icoService.updateIcos();
-//        coinService.updateCoins();
-//        eventService.update();
-//        whiteListService.updateWhitelist();
-//        return "redirect:/welcome ";
-//    }
+    @RequestMapping("/test")
+    public String test(Model model) {
+
+        return "test";
+    }
+
+    @RequestMapping("/populate")
+    public String populateAll() {
+        icoService.updateIcos();
+        coinService.updateCoins();
+        eventService.update();
+        whiteListService.updateWhitelist();
+        return "redirect:/welcome ";
+    }
 }

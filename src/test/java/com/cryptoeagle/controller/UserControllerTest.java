@@ -62,7 +62,7 @@ public class UserControllerTest extends AbstractWebController {
                 .andExpect(status().isOk())
                 .andExpect(view().name("admin-page"));
 
-        List<User> all = userService.findAll();
+        List<User> all = userService.getAll();
         Assert.assertTrue(all.size() == 3);
     }
 
@@ -98,7 +98,7 @@ public class UserControllerTest extends AbstractWebController {
                         .param("password", "q1w2e3r4t5"))
                 .andExpect(redirectedUrl("/"));
 
-        List<User> all = userService.findAll();
+        List<User> all = userService.getAll();
          Assert.assertTrue(all.size() == 5);
     }
 

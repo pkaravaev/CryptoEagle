@@ -21,17 +21,12 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-
 public class AjaxControllerTest extends AbstractWebController {
 
     private static final String AJAX_PATH = "/ajax/";
-
     private static final int COINS_COUNT = 10;
-
     private static final int COINS_PRICE_COUNT = 4;
-
     private static final String SYMBOL = "ETH";
-
 
     @Test
     public void getPriceCoins() throws Exception {
@@ -45,7 +40,7 @@ public class AjaxControllerTest extends AbstractWebController {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-                .andExpect(jsonPath("$", hasSize(420)))
+                .andExpect(jsonPath("$", hasSize(notNullValue())))
                 .andExpect(jsonPath("$[0].x", notNullValue()))
                 .andExpect(jsonPath("$[0].y", notNullValue()));
     }

@@ -4,9 +4,8 @@ package com.cryptoeagle.rest;
 import com.cryptoeagle.entity.Coin;
 import com.cryptoeagle.entity.Item;
 import com.cryptoeagle.repository.CoinRepository;
-import com.cryptoeagle.repository.EventRepository;
-import com.cryptoeagle.repository.IcoRepository;
 import com.cryptoeagle.repository.ItemRepository;
+import com.cryptoeagle.service.abst.CoinService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,8 +22,10 @@ public class CoinRestController {
     private CoinRepository coinRepository;
 
     @Autowired
-    private ItemRepository itemRepository;
+    private CoinService coinService;
 
+    @Autowired
+    private ItemRepository itemRepository;
 
     @GetMapping(value = "/api/coins")
     public List<Coin> retrieveAllCoins() {
@@ -33,9 +34,10 @@ public class CoinRestController {
 
     @GetMapping(value = "/api/coins/{symbol}")
     public ResponseEntity<Coin> retrieveCoin(@PathVariable("symbol") String symbol) {
-        Coin coin = coinRepository.getBySymbol(symbol);
-        ResponseEntity<Coin> entity = new ResponseEntity<>(coin, HttpStatus.OK);
-        return entity;
+        Coin coin = coinService.getBySymbol(symbol);
+        if (coin == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        else return new ResponseEntity<>(coin, HttpStatus.OK);
     }
 
     @GetMapping(value = "/api/news")

@@ -15,13 +15,10 @@ public interface BlogService {
 
     void deleteByName(String name);
 
-    List<Blog> findall(int user_id);
+    List<Blog> findAllByUser(int user_id);
 
     List<Blog> getAll();
 
-    List<Item> itemsFromBlogs(int user_id);
-
     public void updateFromRss();
-
 
 }

@@ -2,6 +2,7 @@ package com.cryptoeagle.service;
 
 import com.cryptoeagle.entity.Blog;
 import com.cryptoeagle.entity.Item;
+import com.cryptoeagle.exception.RssNewsNotFoundException;
 import com.cryptoeagle.repository.BlogRepository;
 import com.cryptoeagle.service.abst.BlogService;
 import com.cryptoeagle.service.abst.RssService;
@@ -32,6 +33,11 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public void save(Blog blog, int user_id) {
         log.info("save blog");
+        List<Item> items = rssService.getItems(blog.getUrl(), blog.getName());
+        if (items == null)
+            throw new RssNewsNotFoundException(blog.getName());
+        else
+            blog.setItems(items);
         blogRepository.save(blog, user_id);
     }
 
@@ -42,20 +48,16 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public List<Blog> findall(int user_id) {
+    public List<Blog> findAllByUser(int user_id) {
         log.info("get all blogs by user");
-      return blogRepository.getallByUser(user_id);
+        return blogRepository.getAllByUser(user_id);
     }
 
-    @Override
-    public List<Item> itemsFromBlogs(int user_id) {
-        return null;
-    }
 
     @Override
     public void delete(int blog_id, int user_id) {
         log.info("delete blog");
-        blogRepository.delete(blog_id,user_id);
+        blogRepository.delete(blog_id, user_id);
     }
 
     @Override
@@ -67,7 +69,7 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public void updateFromRss() {
         List<Blog> all = blogRepository.getAll();
-        for (Blog blog : all){
+        for (Blog blog : all) {
             List<Item> items = rssService.getItems(blog.getUrl(), blog.getName());
             if (items != null) {
                 blog.setItems(items);

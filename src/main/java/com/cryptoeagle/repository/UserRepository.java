@@ -16,9 +16,7 @@ public interface UserRepository {
 
     User getByName(String name);
 
-    List<User> getall();
-
-    List<User> getAllWithBlogs();
+    List<User> getAll();
 
 }
 

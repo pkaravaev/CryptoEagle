@@ -1,16 +1,10 @@
 package com.cryptoeagle.controller;
 
 import com.cryptoeagle.entity.*;
-import com.cryptoeagle.exception.UserNotFoundException;
 import com.cryptoeagle.service.abst.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -47,11 +41,10 @@ public class MainController {
     WhiteListService whiteListService;
 
 
-    @ModelAttribute("blog")
-    public Blog contructBlog() {
-        return new Blog();
-    }
-
+//    @ModelAttribute("blog")
+//    public Blog contructBlog() {
+//        return new Blog();
+//    }
 
     @RequestMapping(value = {"/", "/welcome"})
     public String welcome(Model model, HttpServletRequest request) {
@@ -85,7 +78,6 @@ public class MainController {
 
         return "welcome";
     }
-
 
     @RequestMapping("/whitelist")
     public String whitelist(Model model) {
@@ -126,10 +118,9 @@ public class MainController {
         return "events-page";
     }
 
-
     @RequestMapping("/admin-page")
     public String admin(Model model) {
-        List<User> users = userService.findAll();
+        List<User> users = userService.getAll();
         model.addAttribute("users", users);
         return "admin-page";
     }

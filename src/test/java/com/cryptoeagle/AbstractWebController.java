@@ -15,12 +15,8 @@ import org.springframework.web.context.WebApplicationContext;
 
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({"/spring/spring-app.xml","/spring/spring-db.xml", "/spring/spring-mvc.xml","/spring/spring-security.xml"})
-@WebAppConfiguration
-@ActiveProfiles({"Jpa","HSQLDB"})
-@Sql({"classpath:/db/init.sql","classpath:/db/populate.sql"})
-public class AbstractWebController {
+
+public class AbstractWebController extends AbstractTest {
 
     @Autowired
     protected WebApplicationContext webApplicationContext;

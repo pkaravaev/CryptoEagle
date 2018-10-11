@@ -32,9 +32,7 @@ public class BlogControllerTest extends AbstractWebController {
     public void add() throws Exception {
         mockMvc.perform(get("/blog/add").param("name", "newzcrypto").param("url", "http://www.newzcrypto.com/feed/"))
                 .andExpect(status().is3xxRedirection());
-
         List<Blog> all = blogService.getAll();
         assertTrue(all.size() == 9);
-
     }
 }

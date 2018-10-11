@@ -1,5 +1,6 @@
 package com.cryptoeagle.service;
 
+import com.cryptoeagle.AbstractTest;
 import com.cryptoeagle.entity.Event;
 import com.cryptoeagle.service.abst.EventService;
 import org.junit.Test;
@@ -29,7 +30,7 @@ public class EventServiceImplTest extends AbstractTest {
     @Test
     public void update() {
 
-//todo !!!!!
+       //todo !!!!!
         eventService.update();
 
     }

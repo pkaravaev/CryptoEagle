@@ -8,7 +8,7 @@ public interface CoinService {
 
     List<Coin> getCoins(String[] ids);
 
-    Coin getCoin(String symbol);
+    Coin getBySymbol(String symbol);
 
     void updateCoins();
 

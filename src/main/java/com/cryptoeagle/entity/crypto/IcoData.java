@@ -22,18 +22,21 @@ public class IcoData {
 
     @ElementCollection(fetch = FetchType.EAGER)
     private Map<String, String> links = new HashMap<>();
+
     @ElementCollection(fetch = FetchType.EAGER)
     private Map<String, String> finance = new HashMap<>();
+
     @ElementCollection(fetch = FetchType.EAGER)
     private Map<String, String> categories = new HashMap<>();
 
-    //    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<Team> crew = new HashSet<>();
 
-    //    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<Exchange> exchanges = new HashSet<>();
+
+
+
 
     public void setCrew(Team team) {
         crew.add(team);
