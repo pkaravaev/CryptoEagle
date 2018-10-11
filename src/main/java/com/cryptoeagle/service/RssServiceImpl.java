@@ -19,8 +19,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static org.jsoup.nodes.Document.OutputSettings.Syntax.html;
-
 
 @Service
 public class RssServiceImpl implements RssService {

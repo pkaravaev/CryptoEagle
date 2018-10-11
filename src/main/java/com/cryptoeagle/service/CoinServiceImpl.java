@@ -5,20 +5,14 @@ import com.cryptoeagle.entity.crypto.Chart;
 import com.cryptoeagle.repository.CoinRepository;
 import com.cryptoeagle.service.abst.CoinService;
 import com.cryptoeagle.service.abst.RestService;
-import edu.emory.mathcs.backport.java.util.Arrays;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 public class CoinServiceImpl implements CoinService {
