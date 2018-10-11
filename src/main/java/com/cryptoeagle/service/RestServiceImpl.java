@@ -49,7 +49,7 @@ import java.util.Base64;
 import java.util.Iterator;
 import java.util.List;
 ;
-
+//todo polish all method
 @Service
 public class RestServiceImpl implements RestService {
 

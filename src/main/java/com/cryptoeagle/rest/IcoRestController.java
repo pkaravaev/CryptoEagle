@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -18,6 +19,12 @@ public class IcoRestController {
     @GetMapping(value = "/api/icos")
     public List<Ico> retrieveAllIcos() {
         return icoRepository.getAllico();
+    }
+
+    @GetMapping(value = "/api/icos/{name}")
+    public Ico getIcoWithData(@PathVariable String name)
+    {
+        return icoRepository.getByName(name);
     }
 
     @GetMapping(value = "/api/icos/upcoming")

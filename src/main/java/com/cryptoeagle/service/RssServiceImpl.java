@@ -29,7 +29,9 @@ public class RssServiceImpl implements RssService {
         SyndFeedInput input = new SyndFeedInput();
         SyndFeed feed = null;
         List<Item> itemList = null;
+        //TODO cut
         try {
+
             feed = input.build(new XmlReader(new URL(url)));
             List<SyndEntry> list = feed.getEntries();
             itemList = new ArrayList<>();

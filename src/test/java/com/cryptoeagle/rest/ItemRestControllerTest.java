@@ -19,9 +19,10 @@ public class ItemRestControllerTest extends AbstractWebController {
 
     private static final String SOURCE = "/cryptopotato";
 
+    private static final String FAKE_SOURCE = "/fake";
+
     @Test
     public void getItems() throws Exception {
-
 
         mockMvc.perform(get(PATH + "items"))
                 .andExpect(status().isOk())
@@ -32,13 +33,11 @@ public class ItemRestControllerTest extends AbstractWebController {
                 .andExpect(jsonPath("$[0].publishDate", notNullValue()))
                 .andExpect(jsonPath("$[0].link", notNullValue()))
                 .andExpect(jsonPath("$[0].source", notNullValue()));
-
-
     }
 
 
     @Test
-    public void getItemsBySource()throws  Exception {
+    public void getItemsBySource() throws Exception {
 
         mockMvc.perform(get(PATH + "items" + SOURCE))
                 .andExpect(status().isOk())
@@ -50,6 +49,11 @@ public class ItemRestControllerTest extends AbstractWebController {
                 .andExpect(jsonPath("$[0].publishDate", notNullValue()))
                 .andExpect(jsonPath("$[0].link", notNullValue()))
                 .andExpect(jsonPath("$[0].source", notNullValue()));
+    }
 
+    @Test
+    public void getItemsBySourceNotFound() throws Exception {
+        mockMvc.perform(get(PATH + "items" + FAKE_SOURCE))
+                .andExpect(status().isNotFound());
     }
 }

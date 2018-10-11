@@ -29,14 +29,14 @@ public class IcoServiceImpl implements IcoService {
     RestService service;
 
     @Autowired
-    public void IcoServiceImpl(IcoRepository repository, RestService service){
+    public void IcoServiceImpl(IcoRepository repository, RestService service) {
         this.repository = repository;
         this.service = service;
     }
 
 
     public List<Ico> getAll() {
-       return repository.getAllico();
+        return repository.getAllico();
     }
 
     @Override
@@ -44,8 +44,7 @@ public class IcoServiceImpl implements IcoService {
 
         try {
             repository.saveIcos(icos);
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.out.println();
         }
 
@@ -53,40 +52,58 @@ public class IcoServiceImpl implements IcoService {
 
     @Override
     public List<Ico> getUpcoming() {
-        return repository.getUpcomingIco();
+
+        try {
+            return repository.getUpcomingIco();
+        } catch (Exception e) {
+            throw new IcoNotFoundException();
+        }
     }
 
     @Override
     public List<Ico> getFinished() {
-        return repository.getFinishedIco();
+        try {
+            return repository.getFinishedIco();
+
+        } catch (Exception e) {
+            throw new IcoNotFoundException();
+        }
     }
 
     @Override
     public List<Ico> getActiveIco() {
-        return repository.getActiveIco();
+        try {
+            return repository.getActiveIco();
+        } catch (Exception e) {
+            throw new IcoNotFoundException();
+        }
     }
+
 
     @Override
     @Transactional()
     public Ico getIcoById(int id) {
-        return repository.getIcoByID(id);
+        try {
+            return repository.getIcoByID(id);
+        } catch (Exception e) {
+            throw new IcoNotFoundException();
+        }
     }
 
     @Override
     public Ico getByName(String name) {
-        Ico ico = repository.getByName(name);
-
-        if (ico == null)
-            throw  new IcoNotFoundException();
-
-        return repository.getByName(name);
+        try {
+            return repository.getByName(name);
+        } catch (Exception e) {
+            throw new IcoNotFoundException();
+        }
     }
 
     @Override
 //    @Scheduled(fixedDelay = 1000000, initialDelay = 10000)
     public void updateIcos() {
         repository.deleteAll();
-        for (int i = 1 ; i < 2; i++){
+        for (int i = 1; i < 2; i++) {
             List<Ico> page = service.getIcoWithDataByPage(i);
             saveIcos(page);
         }

@@ -1,8 +1,12 @@
 package com.cryptoeagle.rest;
 
 import com.cryptoeagle.AbstractWebController;
+import org.apache.xerces.util.HTTPInputSource;
 import org.junit.Test;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.notNullValue;
@@ -22,6 +26,8 @@ public class IcoRestControllerTest extends AbstractWebController {
     private static final String ICO_UPCOMING = "icos/upcoming";
     private static final String ICO_FINISHED = "icos/finishied";
     private static final String ICO_ACTIVE = "icos/active";
+
+    private static final String ICO_NAME = "Virtual Rehab";
 
 
     @Test
@@ -52,6 +58,16 @@ public class IcoRestControllerTest extends AbstractWebController {
 
     }
 
+    @Test
+    public void getIcoWithData() throws Exception {
+
+
+        //TODO work not correct
+        testIco(PATH + ICO_ALL + ICO_NAME, 0);
+
+    }
+
+
     private void testIco(String path, int count) throws Exception {
 
         mockMvc.perform(get(path))
@@ -71,5 +87,11 @@ public class IcoRestControllerTest extends AbstractWebController {
                 .andExpect(jsonPath("$[0].icoStart", notNullValue()))
                 .andExpect(jsonPath("$[0].icoEnd", notNullValue()));
 
+    }
+
+
+    @ExceptionHandler
+    public ResponseEntity<Object> icoNotFound() {
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }

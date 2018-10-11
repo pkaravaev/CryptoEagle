@@ -42,8 +42,8 @@
             <property name="persistenceProvider" ref="provider"/>
             <property name="jpaPropertyMap">
                 <map>
-                    <!--<entry key="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL9Dialect"/>-->
-                    <entry key="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
+                    <entry key="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL9Dialect"/>
+                    <!--<entry key="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>-->
                     <entry key="hibernate.hbm2ddl.auto" value="create"/>
                     <entry key="hibernate.format_sql" value="true"/>
                     <entry key="hibernate.show_sql" value="true"/>

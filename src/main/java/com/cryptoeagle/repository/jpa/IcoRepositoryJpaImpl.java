@@ -66,24 +66,18 @@ public class IcoRepositoryJpaImpl implements IcoRepository {
     @Override
     @Transactional
     public Ico getIcoByID(int id) {
-        Ico ico = em.createNamedQuery(Ico.GET_BY_ID, Ico.class)
+        return em.createNamedQuery(Ico.GET_BY_ID, Ico.class)
                 .setParameter("id", id)
                 .getSingleResult();
-        ico.getData();
-        return ico;
+
     }
 
     @Override
     public Ico getByName(String name) {
-        Ico ico;
-        try {
-            ico = em.createNamedQuery(Ico.GET_BY_NAME, Ico.class)
-                    .setParameter("name", name)
-                    .getSingleResult();
-        } catch (Exception ex) {
-            ico = null;
-        }
-        return ico;
+        return em.createNamedQuery(Ico.GET_BY_NAME, Ico.class)
+                .setParameter("name", name)
+                .getSingleResult();
+
     }
 
     @Override
