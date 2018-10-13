@@ -16,10 +16,7 @@ public class ItemRepositoryJpaImpl implements ItemRepository {
     @PersistenceContext
     EntityManager em;
 
-//    @Override
-//    public void save(Item item) {
-//        em.persist(item);
-//    }
+
 
     @Override
     public List<String> getSources() {
@@ -27,12 +24,6 @@ public class ItemRepositoryJpaImpl implements ItemRepository {
                 .getResultList();
     }
 
-    @Override
-    @Transactional
-    public void deleteAll() {
-        em.createQuery(
-                "DELETE FROM Item ").executeUpdate();
-    }
 
     @Override
     @Transactional

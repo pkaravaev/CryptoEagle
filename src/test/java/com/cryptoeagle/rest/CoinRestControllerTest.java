@@ -44,7 +44,6 @@ public class CoinRestControllerTest extends AbstractWebController {
                 .andExpect(jsonPath("$[0].percent_change_24h", notNullValue()))
                 .andExpect(jsonPath("$[0].dataAvailable", notNullValue()));
 
-
     }
 
     @Test
@@ -71,6 +70,7 @@ public class CoinRestControllerTest extends AbstractWebController {
 
     @Test
     public void retrieveCoinNotFound() throws Exception {
+
         mockMvc.perform(get(PATH +  "coins/" +  FAKE_SYMBOL))
                 .andDo(print())
                 .andExpect(status().isNotFound());

@@ -1,5 +1,6 @@
 package com.cryptoeagle.entity;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,6 +19,8 @@ import java.time.ZonedDateTime;
 })
 
 @Entity
+@Getter
+@Setter
 public class Event extends BaseEntity {
 
     public static final String GET_ALL = "Event.getAll";
@@ -53,75 +56,4 @@ public class Event extends BaseEntity {
     }
 
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getCoinName() {
-        return coinName;
-    }
-
-    public void setCoinName(String coinName) {
-        this.coinName = coinName;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getProof() {
-        return proof;
-    }
-
-    public void setProof(String proof) {
-        this.proof = proof;
-    }
-
-    public String getSource() {
-        return source;
-    }
-
-    public void setSource(String source) {
-        this.source = source;
-    }
-
-    public String getTwitter() {
-        return twitter;
-    }
-
-    public void setTwitter(String twitter) {
-        this.twitter = twitter;
-    }
-
-    public boolean isHot() {
-        return isHot;
-    }
-
-    public void setHot(boolean hot) {
-        isHot = hot;
-    }
-
-    public ZonedDateTime getDate_event() {
-        return date_event;
-    }
-
-    public void setDate_event(ZonedDateTime date_event) {
-        this.date_event = date_event;
-    }
 }

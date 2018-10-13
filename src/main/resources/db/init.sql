@@ -103,7 +103,6 @@ create table ico
   name         varchar(255)
     constraint uk_qjrh8xnyqfghcn8fht7xayq7a
     unique,
-  page         integer          not null,
   preicoend    timestamp,
   preicostart  timestamp,
   rating       double precision not null,

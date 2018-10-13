@@ -1,15 +1,14 @@
 package com.cryptoeagle.entity;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
-
 
 @Entity
 @NamedQueries({
@@ -20,6 +19,9 @@ import java.util.List;
         @NamedQuery(name = Blog.DELETE_BY_NAME, query = "DELETE FROM Blog  blog WHERE blog.name = :name"),
         @NamedQuery(name = Blog.GET, query = "SELECT blog FROM Blog blog WHERE blog.id =:blog_id AND blog.user.id = :user_id")
 })
+
+@Getter
+@Setter
 public class Blog extends BaseEntity {
 
     public static final String GET_ALL_BY_USER = "Blog.getByUser";
@@ -63,46 +65,6 @@ public class Blog extends BaseEntity {
         this.url = URL;
     }
 
-
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public List<Item> getItems() {
-        return items;
-    }
-
-    public void setItems(List<Item> items) {
-        this.items = items;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     public Blog() {
     }
-
-    @Override
-    public String toString() {
-        return  name ;
-    }
-
 }

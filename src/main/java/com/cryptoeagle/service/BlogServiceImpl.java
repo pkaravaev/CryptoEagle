@@ -74,6 +74,11 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
+    public Blog getByName(String name) {
+      return   blogRepository.getByName(name);
+    }
+
+    @Override
     public void delete(int blog_id, int user_id) {
         log.info("delete blog");
         blogRepository.delete(blog_id, user_id);
@@ -96,6 +101,4 @@ public class BlogServiceImpl implements BlogService {
             }
         }
     }
-
-
 }

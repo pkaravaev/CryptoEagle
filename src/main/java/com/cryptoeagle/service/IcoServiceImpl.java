@@ -36,21 +36,19 @@ public class IcoServiceImpl implements IcoService {
     }
 
     @Override
+    @Transactional
     public void save(List<Ico> icos) {
-        try {
-            repository.save(icos);
-        } catch (Exception e) {
-            throw new IcoNotFoundException(e.getMessage() + " ICOs not found" );
+        for (Ico ico : icos){
+            repository.save(ico);
         }
     }
 
     @Override
     public List<Ico> getUpcoming() {
-
         try {
             return repository.getUpcoming();
         } catch (Exception e) {
-            throw new IcoNotFoundException(e.getMessage() + "Upcoming ICO not found" );
+            throw new IcoNotFoundException(e.getMessage() + "Upcoming ICO not found");
         }
     }
 
@@ -60,7 +58,7 @@ public class IcoServiceImpl implements IcoService {
             return repository.getFinished();
 
         } catch (Exception e) {
-            throw new IcoNotFoundException(e.getMessage() + "Finished ICO not found" );
+            throw new IcoNotFoundException(e.getMessage() + "Finished ICO not found");
         }
     }
 
@@ -69,7 +67,7 @@ public class IcoServiceImpl implements IcoService {
         try {
             return repository.getActive();
         } catch (Exception e) {
-            throw new IcoNotFoundException(e.getMessage() + "Active ICO not found" );
+            throw new IcoNotFoundException(e.getMessage() + "Active ICO not found");
         }
     }
 
@@ -88,14 +86,14 @@ public class IcoServiceImpl implements IcoService {
         try {
             return repository.getByName(name);
         } catch (Exception e) {
-
             throw new IcoNotFoundException(e.getMessage() + " Ico name : " + name);
         }
     }
 
     @Override
+    @Transactional
     public void update() {
-        repository.deleteAll();
+        deletAll();
         for (int i = 1; i < 2; i++) {
             List<Ico> page = service.getIcoWithDataByPage(i);
             save(page);
@@ -104,7 +102,12 @@ public class IcoServiceImpl implements IcoService {
     }
 
     @Override
+    @Transactional
     public void deletAll() {
-        repository.deleteAll();
+        List<Ico> all = getAll();
+        for (Ico ico : all) {
+            repository.delete(ico);
+        }
+
     }
 }

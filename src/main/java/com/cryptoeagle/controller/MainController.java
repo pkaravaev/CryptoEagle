@@ -40,12 +40,6 @@ public class MainController {
     @Autowired
     WhiteListService whiteListService;
 
-
-//    @ModelAttribute("blog")
-//    public Blog contructBlog() {
-//        return new Blog();
-//    }
-
     @RequestMapping(value = {"/", "/welcome"})
     public String welcome(Model model, HttpServletRequest request) {
 

@@ -21,9 +21,10 @@ public class ItemRestControllerTest extends AbstractWebController {
 
     private static final String FAKE_SOURCE = "/fake";
 
+
+
     @Test
     public void getItems() throws Exception {
-
         mockMvc.perform(get(PATH + "items"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
@@ -37,7 +38,6 @@ public class ItemRestControllerTest extends AbstractWebController {
 
     @Test
     public void getItemsBySource() throws Exception {
-
         mockMvc.perform(get(PATH + "items" + SOURCE))
                 .andDo(print())
                 .andExpect(status().isOk())
@@ -52,7 +52,6 @@ public class ItemRestControllerTest extends AbstractWebController {
 
     @Test
     public void getItemsBySourceNotFound() throws Exception {
-
         mockMvc.perform(get(PATH + "items" + FAKE_SOURCE))
                 .andExpect(status().isNotFound());
     }

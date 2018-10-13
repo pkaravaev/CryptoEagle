@@ -21,13 +21,6 @@ public class EventRepositoryImpl implements EventRepository {
                 .createNamedQuery(Event.GET_ALL, Event.class)
                 .getResultList();
     }
-    @Override
-    public List<Event> getAll(String symbol) {
-        return manager
-                .createNamedQuery(Event.GET_ALL, Event.class)
-                .setParameter("coinname",symbol)
-                .getResultList();
-    }
 
     @Override
     public void saveAll(List<Event> events) {

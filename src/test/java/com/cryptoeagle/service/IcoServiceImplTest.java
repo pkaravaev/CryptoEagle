@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,14 +30,24 @@ public class IcoServiceImplTest extends AbstractTest {
     }
 
     @Test
-    public void saveIcos() {
-        Ico ico = new Ico();
-        ico.setDescription("ico_description");
-        ico.setIcoEnd( LocalDateTime.of(2019,10,8,10,00,00));
-        ico.setIcoStart( LocalDateTime.of(2018,10,8,10,00,00));
-        ico.setPreIcoEnd( LocalDateTime.of(2018,10,8,10,00,00));
-        ico.setPreIcoEnd( LocalDateTime.of(2018,10,8,10,00,00));
+    public void save() {
+        Ico ico1 = new Ico();
+        ico1.setName("test_ico1");
+        ico1.setLogolink("test_logolink");
+        ico1.setDescription("test_description");
+        ico1.setWebsite_link("test_weblink");
+        ico1.setRating(11111);
 
+        Ico ico2 = new Ico();
+        ico2.setName("test_ico2");
+        ico2.setLogolink("test_logolink2");
+        ico2.setDescription("test_description2");
+        ico2.setWebsite_link("test_weblink2");
+        ico2.setRating(333333333);
+        service.save(Arrays.asList(ico1, ico2));
+
+        List<Ico> all = service.getAll();
+        assertTrue(all.size() == ICO_COUNT + 2);
     }
 
     @Test

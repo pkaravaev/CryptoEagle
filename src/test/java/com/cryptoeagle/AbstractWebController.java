@@ -2,6 +2,7 @@ package com.cryptoeagle;
 
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
@@ -15,7 +16,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 
-
+@Ignore
 public class AbstractWebController extends AbstractTest {
 
     @Autowired
@@ -25,10 +26,8 @@ public class AbstractWebController extends AbstractTest {
 
     @Before
     public void setup() {
-
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext)
                 .apply(springSecurity())
                 .build();
-
     }
 }

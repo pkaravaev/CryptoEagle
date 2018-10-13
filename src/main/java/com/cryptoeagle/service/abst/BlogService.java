@@ -23,6 +23,8 @@ public interface BlogService {
 
     List<Blog> getAll();
 
+    Blog getByName(String name);
+
     public void update();
 
 }

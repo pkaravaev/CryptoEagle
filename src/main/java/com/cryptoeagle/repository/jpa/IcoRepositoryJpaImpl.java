@@ -19,6 +19,11 @@ public class IcoRepositoryJpaImpl implements IcoRepository {
     EntityManager em;
 
     @Override
+    public void delete(Ico ico) {
+        em.remove(ico);
+    }
+
+    @Override
     public List<Ico> getAll() {
         return em.createNamedQuery(Ico.GET_ALL, Ico.class)
                 .setMaxResults(30)
@@ -26,10 +31,18 @@ public class IcoRepositoryJpaImpl implements IcoRepository {
     }
 
     @Override
+    public void save(Ico ico) {
+        if (ico.isNew())
+            em.persist(ico);
+        else em.merge(ico);
+
+    }
+
+    @Override
     @Transactional
     public void save(List<Ico> icos) {
         for (Ico ico : icos) {
-            em.merge(ico);
+            em.persist(ico);
         }
     }
 
@@ -60,6 +73,7 @@ public class IcoRepositoryJpaImpl implements IcoRepository {
     @Override
     @Transactional
     public void deleteAll() {
+
         em.createNativeQuery("DELETE  FROM Ico ").executeUpdate();
     }
 

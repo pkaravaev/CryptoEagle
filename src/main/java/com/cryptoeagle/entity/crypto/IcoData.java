@@ -2,6 +2,7 @@ package com.cryptoeagle.entity.crypto;
 
 import com.cryptoeagle.entity.BaseEntity;
 import com.cryptoeagle.entity.Ico;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,8 +13,7 @@ import java.util.Map;
 import java.util.Set;
 
 
-@Getter
-@Setter
+
 @Embeddable
 public class IcoData {
 

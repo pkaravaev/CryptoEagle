@@ -141,7 +141,6 @@ public class CryptoControllerTest extends AbstractWebController {
                 .andExpect(model().attribute("ico", hasProperty("description")))
                 .andExpect(model().attribute("ico", hasProperty("website_link")))
                 .andExpect(model().attribute("ico", hasProperty("rating")))
-                .andExpect(model().attribute("ico", hasProperty("page")))
                 .andExpect(model().attribute("ico", hasProperty("preIcoStart")))
                 .andExpect(model().attribute("ico", hasProperty("preIcoEnd")))
                 .andExpect(model().attribute("ico", hasProperty("icoStart")))

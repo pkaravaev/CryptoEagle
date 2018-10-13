@@ -1,6 +1,7 @@
 package com.cryptoeagle;
 
 
+import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
@@ -14,5 +15,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @WebAppConfiguration
 @ActiveProfiles({"Jpa","HSQLDB"})
 @Sql({"classpath:/db/init.sql","classpath:/db/populate.sql"})
+@Ignore
 public class AbstractTest {
+
 }

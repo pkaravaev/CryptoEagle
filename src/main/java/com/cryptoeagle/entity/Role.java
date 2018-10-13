@@ -9,6 +9,8 @@ import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
+@Getter
+@Setter
 public class Role extends BaseEntity implements GrantedAuthority {
     @Id
     private String role;

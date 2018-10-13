@@ -37,7 +37,6 @@ public class Utils {
 
     }
 
-
     public static String clearString(String s){
 
         String s2 = s.replaceAll("<p>","")

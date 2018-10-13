@@ -96,11 +96,10 @@ public class RestServiceImpl implements RestService {
             while (iterator.hasNext()) {
                 JsonNode next = iterator.next();
                 Ico ico = convertJsonToIco(next);
-                ico.setPage(page);
                 icoList.add(ico);
             }
         } catch (Exception e) {
-            System.out.println("Ошибка" + e.getMessage());
+            return null;
         }
         return icoList;
     }

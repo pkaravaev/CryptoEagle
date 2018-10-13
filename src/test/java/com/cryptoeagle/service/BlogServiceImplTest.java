@@ -59,6 +59,12 @@ public class BlogServiceImplTest extends AbstractTest {
     }
 
     @Test
+    public void getByName() {
+        Blog blog = service.getByName(BLOG_NAME);
+        assertTrue(blog.getName().equals(BLOG_NAME));
+    }
+
+    @Test
     public void delete() {
         service.delete(BLOG_ID, USER2_ID);
         List<Blog> all = service.getAll();
@@ -73,11 +79,6 @@ public class BlogServiceImplTest extends AbstractTest {
 
     @Test
     public void updateFromRss() {
-
-        service.deleteAll();
-        List<Blog> all = service.getAll();
-        assertTrue(all.size() == 0);
         service.update();
-        assertTrue(all.size() > 0);
     }
 }

@@ -18,7 +18,7 @@ public class AjaxControllerTest extends AbstractWebController {
     private static final String SYMBOL = "ETH";
 
     @Test
-    public void getPriceCoins() throws Exception {
+    public void getCoins() throws Exception {
         testCoins(AJAX_PATH + "coins", COINS_PRICE_COUNT);
     }
 

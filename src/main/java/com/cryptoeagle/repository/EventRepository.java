@@ -13,7 +13,6 @@ public interface EventRepository {
 
     List<Event> getAll();
 
-    List<Event> getAll(String symbol);
 
     void saveAll(List<Event> events);
 

@@ -17,12 +17,6 @@ public class CoinRepositoryJpaImpl implements CoinRepository {
     @PersistenceContext
     EntityManager entityManager;
 
-    @Override
-    public Coin getById(int id) {
-        return entityManager.createNamedQuery(Coin.GET_BY_ID, Coin.class)
-                .setParameter("id", id)
-                .getSingleResult();
-    }
 
     @Override
     public Coin getBySymbol(String symbol) {

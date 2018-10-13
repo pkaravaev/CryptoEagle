@@ -39,18 +39,15 @@ public class IcoRestControllerTest extends AbstractWebController {
 
     @Test
     public void retrieveFinished() throws Exception {
-
         mockMvc.perform(get(PATH + ICO_FINISHED))
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(jsonPath("$", hasSize(0)));
-
     }
 
     @Test
-    public void retrieveActice() throws Exception {
-
+    public void retrieveActive() throws Exception {
         testIco(PATH + ICO_ACTIVE, 3);
     }
 
@@ -67,9 +64,7 @@ public class IcoRestControllerTest extends AbstractWebController {
                 .andExpect(jsonPath("$.logolink", notNullValue()))
                 .andExpect(jsonPath("$.description", notNullValue()))
                 .andExpect(jsonPath("$.website_link", notNullValue()))
-
                 .andExpect(jsonPath("$.rating", notNullValue()))
-                .andExpect(jsonPath("$.page", notNullValue()))
                 .andExpect(jsonPath("$.preIcoStart", notNullValue()))
                 .andExpect(jsonPath("$.preIcoEnd", notNullValue()))
                 .andExpect(jsonPath("$.icoStart", notNullValue()))
@@ -97,9 +92,7 @@ public class IcoRestControllerTest extends AbstractWebController {
                 .andExpect(jsonPath("$[0].logolink", notNullValue()))
                 .andExpect(jsonPath("$[0].description", notNullValue()))
                 .andExpect(jsonPath("$[0].website_link", notNullValue()))
-
                 .andExpect(jsonPath("$[0].rating", notNullValue()))
-                .andExpect(jsonPath("$[0].page", notNullValue()))
                 .andExpect(jsonPath("$[0].preIcoStart", notNullValue()))
                 .andExpect(jsonPath("$[0].preIcoEnd", notNullValue()))
                 .andExpect(jsonPath("$[0].icoStart", notNullValue()))

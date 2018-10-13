@@ -6,7 +6,6 @@ import java.util.List;
 
 public interface CoinRepository {
 
-    Coin getById(int id);
 
     Coin getBySymbol(String symbol);
 

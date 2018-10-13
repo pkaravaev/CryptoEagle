@@ -65,13 +65,6 @@ public class BlogRepositoryJpaImpl implements BlogRepository {
                 .executeUpdate();
     }
 
-    @Override
-    public Blog get(int blog_id, int user_id) {
-        return em.createNamedQuery(Blog.GET, Blog.class)
-                .setParameter("blog_id", blog_id)
-                .setParameter("user_id", user_id)
-                .getSingleResult();
-    }
 
     @Override
     public List<Blog> getAll() {

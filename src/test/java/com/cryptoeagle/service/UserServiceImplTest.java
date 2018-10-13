@@ -31,7 +31,6 @@ public class UserServiceImplTest extends AbstractTest {
     private static final int ERROR_ID = 4353563;
 
 
-
     @Autowired
     UserServiceImpl service;
 
@@ -48,19 +47,14 @@ public class UserServiceImplTest extends AbstractTest {
         User user = new User(USER4_ID, "test_user", "test_email", "$2a$10$X37RA.JpHnr0YsiZuqsFJu3iUtbfyEj3LgP/hFctbeU6yBTVsj8Bu");
         //TODO not work!
         User userFromDb = service.get(USER4_ID);
-
         userFromDb.setName("test_name");
         userFromDb.setName("test_email");
         userFromDb.setName("$2a$10$X37RA.JpHnr0YsiZuqsFJu3iUtbfyEj3LgP/hFctbeU6yBTVsj8Bu");
-
         service.saveAndUpdate(user);
-
         User userFromDbUpdated = service.get(USER4_ID);
-
         assertTrue(userFromDbUpdated.getEmail().equals("test_email"));
         assertTrue(userFromDbUpdated.getName().equals("test_user"));
         assertTrue(userFromDbUpdated.getPassword().equals("test_password"));
-
     }
 
     @Test
@@ -68,7 +62,6 @@ public class UserServiceImplTest extends AbstractTest {
         List<User> all = service.getAll();
         assertTrue(all.size() == USERS_COUNT);
     }
-
 
     @Test
     public void get() {
@@ -82,7 +75,6 @@ public class UserServiceImplTest extends AbstractTest {
     public void getNotFound() {
         User user = service.get(ERROR_ID);
     }
-
 
     @Test
     public void getByEmail() {
@@ -107,9 +99,6 @@ public class UserServiceImplTest extends AbstractTest {
         User user = service.getByName(ERROR_NAME);
     }
 
-
-
-
     @Test
     public void delete() {
         service.delete(USER3_ID);
@@ -124,9 +113,6 @@ public class UserServiceImplTest extends AbstractTest {
         assertTrue(all.size() == USERS_COUNT - 1);
     }
 
-
-
-
     @Test
     public void deleteByUser() {
         User user = service.getByName(USER2_NAME);
@@ -140,7 +126,6 @@ public class UserServiceImplTest extends AbstractTest {
         User user = new User();
         service.delete(user);
     }
-
 
     @Test
     public void loadUserByUsername() {
