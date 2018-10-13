@@ -10,17 +10,17 @@ public interface IcoService {
 
     List<Ico> getFinished();
 
-    List<Ico> getActiveIco();
+    List<Ico> getActive();
 
     List<Ico> getAll();
 
-    Ico getIcoById(int id);
+    Ico getById(int id);
 
     Ico getByName(String name);
 
-    void updateIcos();
+    void update();
 
-    void saveIcos(List<Ico> icos);
+    void save(List<Ico> icos);
 
     void deletAll();
 

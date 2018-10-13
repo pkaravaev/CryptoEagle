@@ -19,7 +19,7 @@ public class IcoRepositoryJpaImpl implements IcoRepository {
     EntityManager em;
 
     @Override
-    public List<Ico> getAllico() {
+    public List<Ico> getAll() {
         return em.createNamedQuery(Ico.GET_ALL, Ico.class)
                 .setMaxResults(30)
                 .getResultList();
@@ -27,14 +27,14 @@ public class IcoRepositoryJpaImpl implements IcoRepository {
 
     @Override
     @Transactional
-    public void saveIcos(List<Ico> icos) {
+    public void save(List<Ico> icos) {
         for (Ico ico : icos) {
             em.merge(ico);
         }
     }
 
     @Override
-    public List<Ico> getActiveIco() {
+    public List<Ico> getActive() {
         LocalDateTime localDateTime = LocalDateTime.now();
         return em.createNamedQuery(Ico.GET_ACTIVE, Ico.class)
                 .setParameter("date", localDateTime)
@@ -42,7 +42,7 @@ public class IcoRepositoryJpaImpl implements IcoRepository {
     }
 
     @Override
-    public List<Ico> getUpcomingIco() {
+    public List<Ico> getUpcoming() {
         LocalDateTime localDateTime = LocalDateTime.now();
         return em.createNamedQuery(Ico.GET_UPCOMING, Ico.class)
                 .setParameter("date", localDateTime)
@@ -50,7 +50,7 @@ public class IcoRepositoryJpaImpl implements IcoRepository {
     }
 
     @Override
-    public List<Ico> getFinishedIco() {
+    public List<Ico> getFinished() {
         LocalDateTime localDateTime = LocalDateTime.now();
         return em.createNamedQuery(Ico.GET_ENDED, Ico.class)
                 .setParameter("date", localDateTime)
@@ -65,11 +65,10 @@ public class IcoRepositoryJpaImpl implements IcoRepository {
 
     @Override
     @Transactional
-    public Ico getIcoByID(int id) {
+    public Ico getById(int id) {
         return em.createNamedQuery(Ico.GET_BY_ID, Ico.class)
                 .setParameter("id", id)
                 .getSingleResult();
-
     }
 
     @Override

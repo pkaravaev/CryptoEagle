@@ -18,6 +18,11 @@ public class BlogRepositoryJpaImpl implements BlogRepository {
     EntityManager em;
 
     @Override
+    public void delete(Blog blog) {
+        em.remove(blog);
+    }
+
+    @Override
     public List<Blog> getAllByUser(int user_id) {
         return em.createNamedQuery(Blog.GET_ALL_BY_USER, Blog.class)
                 .setParameter("user_id", user_id)
@@ -48,21 +53,21 @@ public class BlogRepositoryJpaImpl implements BlogRepository {
 
     @Override
     public Blog getByName(String name) {
-        return em.createNamedQuery(Blog.GET_BY_NAME,Blog.class)
-                .setParameter("name",name)
+        return em.createNamedQuery(Blog.GET_BY_NAME, Blog.class)
+                .setParameter("name", name)
                 .getSingleResult();
     }
 
     @Override
     public void deleteByName(String name) {
-         em.createNamedQuery(Blog.DELETE_BY_NAME)
-                .setParameter("name",name)
-               .executeUpdate();
+        em.createNamedQuery(Blog.DELETE_BY_NAME)
+                .setParameter("name", name)
+                .executeUpdate();
     }
 
     @Override
     public Blog get(int blog_id, int user_id) {
-        return  em.createNamedQuery(Blog.GET, Blog.class)
+        return em.createNamedQuery(Blog.GET, Blog.class)
                 .setParameter("blog_id", blog_id)
                 .setParameter("user_id", user_id)
                 .getSingleResult();

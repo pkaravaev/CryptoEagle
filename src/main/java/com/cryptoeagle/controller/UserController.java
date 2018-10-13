@@ -75,10 +75,12 @@ public class UserController {
             throw new UserValidationException(bindingResult.getFieldError().getDefaultMessage());
         }
 
+
         User byEmail = userService.getByEmail(user.getUsername());
 
+
         if (byEmail != null) {
-            throw new UserAlreadyExistException();
+            throw new UserAlreadyExistException(" User already exist!!!");
         }
 
         String password = user.getPassword();

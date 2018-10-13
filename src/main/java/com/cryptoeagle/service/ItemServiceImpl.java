@@ -30,28 +30,18 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @Service
-//@EnableScheduling
 public class ItemServiceImpl implements ItemService {
 
     private static final Logger log = Logger.getLogger(ItemServiceImpl.class.getName());
 
-    @Autowired
     ItemRepository repository;
 
-    @Autowired
-    BlogService blogService;
-
-    @Autowired
     RssService service;
 
+    @Autowired
     public void ItemServiceImpl(ItemRepository repository, RssService service) {
         this.repository = repository;
         this.service = service;
-    }
-
-    @Override
-    public List<String> getSources() {
-        return repository.getSources();
     }
 
     @Override
@@ -61,34 +51,20 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
+    public List<String> getSources() {
+        return repository.getSources();
+    }
+
+    @Override
     public List<Item> getBySource(String source) {
         try {
-            return repository.getBySource(source);
+            List<Item> items = repository.getBySource(source);
+            if (items.size() == 0)
+                throw new ItemNotFoundException("Size  0");
+            else return items;
         } catch (Exception e) {
-            throw new ItemNotFoundException();
+            throw new ItemNotFoundException(e.getMessage());
         }
     }
 
-
-    //    @Scheduled(fixedDelay = 600000, initialDelay = 15000)
-    public void updateItems() {
-
-        repository.deleteAll();
-
-        List<Blog> allBlogs = blogService.getAll();
-        if (allBlogs.size() > 0) {
-            Map<String, String> collect = allBlogs.stream().collect(Collectors.toMap(e -> e.getName(), e -> e.getUrl()));
-            for (Map.Entry<String, String> map : collect.entrySet()) {
-                String name = map.getKey();
-                String url = map.getValue();
-                repository.saveAll(service.getItems(url, name));
-            }
-        } else {
-
-            List<Item> items = service.getItems("https://cointelegraph.com/rss", "cointelegraph");
-            repository.saveAll(items);
-        }
-        log.info("UPDATE ITEMS :" + LocalDateTime.now());
-
-    }
 }

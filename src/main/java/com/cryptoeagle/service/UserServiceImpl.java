@@ -23,26 +23,25 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private UserRepository repository;
 
     @Override
-    public List<User> getAll() {
-        log.info("get all users");
-        return repository.getAll();
-    }
-
-    @Override
     public void saveAndUpdate(User user) {
         log.info("save user");
         repository.saveAndUpdate(user);
     }
 
     @Override
+    public List<User> getAll() {
+        log.info("get all users");
+        return repository.getAll();
+    }
+
+    @Override
     public User get(int id) {
         log.info("get user id", id);
-
         User user;
         try {
             user = repository.get(id);
         } catch (Exception ex) {
-            throw new UserNotFoundException(String.valueOf(id));
+            throw new UserNotFoundException( ex.getMessage()  + " User id : " + id);
         }
 
         return user;
@@ -51,12 +50,24 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public User getByEmail(String email) {
         log.info("get user id", email);
-
         User user;
         try {
             user = repository.getByEmail(email);
         } catch (Exception ex) {
-            throw new UserNotFoundException(email);
+//            throw new UserNotFoundException(ex.getMessage()  + " User email : " + email);
+            return null;
+        }
+        return user;
+    }
+
+    @Override
+    public User getByName(String name) {
+        log.info("get by name");
+        User user;
+        try {
+            user = repository.getByName(name);
+        } catch (Exception ex) {
+            throw new UserNotFoundException(ex.getMessage()  + " User name : " + name);
         }
         return user;
     }
@@ -67,21 +78,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         try {
             repository.delete(id);
         } catch (Exception ex) {
-            throw new UserNotFoundException(String.valueOf(id));
+            throw new UserNotFoundException(ex.getMessage()  + " User id : " + id);
         }
-    }
-
-    @Override
-    public User getByName(String name) {
-        log.info("get by name");
-
-        User user;
-        try {
-            user = repository.getByName(name);
-        } catch (Exception ex) {
-            throw new UserNotFoundException(name);
-        }
-        return user;
     }
 
     @Override

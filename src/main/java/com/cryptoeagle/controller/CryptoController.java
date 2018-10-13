@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -38,7 +37,7 @@ public class CryptoController {
     @RequestMapping("/ico-list")
     public String icoList(Model model) {
 
-        List<Ico> activeIco = icoService.getActiveIco().stream().limit(10).collect(Collectors.toList());
+        List<Ico> activeIco = icoService.getActive().stream().limit(10).collect(Collectors.toList());
         List<Ico> upcoming = icoService.getUpcoming().stream().limit(10).collect(Collectors.toList());
         List<Ico> finished = icoService.getFinished().stream().limit(10).collect(Collectors.toList());
 
@@ -51,7 +50,7 @@ public class CryptoController {
 
     @RequestMapping("/ico-list/active")
     public String icoListActive(Model model) {
-        List<Ico> activeIco = icoService.getActiveIco().stream().limit(10).collect(Collectors.toList());
+        List<Ico> activeIco = icoService.getActive().stream().limit(10).collect(Collectors.toList());
         model.addAttribute("category", "Active Ico");
         model.addAttribute("icos", activeIco);
         return "ico-category";

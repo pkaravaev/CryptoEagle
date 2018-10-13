@@ -1,8 +1,9 @@
-package com.cryptoeagle.entity.dto;
+package com.cryptoeagle.entity.crypto;
 
 public class Quote {
 
     private String name;
+
     private double price;
 
     public String getName() {

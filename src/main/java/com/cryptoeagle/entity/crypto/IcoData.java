@@ -37,7 +37,6 @@ public class IcoData {
 
 
 
-
     public void setCrew(Team team) {
         crew.add(team);
     }

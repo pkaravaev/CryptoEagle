@@ -17,7 +17,7 @@ public class ItemRestControllerTest extends AbstractWebController {
 
     private static final String PATH = "/api/";
 
-    private static final String SOURCE = "/cryptopotato";
+    private static final String SOURCE = "/walletinvestor";
 
     private static final String FAKE_SOURCE = "/fake";
 
@@ -35,13 +35,12 @@ public class ItemRestControllerTest extends AbstractWebController {
                 .andExpect(jsonPath("$[0].source", notNullValue()));
     }
 
-
     @Test
     public void getItemsBySource() throws Exception {
 
         mockMvc.perform(get(PATH + "items" + SOURCE))
-                .andExpect(status().isOk())
                 .andDo(print())
+                .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(jsonPath("$", hasSize(10)))
                 .andExpect(jsonPath("$[0].title", notNullValue()))
@@ -53,6 +52,7 @@ public class ItemRestControllerTest extends AbstractWebController {
 
     @Test
     public void getItemsBySourceNotFound() throws Exception {
+
         mockMvc.perform(get(PATH + "items" + FAKE_SOURCE))
                 .andExpect(status().isNotFound());
     }

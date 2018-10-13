@@ -49,7 +49,8 @@ import java.util.Base64;
 import java.util.Iterator;
 import java.util.List;
 ;
-//todo polish all method
+
+//todo need refactoring
 @Service
 public class RestServiceImpl implements RestService {
 
@@ -65,29 +66,6 @@ public class RestServiceImpl implements RestService {
     private static final String REST_GET_EVENTS = "https://api.coinmarketcal.com/v1/events";
     private static final String REST_GET_TOKEN = "https://api.coinmarketcal.com/oauth/v2/token";
 
-    public List<Ico> getAllIcosFromIcobench() {
-        int pagesCount = 1;
-        List<Ico> icoList = new ArrayList<>();
-        try {
-            ObjectMapper objectMapper = new ObjectMapper();
-            System.out.println("!");
-            for (int i = 0; i < 2; i++) {
-                String param = "{\"page\":" + i + "}";
-                String s = buildHttpRequest(param, REST_GET_ALL);
-                JsonNode node = objectMapper.readTree(buildHttpRequest(param, REST_GET_ALL));
-                Iterator<JsonNode> iterator = node.get("results").iterator();
-
-                while (iterator.hasNext()) {
-                    JsonNode next = iterator.next();
-                    icoList.add(convertJsonToIco(next));
-                }
-            }
-
-        } catch (Exception e) {
-            System.out.println("Ошибка" + e.getMessage());
-        }
-        return icoList;
-    }
 
     @Override
     public IcoData getDataForIco(int id) {
@@ -169,6 +147,7 @@ public class RestServiceImpl implements RestService {
         }
         return events;
     }
+
     @Override
     public List<Coin> getCoins() {
 
@@ -192,63 +171,15 @@ public class RestServiceImpl implements RestService {
         Iterator<JsonNode> iterator = data1.iterator();
 
         while (iterator.hasNext()) {
-
             try {
-                JsonNode next = iterator.next();
-                Coin c = new Coin();
-                NumberFormat numberFormat = NumberFormat.getInstance();
-                numberFormat.setMaximumIntegerDigits(Integer.MAX_VALUE);
-                DecimalFormat df = new DecimalFormat("#");
-                df.setMaximumFractionDigits(0);
-                String id = next.get("id").toString();
-                String name = next.get("name").toString();
-                String symbol = next.get("symbol").toString();
-                String rank = next.get("rank").toString();
-                String circulating_supply = next.get("circulating_supply").toString();
-                String price = next.get("quotes").get("USD").get("price").toString();
-                String volume_24h = next.get("quotes").get("USD").get("volume_24h").toString();
-                String market_cap = next.get("quotes").get("USD").get("market_cap").toString();
-                String percent_change_1h = next.get("quotes").get("USD").get("percent_change_1h").toString();
-                String percent_change_24h = next.get("quotes").get("USD").get("percent_change_24h").toString();
-                String percent_change_7d = next.get("quotes").get("USD").get("percent_change_7d").toString();
-
-                double volume = Double.parseDouble(volume_24h);
-                double circul = Double.parseDouble(circulating_supply);
-                double market = Double.parseDouble(market_cap);
-                double change1 = Double.parseDouble(percent_change_1h);
-                double change24 = Double.parseDouble(percent_change_24h);
-                double change7 = Double.parseDouble(percent_change_7d);
-
-
-                String s = numberFormat.format(circul);
-
-                String s1 = s.replaceAll("\\u00A0", "");
-
-                c.setId(Integer.valueOf(id));
-                c.setName(name.substring(1, name.length() - 1));
-                c.setSymbol(symbol.substring(1, symbol.length() - 1));
-                c.setRank(Integer.valueOf(rank));
-                c.setPrice(Double.parseDouble(price));
-
-                c.setCirculating_supply(BigDecimal.valueOf(circul));
-                c.setPercent_change_24h(change24);
-                c.setMarket_cap(BigDecimal.valueOf(market));
-                c.setVolume_24h(BigDecimal.valueOf(volume));
-                c.setPercent_change_1h(change1);
-                c.setPercent_change_24h(change24);
-                c.setPercent_change_7d(change7);
-
-                String link = coinspic.stream().filter(e -> e.getSymbol().equals(c.getSymbol())).findFirst().get().getLink();
-
-                c.setImage(link);
-                coins.add(c);
-
-
+                Coin coin = convertJsonToCoin(iterator.next());
+                String link = coinspic.stream().filter(e -> e.getSymbol().equals(coin.getSymbol())).findFirst().get().getLink();
+                coin.setImage(link);
+                coins.add(coin);
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
         }
-
         return coins;
     }
 
@@ -316,6 +247,7 @@ public class RestServiceImpl implements RestService {
         return chartList;
     }
 
+
     private static Chart converter(Candlestick candlestick) {
 
         Chart chart = new Chart();
@@ -333,6 +265,61 @@ public class RestServiceImpl implements RestService {
         chart.setX(opentime);
 
         return chart;
+
+    }
+
+
+    private Coin convertJsonToCoin(JsonNode jsonNode) {
+
+        Coin coin = new Coin();
+        NumberFormat numberFormat = NumberFormat.getInstance();
+        numberFormat.setMaximumIntegerDigits(Integer.MAX_VALUE);
+        DecimalFormat df = new DecimalFormat("#");
+        df.setMaximumFractionDigits(0);
+        String id = jsonNode.get("id").toString();
+        String name = jsonNode.get("name").toString();
+        String symbol = jsonNode.get("symbol").toString();
+        String rank = jsonNode.get("rank").toString();
+        String circulating_supply = jsonNode.get("circulating_supply").toString();
+        String price = jsonNode.get("quotes").get("USD").get("price").toString();
+        String volume_24h = jsonNode.get("quotes").get("USD").get("volume_24h").toString();
+        String market_cap = jsonNode.get("quotes").get("USD").get("market_cap").toString();
+        String percent_change_1h = jsonNode.get("quotes").get("USD").get("percent_change_1h").toString();
+        String percent_change_24h = jsonNode.get("quotes").get("USD").get("percent_change_24h").toString();
+        String percent_change_7d = jsonNode.get("quotes").get("USD").get("percent_change_7d").toString();
+
+        double volume = Double.parseDouble(volume_24h);
+        double circul = Double.parseDouble(circulating_supply);
+        double market = Double.parseDouble(market_cap);
+        double change1 = Double.parseDouble(percent_change_1h);
+        double change24 = Double.parseDouble(percent_change_24h);
+        double change7 = Double.parseDouble(percent_change_7d);
+
+
+        String s = numberFormat.format(circul);
+
+        String s1 = s.replaceAll("\\u00A0", "");
+
+        coin.setId(Integer.valueOf(id));
+        coin.setName(name.substring(1, name.length() - 1));
+        coin.setSymbol(symbol.substring(1, symbol.length() - 1));
+        coin.setRank(Integer.valueOf(rank));
+        coin.setPrice(Double.parseDouble(price));
+
+        coin.setCirculating_supply(BigDecimal.valueOf(circul));
+        coin.setPercent_change_24h(change24);
+        coin.setMarket_cap(BigDecimal.valueOf(market));
+        coin.setVolume_24h(BigDecimal.valueOf(volume));
+        coin.setPercent_change_1h(change1);
+        coin.setPercent_change_24h(change24);
+        coin.setPercent_change_7d(change7);
+
+//        String link = coinspic.stream().filter(e -> e.getSymbol().equals(c.getSymbol())).findFirst().get().getLink();
+//
+//        c.setImage(link);
+//        coins.add(c);
+
+        return coin;
 
     }
 
@@ -380,8 +367,8 @@ public class RestServiceImpl implements RestService {
 
         String desc = deleteCommas(jsonNode.get("desc").toString());
 
-        if (desc.length() > 250){
-            desc = desc.substring(0,250);
+        if (desc.length() > 250) {
+            desc = desc.substring(0, 250);
         }
         String rating = jsonNode.get("rating").toString();
         String raised = jsonNode.get("raised").toString();
@@ -515,6 +502,8 @@ public class RestServiceImpl implements RestService {
         return idata;
     }
 
+
+
     private String buildHttpRequest(String param, String url) {
 
         String hmac384sign = HMAC384sign(PRIVATE_KEY, param);
@@ -564,12 +553,17 @@ public class RestServiceImpl implements RestService {
         String token = null;
         try {
             HttpGet httpGet = new HttpGet(REST_GET_TOKEN + "?grant_type=client_credentials&client_id=" + CLIENT_ID + "&client_secret=" + CLIENT_SECRET);
+
             CloseableHttpClient client = HttpClients.createDefault();
             CloseableHttpResponse response = client.execute(httpGet);
+
             HttpEntity entity = response.getEntity();
+
             InputStream content = entity.getContent();
+
             List<Character> characterList = new ArrayList<>();
             StringBuilder builder = new StringBuilder();
+
             while (content.available() > 0) {
                 char read = (char) content.read();
                 builder.append(read);

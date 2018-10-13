@@ -66,7 +66,7 @@ public class MainController {
 
         List<Event> events = eventService.getEvents(5);
 
-        List<Ico> icos = icoService.getActiveIco().stream().limit(4).collect(Collectors.toList());
+        List<Ico> icos = icoService.getActive().stream().limit(4).collect(Collectors.toList());
 
 
         model.addAttribute("topItem", topItem);

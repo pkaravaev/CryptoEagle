@@ -7,6 +7,7 @@ import com.cryptoeagle.entity.Ico;
 import com.cryptoeagle.entity.PictureCoin;
 import com.cryptoeagle.entity.crypto.Chart;
 import com.cryptoeagle.entity.crypto.IcoData;
+import com.cryptoeagle.service.abst.RestService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -33,18 +34,14 @@ public class RestServiceImplTest extends AbstractTest {
     }
 
     @Test
-    public void getAllIcosFromIcobench() {
-        List<Ico> icos = service.getAllIcosFromIcobench();
-        assertTrue(icos.size() > 10);
-    }
-
-    @Test
     public void getChartCoin() {
+
         List<Chart> ETH = service.getChartCoin("ETH");
         List<Chart> ADA = service.getChartCoin("ADA");
         List<Chart> TRX = service.getChartCoin("TRX");
         List<Chart> IOTA = service.getChartCoin("IOTA");
         List<Chart> BNB = service.getChartCoin("BNB");
+
         assertTrue(ETH.size() > 5);
         assertTrue(ADA.size() > 5);
         assertTrue(TRX.size() > 5);
@@ -77,9 +74,11 @@ public class RestServiceImplTest extends AbstractTest {
     @Test
     public void getIcoWithDataByPage() {
         List<Ico> icos = null;
+
         for (int i = 0; i < 3; i++) {
             icos = service.getIcoWithDataByPage(i);
         }
+
         assertTrue(icos.size() > 5);
         assertTrue(icos.get(0) != null);
         assertTrue(icos.get(3) != null);
@@ -90,4 +89,6 @@ public class RestServiceImplTest extends AbstractTest {
         List<PictureCoin> picCoins = service.getPicCoins();
         assertTrue(picCoins.size() > 100);
     }
+
+
 }

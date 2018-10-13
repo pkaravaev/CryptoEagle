@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 
 public class BlogServiceImplTest extends AbstractTest {
@@ -25,6 +25,13 @@ public class BlogServiceImplTest extends AbstractTest {
 
     @Autowired
     BlogService service;
+
+    @Test
+    public void deleteAll() {
+        service.deleteAll();
+        List<Blog> all = service.getAll();
+        assertTrue(all.size() == 0);
+    }
 
     @Test
     public void deleteByName() {
@@ -66,6 +73,11 @@ public class BlogServiceImplTest extends AbstractTest {
 
     @Test
     public void updateFromRss() {
-        service.updateFromRss();
+
+        service.deleteAll();
+        List<Blog> all = service.getAll();
+        assertTrue(all.size() == 0);
+        service.update();
+        assertTrue(all.size() > 0);
     }
 }

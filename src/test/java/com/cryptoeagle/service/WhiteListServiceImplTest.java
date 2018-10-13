@@ -34,10 +34,11 @@ public class WhiteListServiceImplTest extends AbstractTest {
 
     @Test
     public void update() {
+
         service.updateWhitelist();
         List<WhiteList> whiteList = service.getWhiteList();
         Assume.assumeTrue(whiteList.size() == WHITELIST_COUNT * 2);
-    }
 
+    }
 
 }

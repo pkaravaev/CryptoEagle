@@ -8,6 +8,7 @@ import com.cryptoeagle.service.abst.BlogService;
 import com.cryptoeagle.service.abst.RssService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -18,11 +19,30 @@ public class BlogServiceImpl implements BlogService {
 
     private static final Logger log = Logger.getLogger(BlogServiceImpl.class.getName());
 
-    @Autowired
+
     BlogRepository blogRepository;
 
-    @Autowired
     RssService rssService;
+
+    @Autowired
+    public BlogServiceImpl(RssService rssService, BlogRepository blogRepository) {
+        this.rssService = rssService;
+        this.blogRepository = blogRepository;
+    }
+
+    @Override
+    @Transactional
+    public void deleteAll() {
+        List<Blog> all = getAll();
+        for (Blog blog : all) {
+            delete(blog);
+        }
+    }
+
+    @Override
+    public void delete(Blog blog) {
+        blogRepository.delete(blog);
+    }
 
     @Override
     public void deleteByName(String name) {
@@ -53,7 +73,6 @@ public class BlogServiceImpl implements BlogService {
         return blogRepository.getAllByUser(user_id);
     }
 
-
     @Override
     public void delete(int blog_id, int user_id) {
         log.info("delete blog");
@@ -67,8 +86,8 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public void updateFromRss() {
-        List<Blog> all = blogRepository.getAll();
+    public void update() {
+        List<Blog> all = getAll();
         for (Blog blog : all) {
             List<Item> items = rssService.getItems(blog.getUrl(), blog.getName());
             if (items != null) {
@@ -77,4 +96,6 @@ public class BlogServiceImpl implements BlogService {
             }
         }
     }
+
+
 }

@@ -6,23 +6,22 @@ import java.util.List;
 
 public interface IcoRepository {
 
-    List<Ico> getAllico();
+    List<Ico> getAll();
 
-    void saveIcos(List<Ico> icos);
+    List<Ico> getActive();
 
-    List<Ico> getActiveIco();
+    List<Ico> getUpcoming();
 
-    Ico getIcoByID(int id);
+    List<Ico> getFinished();
+
+
+    Ico getById(int id);
 
     Ico getByName(String name);
 
     List<Ico> getByNames(List<String> names);
 
-    List<Ico> getUpcomingIco();
-
-    List<Ico> getFinishedIco();
 
     void deleteAll();
-
-
+    void save(List<Ico> icos);
 }

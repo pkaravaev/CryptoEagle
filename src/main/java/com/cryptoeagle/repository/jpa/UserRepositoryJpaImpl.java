@@ -30,7 +30,6 @@ public class UserRepositoryJpaImpl implements UserRepository {
     }
 
     @Override
-    @Transactional
     public void delete(int id) {
         User user = get(id);
         em.remove(user);

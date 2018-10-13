@@ -7,10 +7,11 @@ import com.cryptoeagle.exception.UserNotFoundException;
 import com.cryptoeagle.service.abst.UserService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class UserServiceImplTest extends AbstractTest {
@@ -22,18 +23,17 @@ public class UserServiceImplTest extends AbstractTest {
     private static final int USER3_ID = 100092;
     private static final int USER4_ID = 100095;
 
+    private static final String USER2_NAME = "user2";
+    private static final String ERROR_NAME = "error";
+
     private static final String USER3_EMAIL = "user3@mail.ru";
     private static final String ERROR_EMAIL = "xxxx@mail.ru";
     private static final int ERROR_ID = 4353563;
 
-    @Autowired
-    UserService service;
 
-    @Test
-    public void findAll() {
-        List<User> all = service.getAll();
-        assertTrue(all.size() == USERS_COUNT);
-    }
+
+    @Autowired
+    UserServiceImpl service;
 
     @Test
     public void save() {
@@ -47,7 +47,7 @@ public class UserServiceImplTest extends AbstractTest {
     public void update() {
         User user = new User(USER4_ID, "test_user", "test_email", "$2a$10$X37RA.JpHnr0YsiZuqsFJu3iUtbfyEj3LgP/hFctbeU6yBTVsj8Bu");
         //TODO not work!
-        User userFromDb = service.get(USER3_ID);
+        User userFromDb = service.get(USER4_ID);
 
         userFromDb.setName("test_name");
         userFromDb.setName("test_email");
@@ -55,13 +55,20 @@ public class UserServiceImplTest extends AbstractTest {
 
         service.saveAndUpdate(user);
 
-        User userFromDbUpdated = service.get(USER3_ID);
+        User userFromDbUpdated = service.get(USER4_ID);
 
         assertTrue(userFromDbUpdated.getEmail().equals("test_email"));
         assertTrue(userFromDbUpdated.getName().equals("test_user"));
         assertTrue(userFromDbUpdated.getPassword().equals("test_password"));
 
     }
+
+    @Test
+    public void getAll() {
+        List<User> all = service.getAll();
+        assertTrue(all.size() == USERS_COUNT);
+    }
+
 
     @Test
     public void get() {
@@ -76,16 +83,32 @@ public class UserServiceImplTest extends AbstractTest {
         User user = service.get(ERROR_ID);
     }
 
+
     @Test
     public void getByEmail() {
         User user = service.getByEmail(USER3_EMAIL);
         assertEquals(user.getEmail(), USER3_EMAIL);
     }
 
-    @Test(expected = UserNotFoundException.class)
+    @Test
     public void getByEmailNotFound() {
         User user = service.getByEmail(ERROR_EMAIL);
+        assertTrue(user == null);
     }
+
+    @Test
+    public void getByName() {
+        User user = service.getByName(USER2_NAME);
+        assertEquals(user.getName(), USER2_NAME);
+    }
+
+    @Test(expected = UserNotFoundException.class)
+    public void getByNameNotFound() {
+        User user = service.getByName(ERROR_NAME);
+    }
+
+
+
 
     @Test
     public void delete() {
@@ -95,8 +118,39 @@ public class UserServiceImplTest extends AbstractTest {
     }
 
     @Test(expected = UserNotFoundException.class)
-    public void deleteNotFound() {
-        service.delete(USER3_ID + 1);
+    public void deleteIdNotFound() {
+        service.delete(ERROR_ID);
         List<User> all = service.getAll();
+        assertTrue(all.size() == USERS_COUNT - 1);
     }
+
+
+
+
+    @Test
+    public void deleteByUser() {
+        User user = service.getByName(USER2_NAME);
+        service.delete(user);
+        List<User> all = service.getAll();
+        assertTrue(all.size() == USERS_COUNT - 1);
+    }
+
+    @Test(expected = UserNotFoundException.class)
+    public void deleteByUserNotFound() {
+        User user = new User();
+        service.delete(user);
+    }
+
+
+    @Test
+    public void loadUserByUsername() {
+        UserDetails userDetails = service.loadUserByUsername(USER2_NAME);
+        assertTrue(userDetails.getUsername().equals(USER2_NAME));
+    }
+
+    @Test(expected = UserNotFoundException.class)
+    public void loadUserByUsernameNotFound() {
+        UserDetails userDetails = service.loadUserByUsername(ERROR_NAME);
+    }
+
 }

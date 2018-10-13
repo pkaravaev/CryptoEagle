@@ -2,6 +2,7 @@ package com.cryptoeagle.service;
 
 import com.cryptoeagle.entity.Coin;
 import com.cryptoeagle.entity.crypto.Chart;
+import com.cryptoeagle.exception.CoinNotFoundException;
 import com.cryptoeagle.repository.CoinRepository;
 import com.cryptoeagle.service.abst.CoinService;
 import com.cryptoeagle.service.abst.RestService;
@@ -33,17 +34,17 @@ public class CoinServiceImpl implements CoinService {
         log.info("get  coins : " + symbols);
         return repository.getBySymbols(Arrays.asList(symbols));
 
-
-
     }
 
     @Override
     public boolean isAvailable(String symbol) {
+        log.info("is avalible");
         List<Chart> chartCoin = restService.getChartCoin(symbol);
         if (chartCoin.size() > 4)
             return true;
         return false;
     }
+
 
     public List<Coin> getTopGainCoins() {
         log.info("get top  coins");
@@ -68,12 +69,11 @@ public class CoinServiceImpl implements CoinService {
         try {
             return  repository.getBySymbol(symbol);
         } catch (Exception e) {
-            return null;
+            throw new CoinNotFoundException(e.getMessage() + "Coin symbol :" + symbol);
         }
     }
 
     @Override
-//    @Scheduled(fixedDelay = 1000000, initialDelay = 10000)
     public void updateCoins() {
         log.info("UPDATE COINS :" + LocalDateTime.now().toString());
         repository.deleteAll();

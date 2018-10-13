@@ -16,8 +16,6 @@ public interface RestService {
 
     List<Coin> getCoins();
 
-    List<Ico> getAllIcosFromIcobench();
-
     List<Ico> getIcoByPage(int page);
 
     List<Ico> getIcoWithDataByPage(int page);

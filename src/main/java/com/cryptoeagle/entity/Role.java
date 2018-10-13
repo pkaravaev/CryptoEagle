@@ -18,7 +18,6 @@ public class Role extends BaseEntity implements GrantedAuthority {
     }
 
     public Role() {
-
     }
 
     @Override

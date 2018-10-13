@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.logging.Logger;
 
 @Service
-@EnableScheduling
 public class EventServiceImpl implements EventService {
 
     private static final Logger log = Logger.getLogger(EventServiceImpl.class.getName());
@@ -39,7 +38,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-//    @Scheduled(fixedDelay = 600000, initialDelay = 7000)
+
     @Transactional
     public void update() {
         log.info("UPDATE EVENTS :" + LocalDateTime.now());

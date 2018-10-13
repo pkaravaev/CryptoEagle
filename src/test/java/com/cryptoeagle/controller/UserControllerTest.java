@@ -25,6 +25,7 @@ public class UserControllerTest extends AbstractWebController {
     @Autowired
     UserService userService;
 
+
     @Test
     @WithUserDetails("user2")
     public void logOut() throws Exception {

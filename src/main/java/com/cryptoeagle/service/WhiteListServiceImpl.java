@@ -47,6 +47,7 @@ public class WhiteListServiceImpl implements WhiteListService {
         }
     }
 
+
     private WhiteList convertElementToWhitelist(Element element) {
 
         String status = element.select("div.whitelist_date").first().childNode(0).toString();

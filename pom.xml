@@ -13,8 +13,14 @@
         <spring.version>5.0.7.RELEASE</spring.version>
         <hibernate.version>5.3.2.Final</hibernate.version>
 
+
+        <jacoco.version>0.8.2</jacoco.version>
+
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+
+        <argLine>-Xmx128m</argLine>
+
     </properties>
 
 
@@ -22,38 +28,44 @@
         <plugins>
 
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <runOrder>random</runOrder>
+                </configuration>
+            </plugin>
+
+            <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.0</version>
+                <version>${jacoco.version}</version>
                 <executions>
                     <execution>
-                        <id>default-prepare-agent</id>
                         <goals>
                             <goal>prepare-agent</goal>
                         </goals>
                     </execution>
                     <execution>
-                        <id>default-report</id>
+                        <id>report</id>
+                        <phase>prepare-package</phase>
                         <goals>
                             <goal>report</goal>
                         </goals>
                     </execution>
                     <execution>
-                        <id>default-check</id>
+                        <id>jacoco-check</id>
                         <goals>
                             <goal>check</goal>
                         </goals>
                         <configuration>
                             <rules>
-                                <!--  implementation is needed only for Maven 2  -->
-                                <rule implementation="org.jacoco.maven.RuleConfiguration">
-                                    <element>BUNDLE</element>
+                                <rule>
+                                    <element>PACKAGE</element>
                                     <limits>
-                                        <!--  implementation is needed only for Maven 2  -->
-                                        <limit implementation="org.jacoco.report.check.Limit">
-                                            <counter>COMPLEXITY</counter>
+                                        <limit>
+                                            <counter>LINE</counter>
                                             <value>COVEREDRATIO</value>
-                                            <minimum>0.60</minimum>
+                                            <minimum>0</minimum>
                                         </limit>
                                     </limits>
                                 </rule>
@@ -69,6 +81,7 @@
 
 
     <dependencies>
+
 
         <!-- https://mvnrepository.com/artifact/com.jayway.jsonpath/json-path -->
         <dependency>
@@ -362,7 +375,6 @@
             <artifactId>binance-api-client</artifactId>
             <version>1.0.0.RELEASE</version>
         </dependency>
-
 
 
     </dependencies>

@@ -57,11 +57,11 @@ public class IcoServiceImplTest extends AbstractTest {
 
     @Test
     public void getActiveIco() {
-        List<Ico> active = service.getActiveIco();
+        List<Ico> active = service.getActive();
         for (Ico ico : active) {
             assertTrue(ico.getIcoEnd().isAfter(LocalDateTime.now()));
         }
-        List<Ico> collect = service.getActiveIco().stream().limit(6).collect(Collectors.toList());
+        List<Ico> collect = service.getActive().stream().limit(6).collect(Collectors.toList());
     }
 
     @Test
@@ -76,7 +76,7 @@ public class IcoServiceImplTest extends AbstractTest {
 
     @Test
     public void updateIcos() {
-        service.updateIcos();
+        service.update();
     }
 
     @Test

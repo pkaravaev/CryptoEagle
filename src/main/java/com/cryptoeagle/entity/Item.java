@@ -46,6 +46,27 @@ public class Item extends BaseEntity implements EntityWithPic {
     public Item() {
     }
 
+
+    public int diffDays() {
+        return Math.abs(LocalDateTime.now().getDayOfMonth() - publishDate.getDayOfMonth());
+    }
+
+    public int diffMinutes() {
+        Duration between = Duration.between(LocalDateTime.now().toLocalTime(), publishDate.toLocalTime());
+        return Math.abs(((int)between.toMinutes()));
+    }
+
+    public int diffHours() {
+        Duration between = Duration.between(LocalDateTime.now().toLocalTime(), publishDate.toLocalTime());
+        Period period = Period.between(LocalDateTime.now().toLocalDate(), publishDate.toLocalDate());
+        int i = (int)between.toHours();
+        return  Math.abs(i);
+    }
+
+
+
+
+
     public String getTitle() {
         return title;
     }

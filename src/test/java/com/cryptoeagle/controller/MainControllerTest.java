@@ -14,6 +14,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class MainControllerTest extends AbstractWebController {
 
     private static final String SOURCE_NAME = "bitcoin";
+    private static final int ITEM_FROM_SOURCE = 10;
+
+    private static final int WHITELIST_COUNT = 64;
+    private static final int EVENTS_COUNT = 12;
+    private static final int USERS_COUNT = 4;
+    private static final int ICO_COUNT = 3;
+    private static final int BLOG_COUNT = 8;
+
+    private static final int ITEM_COUNT = 7;
+
 
     @Test
     public void welcome() throws Exception {
@@ -21,7 +31,7 @@ public class MainControllerTest extends AbstractWebController {
         mockMvc
                 .perform(get("/"))
                 .andExpect(status().isOk())
-                .andExpect(model().attribute("icos", hasSize(3)))
+                .andExpect(model().attribute("icos", hasSize(ICO_COUNT)))
                 .andExpect(model().attribute("icos", hasItem(
                         allOf(
                                 hasProperty("name"),
@@ -74,7 +84,7 @@ public class MainControllerTest extends AbstractWebController {
 
         mockMvc.perform(get("/whitelist"))
                 .andExpect(status().isOk())
-                .andExpect(model().attribute("whiteLists", hasSize(64)))
+                .andExpect(model().attribute("whiteLists", hasSize(WHITELIST_COUNT)))
                 .andExpect(model().attribute("whiteLists", hasItem(
                         allOf(
                                 hasProperty("status"),
@@ -112,7 +122,7 @@ public class MainControllerTest extends AbstractWebController {
         mockMvc.perform(get("/news/" + SOURCE_NAME))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("sources", notNullValue()))
-                .andExpect(model().attribute("items", hasSize(10)))
+                .andExpect(model().attribute("items", hasSize(ITEM_FROM_SOURCE)))
                 .andExpect(model().attribute("items", hasItem(
                         allOf(
                                 hasProperty("title"),
@@ -130,7 +140,7 @@ public class MainControllerTest extends AbstractWebController {
 
         mockMvc.perform(get("/blogs"))
                 .andExpect(status().isOk())
-                .andExpect(model().attribute("blogs", hasSize(8)))
+                .andExpect(model().attribute("blogs", hasSize(BLOG_COUNT)))
                 .andExpect(model().attribute("blogs", hasItem(
                         allOf(
                                 hasProperty("name"),
@@ -147,7 +157,7 @@ public class MainControllerTest extends AbstractWebController {
 
         mockMvc.perform(get("/events"))
                 .andExpect(status().isOk())
-                .andExpect(model().attribute("events", hasSize(12)))
+                .andExpect(model().attribute("events", hasSize(EVENTS_COUNT)))
                 .andExpect(model().attribute("events", hasItem(
                         allOf(
                                 hasProperty("title"),
@@ -167,7 +177,7 @@ public class MainControllerTest extends AbstractWebController {
 
         mockMvc.perform(get("/admin-page"))
                 .andExpect(status().isOk())
-                .andExpect(model().attribute("users", hasSize(4)))
+                .andExpect(model().attribute("users", hasSize(USERS_COUNT)))
                 .andExpect(model().attribute("users", hasItem(
                         allOf(
                                 hasProperty("name"),

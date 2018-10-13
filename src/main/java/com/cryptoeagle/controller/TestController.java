@@ -1,6 +1,5 @@
 package com.cryptoeagle.controller;
 
-import com.cryptoeagle.entity.Item;
 import com.cryptoeagle.service.abst.CoinService;
 import com.cryptoeagle.service.abst.EventService;
 import com.cryptoeagle.service.abst.IcoService;
@@ -9,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.List;
 
 
 @Controller
@@ -30,13 +27,12 @@ public class TestController {
 
     @RequestMapping("/test")
     public String test(Model model) {
-
         return "test";
     }
 
     @RequestMapping("/populate")
     public String populateAll() {
-        icoService.updateIcos();
+        icoService.update();
         coinService.updateCoins();
         eventService.update();
         whiteListService.updateWhitelist();

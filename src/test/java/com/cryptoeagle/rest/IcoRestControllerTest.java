@@ -1,7 +1,6 @@
 package com.cryptoeagle.rest;
 
 import com.cryptoeagle.AbstractWebController;
-import org.apache.xerces.util.HTTPInputSource;
 import org.junit.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -10,24 +9,22 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.notNullValue;
-import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 public class IcoRestControllerTest extends AbstractWebController {
 
     private static final String PATH = "/api/";
 
-    private static final String ICO_ALL = "icos";
+    private static final String ICO_ALL = "icos/";
 
     private static final String ICO_UPCOMING = "icos/upcoming";
     private static final String ICO_FINISHED = "icos/finishied";
     private static final String ICO_ACTIVE = "icos/active";
 
     private static final String ICO_NAME = "Virtual Rehab";
+    private static final String ICO_FAKE = "fake";
 
 
     @Test
@@ -55,24 +52,45 @@ public class IcoRestControllerTest extends AbstractWebController {
     public void retrieveActice() throws Exception {
 
         testIco(PATH + ICO_ACTIVE, 3);
-
     }
 
     @Test
     public void getIcoWithData() throws Exception {
 
+        mockMvc.perform(get(PATH + ICO_ALL + ICO_NAME))
+                .andDo(print())
+                .andExpect(status().isOk())
 
-        //TODO work not correct
-        testIco(PATH + ICO_ALL + ICO_NAME, 0);
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(jsonPath("$", notNullValue()))
+                .andExpect(jsonPath("$.name", notNullValue()))
+                .andExpect(jsonPath("$.logolink", notNullValue()))
+                .andExpect(jsonPath("$.description", notNullValue()))
+                .andExpect(jsonPath("$.website_link", notNullValue()))
 
+                .andExpect(jsonPath("$.rating", notNullValue()))
+                .andExpect(jsonPath("$.page", notNullValue()))
+                .andExpect(jsonPath("$.preIcoStart", notNullValue()))
+                .andExpect(jsonPath("$.preIcoEnd", notNullValue()))
+                .andExpect(jsonPath("$.icoStart", notNullValue()))
+                .andExpect(jsonPath("$.icoEnd", notNullValue()))
+                .andExpect(jsonPath("$.data", notNullValue()));
+
+    }
+
+    @Test
+    public void getIcoWithDataNotFound() throws Exception {
+        mockMvc.perform(get(PATH + ICO_ALL + ICO_FAKE))
+                .andExpect(status().isNotFound());
     }
 
 
     private void testIco(String path, int count) throws Exception {
 
         mockMvc.perform(get(path))
-                .andExpect(status().isOk())
                 .andDo(print())
+                .andExpect(status().isOk())
+
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(jsonPath("$", hasSize(count)))
                 .andExpect(jsonPath("$[0].name", notNullValue()))
@@ -89,9 +107,4 @@ public class IcoRestControllerTest extends AbstractWebController {
 
     }
 
-
-    @ExceptionHandler
-    public ResponseEntity<Object> icoNotFound() {
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
 }

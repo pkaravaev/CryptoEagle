@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ItemRepository {
 
-    void saveAll(List<Item> list);
+//    void save(Item item);
 
     void deleteAll();
 
@@ -16,4 +16,5 @@ public interface ItemRepository {
     List<Item> getAll();
 
     List<String> getSources();
+
 }

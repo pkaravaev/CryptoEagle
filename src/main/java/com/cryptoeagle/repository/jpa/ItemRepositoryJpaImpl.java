@@ -16,29 +16,22 @@ public class ItemRepositoryJpaImpl implements ItemRepository {
     @PersistenceContext
     EntityManager em;
 
-    @Override
-    @Transactional
-    public void saveAll(List<Item> list) {
-        try {
-            for (Item item : list){
-                em.persist(item);
-            }
-        }
-        catch (Exception e){
-            System.out.println("Error : "  + e.getMessage());
-        }
-    }
+//    @Override
+//    public void save(Item item) {
+//        em.persist(item);
+//    }
 
     @Override
     public List<String> getSources() {
-       return em.createNamedQuery(Item.GET_ALL_SOURCE, String.class)
+        return em.createNamedQuery(Item.GET_ALL_SOURCE, String.class)
                 .getResultList();
     }
 
     @Override
     @Transactional
     public void deleteAll() {
-        em.createQuery("DELETE FROM Item ").executeUpdate();
+        em.createQuery(
+                "DELETE FROM Item ").executeUpdate();
     }
 
     @Override

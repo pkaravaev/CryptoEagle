@@ -2,10 +2,8 @@ package com.cryptoeagle.rest;
 
 
 import com.cryptoeagle.entity.Coin;
-import com.cryptoeagle.entity.Item;
 import com.cryptoeagle.exception.CoinNotFoundException;
 import com.cryptoeagle.repository.CoinRepository;
-import com.cryptoeagle.repository.ItemRepository;
 import com.cryptoeagle.service.abst.CoinService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,7 +23,6 @@ public class CoinRestController {
 
     @Autowired
     private CoinService coinService;
-
 
     @GetMapping(value = "/api/coins")
     public List<Coin> retrieveAllCoins() {

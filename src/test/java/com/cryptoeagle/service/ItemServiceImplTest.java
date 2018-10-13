@@ -5,6 +5,8 @@ import com.cryptoeagle.entity.Item;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -16,20 +18,19 @@ public class ItemServiceImplTest extends AbstractTest {
     private static final int ITEM_SOURCE1_COUNT = 10;
     private static final int SOURCE_COUNT = 7;
 
-
     @Autowired
     ItemServiceImpl service;
 
     @Test
-    public void findall() {
+    public void getAll() {
         List<Item> all = service.getAll();
-        assertTrue(all.size() == ITEMS_COUNT );
+        assertTrue(all.size() == ITEMS_COUNT);
     }
 
     @Test
     public void delete() {
         List<Item> all = service.getAll();
-        assertTrue(all.size() == ITEMS_COUNT );
+        assertTrue(all.size() == ITEMS_COUNT);
     }
 
     @Test
@@ -44,8 +45,4 @@ public class ItemServiceImplTest extends AbstractTest {
         assertTrue(items.size() == SOURCE_COUNT);
     }
 
-    @Test
-    public void update() {
-        service.updateItems();
-    }
 }

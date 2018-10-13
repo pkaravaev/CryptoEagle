@@ -1,15 +1,12 @@
 package com.cryptoeagle.service;
 
 import com.cryptoeagle.entity.Ico;
-import com.cryptoeagle.entity.crypto.Chart;
 import com.cryptoeagle.exception.IcoNotFoundException;
 import com.cryptoeagle.repository.IcoRepository;
 import com.cryptoeagle.service.abst.IcoService;
 import com.cryptoeagle.service.abst.RestService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,59 +31,55 @@ public class IcoServiceImpl implements IcoService {
         this.service = service;
     }
 
-
     public List<Ico> getAll() {
-        return repository.getAllico();
+        return repository.getAll();
     }
 
     @Override
-    public void saveIcos(List<Ico> icos) {
-
+    public void save(List<Ico> icos) {
         try {
-            repository.saveIcos(icos);
+            repository.save(icos);
         } catch (Exception e) {
-            System.out.println();
+            throw new IcoNotFoundException(e.getMessage() + " ICOs not found" );
         }
-
     }
 
     @Override
     public List<Ico> getUpcoming() {
 
         try {
-            return repository.getUpcomingIco();
+            return repository.getUpcoming();
         } catch (Exception e) {
-            throw new IcoNotFoundException();
+            throw new IcoNotFoundException(e.getMessage() + "Upcoming ICO not found" );
         }
     }
 
     @Override
     public List<Ico> getFinished() {
         try {
-            return repository.getFinishedIco();
+            return repository.getFinished();
 
         } catch (Exception e) {
-            throw new IcoNotFoundException();
+            throw new IcoNotFoundException(e.getMessage() + "Finished ICO not found" );
         }
     }
 
     @Override
-    public List<Ico> getActiveIco() {
+    public List<Ico> getActive() {
         try {
-            return repository.getActiveIco();
+            return repository.getActive();
         } catch (Exception e) {
-            throw new IcoNotFoundException();
+            throw new IcoNotFoundException(e.getMessage() + "Active ICO not found" );
         }
     }
-
 
     @Override
     @Transactional()
-    public Ico getIcoById(int id) {
+    public Ico getById(int id) {
         try {
-            return repository.getIcoByID(id);
+            return repository.getById(id);
         } catch (Exception e) {
-            throw new IcoNotFoundException();
+            throw new IcoNotFoundException(e.getMessage() + " Ico id : " + id);
         }
     }
 
@@ -95,17 +88,17 @@ public class IcoServiceImpl implements IcoService {
         try {
             return repository.getByName(name);
         } catch (Exception e) {
-            throw new IcoNotFoundException();
+
+            throw new IcoNotFoundException(e.getMessage() + " Ico name : " + name);
         }
     }
 
     @Override
-//    @Scheduled(fixedDelay = 1000000, initialDelay = 10000)
-    public void updateIcos() {
+    public void update() {
         repository.deleteAll();
         for (int i = 1; i < 2; i++) {
             List<Ico> page = service.getIcoWithDataByPage(i);
-            saveIcos(page);
+            save(page);
         }
         log.info("UPDATE ICOS :" + LocalDateTime.now());
     }

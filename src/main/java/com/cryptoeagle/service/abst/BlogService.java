@@ -13,12 +13,16 @@ public interface BlogService {
 
     void delete(int blog_int, int user_id);
 
+    void delete(Blog blog);
+
     void deleteByName(String name);
+
+    void deleteAll();
 
     List<Blog> findAllByUser(int user_id);
 
     List<Blog> getAll();
 
-    public void updateFromRss();
+    public void update();
 
 }
