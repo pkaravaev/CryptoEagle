@@ -85,10 +85,10 @@ public class IcoServiceImplTest extends AbstractTest {
         assertTrue(ico.getName() != null);
     }
 
-    @Test
-    public void updateIcos() {
-        service.update();
-    }
+//    @Test
+//    public void updateIcos() {
+//        service.update();
+//    }
 
     @Test
     public void deletAll() {

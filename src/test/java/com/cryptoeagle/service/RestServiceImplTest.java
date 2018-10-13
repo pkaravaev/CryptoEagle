@@ -55,15 +55,15 @@ public class RestServiceImplTest extends AbstractTest {
         assertTrue(data != null);
     }
 
-    @Test
-    public void getIcoByPage() {
-        List<Ico> icoByPage1 = service.getIcoByPage(1);
-        List<Ico> icoByPage5 = service.getIcoByPage(5);
-        List<Ico> icoByPage25 = service.getIcoByPage(25);
-        assertTrue(icoByPage1.size() == 12);
-        assertTrue(icoByPage5.size() == 12);
-        assertTrue(icoByPage25.size() == 12);
-    }
+//    @Test
+//    public void getIcoByPage() {
+//        List<Ico> icoByPage1 = service.getIcoByPage(1);
+//        List<Ico> icoByPage5 = service.getIcoByPage(5);
+//        List<Ico> icoByPage25 = service.getIcoByPage(25);
+//        assertTrue(icoByPage1.size() == 12);
+//        assertTrue(icoByPage5.size() == 12);
+//        assertTrue(icoByPage25.size() == 12);
+//    }
 
     @Test
     public void getCoins() {
@@ -71,18 +71,18 @@ public class RestServiceImplTest extends AbstractTest {
         assertTrue(coins.size() > 50);
     }
 
-    @Test
-    public void getIcoWithDataByPage() {
-        List<Ico> icos = null;
-
-        for (int i = 0; i < 3; i++) {
-            icos = service.getIcoWithDataByPage(i);
-        }
-
-        assertTrue(icos.size() > 5);
-        assertTrue(icos.get(0) != null);
-        assertTrue(icos.get(3) != null);
-    }
+//    @Test
+//    public void getIcoWithDataByPage() {
+//        List<Ico> icos = null;
+//
+//        for (int i = 0; i < 3; i++) {
+//            icos = service.getIcoWithDataByPage(i);
+//        }
+//
+//        assertTrue(icos.size() > 5);
+//        assertTrue(icos.get(0) != null);
+//        assertTrue(icos.get(3) != null);
+//    }
 
     @Test
     public void getPicCoins() {
