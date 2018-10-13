@@ -72,11 +72,13 @@ INSERT INTO public.role (role, id) VALUES ('ADMIN', 100094);
 INSERT INTO public.role (role, id) VALUES ('ADMIN', 100096);
 INSERT INTO public.role (role, id) VALUES ('USER', 100097);
 
+
+
+
 INSERT INTO public.appuser (id, email, name, password) VALUES (100086, 'admin@mail.ru', 'admin', '$2a$10$HrDBNlpMa7vZDgrUOXYPp.RyKwIcHvc0pHCqboVdvx4Y2.59Pg2cq');
 INSERT INTO public.appuser (id, email, name, password) VALUES (100089, 'user1@mail.ru', 'user1', '$2a$10$F8nUEmiCvQ60uOeO9Aw89O/b2kTxZzVmP1H7MtprnoO.H3PTkGBbq');
 INSERT INTO public.appuser (id, email, name, password) VALUES (100092, 'user2@mail.ru', 'user2', '$2a$10$X37RA.JpHnr0YsiZuqsFJu3iUtbfyEj3LgP/hFctbeU6yBTVsj8Bu');
 INSERT INTO public.appuser (id, email, name, password) VALUES (100095, 'user3@mail.ru', 'user3', '$2a$10$5q/TtA4L0564C0C2bDYKhenqbYOm19E7Tvu7Px6CjJJUVCSb/WgXy');
-
 
 INSERT INTO public.appuser_role (user_id, roles_role, roles_id) VALUES (100086, 'ADMIN', 100087);
 INSERT INTO public.appuser_role (user_id, roles_role, roles_id) VALUES (100086, 'USER', 100088);
@@ -86,6 +88,7 @@ INSERT INTO public.appuser_role (user_id, roles_role, roles_id) VALUES (100092, 
 INSERT INTO public.appuser_role (user_id, roles_role, roles_id) VALUES (100092, 'ADMIN', 100094);
 INSERT INTO public.appuser_role (user_id, roles_role, roles_id) VALUES (100095, 'ADMIN', 100096);
 INSERT INTO public.appuser_role (user_id, roles_role, roles_id) VALUES (100095, 'USER', 100097);
+
 
 
 INSERT INTO public.blog (id, name, url, user_id) VALUES (100098, 'cointelegraph', 'https://cointelegraph.com/rss', 100089);

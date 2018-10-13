@@ -77,8 +77,8 @@ public class BlogServiceImplTest extends AbstractTest {
         assertTrue(all.size() == BLOG_COUNT);
     }
 
-    @Test
-    public void updateFromRss() {
-        service.update();
-    }
+//    @Test
+//    public void updateFromRss() {
+//        service.update();
+//    }
 }

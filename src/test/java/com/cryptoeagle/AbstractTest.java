@@ -13,7 +13,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"/spring/spring-app.xml","/spring/spring-db.xml", "/spring/spring-mvc.xml","/spring/spring-security.xml"})
 @WebAppConfiguration
-@ActiveProfiles({"Jpa","HSQLDB"})
+@ActiveProfiles({"Jpa","PostgreSQL"})
 @Sql({"classpath:/db/init.sql","classpath:/db/populate.sql"})
 @Ignore
 public class AbstractTest {
