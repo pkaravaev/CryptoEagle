@@ -12,6 +12,7 @@ import com.rometools.rome.feed.synd.SyndEntry;
 import com.rometools.rome.feed.synd.SyndFeed;
 import com.rometools.rome.io.SyndFeedInput;
 import com.rometools.rome.io.XmlReader;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
@@ -30,9 +31,8 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class ItemServiceImpl implements ItemService {
-
-    private static final Logger log = Logger.getLogger(ItemServiceImpl.class.getName());
 
     ItemRepository repository;
 
@@ -46,23 +46,27 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public List<Item> getAll() {
+        log.info("get all");
         List<Item> itemList = repository.getAll();
         return itemList;
     }
 
     @Override
     public List<String> getSources() {
+        log.info("get sources");
         return repository.getSources();
     }
 
     @Override
     public List<Item> getBySource(String source) {
+        log.info("get by source :" + source);
         try {
             List<Item> items = repository.getBySource(source);
             if (items.size() == 0)
                 throw new ItemNotFoundException("Size  0");
             else return items;
         } catch (Exception e) {
+            log.error("ItemNotFoundException");
             throw new ItemNotFoundException(e.getMessage());
         }
     }

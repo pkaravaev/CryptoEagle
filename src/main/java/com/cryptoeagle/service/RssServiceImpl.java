@@ -9,6 +9,7 @@ import com.rometools.rome.feed.synd.SyndEntry;
 import com.rometools.rome.feed.synd.SyndFeed;
 import com.rometools.rome.io.SyndFeedInput;
 import com.rometools.rome.io.XmlReader;
+import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.springframework.stereotype.Service;
 
@@ -21,9 +22,11 @@ import java.util.List;
 
 
 @Service
+@Slf4j
 public class RssServiceImpl implements RssService {
 
     public List<Item> getItems(String url,String source) {
+        log.info("get items url : " + url + " source : " + source);
         SyndFeedInput input = new SyndFeedInput();
         SyndFeed feed = null;
         List<Item> itemList = null;
@@ -59,6 +62,7 @@ public class RssServiceImpl implements RssService {
                 itemList.add(item);
             }
         } catch (Exception e) {
+            log.error(e.getMessage());
             System.out.println("Error------------------ :" + e.getMessage());
         }
 

@@ -4,6 +4,7 @@ import com.cryptoeagle.entity.Event;
 import com.cryptoeagle.repository.EventRepository;
 import com.cryptoeagle.service.abst.EventService;
 import com.cryptoeagle.service.abst.RestService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Service;
@@ -14,11 +15,11 @@ import java.util.List;
 import java.util.logging.Logger;
 
 @Service
+@Slf4j
 public class EventServiceImpl implements EventService {
 
-    private static final Logger log = Logger.getLogger(EventServiceImpl.class.getName());
-
     RestService restService;
+
     EventRepository repository;
 
     @Autowired
@@ -29,11 +30,13 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public List<Event> getEvents(int count) {
+        log.info("get events count: " + count);
         return restService.getEvents(count);
     }
 
     @Override
     public List<Event> getAll() {
+        log.info("get all events ");
         return repository.getAll();
     }
 
@@ -41,7 +44,7 @@ public class EventServiceImpl implements EventService {
 
     @Transactional
     public void update() {
-        log.info("UPDATE EVENTS :" + LocalDateTime.now());
+        log.info("update events :" + LocalDateTime.now());
         repository.deleteAll();
         List<Event> events = restService.getEvents(5);
         repository.saveAll(events);

@@ -16,7 +16,7 @@ import java.util.List;
 
 
 @RestController
-@Slf4j(topic = "test")
+@Slf4j
 public class AjaxController {
     private static final String[] COINS = {"BTC", "ETH", "NEO", "EOS", "XRP"};
 

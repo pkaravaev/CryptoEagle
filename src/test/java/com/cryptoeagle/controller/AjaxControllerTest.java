@@ -26,7 +26,6 @@ public class AjaxControllerTest extends AbstractWebController {
     public void getCharts() throws Exception {
 
         mockMvc.perform(get(AJAX_PATH + "coins/" + SYMBOL))
-                .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(jsonPath("$", hasSize(notNullValue())))

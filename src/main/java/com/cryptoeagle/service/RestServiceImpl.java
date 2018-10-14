@@ -9,6 +9,7 @@ import com.cryptoeagle.entity.crypto.Team;
 import com.cryptoeagle.service.abst.RestService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import net.sealake.binance.api.client.BinanceApiClientFactory;
 import net.sealake.binance.api.client.BinanceApiRestClient;
 import net.sealake.binance.api.client.domain.market.Candlestick;
@@ -52,6 +53,7 @@ import java.util.List;
 
 //todo need refactoring
 @Service
+@Slf4j
 public class RestServiceImpl implements RestService {
 
     private static final String PRIVATE_KEY = "dca6b42f-115d-4892-8827-08bb79275cef";
@@ -69,6 +71,7 @@ public class RestServiceImpl implements RestService {
 
     @Override
     public IcoData getDataForIco(int id) {
+        log.info("get data for ico id :" + id);
         IcoData idata = new IcoData();
         try {
             ObjectMapper objectMapper = new ObjectMapper();
@@ -78,13 +81,14 @@ public class RestServiceImpl implements RestService {
             JsonNode node = objectMapper.readTree(s);
             return convertJsonToIcoData(node);
         } catch (Exception e) {
-
+            log.error(e.getMessage());
         }
 
         return idata;
     }
 
     public List<Ico> getIcoByPage(int page) {
+        log.info("get ico by page: " + page);
         List<Ico> icoList = new ArrayList<>();
         try {
             ObjectMapper objectMapper = new ObjectMapper();
@@ -99,6 +103,7 @@ public class RestServiceImpl implements RestService {
                 icoList.add(ico);
             }
         } catch (Exception e) {
+            log.error(e.getMessage());
             return null;
         }
         return icoList;
@@ -106,6 +111,7 @@ public class RestServiceImpl implements RestService {
 
     @Override
     public List<Ico> getIcoWithDataByPage(int page) {
+        log.info("get ico with data by page: " + page);
         List<Ico> icos = getIcoByPage(page);
         List<Ico> icosWithdata = new ArrayList<>();
         for (Ico ico : icos) {
@@ -119,6 +125,7 @@ public class RestServiceImpl implements RestService {
     }
 
     public List<Event> getEvents(int count) {
+        log.info("get events : " + count);
 
         List<Event> events = new ArrayList<>();
         String token = getTokenOAUTH();
@@ -136,12 +143,12 @@ public class RestServiceImpl implements RestService {
             JsonNode jsonNode = mapper.readTree(builder.toString());
             Iterator<JsonNode> iterator = jsonNode.iterator();
             while (iterator.hasNext()) {
-
                 JsonNode node = iterator.next();
                 events.add(convertJsonToEvent(node));
             }
             System.out.println();
         } catch (Exception e) {
+            log.error(e.getMessage());
             return null;
         }
         return events;
@@ -149,6 +156,8 @@ public class RestServiceImpl implements RestService {
 
     @Override
     public List<Coin> getCoins() {
+
+        log.info("get coins");
 
         List<PictureCoin> coinspic = this.getPicCoins();
 
@@ -162,9 +171,8 @@ public class RestServiceImpl implements RestService {
         JsonNode node = null;
         try {
             node = objectMapper.readTree(data);
-
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error(e.getMessage());
         }
         JsonNode data1 = node.get("data");
         Iterator<JsonNode> iterator = data1.iterator();
@@ -176,13 +184,15 @@ public class RestServiceImpl implements RestService {
                 coin.setImage(link);
                 coins.add(coin);
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+                log.error(e.getMessage());
             }
         }
         return coins;
     }
 
     public List<PictureCoin> getPicCoins() {
+
+        log.info("get pic coins");
 
         List<PictureCoin> coins = new ArrayList<>();
         ObjectMapper objectMapper = new ObjectMapper();
@@ -196,7 +206,7 @@ public class RestServiceImpl implements RestService {
             node = objectMapper.readTree(data);
 
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error(e.getCause().getMessage());
         }
 
         JsonNode data1 = node.get("Data");
@@ -214,7 +224,7 @@ public class RestServiceImpl implements RestService {
                 coins.add(c);
 
             } catch (Exception e) {
-
+                log.error(e.getMessage());
             }
         }
 
@@ -223,6 +233,7 @@ public class RestServiceImpl implements RestService {
     }
 
     public List<Chart> getChartCoin(String symbol) {
+        log.info("get charts coin :" + symbol);
         List<Chart> chartList = new ArrayList<>();
         try {
             BinanceApiClientFactory factory = BinanceApiClientFactory.newInstance();
@@ -238,7 +249,7 @@ public class RestServiceImpl implements RestService {
                 chartList.add(chart);
             }
         } catch (Exception e) {
-
+            log.error(e.getMessage());
             return chartList;
         }
 
@@ -248,7 +259,7 @@ public class RestServiceImpl implements RestService {
 
 
     private static Chart converter(Candlestick candlestick) {
-
+        log.info("chart converter");
         Chart chart = new Chart();
 
         long opentime = candlestick.getOpenTime();
@@ -269,6 +280,7 @@ public class RestServiceImpl implements RestService {
 
 
     private Coin convertJsonToCoin(JsonNode jsonNode) {
+        log.info("convert coin");
 
         Coin coin = new Coin();
         NumberFormat numberFormat = NumberFormat.getInstance();
@@ -323,6 +335,7 @@ public class RestServiceImpl implements RestService {
     }
 
     private Event convertJsonToEvent(JsonNode jsonNode) {
+        log.info("convert events");
         Event event = new Event();
         String title = jsonNode.get("title").toString();
         String description = jsonNode.get("description").toString();
@@ -359,6 +372,8 @@ public class RestServiceImpl implements RestService {
 
     private Ico convertJsonToIco(JsonNode jsonNode) {
 
+        log.info("convert ico");
+
         String id = jsonNode.get("id").toString();
         String name = deleteCommas(jsonNode.get("name").toString());
         String url = deleteCommas(jsonNode.get("url").toString());
@@ -384,26 +399,25 @@ public class RestServiceImpl implements RestService {
         try {
             preIcoStart = LocalDateTime.parse(oldPreIcoStart.substring(1, oldPreIcoStart.length() - 1), formatter);
         } catch (Exception e) {
-
-            System.out.println("Ошибка" + e.getMessage());
+            log.error(e.getCause().getMessage());
         }
         LocalDateTime preIcoEnd = null;
         try {
             preIcoEnd = LocalDateTime.parse(oldpreIcoEnd.substring(1, oldPreIcoStart.length() - 1), formatter);
         } catch (Exception e) {
-            System.out.println("Ошибка" + e.getMessage());
+            log.error(e.getCause().getMessage());
         }
         LocalDateTime icoStart = null;
         try {
             icoStart = LocalDateTime.parse(oldIcoStart.substring(1, oldPreIcoStart.length() - 1), formatter);
         } catch (Exception e) {
-            System.out.println("Ошибка" + e.getMessage());
+            log.error(e.getCause().getMessage());
         }
         LocalDateTime icoEnd = null;
         try {
             icoEnd = LocalDateTime.parse(oldIcoEnd.substring(1, oldPreIcoStart.length() - 1), formatter);
         } catch (Exception e) {
-            System.out.println("Ошибка" + e.getMessage());
+            log.error(e.getCause().getMessage());
         }
 
         Ico ico = new Ico();
@@ -423,6 +437,7 @@ public class RestServiceImpl implements RestService {
     }
 
     private IcoData convertJsonToIcoData(JsonNode jsonNode) {
+        log.info("convert Ico data");
         IcoData idata = new IcoData();
 
         try {
@@ -493,17 +508,17 @@ public class RestServiceImpl implements RestService {
 
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            log.error(e.getMessage());
             return idata;
         }
-
-
         return idata;
     }
 
 
 
     private String buildHttpRequest(String param, String url) {
+
+        log.info("build http request");
 
         String hmac384sign = HMAC384sign(PRIVATE_KEY, param);
         HttpClient httpClient = HttpClientBuilder.create().build();
@@ -519,12 +534,13 @@ public class RestServiceImpl implements RestService {
             HttpResponse response = httpClient.execute(request);
             s = EntityUtils.toString(response.getEntity());
         } catch (Exception e) {
-            System.out.println("Ошибка" + e.getMessage());
+            log.error(e.getMessage());
         }
         return s;
     }
 
     private String deleteCommas(String old) {
+        log.info("delete commas");
         if (old.length() > 2)
             return old.substring(1, old.length() - 1);
         else
@@ -532,6 +548,7 @@ public class RestServiceImpl implements RestService {
     }
 
     private String HMAC384sign(String private_key, String data) {
+        log.info("HMAC384sign");
         try {
             SecretKeySpec keySpec = new SecretKeySpec(private_key.getBytes(), "HmacSHA384");
             Mac mac = Mac.getInstance("HmacSHA384");
@@ -540,15 +557,16 @@ public class RestServiceImpl implements RestService {
             byte[] rawHmac = mac.doFinal(data.getBytes());
             return Base64.getEncoder().encodeToString(rawHmac);
         } catch (NoSuchAlgorithmException e) {
-            System.out.println("Ошибка" + e.getMessage());
+            log.error(e.getMessage());
             return "";
         } catch (InvalidKeyException e) {
-            System.out.println("Ошибка" + e.getMessage());
+            log.error(e.getMessage());
             return "";
         }
     }
 
     public String getTokenOAUTH() {
+        log.info("getTokenOAUTH");
         String token = null;
         try {
             HttpGet httpGet = new HttpGet(REST_GET_TOKEN + "?grant_type=client_credentials&client_id=" + CLIENT_ID + "&client_secret=" + CLIENT_SECRET);
@@ -570,7 +588,8 @@ public class RestServiceImpl implements RestService {
             ObjectMapper mapper = new ObjectMapper();
             JsonNode node = mapper.readTree(builder.toString());
             token = node.get("access_token").toString();
-        } catch (Exception ex) {
+        } catch (Exception e) {
+            log.error(e.getMessage());
             return null;
         }
         return deleteCommas(token);

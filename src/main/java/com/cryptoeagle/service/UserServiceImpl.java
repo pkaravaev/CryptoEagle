@@ -5,6 +5,7 @@ import com.cryptoeagle.exception.UserNotFoundException;
 import com.cryptoeagle.repository.UserRepository;
 
 import com.cryptoeagle.service.abst.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,9 +17,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
+@Slf4j
 public class UserServiceImpl implements UserService, UserDetailsService {
-
-    private static final org.slf4j.Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
 
     @Autowired
     private UserRepository repository;
@@ -76,7 +76,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public void delete(int id) {
-        log.info("delete user by id");
+        log.info("delete user by id : " + id);
         try {
             repository.delete(id);
         } catch (Exception ex) {

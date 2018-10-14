@@ -5,11 +5,13 @@ import com.cryptoeagle.exception.IcoNotFoundException;
 import com.cryptoeagle.repository.IcoRepository;
 import com.cryptoeagle.service.abst.IcoService;
 import com.cryptoeagle.service.abst.RestService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.logging.Logger;
@@ -17,9 +19,8 @@ import java.util.logging.Logger;
 
 @Service
 @EnableScheduling
+@Slf4j
 public class IcoServiceImpl implements IcoService {
-
-    private static final Logger log = Logger.getLogger(IcoServiceImpl.class.getName());
 
     IcoRepository repository;
 
@@ -38,6 +39,7 @@ public class IcoServiceImpl implements IcoService {
     @Override
     @Transactional
     public void save(List<Ico> icos) {
+        log.info("get all icos");
         for (Ico ico : icos){
             repository.save(ico);
         }
@@ -45,28 +47,34 @@ public class IcoServiceImpl implements IcoService {
 
     @Override
     public List<Ico> getUpcoming() {
+        log.info("get upcoming icos");
         try {
             return repository.getUpcoming();
         } catch (Exception e) {
+            log.error("IcoNotFoundException");
             throw new IcoNotFoundException(e.getMessage() + "Upcoming ICO not found");
         }
     }
 
     @Override
     public List<Ico> getFinished() {
+        log.info("get finished icos");
         try {
             return repository.getFinished();
 
         } catch (Exception e) {
+            log.error("IcoNotFoundException");
             throw new IcoNotFoundException(e.getMessage() + "Finished ICO not found");
         }
     }
 
     @Override
     public List<Ico> getActive() {
+        log.info("get active icos");
         try {
             return repository.getActive();
         } catch (Exception e) {
+            log.error("IcoNotFoundException");
             throw new IcoNotFoundException(e.getMessage() + "Active ICO not found");
         }
     }
@@ -74,18 +82,22 @@ public class IcoServiceImpl implements IcoService {
     @Override
     @Transactional()
     public Ico getById(int id) {
+        log.info("get  ico by id :" + id);
         try {
             return repository.getById(id);
         } catch (Exception e) {
+            log.error("IcoNotFoundException");
             throw new IcoNotFoundException(e.getMessage() + " Ico id : " + id);
         }
     }
 
     @Override
     public Ico getByName(String name) {
+        log.info("get  ico by name :" + name);
         try {
             return repository.getByName(name);
         } catch (Exception e) {
+            log.error("IcoNotFoundException");
             throw new IcoNotFoundException(e.getMessage() + " Ico name : " + name);
         }
     }
@@ -98,12 +110,13 @@ public class IcoServiceImpl implements IcoService {
             List<Ico> page = service.getIcoWithDataByPage(i);
             save(page);
         }
-        log.info("UPDATE ICOS :" + LocalDateTime.now());
+
     }
 
     @Override
     @Transactional
     public void deletAll() {
+        log.info("get  delete all");
         List<Ico> all = getAll();
         for (Ico ico : all) {
             repository.delete(ico);

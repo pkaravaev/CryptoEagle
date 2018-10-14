@@ -6,6 +6,7 @@ import com.cryptoeagle.exception.CoinNotFoundException;
 import com.cryptoeagle.repository.CoinRepository;
 import com.cryptoeagle.service.abst.CoinService;
 import com.cryptoeagle.service.abst.RestService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +17,8 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class CoinServiceImpl implements CoinService {
-
-    private static final Logger log = Logger.getLogger(CoinServiceImpl.class.getName());
 
     CoinRepository repository;
 
@@ -38,7 +38,7 @@ public class CoinServiceImpl implements CoinService {
 
     @Override
     public boolean isAvailable(String symbol) {
-        log.info("is avalible");
+        log.info("is avalible symbol " + symbol);
         List<Chart> chartCoin = restService.getChartCoin(symbol);
         if (chartCoin.size() > 4)
             return true;
@@ -47,7 +47,7 @@ public class CoinServiceImpl implements CoinService {
 
 
     public List<Coin> getTopGainCoins() {
-        log.info("get top  coins");
+        log.info("get top coins");
         return repository.getTopGainCoins();
     }
 
@@ -75,7 +75,7 @@ public class CoinServiceImpl implements CoinService {
 
     @Override
     public void updateCoins() {
-        log.info("UPDATE COINS :" + LocalDateTime.now().toString());
+        log.info("update coins :" + LocalDateTime.now().toString());
         repository.deleteAll();
         List<Coin> allCoinsFromProvider = restService.getCoins();
         allCoinsFromProvider.stream().forEach(e -> e.setDataAvailable(isAvailable(e.getSymbol())));
