@@ -38,11 +38,6 @@ public class User extends BaseEntity implements UserDetails {
     public static final String GET_ALL = "User.getAll";
     public static final String GET_BY_EMAIL = "User.getByEmail";
 
-    @JsonIgnore
-    public boolean isNew() {
-        return id == 0;
-    }
-
     @Length(min = 5, max = 15)
     @Column(unique = true)
     private String name;
@@ -61,13 +56,6 @@ public class User extends BaseEntity implements UserDetails {
     private List<Blog> blogs = new ArrayList<>();
 
     public User(String name, String email, String password) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
-    }
-
-    public User(int id, String name, String email, String password) {
-        this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;

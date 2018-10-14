@@ -71,24 +71,25 @@ public class RestServiceImplTest extends AbstractTest {
         assertTrue(coins.size() > 50);
     }
 
-//    @Test
-//    public void getIcoWithDataByPage() {
-//        List<Ico> icos = null;
-//
-//        for (int i = 0; i < 3; i++) {
-//            icos = service.getIcoWithDataByPage(i);
-//        }
-//
-//        assertTrue(icos.size() > 5);
-//        assertTrue(icos.get(0) != null);
-//        assertTrue(icos.get(3) != null);
-//    }
+    @Test
+    public void getIcoWithDataByPage() {
+        List<Ico> icos = null;
+
+        for (int i = 0; i < 3; i++) {
+            icos = service.getIcoWithDataByPage(i);
+        }
+
+        assertTrue(icos.size() > 5);
+        assertTrue(icos.get(0) != null);
+        assertTrue(icos.get(3) != null);
+    }
 
     @Test
     public void getPicCoins() {
         List<PictureCoin> picCoins = service.getPicCoins();
         assertTrue(picCoins.size() > 100);
     }
+
 
 
 }

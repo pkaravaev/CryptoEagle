@@ -24,9 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class UserControllerTest extends AbstractWebController {
 
     private static final int USER1_ID = 100089;
-
     private static final int USER2_ID = 100092;
-
     private static final int USERS_COUNT = 4;
 
 
@@ -38,7 +36,6 @@ public class UserControllerTest extends AbstractWebController {
     public void logOut() throws Exception {
         mockMvc
                 .perform(logout())
-                .andDo(print())
                 .andExpect(redirectedUrl("/welcome"));
     }
 
@@ -66,7 +63,6 @@ public class UserControllerTest extends AbstractWebController {
     public void deleteUsers() throws Exception {
         mockMvc
                 .perform(get("/users/delete/" + USER1_ID))
-                .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(view().name("admin-page"));
 
@@ -79,7 +75,6 @@ public class UserControllerTest extends AbstractWebController {
     public void userProfile() throws Exception {
         mockMvc
                 .perform(get("/user-profile"))
-                .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("blogs", hasSize(0)))
                 .andExpect(view().name("user-profile"));
@@ -90,7 +85,6 @@ public class UserControllerTest extends AbstractWebController {
     public void userProfileUser() throws Exception {
         mockMvc
                 .perform(get("/user-profile"))
-                .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("blogs", hasSize(3)))
                 .andExpect(model().attribute("name", is("user2")))

@@ -21,8 +21,6 @@ public interface IcoRepository {
 
     List<Ico> getByNames(List<String> names);
 
-
-    void deleteAll();
     void delete(Ico ico);
     void save(Ico ico);
     void save(List<Ico> icos);

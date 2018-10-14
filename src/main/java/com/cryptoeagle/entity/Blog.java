@@ -47,19 +47,6 @@ public class Blog extends BaseEntity {
     @ManyToOne(cascade = CascadeType.ALL)
     private User user;
 
-    public Blog(int id_blog, String name, String URL, User user) {
-        super(id_blog);
-        this.name = name;
-        this.url = URL;
-        this.user = user;
-    }
-
-    public Blog(int id_blog, String name, String URL) {
-        super(id_blog);
-        this.name = name;
-        this.url = URL;
-    }
-
     public Blog(String name, String URL) {
         this.name = name;
         this.url = URL;

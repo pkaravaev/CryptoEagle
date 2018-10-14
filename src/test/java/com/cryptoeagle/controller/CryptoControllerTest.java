@@ -132,7 +132,6 @@ public class CryptoControllerTest extends AbstractWebController {
     public void icoPage() throws Exception {
 
         mockMvc.perform(get("/ico-page/" + ICO_NANE))
-                .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("ico", notNullValue()))
                 .andExpect(model().attribute("ico", notNullValue()))
@@ -153,7 +152,6 @@ public class CryptoControllerTest extends AbstractWebController {
     public void coinPage() throws Exception {
 
         mockMvc.perform(get("/coin-page/" + SYMBOL))
-                .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("coin", notNullValue()))
                 .andExpect(model().attribute("coin", hasProperty("name")))
