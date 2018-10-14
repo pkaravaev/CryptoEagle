@@ -15,8 +15,10 @@ public class IcoTest {
     static {
 
         ICO_1.setIcoStart(LocalDateTime.of(2018, 5, 1, 10, 00));
+        ICO_1.setIcoEnd(LocalDateTime.of(2019, 5, 1, 10, 00));
 
         ICO_2.setIcoStart(LocalDateTime.of(2018, 10, 1, 10, 00));
+        ICO_2.setIcoEnd(LocalDateTime.of(2019, 5, 1, 10, 00));
 
     }
 

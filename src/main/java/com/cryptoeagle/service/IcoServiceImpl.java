@@ -61,10 +61,10 @@ public class IcoServiceImpl implements IcoService {
     public List<Ico> getFinished() {
         log.info("get finished icos");
         List<Ico> icos = repository.getFinished();
-        if (icos.size() == 0) {
-            log.error("IcoNotFoundException");
-            throw new IcoNotFoundException("finished ICO not found");
-        }
+//        if (icos.size() == 0) {
+//            log.error("IcoNotFoundException");
+//            throw new IcoNotFoundException("finished ICO not found");
+//        }
         return icos;
     }
 

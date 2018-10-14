@@ -71,17 +71,6 @@ public class IcoServiceImplTest extends AbstractTest {
     }
 
 
-
-
-    @Test(expected = IcoNotFoundException.class)
-    public void getFinishedNotFound() {
-        service.deletAll();
-        List<Ico> finished = service.getFinished();
-    }
-
-
-
-
     @Test
     public void getActiveIco() {
         List<Ico> active = service.getActive();
