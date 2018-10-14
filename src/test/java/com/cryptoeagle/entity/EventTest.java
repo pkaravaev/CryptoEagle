@@ -24,7 +24,8 @@ public class EventTest {
     public void diffNowBeetweenDataEventDay() {
 
         //todo test
-        int i = EVENT.diffNowBeetweenDataEventDay();
+
+//        assertTrue(EVENT.diffNowBeetweenDataEventDay() < 0);
     }
 
     @Test
@@ -32,6 +33,6 @@ public class EventTest {
 
         //todo test
 
-        int i = EVENT.diffNowBeetweenDataEventDay();
+//        assertTrue(EVENT.diffNowBeetweenDataEventMinute() < 0);
     }
 }

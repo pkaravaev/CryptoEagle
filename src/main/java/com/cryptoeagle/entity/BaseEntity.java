@@ -26,13 +26,10 @@ public abstract class BaseEntity implements Serializable {
     }
 
     @JsonIgnore
-    public boolean isNew(){
+    public boolean isNew() {
         return id == 0;
     }
 
-    public BaseEntity(int id) {
-        this.id = id;
-    }
 
     public BaseEntity() {
 

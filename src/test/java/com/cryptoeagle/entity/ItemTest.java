@@ -29,27 +29,32 @@ public class ItemTest {
 
     }
 
+    @Test
+    public void constructor() {
+        Item item = new Item("title", "description", LocalDateTime.now(), "link");
+    }
+
 
     @Test
     public void diffDays() {
 
-
         //todo test
 
-        int i = ITEM_1.diffDays();
+        assertTrue(ITEM_1.diffDays() > 0);
     }
 
     @Test
     public void diffMinutes() {
         //todo test
 
-        int i = ITEM_1.diffMinutes();
+        assertTrue(ITEM_1.diffMinutes() > 0);
     }
 
     @Test
     public void diffHours() {
         //todo test
-        int i = ITEM_1.diffHours();
+
+        assertTrue(ITEM_1.diffHours() > 0);
 
     }
 }

@@ -40,7 +40,7 @@ public class IcoServiceImpl implements IcoService {
     @Transactional
     public void save(List<Ico> icos) {
         log.info("get all icos");
-        for (Ico ico : icos){
+        for (Ico ico : icos) {
             repository.save(ico);
         }
     }
@@ -48,35 +48,35 @@ public class IcoServiceImpl implements IcoService {
     @Override
     public List<Ico> getUpcoming() {
         log.info("get upcoming icos");
-        try {
-            return repository.getUpcoming();
-        } catch (Exception e) {
+        List<Ico> icos = repository.getUpcoming();
+        if (icos.size() == 0) {
             log.error("IcoNotFoundException");
-            throw new IcoNotFoundException(e.getMessage() + "Upcoming ICO not found");
+            throw new IcoNotFoundException("Upcoming ICO not found");
         }
+        return icos;
     }
+
 
     @Override
     public List<Ico> getFinished() {
         log.info("get finished icos");
-        try {
-            return repository.getFinished();
-
-        } catch (Exception e) {
+        List<Ico> icos = repository.getFinished();
+        if (icos.size() == 0) {
             log.error("IcoNotFoundException");
-            throw new IcoNotFoundException(e.getMessage() + "Finished ICO not found");
+            throw new IcoNotFoundException("finished ICO not found");
         }
+        return icos;
     }
 
     @Override
     public List<Ico> getActive() {
-        log.info("get active icos");
-        try {
-            return repository.getActive();
-        } catch (Exception e) {
+        log.info("get getActive icos");
+        List<Ico> icos = repository.getActive();
+        if (icos.size() == 0) {
             log.error("IcoNotFoundException");
-            throw new IcoNotFoundException(e.getMessage() + "Active ICO not found");
+            throw new IcoNotFoundException("finished ICO not found");
         }
+        return icos;
     }
 
     @Override

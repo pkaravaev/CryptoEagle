@@ -2,9 +2,11 @@ package com.cryptoeagle.service;
 
 import com.cryptoeagle.AbstractTest;
 import com.cryptoeagle.entity.Ico;
+import com.cryptoeagle.exception.IcoNotFoundException;
 import com.cryptoeagle.service.abst.IcoService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.jdbc.Sql;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -17,7 +19,9 @@ public class IcoServiceImplTest extends AbstractTest {
 
     private static final int ICO_COUNT = 8;
 
-    private static final LocalDateTime LOCAL_DATE_TIME = LocalDateTime.of(2018,10,8,10,00,00);
+    private static final int ICO_ID = 4634;
+
+    private static final LocalDateTime LOCAL_DATE_TIME = LocalDateTime.of(2018, 10, 8, 10, 00, 00);
     private static final String ICO_NAME = "Zichain";
 
     @Autowired
@@ -50,6 +54,8 @@ public class IcoServiceImplTest extends AbstractTest {
         assertTrue(all.size() == ICO_COUNT + 2);
     }
 
+
+
     @Test
     public void getUpcoming() {
         List<Ico> upcoming = service.getUpcoming();
@@ -58,13 +64,23 @@ public class IcoServiceImplTest extends AbstractTest {
         }
     }
 
-    @Test
-    public void getFinished() {
-        List<Ico> finished = service.getFinished();
-        for (Ico ico : finished) {
-            assertTrue(ico.getIcoEnd().isBefore(LOCAL_DATE_TIME));
-        }
+    @Test(expected = IcoNotFoundException.class)
+    public void getUpcomingNotFound() {
+        service.deletAll();
+        List<Ico> upcoming = service.getUpcoming();
     }
+
+
+
+
+    @Test(expected = IcoNotFoundException.class)
+    public void getFinishedNotFound() {
+        service.deletAll();
+        List<Ico> finished = service.getFinished();
+    }
+
+
+
 
     @Test
     public void getActiveIco() {
@@ -73,6 +89,22 @@ public class IcoServiceImplTest extends AbstractTest {
             assertTrue(ico.getIcoEnd().isAfter(LocalDateTime.now()));
         }
         List<Ico> collect = service.getActive().stream().limit(6).collect(Collectors.toList());
+    }
+
+    @Test(expected = IcoNotFoundException.class)
+    public void getActiveIcoNotFound() {
+        service.deletAll();
+        List<Ico> active = service.getActive();
+    }
+
+    @Test
+    public void getById() {
+        Ico ico = service.getById(ICO_ID);
+        assertTrue(ico.getId() == ICO_ID);
+        assertTrue(ico.getDescription() != null);
+        assertTrue(ico.getLogolink() != null);
+        assertTrue(ico.getWebsite_link() != null);
+        assertTrue(ico.getName() != null);
     }
 
     @Test

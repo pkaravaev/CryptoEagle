@@ -3,6 +3,7 @@ package com.cryptoeagle.service;
 
 import com.cryptoeagle.Utils;
 import com.cryptoeagle.entity.Item;
+import com.cryptoeagle.exception.RssNewsNotFoundException;
 import com.cryptoeagle.service.abst.RssService;
 import com.rometools.rome.feed.synd.SyndContent;
 import com.rometools.rome.feed.synd.SyndEntry;
@@ -25,7 +26,7 @@ import java.util.List;
 @Slf4j
 public class RssServiceImpl implements RssService {
 
-    public List<Item> getItems(String url,String source) {
+    public List<Item> getItems(String url, String source) {
         log.info("get items url : " + url + " source : " + source);
         SyndFeedInput input = new SyndFeedInput();
         SyndFeed feed = null;
@@ -52,8 +53,8 @@ public class RssServiceImpl implements RssService {
                 item.setLink(link);
                 String plain = Jsoup.parse(description).text();
 
-                if (plain.length() > 150){
-                    plain = plain.substring(0,150);
+                if (plain.length() > 150) {
+                    plain = plain.substring(0, 150);
                 }
 
                 item.setDescription(plain);
@@ -63,7 +64,7 @@ public class RssServiceImpl implements RssService {
             }
         } catch (Exception e) {
             log.error(e.getMessage());
-            System.out.println("Error------------------ :" + e.getMessage());
+            throw new RssNewsNotFoundException("new not found");
         }
 
         return itemList;
