@@ -41,7 +41,6 @@ public class IcoRestControllerTest extends AbstractWebController {
     public void retrieveFinished() throws Exception {
         mockMvc.perform(get(PATH + ICO_FINISHED))
                 .andExpect(status().isOk());
-
     }
 
     @Test
@@ -95,7 +94,6 @@ public class IcoRestControllerTest extends AbstractWebController {
                 .andExpect(jsonPath("$[0].preIcoEnd", notNullValue()))
                 .andExpect(jsonPath("$[0].icoStart", notNullValue()))
                 .andExpect(jsonPath("$[0].icoEnd", notNullValue()));
-
     }
 
 }

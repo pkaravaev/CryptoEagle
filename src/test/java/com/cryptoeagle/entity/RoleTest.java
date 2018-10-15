@@ -26,4 +26,10 @@ public class RoleTest {
         String role = ROLE.getRole();
         assertTrue(role.equals("USER"));
     }
+
+    @Test
+    public void st() {
+        String role = ROLE.getRole();
+        assertTrue(role.toString().equals("USER"));
+    }
 }

@@ -34,15 +34,9 @@ public class IcoRepositoryJpaImpl implements IcoRepository {
     public void save(Ico ico) {
         if (ico.isNew())
             em.persist(ico);
-        else em.merge(ico);
-
-    }
-
-    @Override
-    @Transactional
-    public void save(List<Ico> icos) {
-        for (Ico ico : icos) {
-            em.persist(ico);
+        else {
+            em.merge(ico);
+            em.flush();
         }
     }
 
@@ -70,7 +64,6 @@ public class IcoRepositoryJpaImpl implements IcoRepository {
                 .getResultList();
     }
 
-
     @Override
     @Transactional
     public Ico getById(int id) {
@@ -87,12 +80,6 @@ public class IcoRepositoryJpaImpl implements IcoRepository {
 
     }
 
-    @Override
-    public List<Ico> getByNames(List<String> names) {
-        return em.createNamedQuery(Ico.GET_BY_NAMES, Ico.class)
-                .setParameter("names", names)
-                .getResultList();
-    }
 }
 
 

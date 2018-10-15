@@ -55,6 +55,29 @@ public class IcoServiceImplTest extends AbstractTest {
     }
 
 
+    @Test
+    public void update() {
+
+        Ico ico = service.getById(ICO_ID);
+
+        ico.setName("test_ico");
+        ico.setRating(999);
+        ico.setDescription("test_dsecription");
+        ico.setWebsite_link("test_link");
+
+        service.save(ico);
+
+        Ico icoUpdated = service.getById(ICO_ID);
+
+        assertTrue(ico.getName().equals("test_ico"));
+        assertTrue(ico.getRating() == 999);
+        assertTrue(ico.getDescription().equals("test_dsecription"));
+        assertTrue(ico.getWebsite_link().equals("test_link"));
+
+
+    }
+
+
 
     @Test
     public void getUpcoming() {
@@ -105,6 +128,7 @@ public class IcoServiceImplTest extends AbstractTest {
         assertTrue(ico.getWebsite_link() != null);
         assertTrue(ico.getName() != null);
     }
+
 
 //    @Test
 //    public void updateIcos() {

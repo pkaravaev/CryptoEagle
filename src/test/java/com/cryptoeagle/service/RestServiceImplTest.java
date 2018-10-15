@@ -65,7 +65,6 @@ public class RestServiceImplTest extends AbstractTest {
     @Test
     public void getIcoByPage() {
         //todo don't work on travis
-
         try {
             List<Ico> icoByPage1 = service.getIcoByPage(1);
             List<Ico> icoByPage5 = service.getIcoByPage(5);
@@ -73,11 +72,9 @@ public class RestServiceImplTest extends AbstractTest {
             assertTrue(icoByPage1.size() == ICO_BY_PAGE_COUNT);
             assertTrue(icoByPage5.size() == ICO_BY_PAGE_COUNT);
             assertTrue(icoByPage25.size() == ICO_BY_PAGE_COUNT);
-        }
-        catch (Exception e){
+        } catch (Exception e) {
 
         }
-
     }
 
     @Test
@@ -88,10 +85,8 @@ public class RestServiceImplTest extends AbstractTest {
 
     @Test
     public void getIcoWithDataByPage() {
-
         try {
             List<Ico> icos = null;
-
             for (int i = 0; i < 3; i++) {
                 icos = service.getIcoWithDataByPage(i);
             }
@@ -99,10 +94,9 @@ public class RestServiceImplTest extends AbstractTest {
             assertTrue(icos.size() > 5);
             assertTrue(icos.get(0) != null);
             assertTrue(icos.get(3) != null);
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
-
     }
 
     @Test
@@ -110,6 +104,5 @@ public class RestServiceImplTest extends AbstractTest {
         List<PictureCoin> picCoins = service.getPicCoins();
         assertTrue(picCoins.size() > 100);
     }
-
 
 }

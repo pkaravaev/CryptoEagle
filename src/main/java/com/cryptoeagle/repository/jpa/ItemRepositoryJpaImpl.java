@@ -17,7 +17,6 @@ public class ItemRepositoryJpaImpl implements ItemRepository {
     EntityManager em;
 
 
-
     @Override
     public List<String> getSources() {
         return em.createNamedQuery(Item.GET_ALL_SOURCE, String.class)
@@ -32,6 +31,7 @@ public class ItemRepositoryJpaImpl implements ItemRepository {
                 .setParameter("source", source)
                 .getResultList();
     }
+
 
     @Override
     @Transactional

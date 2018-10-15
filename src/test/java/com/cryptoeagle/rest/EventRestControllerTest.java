@@ -31,11 +31,9 @@ public class EventRestControllerTest extends AbstractWebController {
                 .andExpect(jsonPath("$[0].coinName", notNullValue()))
                 .andExpect(jsonPath("$[0].name", notNullValue()))
                 .andExpect(jsonPath("$[0].description", notNullValue()))
-
                 .andExpect(jsonPath("$[0].proof", notNullValue()))
                 .andExpect(jsonPath("$[0].source", notNullValue()))
                 .andExpect(jsonPath("$[0].twitter", notNullValue()))
-
                 .andExpect(jsonPath("$[0].date_event", notNullValue()));
     }
 }

@@ -44,5 +44,4 @@ public class ItemServiceImplTest extends AbstractTest {
         List<String> items = service.getSources();
         assertTrue(items.size() == SOURCE_COUNT);
     }
-
 }

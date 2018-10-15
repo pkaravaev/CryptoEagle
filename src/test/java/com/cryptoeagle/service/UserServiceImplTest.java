@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.persistence.NoResultException;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -71,7 +72,8 @@ public class UserServiceImplTest extends AbstractTest {
         assertTrue(user.getEmail().equals("user1@mail.ru"));
     }
 
-    @Test(expected = UserNotFoundException.class)
+
+    @Test(expected = NoResultException.class)
     public void getNotFound() {
         User user = service.get(ERROR_ID);
     }
@@ -88,19 +90,17 @@ public class UserServiceImplTest extends AbstractTest {
         assertTrue(user == null);
     }
 
-
-
     @Test
     public void getByName() {
         User user = service.getByName(USER2_NAME);
         assertEquals(user.getName(), USER2_NAME);
     }
 
+
     @Test(expected = UserNotFoundException.class)
     public void getByNameNotFound() {
         User user = service.getByName(ERROR_NAME);
     }
-
 
 
     @Test
@@ -116,7 +116,6 @@ public class UserServiceImplTest extends AbstractTest {
         List<User> all = service.getAll();
         assertTrue(all.size() == USERS_COUNT - 1);
     }
-
 
 
     @Test

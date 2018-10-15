@@ -51,7 +51,7 @@ public class User extends BaseEntity implements UserDetails {
     @OneToMany(cascade = CascadeType.ALL)
     Collection<Role> roles = new HashSet<>();
 
-    @NotNull
+
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Blog> blogs = new ArrayList<>();
 

@@ -7,11 +7,11 @@ import java.util.List;
 
 public interface BlogService {
 
-    void save(Blog blog, int user_id);
+    void save(Blog blog);
 
-    void update(Blog blog, int user_id);
+    void update(Blog blog);
 
-    void delete(int blog_int, int user_id);
+    void delete(int blog_int);
 
     void delete(Blog blog);
 

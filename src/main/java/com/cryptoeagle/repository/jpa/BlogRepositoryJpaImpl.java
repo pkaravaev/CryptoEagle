@@ -30,24 +30,21 @@ public class BlogRepositoryJpaImpl implements BlogRepository {
     }
 
     @Override
-    @Transactional
-    public Blog save(Blog blog, int user_id) {
-
+    public Blog save(Blog blog) {
         if (blog.isNew()) {
-            User user = em.find(User.class, user_id);
-            blog.setUser(user);
             em.persist(blog);
             return blog;
         } else {
-            return em.merge(blog);
+            Blog blogMerge = em.merge(blog);
+            em.flush();
+            return blogMerge;
         }
     }
 
     @Override
-    public void delete(int blog_id, int user_id) {
+    public void delete(int blog_id) {
         em.createNamedQuery(Blog.DELETE)
                 .setParameter("blog_id", blog_id)
-                .setParameter("user_id", user_id)
                 .executeUpdate();
     }
 
@@ -64,7 +61,6 @@ public class BlogRepositoryJpaImpl implements BlogRepository {
                 .setParameter("name", name)
                 .executeUpdate();
     }
-
 
     @Override
     public List<Blog> getAll() {

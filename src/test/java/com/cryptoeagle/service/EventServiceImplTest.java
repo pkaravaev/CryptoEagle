@@ -29,9 +29,6 @@ public class EventServiceImplTest extends AbstractTest {
 
     @Test
     public void update() {
-
-       //todo !!!!!
         eventService.update();
-
     }
 }

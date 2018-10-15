@@ -14,14 +14,11 @@ public interface IcoRepository {
 
     List<Ico> getFinished();
 
-
     Ico getById(int id);
 
     Ico getByName(String name);
 
-    List<Ico> getByNames(List<String> names);
-
     void delete(Ico ico);
+
     void save(Ico ico);
-    void save(List<Ico> icos);
 }

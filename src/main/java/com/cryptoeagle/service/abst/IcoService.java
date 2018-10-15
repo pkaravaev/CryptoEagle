@@ -22,6 +22,8 @@ public interface IcoService {
 
     void save(List<Ico> icos);
 
+    void save(Ico ico);
+
     void deletAll();
 
 }

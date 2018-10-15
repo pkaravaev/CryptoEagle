@@ -2,9 +2,12 @@ package com.cryptoeagle.service;
 
 import com.cryptoeagle.AbstractTest;
 import com.cryptoeagle.entity.Blog;
+import com.cryptoeagle.entity.User;
 import com.cryptoeagle.service.abst.BlogService;
+import com.cryptoeagle.service.abst.UserService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.test.context.support.WithUserDetails;
 
 import java.util.List;
 
@@ -13,14 +16,10 @@ import static org.junit.Assert.assertTrue;
 
 public class BlogServiceImplTest extends AbstractTest {
 
-    private static final int USER2_ID = 100092;
-
-    private static final int USER2_BLOG_COUNT = 3;
-
+    private static final int USER1_ID = 100089;
+    private static final int USER1_BLOG_COUNT = 4;
     private static final int BLOG_COUNT = 8;
-
     private static final int BLOG_ID = 100172;
-
     private static final String BLOG_NAME = "minergate";
 
     @Autowired
@@ -43,19 +42,29 @@ public class BlogServiceImplTest extends AbstractTest {
     @Test
     public void save() {
         Blog blog = new Blog("coingape", "https://coingape.com/feed/");
-        service.save(blog, USER2_ID);
+        service.save(blog);
         List<Blog> all = service.getAll();
         assertTrue(all.size() == BLOG_COUNT + 1);
     }
 
     @Test
     public void update() {
+
+        Blog blog = service.getByName(BLOG_NAME);
+        blog.setName("minergate");
+        blog.setUrl("https://www.newsbtc.com/feed/");
+        service.save(blog);
+
+        Blog blogUpdated = service.getByName(BLOG_NAME);
+
+        assertTrue(blogUpdated.getName().equals("minergate"));
+        assertTrue(blogUpdated.getUrl().equals("https://www.newsbtc.com/feed/"));
     }
 
     @Test
     public void findAllByUser() {
-        List<Blog> all = service.findAllByUser(USER2_ID);
-        assertTrue(all.size() == USER2_BLOG_COUNT);
+        List<Blog> all = service.findAllByUser(USER1_ID);
+        assertTrue(all.size() == USER1_BLOG_COUNT);
     }
 
     @Test
@@ -66,7 +75,7 @@ public class BlogServiceImplTest extends AbstractTest {
 
     @Test
     public void delete() {
-        service.delete(BLOG_ID, USER2_ID);
+        service.delete(BLOG_ID);
         List<Blog> all = service.getAll();
         assertTrue(all.size() == BLOG_COUNT - 1);
     }

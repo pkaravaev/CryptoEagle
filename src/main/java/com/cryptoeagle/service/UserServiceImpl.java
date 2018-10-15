@@ -39,12 +39,12 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public User get(int id) {
         log.info("get user id", id);
-        User user;
-        try {
-            user = repository.get(id);
-        } catch (Exception ex) {
-            throw new UserNotFoundException( ex.getMessage()  + " User id : " + id);
-        }
+//        User user;
+//        try {
+        User  user = repository.get(id);
+//        } catch (Exception ex) {
+//            throw new UserNotFoundException( ex.getMessage()  + " User id : " + id);
+//        }
 
         return user;
     }

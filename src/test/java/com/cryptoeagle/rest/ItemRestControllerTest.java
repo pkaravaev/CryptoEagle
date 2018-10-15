@@ -16,12 +16,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class ItemRestControllerTest extends AbstractWebController {
 
     private static final String PATH = "/api/";
-
     private static final String SOURCE = "/walletinvestor";
-
     private static final String FAKE_SOURCE = "/fake";
-
-
 
     @Test
     public void getItems() throws Exception {

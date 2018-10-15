@@ -34,7 +34,7 @@ public class BlogController {
 
     @RequestMapping("/blog/add")
     public String add(@ModelAttribute Blog blog, @AuthenticationPrincipal User user) {
-        blogService.save(blog, user.getId());
+        blogService.save(blog);
         return "redirect:/user-profile";
     }
 }

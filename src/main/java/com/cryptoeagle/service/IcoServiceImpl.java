@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -41,8 +42,15 @@ public class IcoServiceImpl implements IcoService {
     public void save(List<Ico> icos) {
         log.info("get all icos");
         for (Ico ico : icos) {
-            repository.save(ico);
+            save(ico);
         }
+    }
+
+    @Override
+    @Transactional
+    public void save(Ico ico) {
+        log.info("save ico ");
+        repository.save(ico);
     }
 
     @Override
@@ -101,6 +109,7 @@ public class IcoServiceImpl implements IcoService {
             throw new IcoNotFoundException(e.getMessage() + " Ico name : " + name);
         }
     }
+
 
     @Override
     @Transactional

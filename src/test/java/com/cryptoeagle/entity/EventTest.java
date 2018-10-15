@@ -22,17 +22,12 @@ public class EventTest {
 
     @Test
     public void diffNowBeetweenDataEventDay() {
-
-        //todo test
-
-//        assertTrue(EVENT.diffNowBeetweenDataEventDay() < 0);
+        int i = EVENT.diffNowBeetweenDataEventDay();
+        assertTrue(EVENT.diffNowBeetweenDataEventDay() == 0);
     }
 
     @Test
     public void diffNowBeetweenDataEventMinute() {
-
-        //todo test
-
-//        assertTrue(EVENT.diffNowBeetweenDataEventMinute() < 0);
+        assertTrue(EVENT.diffNowBeetweenDataEventMinute() == 0);
     }
 }

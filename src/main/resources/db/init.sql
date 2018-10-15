@@ -42,8 +42,9 @@ create table blog
   url     varchar(255) not null
     constraint uk_sbwxdwftwe78l1cqba42g73a7
     unique,
-  user_id integer      not null
-    constraint fksuo4b2bvbco37ao6ynjiovnqp
+  user_id integer
+--     not null
+--     constraint fksuo4b2bvbco37ao6ynjiovnqp
     references appuser
 );
 

@@ -21,11 +21,11 @@ public class UserRepositoryJpaImpl implements UserRepository {
 
     @Override
     public User saveAndUpdate(User user) {
+
         if (user.isNew()) {
             em.persist(user);
             return user;
         } else {
-
             User merge = em.merge(user);
             return em.merge(user);
         }
