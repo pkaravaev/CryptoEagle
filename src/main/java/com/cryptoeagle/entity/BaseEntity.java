@@ -30,7 +30,6 @@ public abstract class BaseEntity implements Serializable {
         return id == 0;
     }
 
-
     public BaseEntity() {
 
     }

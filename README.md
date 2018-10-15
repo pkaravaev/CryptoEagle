@@ -25,3 +25,49 @@ Project provide information of crypto world.
 * REST
 * JUnit, Hamcrest
 * SLF4J
+
+
+
+
+## REST endpoints
+#### Get all coins
+```
+GET /api/coins/
+```
+#### Get coins by name
+```
+GET /api/coins/${name}
+```
+
+#### Get all blogs
+```
+GET /api/blogs/
+```
+
+#### Get all events
+```
+GET /api/events/
+```
+
+#### Get get items
+```
+GET /api/items/
+```
+#### Get get items by source
+```
+GET /api/items/${source}
+```
+#### Get get all icos
+```
+GET /api/icos/
+```
+
+#### Get get  ico by name
+```
+GET /api/icos/${name}
+```
+
+#### Get get  icos by status active/upcoming/finished
+```
+GET /api/icos/${status}
+```

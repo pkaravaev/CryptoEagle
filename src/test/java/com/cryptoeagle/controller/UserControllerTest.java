@@ -126,15 +126,15 @@ public class UserControllerTest extends AbstractWebController {
         Assert.assertTrue(all.size() == USERS_COUNT - 1);
     }
 
-//    @Test(expected = UserAlreadyExistException.class)
-//    public void createUserAlreadyExist() throws Exception {
-//        mockMvc
-//                .perform(post("/register")
-//                        .param("name", "user3")
-//                        .param("email", "user3@mail.ru")
-//                        .param("password", "q1w2e3r4t5"));
-//
-//
-//    }
+    @Test
+    public void createUserAlreadyExist() throws Exception {
+        mockMvc
+                .perform(post("/register")
+                        .param("name", "user3")
+                        .param("email", "user3@mail.ru")
+                        .param("password", "q1w2e3r4t5"))
+                .andExpect(forwardedUrl("/WEB-INF/views/error-page.jsp"))
+                .andExpect(view().name("error-page"));
+    }
 
 }

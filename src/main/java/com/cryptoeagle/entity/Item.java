@@ -22,7 +22,7 @@ import java.util.Objects;
 
 @Getter
 @Setter
-public class Item extends BaseEntity implements EntityWithPic {
+public class Item extends BaseEntity {
 
     public final static String GET_ALL = "Item.GetAll";
     public final static String GET_BY_SOURCE = "Item.GetBySource";

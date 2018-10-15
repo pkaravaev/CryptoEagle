@@ -4,14 +4,12 @@
 
 <style>
 
-   .card-group {
-       /*column-count: 6;*/
+    .card-group {
+        /*column-count: 6;*/
 
-       column-count: 4;
+        column-count: 4;
 
-
-
-   }
+    }
 
     h4 {
         height: 5.2rem;
@@ -39,7 +37,7 @@
 
     <c:forEach items="${sources}" var="source">
         <li class="nav-item">
-            <button  id="buttonNews" value="${context}/news/${source.toString()}" type="button"
+            <button id="buttonNews" value="${context}/news/${source.toString()}" type="button"
                     class="btn btn-brown btn-rounded">${source.toString()}</button>
         </li>
     </c:forEach>
@@ -48,48 +46,50 @@
 
 <div class="container">
 
-        <br/>
-        <br/>
-        <div class="card-columns">
+    <br/>
+    <br/>
+    <div class="card-columns">
 
-            <c:forEach items="${items}" var="item" varStatus="i">
+        <jsp:useBean id="utils" class="com.cryptoeagle.Utils"/>
 
-                <div style="height: 20rem;width: 22rem" class="card hoverable">
+        <c:forEach items="${items}" var="item" varStatus="i">
 
-                    <img style="width: 22rem;height: 12rem" alt="Card  image cap" class="card-img-top img-fluid"
-                         src="${context}/resources/pic/m/m${item.getRandomPic(9)}.jpg">
+            <div style="height: 20rem;width: 22rem" class="card hoverable">
 
-                    <h6 class="card-title font-weight-bold ml-3 mt-2">${item.title}</h6>
+                <img style="width: 22rem;height: 12rem" alt="Card  image cap" class="card-img-top img-fluid"
+                     src="${context}/resources/pic/m/m${utils.getRandomPic(9)}.jpg">
 
-                    <div class="row">
-                        <div class="col">
-                            <p class="date text-left font-italic ml-3 ">by ${item.source}</p>
-                        </div>
-                        <div class="col">
-                            <c:choose>
-                                <c:when test="${item.diffHours() == 0}">
-                                    <p style="margin-right: 1rem"
-                                       class="date text-right font-italic">${ Math.abs(item.diffMinutes())} m
-                                        ago </p>
-                                </c:when>
-                                <c:otherwise>
-                                    <p style="margin-right: 1rem"
-                                       class="date text-right font-italic">${Math.abs(item.diffHours())} h ago </p>
-                                </c:otherwise>
-                            </c:choose>
-                        </div>
+                <h6 class="card-title font-weight-bold ml-3 mt-2">${item.title}</h6>
+
+                <div class="row">
+                    <div class="col">
+                        <p class="date text-left font-italic ml-3 ">by ${item.source}</p>
                     </div>
-
-                    <p class="description" hidden>${item.description}</p>
-                    <p class="href" hidden>${item.link}</p>
-
+                    <div class="col">
+                        <c:choose>
+                            <c:when test="${item.diffHours() == 0}">
+                                <p style="margin-right: 1rem"
+                                   class="date text-right font-italic">${ Math.abs(item.diffMinutes())} m
+                                    ago </p>
+                            </c:when>
+                            <c:otherwise>
+                                <p style="margin-right: 1rem"
+                                   class="date text-right font-italic">${Math.abs(item.diffHours())} h ago </p>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
                 </div>
 
-                <!--Panel-->
-            </c:forEach>
+                <p class="description" hidden>${item.description}</p>
+                <p class="href" hidden>${item.link}</p>
+
+            </div>
+
+            <!--Panel-->
+        </c:forEach>
 
 
-        </div>
+    </div>
 
 </div>
 

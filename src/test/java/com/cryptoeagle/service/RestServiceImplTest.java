@@ -18,19 +18,26 @@ import static org.junit.Assert.*;
 
 public class RestServiceImplTest extends AbstractTest {
 
+    private static final int EVENT_COUNT = 10;
+    private static final int TOKEN_OAUTH_LENGHT = 86;
+    private static final int MINIMAL_CHART_DATA = 5;
+    private static final int ICO_BY_PAGE_COUNT = 12;
+
+    private static final int COINS_SIZE = 50;
+
     @Autowired
     RestServiceImpl service;
 
     @Test
     public void getEvents() {
-        List<Event> events = service.getEvents(10);
-        assertTrue(events.size() == 10);
+        List<Event> events = service.getEvents(EVENT_COUNT);
+        assertTrue(events.size() == EVENT_COUNT);
     }
 
     @Test
     public void getTokenOAUTH() {
         String s = service.getTokenOAUTH();
-        assertTrue(86 == s.length());
+        assertTrue(s.length() == TOKEN_OAUTH_LENGHT);
     }
 
     @Test
@@ -42,11 +49,11 @@ public class RestServiceImplTest extends AbstractTest {
         List<Chart> IOTA = service.getChartCoin("IOTA");
         List<Chart> BNB = service.getChartCoin("BNB");
 
-        assertTrue(ETH.size() > 5);
-        assertTrue(ADA.size() > 5);
-        assertTrue(TRX.size() > 5);
-        assertTrue(IOTA.size() > 5);
-        assertTrue(BNB.size() > 5);
+        assertTrue(ETH.size() > MINIMAL_CHART_DATA);
+        assertTrue(ADA.size() > MINIMAL_CHART_DATA);
+        assertTrue(TRX.size() > MINIMAL_CHART_DATA);
+        assertTrue(IOTA.size() > MINIMAL_CHART_DATA);
+        assertTrue(BNB.size() > MINIMAL_CHART_DATA);
     }
 
     @Test
@@ -55,41 +62,40 @@ public class RestServiceImplTest extends AbstractTest {
         assertTrue(data != null);
     }
 
-//    @Test
-//    public void getIcoByPage() {
-//        List<Ico> icoByPage1 = service.getIcoByPage(1);
-//        List<Ico> icoByPage5 = service.getIcoByPage(5);
-//        List<Ico> icoByPage25 = service.getIcoByPage(25);
-//        assertTrue(icoByPage1.size() == 12);
-//        assertTrue(icoByPage5.size() == 12);
-//        assertTrue(icoByPage25.size() == 12);
-//    }
+    @Test
+    public void getIcoByPage() {
+        List<Ico> icoByPage1 = service.getIcoByPage(1);
+        List<Ico> icoByPage5 = service.getIcoByPage(5);
+        List<Ico> icoByPage25 = service.getIcoByPage(25);
+        assertTrue(icoByPage1.size() == ICO_BY_PAGE_COUNT);
+        assertTrue(icoByPage5.size() == ICO_BY_PAGE_COUNT);
+        assertTrue(icoByPage25.size() == ICO_BY_PAGE_COUNT);
+    }
 
     @Test
     public void getCoins() {
         List<Coin> coins = service.getCoins();
-        assertTrue(coins.size() > 50);
+        assertTrue(coins.size() > COINS_SIZE);
     }
 
-//    @Test
-//    public void getIcoWithDataByPage() {
-//        List<Ico> icos = null;
-//
-//        for (int i = 0; i < 3; i++) {
-//            icos = service.getIcoWithDataByPage(i);
-//        }
-//
-//        assertTrue(icos.size() > 5);
-//        assertTrue(icos.get(0) != null);
-//        assertTrue(icos.get(3) != null);
-//    }
+    @Test
+    public void getIcoWithDataByPage() {
+        List<Ico> icos = null;
+
+        for (int i = 0; i < 3; i++) {
+            icos = service.getIcoWithDataByPage(i);
+        }
+
+        assertTrue(icos.size() > 5);
+        assertTrue(icos.get(0) != null);
+        assertTrue(icos.get(3) != null);
+    }
 
     @Test
     public void getPicCoins() {
         List<PictureCoin> picCoins = service.getPicCoins();
         assertTrue(picCoins.size() > 100);
     }
-
 
 
 }

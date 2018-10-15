@@ -25,6 +25,8 @@ public class UserRepositoryJpaImpl implements UserRepository {
             em.persist(user);
             return user;
         } else {
+
+            User merge = em.merge(user);
             return em.merge(user);
         }
     }

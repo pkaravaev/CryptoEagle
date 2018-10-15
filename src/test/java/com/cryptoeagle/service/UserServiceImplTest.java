@@ -42,22 +42,20 @@ public class UserServiceImplTest extends AbstractTest {
         assertTrue(all.size() == USERS_COUNT + 1);
     }
 
-//    @Test
-//    public void update() {
-//        User user = new User(USER4_ID, "test_user", "test_email", "$2a$10$X37RA.JpHnr0YsiZuqsFJu3iUtbfyEj3LgP/hFctbeU6yBTVsj8Bu");
-//        //TODO not work!
-//        User userFromDb = service.get(USER4_ID);
-//        userFromDb.setName("test_name");
-//        userFromDb.setName("test_email");
-//        userFromDb.setName("$2a$10$X37RA.JpHnr0YsiZuqsFJu3iUtbfyEj3LgP/hFctbeU6yBTVsj8Bu");
-//        service.saveAndUpdate(user);
-//
-//        List<User> all = service.getAll();
-//        User userFromDbUpdated = service.get(USER4_ID);
-//        assertTrue(userFromDbUpdated.getEmail().equals("test_email"));
-//        assertTrue(userFromDbUpdated.getName().equals("test_user"));
-//        assertTrue(userFromDbUpdated.getPassword().equals("test_password"));
-//    }
+    @Test
+    public void update() {
+        User user = service.get(USER4_ID);
+
+        user.setName("test_name");
+        user.setEmail("test_email");
+        user.setPassword("test_password");
+        service.saveAndUpdate(user);
+
+        User userFromDbUpdated = service.get(USER4_ID);
+        assertTrue(userFromDbUpdated.getEmail().equals("test_email"));
+        assertTrue(userFromDbUpdated.getName().equals("test_name"));
+        assertTrue(userFromDbUpdated.getPassword().equals("test_password"));
+    }
 
     @Test
     public void getAll() {
@@ -90,6 +88,8 @@ public class UserServiceImplTest extends AbstractTest {
         assertTrue(user == null);
     }
 
+
+
     @Test
     public void getByName() {
         User user = service.getByName(USER2_NAME);
@@ -100,6 +100,8 @@ public class UserServiceImplTest extends AbstractTest {
     public void getByNameNotFound() {
         User user = service.getByName(ERROR_NAME);
     }
+
+
 
     @Test
     public void delete() {
@@ -115,6 +117,8 @@ public class UserServiceImplTest extends AbstractTest {
         assertTrue(all.size() == USERS_COUNT - 1);
     }
 
+
+
     @Test
     public void deleteByUser() {
         User user = service.getByName(USER2_NAME);
@@ -128,16 +132,5 @@ public class UserServiceImplTest extends AbstractTest {
         User user = new User();
         service.delete(user);
     }
-
-//    @Test
-//    public void loadUserByUsername() {
-//        UserDetails userDetails = service.loadUserByUsername(USER2_NAME);
-//        assertTrue(userDetails.getUsername().equals(USER2_NAME));
-//    }
-
-//    @Test(expected = UserNotFoundException.class)
-//    public void loadUserByUsernameNotFound() {
-//        UserDetails userDetails = service.loadUserByUsername(ERROR_NAME);
-//    }
 
 }

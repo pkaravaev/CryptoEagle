@@ -49,40 +49,25 @@ public class Ico extends BaseEntity {
     private IcoData data;
 
     public boolean isEnd() {
-        if (icoEnd != null)
-            return icoEnd.isBefore(LocalDateTime.now());
-        else
-            return false;
+        return icoEnd != null && icoEnd.isBefore(LocalDateTime.now());
     }
 
     public boolean isUpcoming() {
-        if (icoEnd != null)
-        return icoStart.isAfter(LocalDateTime.now());
-        else
-            return false;
+        return icoEnd != null && icoStart.isAfter(LocalDateTime.now());
     }
 
     public boolean isActive() {
-        if (icoEnd != null)
-        return icoStart.isBefore(LocalDateTime.now()) && icoEnd.isAfter(LocalDateTime.now());
-        else
-            return false;
+        return icoEnd != null && icoStart.isBefore(LocalDateTime.now()) && icoEnd.isAfter(LocalDateTime.now());
     }
 
     public String status() {
-
-        String result = null;
-
         if (isEnd())
-            result = "END";
-
+            return "END";
         if (isUpcoming())
-            result = "UPCOMING";
-
+            return "UPCOMING";
         if (isActive())
-            result = "ACTIVE";
-
-        return result;
+            return "ACTIVE";
+        return "no status";
     }
 
 
