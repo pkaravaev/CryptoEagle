@@ -37,24 +37,19 @@ public class ItemTest {
 
     @Test
     public void diffDays() {
-
         //todo test
-
         assertTrue(ITEM_1.diffDays() > 0);
     }
 
     @Test
     public void diffMinutes() {
         //todo test
-
         assertTrue(ITEM_1.diffMinutes() > 0);
     }
 
     @Test
     public void diffHours() {
         //todo test
-
         assertTrue(ITEM_1.diffHours() > 0);
-
     }
 }
