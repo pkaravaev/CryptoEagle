@@ -22,7 +22,6 @@ public class TestControllerTest extends AbstractWebController {
 
     @Test
     public void populateAll() throws Exception {
-
         mockMvc
                 .perform(get("/populate"))
                 .andExpect(status().isOk());
