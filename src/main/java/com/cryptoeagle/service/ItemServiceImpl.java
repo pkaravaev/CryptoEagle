@@ -48,10 +48,8 @@ public class ItemServiceImpl implements ItemService {
     public List<Item> getAll() {
         log.info("get all");
         List<Item> itemList = repository.getAll();
-        
         if (itemList == null)
             throw new ItemNotFoundException("get all not found");
-
         return itemList;
     }
 

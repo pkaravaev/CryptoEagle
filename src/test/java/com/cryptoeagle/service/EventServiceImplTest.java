@@ -15,6 +15,8 @@ public class EventServiceImplTest extends AbstractTest {
     @Autowired
     EventService eventService;
 
+
+
     @Test
     public void getEvents() {
         List<Event> events = eventService.getEvents(5);

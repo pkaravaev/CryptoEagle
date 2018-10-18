@@ -18,9 +18,7 @@ import static org.junit.Assert.*;
 public class IcoServiceImplTest extends AbstractTest {
 
     private static final int ICO_COUNT = 8;
-
     private static final int ICO_ID = 4634;
-
     private static final LocalDateTime LOCAL_DATE_TIME = LocalDateTime.of(2018, 10, 8, 10, 00, 00);
     private static final String ICO_NAME = "Zichain";
 
@@ -54,19 +52,14 @@ public class IcoServiceImplTest extends AbstractTest {
         assertTrue(all.size() == ICO_COUNT + 2);
     }
 
-
     @Test
     public void update() {
-
         Ico ico = service.getById(ICO_ID);
-
         ico.setName("test_ico");
         ico.setRating(999);
         ico.setDescription("test_dsecription");
         ico.setWebsite_link("test_link");
-
         service.save(ico);
-
         Ico icoUpdated = service.getById(ICO_ID);
 
         assertTrue(ico.getName().equals("test_ico"));
@@ -74,10 +67,7 @@ public class IcoServiceImplTest extends AbstractTest {
         assertTrue(ico.getDescription().equals("test_dsecription"));
         assertTrue(ico.getWebsite_link().equals("test_link"));
 
-
     }
-
-
 
     @Test
     public void getUpcoming() {
@@ -92,7 +82,6 @@ public class IcoServiceImplTest extends AbstractTest {
         service.deletAll();
         List<Ico> upcoming = service.getUpcoming();
     }
-
 
     @Test
     public void getActiveIco() {

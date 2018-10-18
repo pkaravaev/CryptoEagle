@@ -28,20 +28,11 @@ public class BlogServiceImpl implements BlogService {
     @Autowired
     UserService userService;
 
+
     @Autowired
     public BlogServiceImpl(RssService rssService, BlogRepository blogRepository) {
         this.rssService = rssService;
         this.blogRepository = blogRepository;
-    }
-
-    @Override
-    @Transactional
-    public void deleteAll() {
-        log.info("delete all");
-        List<Blog> all = getAll();
-        for (Blog blog : all) {
-            delete(blog);
-        }
     }
 
     @Override
@@ -50,52 +41,57 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public void deleteByName(String name) {
-        log.info("delete by name  blog : " + name);
-        blogRepository.deleteByName(name);
+    @Transactional
+    public void delete(int blog_id) {
+        log.info("delete blog : blog_id" + blog_id);
+        Blog blog = blogRepository.getById(blog_id);
+        User user = blog.getUser();
+        user.getBlogs().remove(blog);
+        delete(blog);
     }
 
     @Override
     @Transactional
-    public void save(Blog blog) {
-
-        log.info("save blog : " + blog.getId() );
-
-        List<Item> items = rssService.getItems(blog.getUrl(), blog.getName());
-        if (items == null) {
-
-            log.error("RssNewsNotFoundException : ");
-            throw new RssNewsNotFoundException(blog.getName());
-
-        } else
-            blog.setItems(items);
-        blogRepository.save(blog);
-
+    public void deleteByName(String name) {
+        log.info("delete by name  blog : " + name);
+        Blog blog = blogRepository.getByName(name);
+        User user = blog.getUser();
+        user.getBlogs().remove(blog);
+        delete(blog);
     }
 
     @Override
-    public void update(Blog blog) {
-        log.info("update blog");
-        blogRepository.save(blog);
+    @Transactional
+    public void save(Blog blog, User user) {
+        log.info("save blog : " + blog.getId());
+        List<Item> items = rssService.getItems(blog.getUrl(), blog.getName());
+        if (items == null) {
+            log.error("RssNewsNotFoundException : ");
+            throw new RssNewsNotFoundException(blog.getName());
+        } else
+            blog.setItems(items);
+
+        if (!user.isNew())
+            user = userService.get(user.getId());
+
+        blog.setUser(user);
+        user.getBlogs().add(blog);
+        userService.saveAndUpdate(user);
     }
 
     @Override
     public List<Blog> findAllByUser(int user_id) {
         log.info("get all blogs by user :" + user_id);
-        return blogRepository.getAllByUser(user_id);
+        User user = userService.get(user_id);
+        return user.getBlogs();
     }
 
     @Override
+    @Transactional
     public Blog getByName(String name) {
         log.info("get blog by name  :" + name);
-       Blog blog =   blogRepository.getByName(name);
+        Blog blog = blogRepository.getByName(name);
         return blogRepository.getByName(name);
-    }
-
-    @Override
-    public void delete(int blog_id) {
-        log.info("delete blog : blog_id" + blog_id );
-        blogRepository.delete(blog_id);
     }
 
     @Override

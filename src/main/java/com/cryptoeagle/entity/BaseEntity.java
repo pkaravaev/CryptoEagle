@@ -1,12 +1,14 @@
 package com.cryptoeagle.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 
 @MappedSuperclass
+@Data
 public abstract class BaseEntity implements Serializable {
 
     public static final int START_SEQ = 100000;
@@ -16,14 +18,6 @@ public abstract class BaseEntity implements Serializable {
             allocationSize = 1, initialValue = START_SEQ)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "global_seq")
     protected int id;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     @JsonIgnore
     public boolean isNew() {

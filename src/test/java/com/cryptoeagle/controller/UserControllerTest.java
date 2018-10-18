@@ -27,7 +27,6 @@ public class UserControllerTest extends AbstractWebController {
     private static final int USER2_ID = 100092;
     private static final int USERS_COUNT = 4;
 
-
     @Autowired
     UserService userService;
 
@@ -63,12 +62,23 @@ public class UserControllerTest extends AbstractWebController {
     public void deleteUsers() throws Exception {
         mockMvc
                 .perform(get("/users/delete/" + USER1_ID))
-                .andExpect(status().isOk())
-                .andExpect(view().name("admin-page"));
-
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/admin-page"));
         List<User> all = userService.getAll();
         Assert.assertTrue(all.size() == 3);
     }
+
+    @Test
+    @WithUserDetails("user2")
+    public void deleteUser() throws Exception {
+        mockMvc
+                .perform(get("/users/delete/" + USER1_ID))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/admin-page"));
+        List<User> all = userService.getAll();
+        Assert.assertTrue(all.size() == USERS_COUNT - 1);
+    }
+
 
     @Test
     @WithUserDetails("admin")
@@ -109,22 +119,12 @@ public class UserControllerTest extends AbstractWebController {
     public void deleteCurrentUser() throws Exception {
         mockMvc
                 .perform(get("/users/delete/" + USER2_ID))
-                .andExpect(status().isOk())
-                .andExpect(view().name("admin-page"));
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/admin-page"));
         List<User> all = userService.getAll();
         Assert.assertTrue(all.size() == USERS_COUNT);
     }
 
-    @Test
-    @WithUserDetails("user2")
-    public void deleteUser() throws Exception {
-        mockMvc
-                .perform(get("/users/delete/" + USER1_ID))
-                .andExpect(status().isOk())
-                .andExpect(view().name("admin-page"));
-        List<User> all = userService.getAll();
-        Assert.assertTrue(all.size() == USERS_COUNT - 1);
-    }
 
     @Test
     public void createUserAlreadyExist() throws Exception {

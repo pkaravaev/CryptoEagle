@@ -41,7 +41,7 @@ public class MainController {
     WhiteListService whiteListService;
 
     @RequestMapping(value = {"/", "/welcome"})
-    public String welcome(Model model, HttpServletRequest request) {
+    public String welcome(Model model) {
 
         List<Item> items = itemService.getAll().stream().limit(10).collect(Collectors.toList());
         List<Item> lowerItems = new ArrayList<>();
@@ -55,7 +55,7 @@ public class MainController {
         lowerItems.add(items.get(4));
         lowerItems.add(items.get(5));
 
-        List<Event> events = eventService.getEvents(5);
+        List<Event> events = eventService.getAll();
         List<Ico> icos = icoService.getActive().stream().limit(4).collect(Collectors.toList());
 
         model.addAttribute("topItem", topItem);

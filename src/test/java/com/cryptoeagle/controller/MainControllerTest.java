@@ -22,6 +22,10 @@ public class MainControllerTest extends AbstractWebController {
     private static final int ICO_COUNT = 3;
     private static final int BLOG_COUNT = 8;
 
+    private static final int EVENT_COUNT = 12;
+
+
+
     private static final int ITEM_COUNT = 7;
 
 
@@ -41,7 +45,7 @@ public class MainControllerTest extends AbstractWebController {
                                 hasProperty("rating")
                         )
                 )))
-                .andExpect(model().attribute("events", hasSize(5)))
+                .andExpect(model().attribute("events", hasSize(EVENT_COUNT)))
                 .andExpect(model().attribute("events", hasItem(
                         allOf(
                                 hasProperty("title"),
@@ -145,8 +149,8 @@ public class MainControllerTest extends AbstractWebController {
                         allOf(
                                 hasProperty("name"),
                                 hasProperty("url"),
-                                hasProperty("items"),
-                                hasProperty("user")
+                                hasProperty("items")
+
                         )
                 )))
                 .andExpect(view().name("blogs"));

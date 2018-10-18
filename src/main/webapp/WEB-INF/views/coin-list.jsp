@@ -11,10 +11,8 @@
        var ctx = "${context}";
 
        $(".coin").click(function () {
-
            var symbol = $(this).find("td")[1].innerText;
-           $(location).attr("href",ctx + "/coin-page/" + symbol);
-
+           document.location.href = ctx + "/coin-page/" + symbol;
        })
 
    });

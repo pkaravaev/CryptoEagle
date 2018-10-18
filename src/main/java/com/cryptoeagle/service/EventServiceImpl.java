@@ -41,7 +41,6 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-
     @Transactional
     public void update() {
         log.info("update events :" + LocalDateTime.now());

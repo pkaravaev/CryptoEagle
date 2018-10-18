@@ -6,26 +6,25 @@
 
     $(document).ready(function () {
 
+        $("button").click(function () {
+            var id = $(this).attr("value");
+            var ctx = "${context}";
+            window.location.href = ctx + "/users/delete/" + id;
+        });
+
 
     })
 
 </script>
 
-
 <br/>
-<div class="alert alert-primary" role="alert">
-    <p>${error}</p>
 
-</div>
 
 <div class="container">
 
-    <%--<c:if test="${error != null}" >--%>
-        <div class="alert alert-primary" role="alert">
-           <p>${test}</p>
 
-        </div>
-    <%--</c:if>--%>
+    <h3 class="font-weight-bold text-center">ALL USERS</h3>
+    <br/>
 
     <div class="row">
 
@@ -63,10 +62,9 @@
                                     </div>
 
                                     <div class="col">
-                                        <p id="userBlogs" class="text-center font-weight-bold">Blogs : ${user.blogs.size()}</p>
+                                        <p id="userBlogs" class="text-center font-weight-bold">Blogs
+                                            : ${user.blogs.size()}</p>
                                     </div>
-
-
 
                                 </div>
                             </div>
@@ -76,16 +74,17 @@
                     </div>
 
                     <div class="col-1 mt-2">
-                        <div>
-                            <button id="userDelete" type="button-right"  class="btn btn-brown">Delete</button>
-                        </div>
-                    </div>
 
+                        <div>
+                            <button type="button-right" value=${user.id} class="btn btn-brown
+                            ">Delete</button>
+                        </div>
+
+                    </div>
 
                 </div>
 
                 <br/>
-
 
             </c:forEach>
 
@@ -94,7 +93,6 @@
         </div>
 
     </div>
-
 
 </div>
 

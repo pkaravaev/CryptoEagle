@@ -75,6 +75,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
+    @Transactional
     public void delete(int id) {
         log.info("delete user by id : " + id);
         try {
@@ -85,6 +86,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
+    @Transactional
     public void delete(User user) {
         log.info("delete user");
         try {

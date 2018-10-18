@@ -50,6 +50,7 @@ public class Item extends BaseEntity {
     public Item() {
     }
 
+
     public int diffDays() {
         return Math.abs(LocalDateTime.now().getDayOfMonth() - publishDate.getDayOfMonth());
     }

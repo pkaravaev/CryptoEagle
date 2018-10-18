@@ -66,13 +66,8 @@ INSERT INTO public.whitelist (id, category, logo, name, status) VALUES (100085, 
 INSERT INTO public.role (role, id) VALUES ('ADMIN', 100087);
 INSERT INTO public.role (role, id) VALUES ('USER', 100088);
 INSERT INTO public.role (role, id) VALUES ('USER', 100090);
-INSERT INTO public.role (role, id) VALUES ('ADMIN', 100091);
 INSERT INTO public.role (role, id) VALUES ('USER', 100093);
-INSERT INTO public.role (role, id) VALUES ('ADMIN', 100094);
-INSERT INTO public.role (role, id) VALUES ('ADMIN', 100096);
 INSERT INTO public.role (role, id) VALUES ('USER', 100097);
-
-
 
 
 INSERT INTO public.appuser (id, email, name, password) VALUES (100086, 'admin@mail.ru', 'admin', '$2a$10$HrDBNlpMa7vZDgrUOXYPp.RyKwIcHvc0pHCqboVdvx4Y2.59Pg2cq');
@@ -83,13 +78,8 @@ INSERT INTO public.appuser (id, email, name, password) VALUES (100095, 'user3@ma
 INSERT INTO public.appuser_role (user_id, roles_role, roles_id) VALUES (100086, 'ADMIN', 100087);
 INSERT INTO public.appuser_role (user_id, roles_role, roles_id) VALUES (100086, 'USER', 100088);
 INSERT INTO public.appuser_role (user_id, roles_role, roles_id) VALUES (100089, 'USER', 100090);
-INSERT INTO public.appuser_role (user_id, roles_role, roles_id) VALUES (100089, 'ADMIN', 100091);
 INSERT INTO public.appuser_role (user_id, roles_role, roles_id) VALUES (100092, 'USER', 100093);
-INSERT INTO public.appuser_role (user_id, roles_role, roles_id) VALUES (100092, 'ADMIN', 100094);
-INSERT INTO public.appuser_role (user_id, roles_role, roles_id) VALUES (100095, 'ADMIN', 100096);
 INSERT INTO public.appuser_role (user_id, roles_role, roles_id) VALUES (100095, 'USER', 100097);
-
-
 
 INSERT INTO public.blog (id, name, url, user_id) VALUES (100098, 'cointelegraph', 'https://cointelegraph.com/rss', 100089);
 INSERT INTO public.blog (id, name, url, user_id) VALUES (100129, 'coindesk', 'https://www.coindesk.com/feed/', 100089);
@@ -99,6 +89,17 @@ INSERT INTO public.blog (id, name, url, user_id) VALUES (100172, 'cryptoninjas',
 INSERT INTO public.blog (id, name, url, user_id) VALUES (100183, 'walletinvestor', 'https://walletinvestor.com/blog/feed/', 100092);
 INSERT INTO public.blog (id, name, url, user_id) VALUES (100194, 'reddit', 'https://www.reddit.com/r/CryptoCurrency/top/.rss?format=xml', 100092);
 INSERT INTO public.blog (id, name, url, user_id) VALUES (100195, 'cryptopotato', 'https://cryptopotato.com/feed', 100095);
+
+
+INSERT INTO public.appuser_blog (user_id, blogs_id) VALUES (100089 , 100098);
+INSERT INTO public.appuser_blog (user_id, blogs_id) VALUES (100089 , 100129);
+INSERT INTO public.appuser_blog (user_id, blogs_id) VALUES (100089 , 100150);
+INSERT INTO public.appuser_blog (user_id, blogs_id) VALUES (100089 , 100161);
+INSERT INTO public.appuser_blog (user_id, blogs_id) VALUES (100092 , 100172);
+INSERT INTO public.appuser_blog (user_id, blogs_id) VALUES (100092 , 100183);
+INSERT INTO public.appuser_blog (user_id, blogs_id) VALUES (100092 , 100194);
+INSERT INTO public.appuser_blog (user_id, blogs_id) VALUES (100095 , 100195);
+
 
 
 INSERT INTO public.item (id, description, link, publishdate, source, title) VALUES (100099, 'Today will see TRON’s new update go live and launch smart contracts to compete with Ethereum, CEO announces', 'https://cointelegraph.com/news/tron-ceo-claims-todays-update-will-make-it-200x-faster-than-ethereum', '2018-10-08 17:30:00.000000', 'cointelegraph', 'TRON CEO Claims Today’s Update Will Make It ‘200x Faster’ Than Ethereum');
@@ -201,8 +202,6 @@ INSERT INTO public.item (id, description, link, publishdate, source, title) VALU
 INSERT INTO public.item (id, description, link, publishdate, source, title) VALUES (100203, 'The long-term consolidation of Bitcoin from the past weeks is coming to an end soon? Two significant signs indicate on a coming up movement: Bollinger', 'https://cryptopotato.com/bitcoin-price-analysis-oct-7-a-possible-move-ahead/', '2018-10-07 09:28:25.000000', 'cryptopotato', 'Bitcoin Price Analysis Oct.7: A possible move ahead?');
 INSERT INTO public.item (id, description, link, publishdate, source, title) VALUES (100204, 'The crypto space has seen dozens of projects lose close to 90% of their value. Some coins have not only maintained a stable price but have even flouri', 'https://cryptopotato.com/dogecoins-recent-160-gain-why-and-whats-the-relation-to-altcoin-seasons/', '2018-10-05 19:00:35.000000', 'cryptopotato', 'Dogecoin’s Recent 160% Gain: Why? and What’s the Relation to Altcoin Seasons?');
 INSERT INTO public.item (id, description, link, publishdate, source, title) VALUES (100205, 'A relatively quiet period in the crypto markets has continued with most of the top coins seeing only little gains and losses over the last trading ses', 'https://cryptopotato.com/market-watch-oct-5-market-is-standing-still/', '2018-10-05 16:02:02.000000', 'cryptopotato', 'Market Watch Oct.5: Market is Standing Still');
-
-
 
 
 

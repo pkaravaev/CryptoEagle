@@ -10,11 +10,13 @@ public interface UserService {
 
     void saveAndUpdate(User user);
 
+
     User get(int id);
 
     User getByEmail(String email);
 
     User getByName(String name);
+
 
     void delete(int id);
 

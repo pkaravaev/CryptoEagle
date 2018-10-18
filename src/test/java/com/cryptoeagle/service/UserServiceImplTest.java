@@ -1,6 +1,5 @@
 package com.cryptoeagle.service;
 
-
 import com.cryptoeagle.AbstractTest;
 import com.cryptoeagle.entity.User;
 import com.cryptoeagle.exception.UserNotFoundException;
@@ -30,7 +29,6 @@ public class UserServiceImplTest extends AbstractTest {
     private static final String USER3_EMAIL = "user3@mail.ru";
     private static final String ERROR_EMAIL = "xxxx@mail.ru";
     private static final int ERROR_ID = 4353563;
-
 
     @Autowired
     UserService service;
@@ -72,7 +70,6 @@ public class UserServiceImplTest extends AbstractTest {
         assertTrue(user.getEmail().equals("user1@mail.ru"));
     }
 
-
     @Test(expected = NoResultException.class)
     public void getNotFound() {
         User user = service.get(ERROR_ID);
@@ -96,12 +93,10 @@ public class UserServiceImplTest extends AbstractTest {
         assertEquals(user.getName(), USER2_NAME);
     }
 
-
     @Test(expected = UserNotFoundException.class)
     public void getByNameNotFound() {
         User user = service.getByName(ERROR_NAME);
     }
-
 
     @Test
     public void delete() {
@@ -116,7 +111,6 @@ public class UserServiceImplTest extends AbstractTest {
         List<User> all = service.getAll();
         assertTrue(all.size() == USERS_COUNT - 1);
     }
-
 
     @Test
     public void deleteByUser() {

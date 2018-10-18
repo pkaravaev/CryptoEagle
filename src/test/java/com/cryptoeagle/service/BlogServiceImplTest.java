@@ -13,7 +13,6 @@ import java.util.List;
 
 import static org.junit.Assert.assertTrue;
 
-
 public class BlogServiceImplTest extends AbstractTest {
 
     private static final int USER1_ID = 100089;
@@ -26,13 +25,6 @@ public class BlogServiceImplTest extends AbstractTest {
     BlogService service;
 
     @Test
-    public void deleteAll() {
-        service.deleteAll();
-        List<Blog> all = service.getAll();
-        assertTrue(all.size() == 0);
-    }
-
-    @Test
     public void deleteByName() {
         service.deleteByName(BLOG_NAME);
         List<Blog> all = service.getAll();
@@ -42,24 +34,16 @@ public class BlogServiceImplTest extends AbstractTest {
     @Test
     public void save() {
         Blog blog = new Blog("coingape", "https://coingape.com/feed/");
-        service.save(blog);
+        User user = new User();
+        user.setName("test_user");
+        user.setPassword("test_password");
+        user.setEmail("test_email");
+        service.save(blog, user);
+
         List<Blog> all = service.getAll();
         assertTrue(all.size() == BLOG_COUNT + 1);
     }
 
-    @Test
-    public void update() {
-
-        Blog blog = service.getByName(BLOG_NAME);
-        blog.setName("minergate");
-        blog.setUrl("https://www.newsbtc.com/feed/");
-        service.save(blog);
-
-        Blog blogUpdated = service.getByName(BLOG_NAME);
-
-        assertTrue(blogUpdated.getName().equals("minergate"));
-        assertTrue(blogUpdated.getUrl().equals("https://www.newsbtc.com/feed/"));
-    }
 
     @Test
     public void findAllByUser() {
@@ -86,8 +70,11 @@ public class BlogServiceImplTest extends AbstractTest {
         assertTrue(all.size() == BLOG_COUNT);
     }
 
+
 //    @Test
 //    public void updateFromRss() {
 //        service.update();
 //    }
+
+
 }

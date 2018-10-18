@@ -24,9 +24,7 @@ public class WhiteListServiceImpl implements WhiteListService {
     WhiteListRepository repository;
 
     List<WhiteList> parseFromWeb() throws IOException {
-
         log.info("parse from web");
-
         List<WhiteList> whiteLists = new ArrayList<>();
         Document document = Jsoup.connect("https://icodrops.com/whitelist/").get();
         Iterator<Element> iterator = document.select("div.whtico-row").iterator();
@@ -34,6 +32,7 @@ public class WhiteListServiceImpl implements WhiteListService {
         while (iterator.hasNext()) {
             whiteLists.add(convertElementToWhitelist(iterator.next()));
         }
+
         return whiteLists;
     }
 
@@ -63,13 +62,11 @@ public class WhiteListServiceImpl implements WhiteListService {
         String logo = element.select("div.whtico-row").first().select("div.white_ico-icon").get(0).childNode(1).childNode(1).attr("data-src").toString();
 
         WhiteList whiteList = new WhiteList();
-
         whiteList.setStatus(status.replaceAll("\n", ""));
         whiteList.setName(name);
         whiteList.setLogo(logo);
         whiteList.setCategory(category);
 
         return whiteList;
-
     }
 }

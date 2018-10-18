@@ -12,11 +12,9 @@ import javax.persistence.EntityNotFoundException;
 @ControllerAdvice
 public class ExceptionController {
 
-
     @ExceptionHandler(Exception.class)
-    public String userNotFound(Exception e, Model model) {
+    public String allErrors(Exception e, Model model) {
         model.addAttribute("error", e.getMessage());
         return "error-page";
     }
-
 }

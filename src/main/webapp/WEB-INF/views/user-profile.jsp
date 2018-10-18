@@ -30,8 +30,6 @@
                 url: ctx + "/blog/add",
                 type: 'GET',
                 data: {name: blogName, url: blogUrl},
-                success: function () {
-                }
             })
             window.location.href = ctx + "/user-profile";
         })
@@ -41,7 +39,6 @@
 
 
 <br/>
-
 
 <div class="container">
 
@@ -87,9 +84,6 @@
                         </div>
 
                     </div>
-                    <%--<div class="modal-footer d-flex justify-content-center">--%>
-                    <%--<button id="blogButton" class="btn btn-brown">Save</button>--%>
-                    <%--</div>--%>
                     <div class="text-center">
                         <button type="submit"
                                 class="btn  btn-brown ">Save
@@ -97,7 +91,6 @@
                     </div>
 
                 </form:form>
-
 
             </div>
         </div>
@@ -129,15 +122,14 @@
 
                         </div>
                     </div>
-
                 </div>
-
             </div>
 
             <div class="col-1 mt-2">
                 <div>
-                    <button id="blogDelete" type="button-right" class="btn btn-brown">Delete</button>
+                    <button id="blogDelete" type="button-right" class="btn btn-brown" >Delete</button>
                 </div>
+
             </div>
 
         </div>

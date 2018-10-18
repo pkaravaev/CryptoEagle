@@ -38,11 +38,12 @@ public class UserController {
     @Autowired
     PasswordEncoder passwordEncoder;
 
+
     @RequestMapping("/user-profile")
     public String userProfile(@AuthenticationPrincipal User user, Model model) {
-        List<Blog> blogs = blogService.findAllByUser(user.getId());
-        model.addAttribute("blogs", blogs);
-        model.addAttribute("name", user.getUsername());
+        User userFromDb = userService.get(user.getId());
+        model.addAttribute("blogs", userFromDb.getBlogs());
+        model.addAttribute("name", userFromDb.getUsername());
         return "user-profile";
     }
 
@@ -56,17 +57,14 @@ public class UserController {
     @RequestMapping("/users/delete/{id}")
     public String deleteUser(@AuthenticationPrincipal User user, @PathVariable int id, Model model) {
         if (user.getId() == id) {
-            model.addAttribute("error", "This is current user!!");
-            return "admin-page";
+            return "redirect:/admin-page";
         }
         userService.delete(id);
-        model.addAttribute("success", "Success!!");
-        return "admin-page";
+        return "redirect:/admin-page";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String createUser(@ModelAttribute @Valid User user, BindingResult bindingResult) {
-
         if (bindingResult.hasErrors())
             throw new UserValidationException(bindingResult.getFieldError().getDefaultMessage());
         User userByEmail = userService.getByEmail(user.getEmail());

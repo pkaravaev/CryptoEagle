@@ -50,7 +50,7 @@ public class Utils {
     }
 
 
-    public int getRandomPic(int maxnumber){
+    public static int getRandomPic(int maxnumber){
         return new Random().nextInt(maxnumber);
     }
 }

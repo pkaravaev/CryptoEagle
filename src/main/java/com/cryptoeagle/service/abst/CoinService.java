@@ -10,9 +10,12 @@ public interface CoinService {
 
     Coin getBySymbol(String symbol);
 
+
     void updateCoins();
 
     boolean isAvailable(String symbol);
+
+
 
     List<Coin> getAllCoins();
 

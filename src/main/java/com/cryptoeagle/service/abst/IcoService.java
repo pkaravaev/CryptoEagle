@@ -14,11 +14,16 @@ public interface IcoService {
 
     List<Ico> getAll();
 
+
+
     Ico getById(int id);
 
     Ico getByName(String name);
 
+
+
     void update();
+
 
     void save(List<Ico> icos);
 

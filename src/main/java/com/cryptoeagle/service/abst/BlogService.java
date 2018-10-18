@@ -2,14 +2,15 @@ package com.cryptoeagle.service.abst;
 
 import com.cryptoeagle.entity.Blog;
 import com.cryptoeagle.entity.Item;
+import com.cryptoeagle.entity.User;
 
 import java.util.List;
 
 public interface BlogService {
 
-    void save(Blog blog);
+    void save(Blog blog, User user);
 
-    void update(Blog blog);
+
 
     void delete(int blog_int);
 
@@ -17,11 +18,13 @@ public interface BlogService {
 
     void deleteByName(String name);
 
-    void deleteAll();
+
 
     List<Blog> findAllByUser(int user_id);
 
     List<Blog> getAll();
+
+
 
     Blog getByName(String name);
 

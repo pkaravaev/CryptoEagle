@@ -23,7 +23,6 @@
             }
         );
 
-
         //get loose coins by ajax
         $.get(
            "${context}" + "/ajax/loosercoins",
@@ -240,6 +239,9 @@
 
 <br/>
 
+<jsp:useBean id="utils" class="com.cryptoeagle.Utils"/>
+
+
 <%--items--%>
 <div class="container">
 
@@ -252,7 +254,7 @@
             <div style="height: 18rem" class="card hoverable">
 
                 <img style="height: 13rem" alt="Card image cap" class="card-img-top img-fluid"
-                     src="${context}/resources/pic/l/l${topItem.getRandomPic(5)}.jpg">
+                     src="${context}/resources/pic/l/l${utils.getRandomPic(5)}.jpg">
 
                 <h6 style="margin-left: 1rem" class="card-title font-weight-bold mt-1 ">${topItem.title}</h6>
 
@@ -356,6 +358,7 @@
 
 </div>
 
+
 <%--items--%>
 <div class="container">
     <div class="row">
@@ -405,6 +408,7 @@
         </div>
     </div>
 </div>
+
 
 <%--ICO--%>
 <div class="container">
@@ -467,6 +471,7 @@
         </c:forEach>
     </div>
 </div>
+
 
 <%--upcoming events--%>
 <div class="container">

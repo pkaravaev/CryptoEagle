@@ -29,7 +29,13 @@ import static com.cryptoeagle.entity.BaseEntity.START_SEQ;
 @Table(name = "appuser")
 @Getter
 @Setter
-public class User extends BaseEntity implements UserDetails {
+public class User  implements UserDetails {
+
+    @Id
+    @SequenceGenerator(name = "global_seq", sequenceName = "global_seq",
+            allocationSize = 1, initialValue = START_SEQ)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "global_seq")
+    protected int id;
 
 
     public static final String DELETE = "User.delete";
@@ -48,12 +54,14 @@ public class User extends BaseEntity implements UserDetails {
     @Length(min = 7)
     private String password;
 
+
     @OneToMany(cascade = CascadeType.ALL)
     Collection<Role> roles = new HashSet<>();
 
-
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Blog> blogs = new ArrayList<>();
+
+
 
     public User(String name, String email, String password) {
         this.name = name;
@@ -62,6 +70,14 @@ public class User extends BaseEntity implements UserDetails {
     }
 
     public User() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int user_id) {
+        this.id = user_id;
     }
 
     @Override
@@ -97,6 +113,11 @@ public class User extends BaseEntity implements UserDetails {
     @Override
     public String getPassword() {
         return password;
+    }
+
+    @JsonIgnore
+    public boolean isNew() {
+        return id == 0;
     }
 
 }

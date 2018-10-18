@@ -14,7 +14,9 @@ public interface RestService {
 
     List<Chart> getChartCoin(String symbol);
 
+
     List<Coin> getCoins();
+
 
     List<Ico> getIcoByPage(int page);
 

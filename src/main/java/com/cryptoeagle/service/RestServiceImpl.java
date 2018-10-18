@@ -124,6 +124,9 @@ public class RestServiceImpl implements RestService {
         return icosWithdata;
     }
 
+
+
+
     public List<Event> getEvents(int count) {
         log.info("get events : " + count);
 
@@ -191,9 +194,7 @@ public class RestServiceImpl implements RestService {
     }
 
     public List<PictureCoin> getPicCoins() {
-
         log.info("get pic coins");
-
         List<PictureCoin> coins = new ArrayList<>();
         ObjectMapper objectMapper = new ObjectMapper();
         Client client = ClientBuilder.newClient();
@@ -208,12 +209,10 @@ public class RestServiceImpl implements RestService {
         } catch (IOException e) {
             log.error(e.getCause().getMessage());
         }
-
         JsonNode data1 = node.get("Data");
         Iterator<JsonNode> iterator = data1.iterator();
 
         while (iterator.hasNext()) {
-
             try {
                 JsonNode next = iterator.next();
                 String imageUrl = next.get("ImageUrl").toString();
@@ -222,12 +221,10 @@ public class RestServiceImpl implements RestService {
                 c.setLink("https://www.cryptocompare.com" + imageUrl.substring(1, imageUrl.length() - 1));
                 c.setSymbol(symbol.substring(1, symbol.length() - 1));
                 coins.add(c);
-
             } catch (Exception e) {
                 log.error(e.getMessage());
             }
         }
-
 
         return coins;
     }
@@ -258,7 +255,7 @@ public class RestServiceImpl implements RestService {
     }
 
 
-    private static Chart converter(Candlestick candlestick) {
+    private Chart converter(Candlestick candlestick) {
         log.info("chart converter");
         Chart chart = new Chart();
 
@@ -277,7 +274,6 @@ public class RestServiceImpl implements RestService {
         return chart;
 
     }
-
 
     private Coin convertJsonToCoin(JsonNode jsonNode) {
         log.info("convert coin");
@@ -513,6 +509,8 @@ public class RestServiceImpl implements RestService {
         }
         return idata;
     }
+
+
 
 
 
