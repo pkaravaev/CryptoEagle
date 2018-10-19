@@ -113,7 +113,7 @@ public class IcoServiceImpl implements IcoService {
     @Transactional
     public void update() {
         deletAll();
-        for (int i = 1; i < 2; i++) {
+        for (int i = 1; i < 10; i++) {
             List<Ico> page = service.getIcoWithDataByPage(i);
             save(page);
         }

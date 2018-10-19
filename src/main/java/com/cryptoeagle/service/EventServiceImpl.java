@@ -45,7 +45,7 @@ public class EventServiceImpl implements EventService {
     public void update() {
         log.info("update events :" + LocalDateTime.now());
         repository.deleteAll();
-        List<Event> events = restService.getEvents(5);
+        List<Event> events = restService.getEvents(15);
         repository.saveAll(events);
     }
 }
