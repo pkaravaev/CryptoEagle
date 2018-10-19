@@ -43,7 +43,6 @@ public class AjaxControllerTest extends AbstractWebController {
         testCoins(AJAX_PATH + "topcoins", COINS_COUNT);
     }
 
-
     private void testCoins(String path, int count) throws Exception {
 
         mockMvc
@@ -64,4 +63,6 @@ public class AjaxControllerTest extends AbstractWebController {
                 .andExpect(jsonPath("$[0].percent_change_24h", notNullValue()))
                 .andExpect(jsonPath("$[0].dataAvailable", notNullValue()));
     }
+
+
 }

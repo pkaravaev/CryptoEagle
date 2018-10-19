@@ -18,6 +18,7 @@ public class BlogControllerTest extends AbstractWebController {
 
     private static final  int BLOG_COUNT = 8;
 
+
     @Autowired
     BlogService blogService;
 

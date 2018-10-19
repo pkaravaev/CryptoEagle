@@ -46,7 +46,6 @@ public class IcoServiceImpl implements IcoService {
         }
     }
 
-
     @Override
     @Transactional
     public void save(Ico ico) {
@@ -118,7 +117,6 @@ public class IcoServiceImpl implements IcoService {
             List<Ico> page = service.getIcoWithDataByPage(i);
             save(page);
         }
-
     }
 
     @Override

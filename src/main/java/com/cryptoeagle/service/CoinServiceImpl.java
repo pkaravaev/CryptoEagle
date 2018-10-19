@@ -107,11 +107,9 @@ public class CoinServiceImpl implements CoinService {
         System.out.println("delet all");
 
         deleteAll();
-
         List<Coin> allCoinsFromProvider = restService.getCoins();
         allCoinsFromProvider.stream().forEach(e -> e.setDataAvailable(isAvailable(e.getSymbol())));
 //        List<Coin> collect = allCoinsFromProvider.stream().limit(10).collect(Collectors.toList());
-
         save(allCoinsFromProvider);
     }
 

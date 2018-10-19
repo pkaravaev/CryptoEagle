@@ -8,6 +8,8 @@ public class RoleTest {
 
     private static  Role ROLE = new Role("USER");
 
+
+
     @Test
     public void getAuthority() {
         String authority = ROLE.getAuthority();

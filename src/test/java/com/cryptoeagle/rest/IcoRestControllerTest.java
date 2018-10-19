@@ -26,7 +26,6 @@ public class IcoRestControllerTest extends AbstractWebController {
     private static final String ICO_NAME = "Virtual Rehab";
     private static final String ICO_FAKE = "fake";
 
-
     @Test
     public void retrieveAllIcos() throws Exception {
         testIco(PATH + ICO_ALL, 8);

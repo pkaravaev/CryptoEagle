@@ -13,7 +13,6 @@ public class TestControllerTest extends AbstractWebController {
 
     @Test
     public void test1() throws Exception {
-
         mockMvc
                 .perform(get("/test"))
                 .andExpect(status().isOk())
@@ -23,8 +22,7 @@ public class TestControllerTest extends AbstractWebController {
     @Test
     public void populateAll() throws Exception {
         mockMvc
-                .perform(get("/populate"))
-                .andExpect(status().is3xxRedirection());
-    }
+                .perform(get("/populate"));
 
+    }
 }

@@ -16,6 +16,8 @@ public class WhiteListServiceImplTest extends AbstractTest {
     @Autowired
     WhiteListService service;
 
+
+
     @Test
     public void getWhiteList() {
         List<WhiteList> whiteLists = service.getWhiteList();
@@ -35,6 +37,7 @@ public class WhiteListServiceImplTest extends AbstractTest {
     @Test
     public void update() {
         service.updateWhitelist();
+
     }
 
 }

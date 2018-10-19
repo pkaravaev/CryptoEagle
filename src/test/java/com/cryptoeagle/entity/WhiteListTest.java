@@ -12,7 +12,6 @@ public class WhiteListTest {
     private static final WhiteList WHITELIST1 = new WhiteList();
     private static final WhiteList WHITELIST2 = new WhiteList();
 
-
     static {
 
         WHITELIST1.setName(LONG_NAME);
@@ -25,7 +24,6 @@ public class WhiteListTest {
         WHITELIST2.setCategory("test_category");
         WHITELIST2.setLogo("testlogo");
     }
-
 
     @Test
     public void compareTo() {

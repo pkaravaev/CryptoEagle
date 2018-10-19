@@ -75,6 +75,7 @@ public class CoinServiceImplTest extends AbstractTest {
     @Test
     public  void deleteAll(){
 
-       service.deleteAll();
+        service.deleteAll();
     }
+
 }

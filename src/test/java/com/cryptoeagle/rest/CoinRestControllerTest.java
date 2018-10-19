@@ -21,8 +21,6 @@ public class CoinRestControllerTest extends AbstractWebController {
 
     private static final String FAKE_SYMBOL = "FAKE";
 
-
-
     @Test
     public void retrieveAllCoins() throws Exception {
 
