@@ -6,14 +6,20 @@ import java.util.List;
 
 public interface CoinRepository {
 
-
     Coin getBySymbol(String symbol);
 
     List<Coin> getBySymbols(List<String> symbols);
 
-    void saveCoins(List<Coin> list);
+
+
+
+    void save(Coin coin);
 
     void deleteAll();
+
+    void delete(Coin coin);
+
+
 
     List<Coin> getAllCoins();
 

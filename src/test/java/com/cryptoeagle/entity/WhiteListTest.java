@@ -20,21 +20,16 @@ public class WhiteListTest {
         WHITELIST1.setCategory("test_category");
         WHITELIST1.setLogo("testlogo");
 
-
         WHITELIST2.setName(SHORT_NAME);
         WHITELIST2.setStatus("active");
         WHITELIST2.setCategory("test_category");
         WHITELIST2.setLogo("testlogo");
-
     }
 
 
     @Test
     public void compareTo() {
-
         int i = WHITELIST1.compareTo(WHITELIST2);
-
         assertTrue(i > 0);
-
     }
 }

@@ -225,7 +225,6 @@ function hexDouble(num) {
   return (str.length < 2) ? "0" + str : str;
 }
 
-
 //create a list of reverse color names
 var reverseNames = {};
 for (var name in colorNames) {
@@ -776,7 +775,6 @@ module.exports = {
   lch2xyz: lch2xyz,
   lch2rgb: lch2rgb
 }
-
 
 function rgb2hsl(rgb) {
   var r = rgb[0]/255,

@@ -8,7 +8,10 @@ import com.cryptoeagle.service.abst.CoinService;
 import com.cryptoeagle.service.abst.RestService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -18,6 +21,7 @@ import java.util.stream.Collectors;
 
 @Service
 @Slf4j
+@EnableScheduling
 public class CoinServiceImpl implements CoinService {
 
     CoinRepository repository;
@@ -67,20 +71,48 @@ public class CoinServiceImpl implements CoinService {
     public Coin getBySymbol(String symbol) {
         log.info("get  coin  : " + symbol);
         try {
-            return  repository.getBySymbol(symbol);
+            return repository.getBySymbol(symbol);
         } catch (Exception e) {
             throw new CoinNotFoundException(e.getMessage() + "Coin symbol :" + symbol);
         }
     }
 
+
     @Override
+    @Transactional
+    public void deleteAll() {
+        repository.deleteAll();
+    }
+
+    @Override
+    public void save(List<Coin> coins) {
+        log.info("save coins");
+        for (Coin coin : coins) {
+            save(coin);
+        }
+    }
+
+    @Override
+    public void save(Coin coin) {
+        log.info("save coin");
+        repository.save(coin);
+
+    }
+
+    @Override
+//    @Scheduled(fixedRate = 50000)
+    @Transactional
     public void updateCoins() {
         log.info("update coins :" + LocalDateTime.now().toString());
-        repository.deleteAll();
+        System.out.println("delet all");
+
+        deleteAll();
+
         List<Coin> allCoinsFromProvider = restService.getCoins();
         allCoinsFromProvider.stream().forEach(e -> e.setDataAvailable(isAvailable(e.getSymbol())));
-        List<Coin> collect = allCoinsFromProvider.stream().limit(10).collect(Collectors.toList());
-        repository.saveCoins(collect);
+//        List<Coin> collect = allCoinsFromProvider.stream().limit(10).collect(Collectors.toList());
+
+        save(allCoinsFromProvider);
     }
 
 }

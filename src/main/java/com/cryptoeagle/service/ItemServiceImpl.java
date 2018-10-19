@@ -38,6 +38,27 @@ public class ItemServiceImpl implements ItemService {
 
     RssService service;
 
+    @Override
+    public void deleteBySource(String blogName) {
+        log.info("delete items for blog : " + blogName);
+        repository.deleteByBlog(blogName);
+    }
+
+    @Override
+    @Transactional
+    public void delete(Item item) {
+        log.info("delete item");
+        repository.delete(item);
+    }
+
+    @Override
+    @Transactional
+    public void delete(List<Item> items) {
+        for (Item item : items){
+            delete(item);
+        }
+    }
+
     @Autowired
     public void ItemServiceImpl(ItemRepository repository, RssService service) {
         this.repository = repository;

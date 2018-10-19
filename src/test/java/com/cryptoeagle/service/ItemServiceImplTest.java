@@ -2,6 +2,7 @@ package com.cryptoeagle.service;
 
 import com.cryptoeagle.AbstractTest;
 import com.cryptoeagle.entity.Item;
+import com.cryptoeagle.service.abst.ItemService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -19,7 +20,7 @@ public class ItemServiceImplTest extends AbstractTest {
     private static final int SOURCE_COUNT = 7;
 
     @Autowired
-    ItemServiceImpl service;
+    ItemService service;
 
     @Test
     public void getAll() {

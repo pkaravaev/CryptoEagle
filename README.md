@@ -26,7 +26,7 @@ A project on  Spring Framework on the crypto world, which provides data on the c
 
 # CryptoEagle video
 
-[![Alt text](https://i9.ytimg.com/vi/R5fR_unJa7U/mq2.jpg?sqp=CKjGl94F&rs=AOn4CLDiGCTCF1nNTiiyy-dZmpg2hpxesg)](https://www.youtube.com/watch?v=R5fR_unJa7U)
+[![Alt text](https://sharryhong.github.io/image/spring.png)](https://www.youtube.com/watch?v=R5fR_unJa7U)
 
 
 ## REST endpoints

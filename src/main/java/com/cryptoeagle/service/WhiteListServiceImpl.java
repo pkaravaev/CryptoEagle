@@ -69,4 +69,6 @@ public class WhiteListServiceImpl implements WhiteListService {
 
         return whiteList;
     }
+
+
 }

@@ -48,7 +48,6 @@ public class BlogRepositoryJpaImpl implements BlogRepository {
                 .getSingleResult();
     }
 
-
     @Override
     public List<Blog> getAll() {
         return em.createNamedQuery(Blog.GET_ALL, Blog.class)

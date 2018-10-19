@@ -16,6 +16,7 @@ import java.util.Objects;
 @Entity
 @NamedQueries({
         @NamedQuery(name = Item.GET_ALL, query = "SELECT item FROM Item  item order by item.publishDate desc "),
+        @NamedQuery(name = Item.DELETE_BY_SOURCE, query = "DELETE from Item item where item.source =:source"),
         @NamedQuery(name = Item.GET_BY_SOURCE, query = "SELECT item FROM Item item WHERE item.source =:source order by item.publishDate desc "),
         @NamedQuery(name = Item.GET_ALL_SOURCE, query = "SELECT DISTINCT item.source FROM Item item")
 })
@@ -27,9 +28,10 @@ public class Item extends BaseEntity {
     public final static String GET_ALL = "Item.GetAll";
     public final static String GET_BY_SOURCE = "Item.GetBySource";
     public final static String GET_ALL_SOURCE = "Item.GetAllSource";
+    public static final String DELETE_BY_SOURCE = "Item.deleteByName";
 
     @NotNull
-    @Column(unique = true)
+    @Column
     private String title;
     @NotNull
     private String description;

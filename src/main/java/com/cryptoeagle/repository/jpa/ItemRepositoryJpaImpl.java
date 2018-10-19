@@ -16,6 +16,18 @@ public class ItemRepositoryJpaImpl implements ItemRepository {
     @PersistenceContext
     EntityManager em;
 
+    @Override
+    public void deleteByBlog(String blogName) {
+        em.createNamedQuery(Item.DELETE_BY_SOURCE)
+                .setParameter("source", blogName)
+                .executeUpdate();
+
+    }
+
+    @Override
+    public void delete(Item item) {
+        em.remove(item);
+    }
 
     @Override
     public List<String> getSources() {

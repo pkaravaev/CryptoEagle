@@ -17,26 +17,24 @@ import org.springframework.stereotype.Service;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 
 @Service
 @Slf4j
 public class RssServiceImpl implements RssService {
 
-    public List<Item> getItems(String url, String source) {
+    public Set<Item> getItems(String url, String source) {
         log.info("get items url : " + url + " source : " + source);
         SyndFeedInput input = new SyndFeedInput();
         SyndFeed feed = null;
-        List<Item> itemList = null;
+        Set<Item> itemSet = null;
         //TODO cut
         try {
 
             feed = input.build(new XmlReader(new URL(url)));
             List<SyndEntry> list = feed.getEntries();
-            itemList = new ArrayList<>();
+            itemSet = new HashSet<>();
             for (SyndEntry entry : list) {
                 SyndContent desc = entry.getDescription();
 
@@ -60,14 +58,16 @@ public class RssServiceImpl implements RssService {
                 item.setDescription(plain);
                 item.setPublishDate(localDateTime);
 
-                itemList.add(item);
+                itemSet.add(item);
             }
         } catch (Exception e) {
             log.error(e.getMessage());
-            throw new RssNewsNotFoundException("new not found");
+
+            return null;
+//            throw new RssNewsNotFoundException("new not found");
         }
 
-        return itemList;
+        return itemSet;
     }
 
 }

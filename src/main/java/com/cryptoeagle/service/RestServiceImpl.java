@@ -307,7 +307,7 @@ public class RestServiceImpl implements RestService {
 
         String s1 = s.replaceAll("\\u00A0", "");
 
-        coin.setId(Integer.valueOf(id));
+//        coin.setId(Integer.valueOf(id));
         coin.setName(name.substring(1, name.length() - 1));
         coin.setSymbol(symbol.substring(1, symbol.length() - 1));
         coin.setRank(Integer.valueOf(rank));

@@ -3,6 +3,7 @@ package com.cryptoeagle.rest;
 import com.cryptoeagle.entity.Item;
 import com.cryptoeagle.exception.ItemNotFoundException;
 import com.cryptoeagle.service.ItemServiceImpl;
+import com.cryptoeagle.service.abst.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ import java.util.List;
 public class ItemRestController {
 
     @Autowired
-    private ItemServiceImpl itemService;
+    private ItemService itemService;
 
     @RequestMapping(value = "/api/items")
     public List<Item> getItems() {

@@ -44,7 +44,6 @@ public class BlogServiceImplTest extends AbstractTest {
         assertTrue(all.size() == BLOG_COUNT + 1);
     }
 
-
     @Test
     public void findAllByUser() {
         List<Blog> all = service.findAllByUser(USER1_ID);
@@ -70,11 +69,9 @@ public class BlogServiceImplTest extends AbstractTest {
         assertTrue(all.size() == BLOG_COUNT);
     }
 
-
-//    @Test
-//    public void updateFromRss() {
-//        service.update();
-//    }
-
+    @Test
+    public void update() {
+        service.update();
+    }
 
 }

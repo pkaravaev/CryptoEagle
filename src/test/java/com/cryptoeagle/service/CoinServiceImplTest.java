@@ -71,4 +71,10 @@ public class CoinServiceImplTest extends AbstractTest {
         assertFalse(cvc);
         assertFalse(gdf);
     }
+
+    @Test
+    public  void deleteAll(){
+
+       service.deleteAll();
+    }
 }

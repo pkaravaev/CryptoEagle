@@ -8,7 +8,9 @@ import javax.persistence.*;
 
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @NamedQueries({
@@ -35,8 +37,11 @@ public class Blog extends BaseEntity {
     @ManyToOne
     private User user;
 
+//    @OneToMany(cascade = CascadeType.ALL)
+//    private List<Item> items = new ArrayList<>();
+
     @OneToMany(cascade = CascadeType.ALL)
-    private List<Item> items = new ArrayList<>();
+    private Set<Item> items = new HashSet<>();
 
     public Blog(String name, String URL) {
         this.name = name;

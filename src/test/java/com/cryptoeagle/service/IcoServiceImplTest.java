@@ -119,10 +119,10 @@ public class IcoServiceImplTest extends AbstractTest {
     }
 
 
-//    @Test
-//    public void updateIcos() {
-//        service.update();
-//    }
+    @Test
+    public void updateIcos() {
+        service.update();
+    }
 
     @Test
     public void deletAll() {

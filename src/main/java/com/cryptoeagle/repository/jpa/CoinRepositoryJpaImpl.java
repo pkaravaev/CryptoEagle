@@ -15,41 +15,43 @@ import java.util.stream.Collectors;
 public class CoinRepositoryJpaImpl implements CoinRepository {
 
     @PersistenceContext
-    EntityManager entityManager;
-
+    EntityManager em;
 
     @Override
     public Coin getBySymbol(String symbol) {
 
-        return entityManager.createNamedQuery(Coin.GET_BY_SYMBOL, Coin.class)
+        return em.createNamedQuery(Coin.GET_BY_SYMBOL, Coin.class)
                 .setParameter("symbol", symbol)
                 .getSingleResult();
     }
 
     @Override
     public List<Coin> getBySymbols(List<String> symbols) {
-        return entityManager.createNamedQuery(Coin.GET_BY_SYMBOLS, Coin.class)
+        return em.createNamedQuery(Coin.GET_BY_SYMBOLS, Coin.class)
                 .setParameter("symbols", symbols)
                 .getResultList();
     }
 
     @Override
-    @Transactional
-    public void saveCoins(List<Coin> list) {
-        for (Coin c : list) {
-            entityManager.merge(c);
-        }
+    public void save(Coin coin) {
+
+        em.persist(coin);
+    }
+
+    @Override
+    public void deleteAll() {
+        em.createQuery("DELETE FROM Coin ").executeUpdate();
     }
 
     @Override
     public List<Coin> getAllCoins() {
-        return entityManager.createNamedQuery(Coin.GET_ALL, Coin.class)
+        return em.createNamedQuery(Coin.GET_ALL, Coin.class)
                 .getResultList();
     }
 
     @Override
     public List<Coin> getTopGainCoins() {
-        return entityManager.createNamedQuery(Coin.GET_TOP, Coin.class)
+        return em.createNamedQuery(Coin.GET_TOP, Coin.class)
                 .getResultList().stream()
                 .limit(10)
                 .collect(Collectors.toList());
@@ -57,17 +59,17 @@ public class CoinRepositoryJpaImpl implements CoinRepository {
 
     @Override
     public List<Coin> getTopLoserCoins() {
-        return entityManager.createNamedQuery(Coin.GET_LOSER, Coin.class)
+        return em.createNamedQuery(Coin.GET_LOSER, Coin.class)
                 .getResultList().stream()
                 .limit(10)
                 .collect(Collectors.toList());
     }
 
     @Override
-    @Transactional
-    public void deleteAll() {
-        entityManager.createQuery("DELETE FROM Coin ").executeUpdate();
+    public void delete(Coin coin) {
+        em.remove(coin);
     }
+
 }
 
 

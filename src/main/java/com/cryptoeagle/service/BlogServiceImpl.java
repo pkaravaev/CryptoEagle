@@ -6,6 +6,7 @@ import com.cryptoeagle.entity.User;
 import com.cryptoeagle.exception.RssNewsNotFoundException;
 import com.cryptoeagle.repository.BlogRepository;
 import com.cryptoeagle.service.abst.BlogService;
+import com.cryptoeagle.service.abst.ItemService;
 import com.cryptoeagle.service.abst.RssService;
 import com.cryptoeagle.service.abst.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Logger;
 
 
@@ -27,6 +29,9 @@ public class BlogServiceImpl implements BlogService {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    ItemService itemService;
 
 
     @Autowired
@@ -64,12 +69,13 @@ public class BlogServiceImpl implements BlogService {
     @Transactional
     public void save(Blog blog, User user) {
         log.info("save blog : " + blog.getId());
-        List<Item> items = rssService.getItems(blog.getUrl(), blog.getName());
+        Set<Item> items = rssService.getItems(blog.getUrl(), blog.getName());
         if (items == null) {
             log.error("RssNewsNotFoundException : ");
             throw new RssNewsNotFoundException(blog.getName());
         } else
             blog.setItems(items);
+
 
         if (!user.isNew())
             user = userService.get(user.getId());
@@ -101,14 +107,14 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
+    @Transactional
     public void update() {
         List<Blog> all = getAll();
         for (Blog blog : all) {
-            List<Item> items = rssService.getItems(blog.getUrl(), blog.getName());
-            if (items != null) {
-                blog.setItems(items);
-                blogRepository.save(blog);
-            }
+            Set<Item> items = rssService.getItems(blog.getUrl(), blog.getName());
+            if (items != null)
+                items.stream().forEach(e -> blog.getItems().add(e));
+
         }
     }
 }

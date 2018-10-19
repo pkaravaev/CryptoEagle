@@ -53,4 +53,5 @@ public class AjaxController {
         List<Coin> topLoserCoins = coinService.getTopLoserCoins();
         return topLoserCoins;
     }
+
 }

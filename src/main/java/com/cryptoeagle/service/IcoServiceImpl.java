@@ -46,6 +46,7 @@ public class IcoServiceImpl implements IcoService {
         }
     }
 
+
     @Override
     @Transactional
     public void save(Ico ico) {
@@ -63,7 +64,6 @@ public class IcoServiceImpl implements IcoService {
         }
         return icos;
     }
-
 
     @Override
     public List<Ico> getFinished() {
@@ -109,7 +109,6 @@ public class IcoServiceImpl implements IcoService {
             throw new IcoNotFoundException(e.getMessage() + " Ico name : " + name);
         }
     }
-
 
     @Override
     @Transactional

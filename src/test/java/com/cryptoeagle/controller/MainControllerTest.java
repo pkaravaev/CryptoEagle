@@ -24,10 +24,7 @@ public class MainControllerTest extends AbstractWebController {
 
     private static final int EVENT_COUNT = 12;
 
-
-
     private static final int ITEM_COUNT = 7;
-
 
     @Test
     public void welcome() throws Exception {

@@ -7,6 +7,9 @@ import java.util.List;
 
 public interface ItemRepository {
 
+    void deleteByBlog(String blogName);
+
+    void delete(Item item);
 
     List<Item> getBySource(String source);
 

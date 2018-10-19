@@ -36,6 +36,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return repository.getAll();
     }
 
+
     @Override
     public User get(int id) {
         log.info("get user id", id);
@@ -73,6 +74,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         }
         return user;
     }
+
 
     @Override
     @Transactional
