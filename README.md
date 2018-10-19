@@ -1,4 +1,5 @@
-# CryptoEagle
+# CryptoEagle   [site link](http://35.197.242.68/cryptoeagle/) 
+ 
 A project on  Spring Framework on the crypto world, which provides data on the coins , news, events , white list.With user authentication  and authorization.
 
  <p align="left">

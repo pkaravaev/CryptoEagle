@@ -112,8 +112,10 @@ public class RestServiceImpl implements RestService {
     @Override
     public List<Ico> getIcoWithDataByPage(int page) {
         log.info("get ico with data by page: " + page);
-        List<Ico> icos = getIcoByPage(page);
+
         List<Ico> icosWithdata = new ArrayList<>();
+        List<Ico> icos = getIcoByPage(page);
+        if (icos != null)
         for (Ico ico : icos) {
             IcoData data = getDataForIco(ico.getId());
             if (data.getIntro() == null)

@@ -52,7 +52,6 @@ public class WhiteListServiceImpl implements WhiteListService {
         }
     }
 
-
     private WhiteList convertElementToWhitelist(Element element) {
         log.info("convert whitelist");
 
@@ -69,6 +68,5 @@ public class WhiteListServiceImpl implements WhiteListService {
 
         return whiteList;
     }
-
 
 }

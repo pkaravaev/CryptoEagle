@@ -40,4 +40,5 @@ public class BlogControllerTest extends AbstractWebController {
         List<Blog> all = blogService.getAll();
         assertTrue(all.size() == BLOG_COUNT + 1);
     }
+
 }

@@ -32,7 +32,6 @@
         </bean>
     </beans>
 
-
     <beans profile="Jpa">
 
         <bean id="provider" class="org.hibernate.jpa.HibernatePersistenceProvider"/>
@@ -45,7 +44,7 @@
                     <entry key="hibernate.dialect" value="${database.dialect}"/>
                     <entry key="hibernate.hbm2ddl.auto" value="create"/>
                     <entry key="hibernate.format_sql" value="true"/>
-                    <entry key="hibernate.show_sql" value="true"/>
+                    <entry key="hibernate.show_sql" value="false"/>
                     <entry key="hibernate.enable_lazy_load_no_trans" value="true"/>
                 </map>
             </property>
